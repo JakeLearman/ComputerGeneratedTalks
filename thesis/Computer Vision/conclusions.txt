@@ -1,0 +1,1301 @@
+﻿The author has discussed the proposed methodology for recording and analyzing shipwreck sites 
+in four different sections: data acquisition, data processing, data analysis, and sharing knowledge 
+(public outreach and publication). The important point is that this methodology is very flexible and 
+still developing along with advances in technology; the discussed methodology can be fitted to any 
+type of shipwreck as long as the water visibility allows archaeologists to capture fairly clear images. 
+
+Technology, even PhotoScan, can be replaced by more advanced software when it appears. In other words, 
+archaeologists will have to modify this methodology to make it suit the needs of their projects. This 
+methodology is a philosophy and idea rather than a completed guideline. The author strongly believes that 
+the philosophy behind this methodology can change the standard of traditional underwater excavations in 
+nautical archaeology. To note one more time, the primary idea behind this methodology is to create a 1:1 
+scale constrained accurate replication of a shipwreck site in digital format and to extract archaeological 
+information from the digital data in order to proceed with conventional archaeological research. This proposed 
+methodology allows archaeologists to skip time-consuming underwater measuring; what is more, it can provide more 
+accurate data. This methodology can shorten ten years of excavation and recording to two years. This means that 
+nautical archaeologists’ field projects can be conducted much more quickly and inexpensively. Consequently, 
+with the same amount of budget and time, archaeologists can conduct more projects on underwater cultural heritage. 
+Before closing this dissertation, the author would like to note a few more uses of this proposed methodology.
+
+One of the great benefits of this proposed methodology is that it produces 1:1 scale constrained photogrammetric
+ models of shipwreck sites, or real scale replication of underwater cultural heritage locations, in digital format. 
+In 2001, the UNESCO Convention for Underwater Cultural Heritage was enacted. After this, underwater archaeology 
+community recognized the importance of in situ preservation and became dedicated to promoting it. The UNESCO 2001 
+convention promotes protection for underwater cultural heritage sites; however, in situ preservation is not a 
+perfect solution in terms of protection. Archaeologists and governments must anticipate unexpected factors of 
+destruction. Taliban, ISIS, and other extreme activists have destroyed cultural heritage and museum displays in 
+Syria and Iraq. Natural disasters, such as earthquakes, tsunamis, and volcanic activity have unexpectedly destroyed 
+cultural heritage sites. For underwater cultural heritage sites, the activities of treasure hunters and net-dragging
+trawlers are always a major threat. Consequently, we must consider some type of safety net strategy along with in 
+situ preservation. The author strongly believes that Computer Vision Photogrammetry is possibly the best solution. 
+
+If archaeologists can succeed in creating 1:1 scale constrained photogrammetric models of cultural heritage sites, 
+the dimensions and textures of the cultural heritage sites can be recorded and remain as long as the data 
+survives. Moreover, digital in situ preservation can preserve cultural heritage in its current condition; 
+therefore, it can be used for monitoring purpose as the author discussed in Chapter IV. The idea of digital in situ 
+preservation is not meant to replace the strategy of in situ preservation. Digital in situ preservation should be 
+used as a safety net for when in situ preservation fails. As long as we have the data provided by 3D models and the 
+textures of cultural heritage sites, we can create 1:1 real scale restoration or replication when destruction 
+occurs in the future. Henceforth, the author strongly recommends that digital in situ preservation be used to 
+protect our cultural heritage, including shipwreck sites.
+
+One of the major threats to nautical archaeology is the activity of treasure hunters. In addition to selling 
+artifacts for money, treasure hunters declare themselves to be archaeologists or explorers and proceed with 
+excavation and salvaging activities without proper recording of shipwreck sites. This is a destruction of our 
+common human heritage, and our history can be lost forever. Because treasure hunters declare their activities 
+to be genuine archaeological research, they can receive permission from local governments to proceed with their 
+activities.
+
+For that reason, the author believes that Computer Vision Photogrammetry can be a strong tool to be used in the 
+fight against their looting activities. Once nautical archaeologists produce 1:1 scale constrained photogrammetric 
+models of shipwreck sites, archaeologists can rightfully claim that most of the archaeological data can be 
+acquired from the photogrammetric models. By publishing 3D models and submitting 3D data to local governments, 
+archaeologists may be able to eliminate the justification given by treasure hunters that they must visit and 
+destroy the shipwreck for their research. Moreover, if the proposed methodology becomes a new standard for 
+underwater surveys and excavations, recording shipwreck sites before and after excavations could become the 
+standard of underwater research. In that case, all activity on underwater cultural heritage becomes more transparent. 
+Then, looting activities and destruction of shipwreck sites can be disclosed easily. In short, archaeological 
+excavation using Computer Vision Photogrammetry, including the proposed methodology, can be a strong deterrent 
+against treasure hunters. For that reason, the author strongly promotes the use of Computer Vision Photogrammetry
+and the proposed methodology as a new standard for nautical archaeology in order to protect underwater shipwreck 
+sites from treasure hunters.
+
+The author and his colleagues promote another aspect of Computer Vision Photogrammetry called Legacy 
+Photogrammetry. Nautical archaeologists have been using photography for their underwater excavations since the 
+1960s. Many of the photos that were taken were used to create photomosaics of the shipwreck sites. Fortunately, 
+some of these photos can be used for Computer Vision Photogrammetry. One of the author’s colleagues, Thomas Van 
+Damme, calls this application Legacy Photogrammetry, using old data to create 3D models (Van Damme, 2015). 
+Based on the author’s experience, by choosing properly scanned photos and applying the proper masks and markers, 
+Legacy Photogrammetry can be surprisingly successful (Fig. 6-1). In addition, many former excavations and research 
+endeavors left good data regarding the dimensions and measurements of shipwrecks. Therefore, today’s archaeologists 
+can apply these measurements to constrain photogrammetric models to 1:1 scale. If 3D models are successfully 
+created and constrained to a 1:1 scale, these models become diagnostic and can be used for further archaeological 
+research (Fig. 6-2). There are many photos from former excavations and research endeavors being stored untouched. 
+The author and his colleagues want to promote the possibility of using Legacy Photogrammetry to revisit and extract 
+more data from previous studies.
+
+The author believes that archaeology, the study of human history, has two main responsibilities: the first 
+responsibility is to interpret the human past correctly, and the second responsibility is to protect the memories 
+of humanity. The first responsibility is fulfilled by archaeological research. In this dissertation, the author has 
+discussed a method to assist with this. Nevertheless, the author also wants to remark on the importance of the 
+second responsibility of archaeology. Cultural heritage and all archaeological remains are the memories of humanity, 
+like old pictures of a person. Without understanding and keeping the memory of the past, people cannot appreciate 
+their life in the present or future. However, understanding the meaning of the past is a dynamic process: today’s 
+archaeologists can goas far as the data allows, but the future archaeologists will inevitably have more data to 
+refine our understanding of the past. Often we cannot fully comprehend the significance of an archaeological site 
+or its artifacts at the time of its excavation and initial publication. As today’s archaeologists, it is our 
+important responsibility to protect and leave these memories intact for future generations. These memories can 
+be in the form of cultural heritage. Fortunately, technologies are developing quickly; the cost of 3D printers 
+is dropping and printing capacity is rising and engineers and scientists are developing applications of 3D 
+holography and augmented reality. The application of 3D data is developing so rapidly that nobody can predict 
+their capability in the future. Thus, the author believes that leaving 3D data to future generations is the one 
+of our top priorities as archaeologists. As today’s archaeologists can create 3D models from photos 
+(which archaeologists in 1960s might not have imagined), future archaeologists will likely create something that 
+we cannot even imagine today.
+
+To conclude, the proposed methodology satisfies two major responsibilities of archaeologists: understanding 
+the past correctly and leaving memories and data for future generations. This methodology can provide accurate 
+archaeological data to archaeologists to help understand shipwreck sites; meanwhile, it produces 1:1 scale 
+constrained photogrammetric models with high-resolution textures that provide detailed information. Additionally, 
+the data acquisition depends primarily on photo-shooting that can be accomplished in a tremendously shorter time 
+than conventional data acquisition methods, such as manual measuring. Once 1:1 scale constrained models are 
+produced, archaeologists can extract accurate archaeological data from the model, and research can proceed to 
+data processing and data analysis methods that do not require revisiting underwater archaeological sites. If 
+this methodology becomes a new standard and is taught to young students of nautical archaeology, the author 
+believes that the standards of underwater surveys and excavations can be raised. And this possible new standard 
+could eventually lead to protection of underwater cultural heritage. Yet, the author must note one more time, 
+this proposed methodology is just a tool to assist in the conventional research tasks performed by nautical 
+archaeologist; to use this methodology correctly, basic knowledge of the history of shipbuilding and an 
+understanding of conventional reconstruction methods of shipwreck sites is a prerequisite.
+
+This thesis introduced new real-time visual flow algorithms for robotic applications. The first
+example of such algorithms is an optical flow filter capable of running up to 800 Hz at 640480
+image resolution. An important aspect of the algorithm is that of developing predictors for
+image and optical flow to propagate current state estimates forward in time. This is achieved by
+modeling the evolution of the image and optical flow as systems of partial differential equations
+which is then solved numerically on GPU.
+
+Moreover, a new type of visual flow named structure flow is introduced. Intuitively, structure
+flow is the three-dimensional vector field describing the velocity of the environment relative
+to the camera as seen by the camera. Geometrically, it is the relative 3D velocity of the
+environment sampled at each pixel and divided by the inverse distance, and it is measured in
+radians per second. Structure flow is a generalization of optical flow as it contains information
+about the motion in the normal direction of the camera. Partial differential equations are used
+to model the spatio-temporal evolution of the structure flow and associated image brightness
+and depth fields. These equations can be used to create predictors to propagate such quantities
+forward in time, as well as to use them to estimate the underlying flow from image and depth
+measurements.
+
+To implement the structure flow algorithm, the Spherepix was developed to efficiently represent
+data on the sphere. Pixels on Spherepix images are arranged such that locally they
+approximately satisfy the properties of equidistance and orthogonality. These properties are
+fundamental to achieve efficient implementation of low-level image processing routines such
+as blurring and gradient computation. Other algorithms such as SIFT feature point extraction
+and optical flow can be efficiently implemented on spherepix.
+
+The author hopes this dissertation will be used as a guideline for underwater excavations and research 
+so that our grandchildren’s generation can enjoy the history of shipwrecks being excavated today.
+
+This thesis investigated the role of ranking in the wide field of pattern recognition
+and its applications. In particular, in this work we analysed the ranking problem
+from two different methodological perspectives: ranking to learn, which aims at
+studying methods and techniques to sort objects with the aim to enhance models
+generalization by reducing overfitting, and learning to rank, which makes use of
+machine learning to produce ranked lists of objects to solve problems in those domains
+that require objects to be sorted with some particular criteria.
+
+In the first part of this work we addressed the merits of ranking features to
+improve classification models. The central premise when using a feature ranking
+technique is that a designed feature set often contains many features that are either
+redundant or irrelevant, and can thus be removed without incurring much loss of
+information. We have seen that redundant or irrelevant features are two distinct
+notions, since one relevant feature may be redundant in the presence of another relevant
+feature with which it is strongly correlated. Actually, the exact definitions
+of relevancy vary across problem settings. For example, in classification, where
+the aim is to find useful features that separate well two or more classes, relevant
+is a feature which is highly representative of a class [87]. We proposed novel
+solutions in feature selection that efficiently remove redundant or unwanted cues
+from the information stream. Two novel graph-based ranking algorithms have been
+proposed: the unsupervised Infinite Feature Selection (Inf-FS) and the supervised
+approach Eigenvector Centrality (EC-FS). The Inf-FS (introduced in 5.1) ranks features
+based on path integrals [69] and the centrality concept on a feature adjacency
+matrix. The path integral formalism, is a tool for calculating quantum mechanical
+probabilities. The Feynman’s recipe applied to a particle travelling on a manifold,
+considers all the possibilities for the particle travelling between two positions in
+space-time. Not only the straight-line approach, but also the possibility of the particle
+turning loopings and making diverse detours. Each path has its own amplitude,
+which is a complex number, in order to calculate the total amplitude between two
+space-time events the Feynman’s receipt states that all the complex amplitudes have
+to be added up. The standard way to interpret these amplitudes is the probability to
+measure the particle at position B at time tB, knowing that it was at position A at
+time tA < tB, which is given by the the square absolute value of the amplitude associated
+to those two events. Therefore, we derived a discrete form for path integral.
+
+Then, we mapped the space-time to a simplified discrete form without time, that is:
+a graph. Finally, the framework used to estimate the most probable position where
+to find a particle has been switched to the novel problem of finding the most likely
+relevant feature (see Sec. 5.3.1 for details). From a machine learning perspective,
+the Inf-FS approaches feature selection as a regularization problem, where features
+are nodes in a graph, and a selection is a path through them. The application of the
+Inf-FS to 13 different datasets and against 8 competitors, led to top performance,
+notably setting the absolute state of the art on 8 benchmarks. We showed that this
+ranking method is also robust with a few sets of training data, it performs effectively
+in ranking high the most relevant features, and has a very competitive complexity.
+We provided many insights into the method from a probabilistic perspective (in
+Sec. 5.3.2) and from a graph theory point of view (in Sec.5.3.3). 
+
+The former shows that the solution of the Inf-FS can be seen as the estimation of the
+expected number of periods that a Markov chain spends in the jth non-absorbing state given 
+that the chain began in the ith non-absorbing state. Perhaps this interpretation comes
+from the specification of the matrix S as the infinite sum. Al(i; j), where A denotes
+the adjacency matrix, is the probability that the process which began in the
+ith non-absorbing state will occupy the jth non-absorbing state in period l. The
+latter shows how identifying the most important nodes corresponds to individuate
+some indicators of centrality within a graph. This fact motivated the exploration
+of some centrality measurements such as the Eigenvector Centrality. As a result, a
+second feature selection method called EC-FS, exploits the convergence properties
+of power series of matrices thereby individuating candidate features, which turn out
+to be effective from a classification point of view. Like the Inf-FS, also the EC-FS
+is a graph-based method - where features are the nodes of the graph. The ECFS
+is a supervised method (by construction) weighted by a kernelized adjacency
+matrix, which draws upon best-practice in feature selection while assigning scores
+according to how well features discriminate between classes. We discussed how
+the method estimates some indicators of centrality to identify the most important
+features within the graph. The results are remarkable: EC-FS has been extensively
+tested on 7 different datasets selected from different scenarios (i.e., object recognition,
+handwritten recognition,biological data, and synthetic testing datasets), in
+all the cases it achieves top performance against 7 competitors selected from recent
+literature in feature selection. EC-FS approach is also robust and stable on different
+splits of the training data as proved by the kuncheva’s stability index. Given that, we
+investigated the interrelations of the two algorithms for the classification task. The
+purpose of this analysis was to obtain more insights into the Inf-FS formulation,
+with the aim of gaining a better understanding of its strength and weakness. An
+interesting result came from this analysis. The EC-FS does not account for all the
+contributions given by the power series of matrices (or sub-solutions). On the other
+hand, the Inf-FS integrates each partial solution (i.e., S = A1+A2+:::+Al; l ! 1),
+that together help the method to react in a different way in presence of noise in data
+or many redundant cues.
+Ranking to learn has been explored in the real-time application of visual tracking.
+In this part we evaluated a collection of modern feature selection approaches,
+used in off-line settings so far. We investigated the strengths and weaknesses of
+these algorithms in a classification setting to identify the right candidates for a
+real-time task. We selected four candidates who meet the requirements of speed
+and accuracy for visual tracking. Finally, we showed how these feature selection
+mechanisms can be successfully used for ranking features combined with the ACT
+system [49], and, at the same time, maintaining high frame rates (e.g., ACT with
+Inf-FS operates at over 110 FPS). Results show that our solutions improve by 3%
+up to 7% the ACT tracker where no feature selection is done. Moreover, ACT with
+mutual information resulted in a very impressive performance in precision, providing
+superior results compared to 29 state-of-the-art tracking methods. 
+
+In this setting, we presented our contribution (i.e., Dynamic Feature Selection Tracker -
+DFST) accepted to the A visual object tracking challenge 2016. The DFST uses
+the Inf-FS as ranking engine to sort visual features according to what happens in
+the image stream, with the objective of selecting the first 4 most discriminative features,
+the ones that better separate the foreground from the background. The ACT
+tracker is then used to predict the next position of the target.
+
+The second part of the thesis focused on the problem of learning to rank. Firstly,
+we investigated the different problematics related to biometric verification and identification
+in text chat conversations. We disclosed a new facet for biometrics, considering
+the chat content as personal blueprint. Therefore, among the many types
+of biometric authentication technologies we focused on keystroke biometrics. As
+a result, we explored novel solutions of feature designing from the handcrafting of
+soft-biometric cues to automatic feature learning solutions. In particular, we proposed
+a pool of novel turn-taking based features, imported from the analysis of
+the spoken dialogs, which characterize the non-verbal behavior of a IM participant
+while she/he is conversing. We introduced the concept of turns as key entity where
+the features have to be extracted in text chat conversations. On a test set of 94 people,
+we demonstrate that identification and verification can be performed definitely
+above the chance. We moved a step forward and showed how putting these features
+into a learning approach, which is capable of understanding the peculiar characteristics
+of a person, enables effective recognition and verification. 
+
+In particular, we offered a first analysis of what a learning approach can do, when it comes to
+reduce the information needed to identify a particular user. The results are surprisingly
+promising: with just 2 turns of conversation, we are able to recognize and
+verify a person strongly above chance. This demonstrates that a form of behavioral
+blueprint of a person can be extracted even on a very small portion of chats. Another
+different framework of learning to rank has been used based on deep convolutional
+neural networks designed to the problem of recognizing automatically the identity
+of chat participants while respecting their privacy. We proposed a CNN architecture
+with a reduced number of parameters which allows learning from few training examples.
+
+As for the re-identification task, we used the areas under the CMC curves to
+evaluate our re-identification system. Results show that ranking identities by means
+of deep learning increases the accuracy from 88.4% to 96.2% on the TBK dataset,
+and from 95.7% to 99.4% on the C-Skype. Finally, we provided evidence that the
+methods and architectures developed for the biometric authentication system above
+were also suitable for advert recommendation tasks, where learning is used to rank
+ads according to users’ preferences. We introduced a CNN architecture consisting
+of only four layers (i.e., shallow architecture) that results to be useful when learning
+from very few examples. This pilot work represents one of the very first prototypes
+on deep ranking for advert recommendation. A comparative evaluation was given,
+demonstrating that the proposed approach significantly outperforms other standard
+learning approaches to rank such as logistic regression, support vector regression
+and its variants. The main contribution of this pilot work was the investigation of
+possible applications of CNNs on limited amount of training samples. Indeed, a
+shallow architecture has much less parameters and learning can be performed also
+without expensive hardware and GPUs. It results in shorter training times. We fed
+the deep network with pre-processed features (represented as histograms). 
+
+During training, we know that high-level features will be automatically learnt by the network
+starting from specific cues designed a priori. This fact makes results easier
+to interpret by researchers. Moreover, since the amount of parameters is much less
+than a deep architecture the probability to incur in overfitting is reduced.
+The choice of using 1D convolutions is motivated by the nature of the input data,
+since histograms when normalised can be interpreted as an estimate of the probability
+distribution of a continuous variable, the deep network will learn specific
+filters (and hierarchical representations in increasing levels of abstraction) capturing
+complex patterns among input handcrafted representations. This means that
+they automatically generate other features from inputs with a higher discriminative
+power while preserving the interpretability of research results (at least partially).
+In addition, we collected and introduced representative datasets and code libraries
+in different research fields. For example, we made publicly available different
+datasets, such as the ADS-16 dataset for computational advertising released on
+kaggle repository, or the C-Skype, TBKD, among others. This work also produced
+useful tools in terms of source code and libraries, such as the Feature Selection Library
+FSLib that has been recognized and awarded by Mathworks in 2017 for its
+impact on the Matlab community (5+ ratings, more than 300 downloads pcm), and
+the DFST tracker released to the international Visual Object Tracking (VOT) challenge
+2016.
+
+This study points to many future directions. Future work concerns deeper analysis
+of particular mechanisms of the proposed ranking algorithms, new proposals to try
+different methods, or simply curiosity. There are some ideas that we would have
+liked to try during the description and the development of the methods for feature
+ranking and selection, authentication, biometric verification, re-identification, and
+recommendation. Based on the results presented in this thesis, we are planning to
+continue our research on several topics.
+
+Object tracking is one of the most important tasks in many applications of computer
+vision. Many tracking methods use a fixed set of features ignoring that appearance
+of a target object may change drastically due to intrinsic and extrinsic factors. The
+ability to identify discriminative features at the right time would help in handling
+the appearance variability by improving tracking performance. We analysed different
+ranking methods in terms of accuracy, stability and speed, thereby indicating
+the significance of employing them for selecting candidate features for tracking
+systems, while maintaining high frame rates. We improved the performance of the
+standard methods, while keeping their fast performance during runtime. In particular,
+the Infinite Feature Selection mounted on the Adaptive Color Tracking [49]
+system operates at over 110 FPS resulting in what is clearly a very impressive performance.
+This combination was proposed at the international challenge on visual
+object tracking [159].
+
+This analysis points towards future work to increase the robustness of the tracker.
+We are developing novel strategies which make the Inf-FS a supervised method.
+Supervision can help in selecting those features which better distinguish the foreground
+from the background. Intrinsic and extrinsic factors affect the target appearance
+by introducing a strong variability. Therefore, it is necessary to have some
+criteria to automatically select the right amount of features with regard to the context
+of the target object.
+
+This thesis has made novel contributions to the area of object classification based
+on 3-D point clouds. A reliable classification of objects is an essential milestone
+on the way to well-functioning scene understanding. However, object classification
+solely on the basis 2-D information, i. e., color images is often insufficient.
+Accordingly, in recent years much effort has gone into the development of local
+3-D feature descriptions that allow for a robust classification. Nevertheless, a
+large-scale classification of objects based on 3-D point cloud data is still a major
+challenge.
+
+This thesis could demonstrate how a reinforcement learning approach in the
+field of computer vision can improve the results of individual 3-D object classification
+approaches by learning strategies for a selection and successive application
+of different 3-D point cloud descriptors. It has been shown how a reinforcement
+learning framework can be put into position to find a good balance between the
+available time given and the classification abilities of individual algorithms. In
+concrete terms this means that the reinforcement learning framework learned to
+select individual sequences of local 3-D feature description algorithms, depending
+on the point cloud at hand, to get the best possible classification results. Furthermore,
+the usage of an on-line learning method such as the reinforcement learning
+method Q-learning provides a distinct advantage over off-line learning methods
+because of its flexibility under changing conditions. For example, it allows the
+adaptive integration of new algorithms into the classification process, while the
+system is on duty.
+
+While working on this thesis some new questions arose on different parts of the
+examined methods and models which are worth taking a closer look at. One
+of the first questions which arose was how the system scales using additional
+algorithms for local 3-D feature descriptions. This implies the question whether
+the classification rates continue to grow or stagnate at some point.
+Furthermore, additional options for the selection of the first local 3-D feature
+description algorithm should be examined. As part of this thesis it was shown,
+that simple global properties of point clouds can be utilized to reduce the number
+of false classifications of the local 3-D feature description algorithm selected first.
+However, with the long-term aim of achieving a result close to 100% correct
+classifications, the errors caused by an unfavorable selection of the first algorithm
+have to be minimized. This could be done, for example, by using further global
+properties or by using additional global point cloud descriptors like the viewpoint
+feature histogram.
+
+The investigations concerning the initial algorithm lead to a further question.
+Is there a potential correlation between specific global properties of a point cloud
+and the algorithms used at first? Or in other words: is it possible to identify
+certain characteristics of local 3-D feature description algorithms, which lead
+precisely to this differentiation? This information could possibly help to improve
+individual algorithms.
+
+Finally, if it would be possible to achieve almost 100% correct classification
+results, the reinforcement learning framework could also be used to create new
+object classes, i. e., to autonomously learn the assignment of objects to classes
+it has not been exposed to before. Under the assumption that a classification
+is usually correct, it could also be assumed that an unsuccessful assignment of
+an object to a class means that this object does not belong to any of the known
+classes. If, in such a case, all available algorithms would be applied to the object
+and it would still be impossible to assign the object to an existing class, the object
+would be regarded as a first instance of a new yet unnamed object class. In this
+way, new object classes could arise nearly automatically. In that case, new object
+classes have, of course, to be evaluated and labeled by a human observer from
+time to time.
+
+This research has investigated several approaches for large-scale ground truth
+generation which is the basis to allow an efficient evaluation of the performances
+of computer vision methods.
+
+Precisely, we addressed the problem of automatic ground truth generation by
+considering two main points of view: 1) to overcome the limitation of the existing
+approaches by developing easy and intuitive tools to facilitate the labeling process
+and 2) to construct a large scale database of visual annotations by exploiting the
+crowd of users.
+
+To this aim, in this thesis we first described the GTTool method, which
+represents an application that improves the user’s experience during the extraction
+of the object contours by means of a simple graphic interface and the use of
+automatic techniques for the detection of object across frame sequences. A
+modular architecture has been developed in order to enhance ground truth
+generation in term of both accuracy and human efforts. Several techniques for
+automatic contour extraction (Active Contour Models and the Gaussian Mixture
+Model motion detection algorithms) and object tracking (CAMSHIFT) have been
+integrated, while still allowing the user to define ground truth data manually if the
+automatic methods fail to identify and track correctly the objects of interest. XML
+support allows to both save the inserted ground truth to file (to share it with
+others or to be modified at later time) and to import VIPER-GT files, thus
+supporting the migration process to GTTool. The experimental results show that
+the proposed solution outperformed the VIPER-GT approach in every test we
+run, reducing the time needed to label an entire video by a factor of 3.
+
+Despite the advantages introduced by the GTTool, the integration of
+crowdsourcing and collaborative capabilities in order to permit to different users
+to cooperate in the ground truth generation process, is still needed. This can be
+achieved by providing a web interface that implements the same functionalities of
+GTTool, adding multi-user capabilities and video library management.
+
+To this end, in this work a web-based video annotation tool (PERLa) is also
+presented for dealing with all the aspects of the ground truth generation process at
+different vision levels.
+
+Although the tool is online since July 2012 and only few users have had
+access to it (for testing reasons), more than 55000 annotations have been drawn,
+but this number is expected to grow exponentially in the following months.
+Besides, the experimental results have shown that the proposed tool allows users
+to speed-up the generation of high quality ground truth due to the distribution of
+the workload to multiple users. Moreover, the contour integration module
+performed as expected, increasing the quality of the produces ground truth.
+Currently we are working on integrating a performance evaluation module
+which will enable scientists to test and compare their algorithms using the
+generated ground truth. This module will be further extended with social
+interaction capabilities, in order to enable scientists to share code, datasets and
+ideas.
+
+In spite of the great support provided by PERLa for collecting ground truth
+data through the use of a web-based collaborative platform, much more
+investigations have been conducted to further relieve users from the onerous task
+of gathering annotation, providing at the same time, an effective method for
+integrating quality control and increasing the users’ motivation Actually, in
+PERLa a first attempt to generate high quality ground truth was carried out by
+exploiting the combination of the annotation of multiple users and the voting
+approach to generate what we defined as the Best Ground Truth. Thus, the more
+users annotate objects and share their annotation with other users; the better will
+be the resulting quality of the generated ground truth.
+
+As concern instead the problem of motivating the users to contribute in
+gathering annotation, some approaches which rely on crowdsourcing methods
+were taken into account. To this purpose we presented flash the Fish, a simple
+online game that aim at generating video annotation for object detection
+algorithms. The acquired clicks were then fed to a clustering module which
+refined the results, producing good quality ground truth and we are confident that
+the quality will increase as more and more users will play the game.
+
+While, in its current form, the game generates ground truth for object
+detection, as the number of annotation increases, it should be interesting to assess
+whether it is possible to derive the exact object shapes from the heat maps. While
+a preliminary analysis demonstrated that this can be possible, a very large dataset
+should be considered. To accomplish that, we thought to integrate advanced
+voting methods [86] and use the clicked points to drive some object segmentation
+approaches. Moreover, bonus levels that permit the creation of annotations for
+testing object tracking and object classification methods are already implemented
+and are currently under testing.
+
+One interesting observation that we made during the revision of the datasets
+is that many clicks should fit better in successive frames from the one that they
+were acquired. This happens due to the fact that the time that passes from the
+moment the eye catches the visual stimulus (fish moving) to the moment of the
+reaction (mouse movement and click) is not negligible and it should be taken into
+account.
+For this reason we developed a module that analyses the reflexes of each user
+independently by controlling how well the clicks fit with the “best” ground truth,
+and we introduced a delay.
+
+Given the effectiveness of this game, we aim at creating an open platform,
+where researchers can upload their videos, to be used in the game, and the
+generated annotations will be publicly available.
+To accomplish the purpose of using the clicked point as seeds for developing
+object segmentation approaches, in this thesis we also have proposed two
+different methods which exploit the data gathered by playing the Flash the Fish
+online game for supporting video annotation.
+
+In the first case we exploit the Region Growing and Grab cut segmentation
+techniques, which also use unsupervised clustering to compute the centroids used
+as the starting seeds and the convex hull surrounding the obtained clusters
+respectively, to drive the segmentation phase. In this case the obtained results
+(Measure of about 80% in the best case) when compared against a hand labeled
+ground truth dataset, showed that the proposed approach is able to generate
+reliable annotations providing a valid alternative to the existing ground truth
+generation methods. However, a drawback found by using this approach is related
+to the fact that the quality of annotations is strongly connected to the user quality.
+To avoid this issue we proposed a statistical approach which, first of all, takes into
+account the delay with which the user clicks after seeing the object of interest by
+shifting-back the points retrieved for the current frame thus obtaining a more
+accurate positioning of the users’ clicks. Then, similarly to the previous approach,
+we calculate the Fmeasure metric which provides, in the best case (e.g. when the
+largest number of click is available) a value of about 80%. Also in this case we are
+able to supply very good annotation with respect to the hand-drawn ground truth
+providing an effective method which proved to be completely independent from
+the user’s quality.
+
+As future developments we plan to add automatic video analysis tools for
+object detection, tracking, recognition and image segmentation that may save
+annotation time. We also aim to map the currently available XML format, used for
+GTTool and PERLa, into a web ontology, in order to give users the possibility to
+insert semantic metadata for each annotated object, which could not only support
+interoperability with other semantic web applications (e.g. multimedia retrieval,
+like in [79, 80, 81]), but also enable users to generate ground truth for higher level
+tasks (e.g. object recognition etc.).
+
+Machine learning methods [82, 83, 84] will be applied on these textual
+annotations in order to exploit the advantages offered by integrating annotations
+to multiple types and levels of information. These semantic data will be available
+to the end users via SPARQL Endpoints. The integration of more extensive
+collaborative capabilities, e.g. simultaneously editing the same ground-truth or
+systemically distributing the ground truth generation among different users, would
+undoubtedly accelerate even more the whole process. Moreover, multipleannotations of 
+the same object by different users could be integrated by using
+Adaboost [85] in order to enhance the quality of the produced ground truth.
+Finally, we are going to further investigate new and more efficient methods
+for treating the raw data derived by the game, by integrating effective algorithms
+for segmenting objects in videos. Also, the data gathered by the game can also be
+used in order to derive other types of annotations. For example, object-tracking
+ground truth by grouping the user’s clicks in the frame sequences and by applying
+object tracking methods, like [87] in order to find the trajectories’ limits.
+
+The objective of this chapter is to experimentally validate the various aspects of the
+implementation phases of the proposed quantitative coronary analysis method
+mentioned in Chapters 3, 4 and 5. In particular, the robustness of the frame
+alignment, accuracy of the segmentation algorithm and the technical feasibility of
+VDC algorithm have been evaluated using a randomly selected clinical data set
+
+The direct CCAs produced by Philips Medical System were used for the experiments
+and those were recorded at a frame rate of 15fps with 512×512 resolution. The
+selected CCAs for creating the dataset were recorded under the three standard
+angiography views namely LAO cranial, AP caudal and AP cranial views. The main
+reason for selecting the aforementioned angiogram views for creating the dataset is
+that those views provide excellent visualizations for the main CAs namely RCA, CX
+and LAD respectively.
+
+Algorithms developed for frame alignment is validated in this set-up. In order to
+achieve this, fifty direct CCA cases, which have been recorded under the three
+angiography views mentioned in section 6.1 were selected randomly to create a data
+set. Hence, 24 CCA cases were selected under LAO Cranial view, 13 CCA cases
+were selected under the AP Caudal view and 13 cases were selected under the AP
+Cranial view.
+
+Moreover, the proposed validation method consists of three main steps namely;
+finding the best similarity measure for template matching, finding the value for
+DHOGThreshold and assessing the robustness of the proposed frame alignment algorithm.
+Following sub sections have broadly emphasized the implemented procedures and
+obtained results for each of those validation steps.
+
+In order to find the best similarity measure for the template matching, the proposed
+frame alignment algorithm was executed separately on the created dataset under the
+six different similarity measures defined in open source computer vision and
+machine learning software library called OpenCV. Hence, a total of 1372 × 6
+template matching steps were presented in the executed dataset under each similarity
+measure. Further, the visually observed template matching judgment, calculated
+HOG distance (DHOG) and the Euclidean distance between matched templates for
+each matching step were recorded.
+
+Each matching instance is determined as either as successful match or mismatch
+based on the visually observed template matching judgment made by experts and is
+used as the ground truth for the validation process. Moreover, these successful
+template matching instances are denoted as positive matches and unsuccessful
+matches are indicated as negative matches. Subsequently, the positive matching
+percentage for each CCA under the six similarity measures was computed separately
+to determine the best similarity measure and the results are enlisted in Table 6.1.
+Based on the results presented in Table 6.1, CC was selected as the best similarity
+measure for the frame alignment algorithm because it possesses the highest positive
+matching percentage.
+
+Hand gestures are a powerful way for human communication, with lots of potential
+applications in the area of human computer interaction. Vision-based hand gesture
+recognition techniques have many proven advantages compared with traditional
+devices. However, hand gesture recognition is a difficult problem and the current
+work is only a small contribution towards achieving the results needed in the field.
+The main objective of this work was to study and implement solutions that could be
+generic enough, with the help of machine learning algorithms, allowing its
+application in a wide range of human-computer interfaces, for online gesture
+recognition. To achieve this, a set of implementations for processing and retrieving
+hand user information, learn statistical models and able to do online classification
+were created. The final prototype is a generic solution for a vision-based hand
+gesture recognition system, that is able to interpret static and dynamic gestures and
+that can be integrated with any human robot/system interface. The implemented
+solution, based on supervised learning algorithms, is easily configured to process
+new hand features or to learn different static and dynamic gestures, while creating
+statistical models that can be used in any real-time user interface for online gesture
+classification.
+
+For the case of dynamic gesture recognition, the choice fell on Hidden Markov
+Models, due to the nature of the data, gestures, which are time-varying processes.
+This type of models has proven to be very effective in other areas of application, and
+had already been applied successfully to the problem of gesture recognition. The
+evaluation of the trained gestures with this prototype proved that, it was possible to
+successfully integrate static and dynamic gestures in the generic system for human /
+computer interaction. Although in the implementation only 2D hand paths were used
+in order to extract dynamic gesture features, it was shown that for the current system
+configuration and the set of predefined assumptions, that type of information was
+enough.
+
+It was also possible to prove through this study, and with the various experiments
+which were carried, that proper feature selection for image classification is vital for
+the future performance of the recognition system. It was possible to learn and select
+sensible features that could be effectively used with machine learning algorithms in
+order to increase the performance and effectiveness of online static and dynamic
+gesture classification.
+
+Although to date, the system has been tested in laboratory under various conditions
+and with various users, it was not possible to test the prototype in a real competition
+environment with real situations due to calendar restrictions, but it is expected to
+validate on next year’s National Open.
+
+Although the objectives of this thesis are fulfilled, many situations arose during the
+study that should be implemented and some others experimented and explored.
+So, this section identifies some possible developments and further work that on one
+hand can be implemented as a complement to what was developed during this thesis,
+or as promising and worth exploring areas.
+
+Inspection plays an important role in the maintenance of infrastructure. It is an integral
+part of structural heath monitoring systems, designed to assess the condition of structural
+components and determine whether or not they are fit-for-purpose. One of the most
+frequently adopted inspection techniques is visual inspection, which is carried out by
+inspectors. It has a number of limitations, such as the high labour costs associated with
+carrying out tasks, and inaccuracy due to subjectivity. A significant amount of research
+has been carried out to develop automated inspection systems to improve on manual
+visual inspection. In the field of civil engineering, a number of inspection systems have
+been developed to utilise inexpensive technologies based on digital videos and cameras.
+Examples of these systems include crack detection systems (Yamaguchi and Hashimoto,
+2006, Abdelqader et al., 2006), crack monitoring systems (Chen and Hutchinson, 2010),
+and systems to allow the fast acquisition of video data (Yu et al., 2007). Technologies
+in image processing and pattern recognition have been applied to detect, localise and
+quantify damage in monitored structural components from video or image data. However, 
+none of these systems offer complete solutions and a significant amount of work is still
+required to create an automatic inspection system that can be adopted by the industry.
+
+The advancement of computer vision technologies offers the possibility of creating
+an automatic system for inspection. This thesis describes a system, which is based on
+state-of-the-art computer vision technologies, to aid the visual inspection of tunnels. The
+system uses a standard digital camera, which is cheap compared to other technologies,
+such as LiDAR or infrared cameras. The system aims to aid inspection based on the two
+following themes and contributions.
+
+This thesis proposes a framework for
+creating a large mosaic from images of tunnel linings. A traditional inspection report is
+usually a collection of individual images, which is difficult to visualise and does not provide
+a sense of where the images are taken. However, novel inspection reporting combines these
+individual images into a large mosaic image, making it far easier to visualise a large section
+of the tunnel. The research provides a system that enables inspectors to create a mosaic
+for inclusion within an inspection report in an automatic or interactive approach.
+
+This contribution is mainly based on the work described in Chapter 5. A framework is
+proposed to create a mosaic image from tunnel images. It is based on Structure From
+Motion, which recovers a sparse 3D point cloud and camera parameters from uncalibrated
+images. Each image is warped using an estimated tunnel surface geometry and then input
+to stitching software to create a final mosaic image. The framework exploits the simple
+geometry of a tunnel, which is a cylinder and a developable surface, to produce an almost
+distortion-free mosaic.
+
+The accurate estimation of the surface parameters is an important factor for obtaining
+a mosaic containing a low degree of distortion. This thesis provides two approaches to
+surface estimation. The first is Support Vector Machine (SVM) classification, which is
+used to classify the surface points lying on and off the surface. Points classified as lying
+on the surface are used in the estimation of the tunnel surface, which is computed by the
+non-linear least squares method. Another approach relies on users interactively providing
+an initial estimation of the surface parameters.
+
+It is shown that inaccurate surface parameters result in distortion in a final mosaic,
+such as curvature. However, with accurate parameters, the mosaic preserves all of the
+physical entities, such as line straightness, 90# between horizontal and vertical lines, and
+parallelism. This type of mosaic image with little distortion can only be achieved if the
+geometry of a scene contains developable surfaces.
+
+An SFM system in the proposed framework allows the mosaicing of images with general
+camera motion. Commercial stitching software only provides the mosaicing of images
+based on planar and cylindrical projection models. This can only be achieved if the
+images are taken with a camera fixed at one point. The SFM provides greater flexibility
+with regard to camera motion when mosaicing
+
+The final contribution of this research is a change detection system that applies to images
+with variations in terms of their viewpoint and illumination. Many change detection
+systems in the civil engineering literature are designed to monitor crack changes under
+simple imaging conditions which do not contain viewpoint or illumination variations. This
+type of system is impractical for real world images. This research proposes a framework
+that aims to cope with variations in real world images.
+The framework corrects variations in viewpoint by geometrical registration using
+Bundler, which registers a query image to the existing database previously reconstructed
+to obtain a 3D model and camera parameters. The query image is then registered and
+compared with a chosen image from the existing ones using the geometry proxy of a scene.
+The query and reference images are photometrically registered to eliminate the effect of
+illumination variation. Two algorithms are used in photometric registration: intensity
+normalisation and homomorphic filtering. It is found that the latter algorithm provides
+more accurate results. Finally, after the query and reference images are pre-processed, a
+change detection algorithm is applied to determine the change regions between the images.
+
+Two change detection algorithms are applied for comparison: image differencing and
+Chen’s algorithm. In most testing datasets, Chen’s algorithm produces better results than
+the image differencing algorithm. However, the accuracy of Chen’s method depends on
+two important parameters: the size of patch R and the threshold !. Suitable parameters
+must be chosen for a given movement of crack change in images in order to obtain optimal
+accuracy in a change mask. Choosing these parameters is difficult for real tunnel images as
+the tunnel movement is not uniform. The results from the experiments demonstrate that
+the change masks created for the tunnel datasets are poor and inadequate for practical use.
+It is concluded that further study is required to find better methods for the pre-processing
+steps.
+
+The modern techniques proposed in the modules of the system is experimentally tested
+and results of both text recognition algorithm and 3D reconstruction assures that the proposed
+prototype is superior to the existing models. Text localization is evaluated based on the
+ICDAR 2013 test results of values - recall, precision and f-measure while the reconstruction
+technique’s efficiency is measured by reduction in estimated error percentage. Results of read
+module and guidance module are discussed in sections 3.1.1 and 3.1.2 respectively.
+
+The proposed wearable dual-module electronic travelling aid was developed costefficiently,
+that helps visually impaired to avoid the human obstacles in their path and also to
+read the texts. Instead of using several sensors, a simple stereo camera setup was chosen and
+the surrounding was three dimensionally reconstructed from the images. This reduced the
+computational difficulties and the prototype became less bulky so that is light-weight and
+easy to carry on shoulders by the user. 3D reconstruction of cylinders algorithm to find the
+real world metrics was successfully merged with text detection algorithm. In Read Module, a
+novel text detecting edge-enhanced MSER algorithm is proposed to overcome the sensitivity
+of MSER with respect to image blur and to detect even very small letters by exploiting the
+additional properties of MSER and Canny edges. Our method had employed MSER as basic
+letter candidates and demonstrated cutting-edge performance for text localization even in
+natural images. In Guidance Module, our work on using one invariant to analyze projective,
+affine and Euclidean space for vision tasks was successful. 3D measurement has been
+computed from a stereo vision using relative affine structure and rotational symmetry without
+vanishing point that reduced the error to a good extent. The transformation is represented by
+relative affine structures along the three orthogonal directions. Therefore, camera
+transformation for a cylindrical object can also be expressed in terms of relative affine
+structures. Voice synthesizer reads out the strings or sentences through earphones to the user
+thus enabling him recognize the text. Our method achieves the recall of 60.01%, precision of
+73.10% and the f-measure of 66.30% in text localization and the error percentage in the 3D
+reconstruction is reduced up to 2.84% which proves that the efficiency of the system is
+excellent. Robustness and performance is better because the number of exact text detected by
+the OCR was high. The tests were performed in a controlled indoor environment and the
+results show that the performance of both modules is superior to other techniques and assures
+that the real-time outdoor performances can be carried out in the future.
+
+Moving towards the next generation of autonomous vehicles and advanced driver assistance
+systems, many researchers who are working in the field use computer vision techniques.
+Motivated by the unsolved issues under challenging lighting conditions, the lack of sufficient
+accuracy, or speed deficiency of the existing methods, this thesis contributes methods
+that can be used in the development of a real-time driver assistance systems. The proposed
+system is not only able to analyse the road hazards and driver behaviour individually, but
+also performs a data fusion of both sources that enables it to predict and prevent imminent
+crashes.
+
+While some current research works use multiple sensors to solve problems such as depth
+estimation or road scene understanding, this research utilised monocular sensor only pursuing
+a real-time performance for our 9-denominational driver assistance system. We emphasized
+how our developed monocular-based methodologies can effectively perform object
+detection, distance estimation, or even 3D pose estimation. We also reported successful experimental
+results obtained under day, night, rainy, and other noisy challenging conditions.
+This chapter provides a summary of the main findings of the research conducted for this
+thesis.
+
+The first two chapters provided the basic knowledge that we needed in order to start
+the research. In Chapter 1 we conducted a literature review on the existing research
+in the field of driver assistance systems, to identify the current research challenges.
+Based on our motivations, we narrowed down our research to the particular topic of
+simultaneous “driver behaviour” and “road hazard” monitoring. We identified the
+main gaps such as the lack of benchmark datasets, limited studies on simultaneous
+road and driver monitoring, and speed deficiency of stereo-vision or multi-sensor
+based algorithms due to high computational cost, even for a single task of driver- or
+road-monitoring.
+
+Based on the common existing hardware and software platforms at the time of
+research, the thesis hypothesized that we can develop a highly-accurate monocular
+system that is able to perform simultaneously three tasks in real-time: (1) driver’s
+facial feature analysis and 3D head-pose estimation; (2) road monitoring including
+multiple vehicle detection and inter-vehicle distance estimation on a moving egovehicle;
+and, (3) data fusion and crash-risk assessment based on both road- and
+driver-monitoring data. We also claimed possibly accuracy of above 95% for the
+proposed algorithms under various weather and challenging lighting conditions.
+In Chapter 2 we provided some basic computer-vision knowledge that we needed
+to use and refer to in the next chapters. We also introduced some initial definitions,
+notations, equations, and terminologies to ensure consistency in the rest of the thesis;
+however, when appropriate, some concepts were directly provided in the relevant
+chapters to ensure a self-contained discussion in the given chapter (e.g. the
+concept of AAM in Chapter 6).
+
+In Chapter 3 we developed a robust lighting-adaptive system that is able to analyse
+driver’s facial features including eye status (i.e. eye openness, eye closure) for
+driving in day and night. We proposed two novel techniques of adaptive classification
+and dynamic global Haar-features to maintain both speed efficiency and higher
+detection-accuracy than that of conventional Haar-like based classifiers. The system
+was successfully implemented and tested under extremely low light and noisy
+conditions.
+
+Focusing on driver fatigue and distraction detection, in Chapter 4 we provided
+a significant enhancement compared to the previous state-of-the-art by introducing
+the methods of asymmetric active appearance modelling and Fermat-point transform. The
+two methods together enabled us to develop a robust, fast, and precise 3D modelling
+of driver’s direction of attention, as well as yawning detection, and head-nodding
+detection; all by utilizing a basic monocular vision sensor.
+Chapter 5 discussed about road-monitoring by proposing three main contributions.
+Extending the previously developed method of dynamic global Haar classifiers
+(from Chapter 3) and by integration of horizontal edge and corner features
+from a road scene, we proposed a vehicle detection technique applicable for very
+close to very far distance estimation. The method was presented based on the ideas
+of hierarchical multi-clue feature analysis, virtual symmetry for taillight segmentation,
+and Dempster-Shafer theory. The chapter also proposed a vehicle distance
+estimation based on a hybrid method of bird’s eye view and camera-pose trigonometry.
+Extensive driving experiments were conducted in day, night, rainy day, rainy
+night, tunnel, and snowy weather conditions.
+
+In the previous chapters, we already obtained eight sources of information from
+road- and driver-status. Incorporating artificial intelligence in Chapter 6 we implemented
+a fuzzy information fusion system which could determine high-risk driving
+scenarios based on the eight perceived types of information indicating road-hazards
+and driver’s level of distraction. Using Gaussian, trapezoidal, and triangular membership
+functions, Mamdani inference system, and centroid defuzzification technique
+we computed a risk-level for the moving ego-vehicle. The ultimate objective
+is to raise an early warning and issue timely notifications to either assist a driver
+or to automatically interfere the vehicle dynamics in order to prevent an imminent
+traffic accident.
+
+Then, when investigating the state of the art of digital aerial cameras (see chapter 3),
+only three commercially available cameras can replace an analog camera for the large
+format. On the one hand, the UltraCamD by Vexcel Imaging Austria and the DMC
+by Z/I Imaging produce images which obey to a central projection and may therefore
+be used in a classical photogrammetric workflow. The large format is achieved by the
+combination of several CCD sensors with independent optical systems. The resulting
+image data is stitched with computer vision algorithms to one big image. On the other
+hand, the ADS40 by Leica Geosystems uses a pushbroom-based approach, so that a
+navigation system is necessary and this special image geometry is not supported by
+standard photogrammetric products.
+
+The need for image stitching is raised in this study and described in detail within
+chapter 4. In order to allow the process of stitching, many computer vision methods
+had to be inspected. In detail, camera calibration, points of interest detection, image
+matching with subpixel precision, robust statistics for parameter estimation, radiometric
+adjustment and image blending are the main topics. The combination of all these
+algorithms is very complex, however the accuracy of the stitching process is very high
+and this problem is understood and solved.
+
+Chapter 5 deals with the principles and needed mathematics for image reconstruction,
+which is an essential part of image processing. In the field of digital sensing, this
+reconstruction is necessary to perform image warping in the stitching process and to
+undistort the images, due to lens distortion. Since this process is performed for every
+pixel, a speedup is desired and given in this chapter. The simple idea of transforming
+the kernels to the interval [0, 1] is used. This new kernels have certain properties,
+that have been proven for arbitrary polynomial order, which are used to get a speedup.
+
+Since digital cameras capture color in a different way in comparison to analog
+sensing, the concept of Bayer pattern demosaicking is described in chapter 6. The idea
+of using a color filter array attached to the digital sensor and consequently allowing to
+capture a color image with only one imaging sensor, exposes to be a useful technique.
+The error due to the interpolation of the missing color samples is quite small and no
+significant geometrical distortions are cognizable. However, it is of interest to develop
+a new evaluation system, to be able to compare the results and robustness of standard
+algorithms which are used on such color images. In this context, stereo matching and
+classifications are of interest.
+
+A second aspect of color sensing is the concept of sensing the multi-spectral channels
+at a lower resolution than the panchromatic channel, and then fuse this data to extract a
+high-resolution and multi-spectral image. This process called pansharpening is described
+in chapter 7. Many algorithms of different complexity are investigated. However, the
+results are very similar in terms of root mean square error. One discovery is that the
+radiometric adjustment of the panchromatic channel and the color channels is very
+important to be able to preserve the multi-spectral properties in the fusion process.
+Analog to the Bayer pattern demosaicking a novel evaluation method is desired.
+
+The next step is to evaluate the differences of color sensing concepts. The Bayer
+pattern approach is cheap because only one sensor is needed for color sensing.
+However, the pansharpening approach gives better radiometry. A quantitative evaluation
+is suggested to solve this aspect and will help to understand the problematic deeply.
+
+The global system is working at 11 Hz when the positioning movement
+is performed and 15 Hz when the calibration movement is performed.
+This difference is due to the fact that in the positioning movement the
+cross recognition algorithm runs twice.
+
+The 15Hz frequency means 70 milliseconds of time span. When a
+profiling is done it shows that the Line Scan algorithm consumes 15
+milliseconds, the interface display and communication takes 30
+milliseconds and the rest of the algorithm consumes 25 milliseconds.
+
+Then 11Hz frequency means 90 milliseconds of time span. When a
+profiling is done it shows that the Line Scan algorithm consumes 15
+milliseconds, which actually means 30 milliseconds because it runs
+twice, the interface display and communication takes 30 milliseconds
+and the rest of the algorithm consumes 30 milliseconds.
+
+These timings weren’t fixed, they depend on the amount of
+information to be processed, but the times shown above are the
+maximum obtained in the experiments.
+
+The cameras work at 30 Hz and are software triggered. This means 33
+milliseconds between new images and some time difference between
+cameras image acquisition.
+
+The time consumed in the communication and in the control loop are
+negligible.
+
+The system proved to be robust when used in an environment with
+stable light conditions. The cross recognition algorithm is very robust,
+i.e. with the cross centre outside the image, it is estimated their
+coordinates.
+
+There is good robustness to image noise.
+Even with a time delay between samples variable, the control system
+has a good response.
+
+When there is a fast movement of the cross, the image processing
+algorithm still tracks the cross centre and the control have a sharp
+and fast response.
+
+When it is performed the z movement in the calibration experiment,
+even with the camera far away from cross the system proof to be
+robust.
+
+In this investigation we have presented the current drawbacks of
+image-based visual servoing and described a new method to cope
+these drawbacks.
+
+The purpose of this investigation was to build a lattice that could
+accurately represent characteristic depth disparities and to use it in
+the positioning movement. This has not completely been achieved. The
+lattice was obtained but it wasn’t used on the positioning movement.
+We have a system that includes a robot system, a vision system, a
+cross recognition algorithm and a lattice acquisition algorithm.
+The lattice acquisition was achieved with a good accuracy. The
+positioning movement was made relying only on the disparity
+difference among the crosses.
+
+The vision system and the image processing algorithms were totally
+built during this investigation, which proved to be very time
+consuming. Since Microsoft Visual C++, cameras handle and Fire-i
+grabber cards were tools for us more time was spent in learning how
+to use them.
+
+The results where satisfactory and system proved to be robust. The
+errors due to time delays were the main system bottleneck.
+
+In this thesis I have presented and discussed a number of shape optimization problems as
+well as a variety of optimization methods to solve them. In the first part (chapters 2 and
+3) seemingly intricate problems involving curvature and shape knowledge were shown to be
+globally optimizable. From this part, and all the methods discussed in the introduction, I
+want to draw two conclusions:
+
+Many of the discussed algorithms, including
+all those that are employed in this thesis, have at least a quadratic worst case bound for
+the running time. The algorithm of Boykov and Kolmogorov [25] does not even have a
+polynomial time complexity (at least none was proven so far).
+If these worst case bounds were achieved in practice, the respective algorithms would
+only rarely be used in computer vision, and in combination with pruning strategies: due
+to the large amount of input data per problem instance, only sub-quadratic runningtimes
+are of practical use. Yet, were one to consider only provably sub-quadratic methods,
+one would essentially end up with local optimization approaches.
+The interesting thing is that this worst case is generally not observed in computer vision
+- I do not know of any case where this ever happened. The reader who has discovered
+an interesting optimization algorithm with an inacceptable worst case bound should
+therefore not refrain from testing its usability for computer vision problems.
+
+All
+employed global optimization techniques in this thesis are based on minimizing (sequences
+of) linear or convex energy functionals. At first sight this seems to be a huge
+restriction - when one considers a model for a real-world problem, at first glance it is
+usually neither linear nor convex.
+Yet, amazingly many of them can be rewritten in a way that makes these methods
+applicable, a process that is known as reduction in computer science. Common tricks are
+increasing the problem dimension [5, 114, 170], introducing auxiliary variables [14, 135]
+or relaxing a hard problem to an easy one [38, 160].
+
+The study demonstrated the utilization of three different CV methods, which evolved
+over the past decades. However the results showed, that technology alone is not the key,
+but that scene composition plays a major role as well. Id est a distance to the envisaged
+census line of 60 meters proved to be to large for all three methods to achieved the
+envisaged target. At closer scales however, substantial results were achieved with CD.
+Here, at test-site 2, the overall accuracy of 95.3% the first hypothesis was confirmed.
+Measured at the envisaged minimum derivation, the old proven CD outperformed the
+two object-based methods. Correspondingly, the second hypothesis has to be rejected.
+It was interesting to realize though, that the shape based method (HOG) mainly failed
+so drastically due background trees. It however can be annotated, that at test-site 1
+the HOG-Descriptor had the best performance and missed the targeted benchmark only
+by 2.9%, indicating its potentials. Consequently, the tree issue has to be in mind, when
+installing the instrument in the field. The CNN was distracted by the background as
+well, but most noise was automatically removed as the decision making implemented in
+YOLO is informed about the global context. Although the CNN did not achieve the
+envisaged accuracy in terms of visitor numbers, it proved to has two major advantages.
+First, the implementation is very user friendly. Whereas no parameters needed to
+adjusted at all, this method returned the second best results at both tests. Secondly,
+the pre-trained neuronal network developed by Redmon et al. (2016) detected key
+features for characterizing recreational user-groups, such as backpack’s and bicycle’s.
+Correspondingly the third hypothesis is consider proven.
+
+As the most valuable data acquired with CV was the list of detected objects and
+the method being very robust, the CNN implementation proposes a suitable default
+for Setup 3. Therefore the mandatory instructions were added to the handbook, so
+that in conclusion herewith a unique visitor counter is presented, providing specialized
+information for modeling the economic impact of LPAs.
+
+and pattern recognition, using the same underlining clustering framework, i.e., dominant
+set clustering and its extensions. We formalized multi-target tracking, image
+geo-localization and outlier detection as finding cluster (clique) from the constructed
+graph. The intrinsic properties of the proposed underlining clustering approach make it
+suitable to solve the above-mentioned problems. In compassion with several other clustering
+approaches, it has several advantages like: it doesn’t need any a prior knowledge
+on the number of clusters, it does clustering while obliterating outliers in simultaneous
+fashion, able to deal with compact clusters and with situations involving arbitrarilyshaped
+clusters in a context of heavy background noise, does not have any assumptions
+with the structure of the affinity matrix, and it is fast and scalable to large scale problems.
+In Chapter 2, we briefly introduce dominant set clustering framework and its extension,
+constrained dominant sets. We then present a new fast approach to extract
+constrained dominant sets from the graph.
+
+In Chapter 3 and 4, we explore the fundamental problem of multi-target tracking in
+surveillance videos. Chapter 3 presents a dominant set clustering (DSC) based tracker,
+which formulates the tracking task as finding dominant set (cluster) on the constructed
+undirected edge weighted graph. We utilized both appearance and position information
+for data association in a global manner, avoiding the locally-limited approach typically
+present in previous works. Experimental results compared with the state-of-the-art
+tracking approaches show the superiority of our tracker. However, since we followed a
+"peel-off" strategy to enumerate dominant sets from the graph, that is, at each iteration,
+we remove clusters (dominant sets) from the graph, which causes change in the scale
+of the problem.
+
+Chapter 4 presents a new tracking approach which is able to overcome the limitations
+of our DSC tracker, and also extend the problem to multiple cameras with
+non-overlapping field of view. In this chapter, we presented a constrained dominant
+set clustering (CDSC) based framework for solving multi-target tracking problem in
+multiple non-overlapping cameras. The proposed method utilizes a three-layer hierarchical
+approach, where within-camera tracking is solved using first two layers of our
+framework resulting in tracks for each person, and later in the third layer the proposed
+across-camera tracker merges tracks of the same person across different cameras. Experiments
+on a challenging real-world dataset (MOTchallenge DukeMTMCT) validate
+the effectiveness of our model. We further perform additional experiments to show effectiveness
+of the proposed across-camera tracking on one of the largest video-based
+people re-identification datasets (MARS). Here each query is treated as a constraint set
+and its corresponding members in the resulting constrained dominant set cluster are
+considered as possible candidate matches to their corresponding query.
+In chapter 5, we proposed a novel framework for city-scale image geo-localization.
+Specifically, we introduced dominant set clustering-based multiple NN feature matching
+approach. Both global and local features are used in our matching step in order
+to improve the matching accuracy. In the experiments, carried out on two large cityscale
+datasets, we demonstrated the effectiveness of post processing employing the constrained
+dominant set over a simple voting scheme. We evaluate the proposed framework
+on an existing dataset as well as a new larger dataset, and show that it outperforms
+the state-of-the-art by 20% and 7%, respectively, on the two datasets. Furthermore, we
+showed that our proposed approach is 200 times, on average, faster than GMCP-based
+approach [178]. Moreover, the newly-created dataset (WorldCities) containing more
+than 300k Google Street View images used in our experiments is available to the public
+for research purposes.
+
+Finally, in chapter 6, we present a modified dominant set clustering problem for
+simultaneous clustering and outlier detection from the data. Unlike most of the previous
+approaches our method requires no prior knowledge on both the number of clusters and
+outliers, which makes our approach more convenient for real application. Moreover,
+our proposed algorithm is simple to implement and highly scalable. We first test the
+performance of SCOD on large scale of synthetic datasets which confirms that in a
+controlled set up, the algorithm is able to achieve excellent result in an efficient manner.
+We conduct further evaluation on real datasets and attain a significant improvement.
+
+A human silhouette recognition technique has been proposed using MoG for background subtraction 
+and inductive classification trees for classification into classes. The method proposed has 
+resulted in promising results. At over 90% accuracy on completely new dataset trials, it 
+performs adequately in multi-modal backgrounds in complex sceneries in recognising humans. 
+This results in a proof-of-concept for this algorithm combination in the context of human 
+recognition.
+
+The classifier extracts a set of rules (if, else if series) after the supervised learning stage, 
+which can be introduced to a standalone system in the form of a library. After running MoG on the 
+standalone system, the extracted blobs can be directly compared to the library for a fast implementation.
+The method performed comparably well to methods in the literature in terms of accuracy. This is quite 
+promising since with some further research on its algorithm, could perform even better and even fit as 
+an overall human classifier in CCTV security systems.
+
+As a direction for future research, the current MoG algorithm can be optimised and improved with automatic 
+selection on the number of Gaussians for background subtraction.[45] In effect, supervised learning needs to 
+be applied incrementally on larger datasets and monitored to explore its limitations before migrating to 
+more advanced learning algorithms that re-train in the event of false-positives / false-negatives.
+
+The Computer Vision algorithms of VisionLab were limited by the performance capabilities of sequential 
+processor architectures. From the developments of both CPU and GPU hardware in the last decade it was 
+evident that the only way to get more processing power using commodity hardware was to adopt parallel 
+programming. This project investigated how to speed up a whole library by parallelizing the algorithms 
+in an economical way and executing them on multiple platforms
+
+The primary target system for this work was a conventional PC, embedded real-time intelligent camera or 
+mobile device with a single or multi-core CPU with one or more GPUs running under Windows or Linux on a x86 
+or x64 processor. Benchmarks were run on conventional PCs with graphics cards of NVIDIA and AMD. Because 
+portability to other processors was an important issue, a benchmark was run on an embedded real-time board 
+with a multi-core ARM processor. Both the literature review and the results of the benchmarks in this work 
+confirmed that both multi-core CPU and GPU architectures are appropriate for accelerating sequential Computer 
+Vision algorithms.
+
+There is a lot of new development in hardware and programming environments for parallel architectures. 
+It is to be expected that new developments in hardware will have a strong impact on software design.
+
+Embarrassingly parallel algorithms are fairly easy to parallelize. Embarrassingly sequential algorithms 
+will need a completely different programming approach. The parallelization of the Connected Component 
+Labelling algorithm demonstrated that different parallel approaches will be needed for few-cores and 
+many-cores systems.
+
+The effort for parallelizing embarrassingly parallel algorithms, like Threshold and Convolution, is just 
+adding one line with the OpenMP pragma. The parallelized operator also has to be incorporated in the Automatic 
+Operator Parallelization. This is a run-time prediction mechanism that will test whether parallelization will be 
+beneficial. To add the parallelized operator to the Automatic Operator Parallelization calibration procedure will 
+need about 16 lines of code. Those 16 lines of code are very similar for all operators and are of low complexity. 
+More complicated algorithms like Histogram and LabelBlobs need more effort to parallelize. The effort for adding 
+to the Automatic Operator Parallelization calibration procedure remains the same. Speedups between 2.5 and 5 were 
+reported for large images in the benchmarks on a quad-core Intel i7 running Windows 7. Big penalties for speedup 
+were reported in almost all benchmarks for small images. So run-time prediction whether parallelization is expected 
+to be beneficial is a necessity.
+
+Four classes of basic low level image operators were distinguished in this work. For each class an OpenMP version 
+was implemented and benchmarked. These OpenMP implementations were used as templates to parallelize 170 operators 
+of VisionLab, including many high level operators. See Appendix G for a full list. It only took about one man month 
+of work to parallelize all the 170 operators, including the Automatic Operator Parallelization. VisionLab with the 
+OpenMP parallelization is now available as a commercial product.
+
+The violin plots showed that parallelizing can significantly increase the variance in execution time. This 
+increase is more prominent for the smaller images.
+VisionLab scripts written by users will, without modification, immediately benefit in speedup when using the 
+new parallelized version of VisionLab. Users of VisionLab who write their code in C++ or C# will benefit, without 
+changing their code, from the parallelization after linking to the new library. For optimal results users will 
+have to calibrate the Automatic Operator Parallelization. Two cases of test data of real projects were presented 
+in this work, reporting speedups between 1.7 and 5 on a quad-core Intel i7 running Windows 7.
+
+The portability of the OpenMP approach was tested on a quad-core ARM running Linux. Porting was just recompiling. 
+It passed the VisionLab regression test suite without any problems and the Convolution benchmark reported speedups 
+up to 3.97.
+It is concluded that OpenMP is very well suited for parallelizing many algorithms of a library in an economical way 
+and executing them with an adequate speedup on multi-core CPU platforms.
+
+The main focus of this thesis was on efficient sparse numerical linear algebra routines
+with applications in Nonlinear Least Squares (NLS) solving. We selected a
+particular class of NLS problems that are sparse and exhibit a natural block structure.
+This block structure was exploited in the implementation of SLAM ++, a high
+performance NLS solver. Having fast arithmetics on block matrices naturally led to
+the development of more efficient algorithms for incremental matrix factorization
+and direct solving which would have been impractical or elaborate when using elementwise
+sparse matrices. GPU acceleration of the key routines on those matrices
+was also performed. All of the algorithms were rigorously evaluated on standard
+datasets and compared with similar state of the art implementations.
+
+The sparse block matrix factorizations presented here, despite being highly
+competitive and outperforming even state of the art implementations such as
+Cholmod [42], are just the first attempts with hardly any performance tuning. It is
+possible to employ dense block vectors to accumulate dot products between block
+columns with different sparsity patterns (as described e.g., in [75]), rather than using
+the ordered merge algorithm. The memory alignment is currently performed
+on all of the blocks, likely hurting performance when small blocks are present. It is
+straightforward to add a memory alignment policy that would disable alignment
+of those small blocks, based either on expert knowledge or auto-tuning. A number
+of other low-level improvements and optimizations could be implemented, including
+also compile-time optimizations.
+
+Furthermore, the proposed block matrix factorizations are simplical. Their supernodal
+forms can be implemented to gain significantly better performance. Efficient
+multifrontal or parallel CPU implementations would also yield a considerable
+speedup.
+
+To extend the applicability of the proposed methods, other decompositions than
+Cholesky should be implemented. While being computationally efficient, it is only
+applicable to symmetric, positive definite matrices. Block-based pivoting was discussed
+in Section 5.2.5. An efficient pivoting strategy is needed for implementation
+of LU and QR factorizations, which can be used on general square or rectangular
+matrices, where it directly affects the numerical stability of the factorization and
+also affects the resulting fill-in.
+
+The implementation of the specialized block matrix kernels expects a complete,
+exhaustive list of block sizes that can occur in the input – it is fully specialized.
+It would be very simple to specialize it only partially – to handle matrices with
+blocks of sizes that are not on the list, i.e., specifying only a few of the most
+common block sizes to be processed by the specialized dense kernels while the
+few blocks of different sizes would be handled using a generic variable-size dense
+kernel. This would reduce the depth of the block-size decision tree on matrices
+that contain many different block sizes and at some point would outperform the
+fully specialized version.
+
+In the incremental Cholesky factorization, a constrained fill-reducing ordering
+on a section of the matrix is employed. The whole section is then refactorized using
+the resumed Cholesky algorithm. It is possible to track the variable dependencies
+in the factorization and only recalculate those columns that are affected by the
+update. Alternatively, the Bayes Tree algorithm demonstrates that it is possible to
+reorder variables in an already factorized matrix. It should be possible to reorder
+the variables so as to best accommodate the update (e.g., by ordering the affected
+variables last) and to reduce the fill-in at the same time.
+
+The MIS and AMICS orderings for the Schur complement only focus on maximizing
+the size of the diagonal section. While that leads to a reduction in the size of
+the Schur complement and thus memory savings, the variables inside each diagonal
+block and the diagonal blocks themselves can be arbitrarily reordered. This
+can be used to improve memory access patterns, possibly also saving some fill-in
+in the Schur complement.
+
+The block matrix kernels on the GPU are designed with small blocks in mind,
+which means that the individual blocks have to fit into the shared memory. It
+would be simple to also design an implementation for very large blocks that do
+not fit, and slightly more challenging to design an implementation that allows
+mixtures of both small and large blocks while being able to facilitate reasonable
+load balancing. Applications of block matrices with very large blocks can be found
+e.g. in computational chemistry.
+
+The algorithms described in this thesis were implemented with a single-process
+model in mind and could also be extended to GPU-CPU hybrid or distributed computing
+and out-of-core processing. The derivatives are now calculated on the CPU
+and consume a significant portion of the time budget. If the analytic expressions
+for the derivatives are known, it is straightforward to offload this computation
+onto the GPU. Expression templates and concurrent evaluation of the expression
+dependency trees could also increase performance.
+
+In this section we have a class library which has been developed to
+support the teaching of object-oriented programming and computer vision, along
+with image processing. This class library is developed using the software visual
+studio 2010 under windows platform and can be extended to work on other
+platforms. The class library is developed to provide the students a QT based GUI. All
+platforms dependent aspects are not included in the library and so this class library
+can be easily exportable. The most important aspect of this library is that other
+libraries can be further added easily which makes it flexible.
+
+From the performed class library a new line of work has been created
+with grow and future improving possibilities.The result of this thesis is a robust,
+simple and fast which could be implemented in any platform.
+It is worth to mention that this thesis has supposed a challenge for us,
+because we had never worked with open source libraries and c++ programming.
+The use of c++ has supposed a great idea in order to make this class
+library faster so the spent time setting up all the open source libraries has been very
+useful and it has produced good benefits.
+
+If this project has been interesting, and want to be improved or
+commercialized in the following section all of the features that can be improved are
+described.
+In the future work we can expand the base library by adding some of
+libraries which are capable of audio and libraries depending on the student
+requirement.
+We can change or extend the class library structure according to student or researcher
+criteria.
+
+In this work, we address the problem of real-time 3D human motion capture without markers
+from monocular images (obtained from a webcam). Our approach consists in registering a 3D
+articulated model of the upper human body on monocular video sequences. We extend a
+previous work by (Marques Soares, et al., 2004) and we propose new methods to enhance the
+robustness and accuracy of the 3D pose tracking. The 3D pose data is used to animate a 3D
+avatar in a collaborative virtual environment. The performance of our approach is
+quantitatively evaluated on monocular video sequences containing gestures with fast motions,
+partial body occlusions, rotations and motion in depth. The proposed algorithms allow us to
+track robustly a large variety of human gestures dealing with depth ambiguities in monocular
+images while holding real-time processing. In the next sections, we summarize the
+contributions of the thesis and present some future perspectives.
+
+We have developed a system for robust real-time upper-body motion capture by monocular
+vision. The motion capture system is divided in two main steps: initialization and tracking. In
+the initialization step, new algorithms were proposed to learn the appearance of the
+background and the user as well as the size of body limbs. In the tracking step, new pose
+estimation techniques are proposed in order to improve robustness and accuracy of the 3D
+pose while facing real-time computation. In order to enhance robustness to clutter
+environments and lighting variations from the scene, we have implemented a background
+subtraction method that combines two robust features: color chrominance and gradients.
+Accuracy is improved by edge-based registration as a further step after region-based
+registration. It works by minimizing the distance between edges in the input images and
+occluding edges of the 3D model projected in the image plane. In this step, the initial 3D pose
+is the pose output by region-based registration. The advantages and limitations of each
+registration step are discussed and compared experimentally with a limited number of
+iterations. We found that region-based registration provides high robustness but inaccurate
+pose estimation while edge-based registration allows achieving more accurate poses at the
+cost of unstable tracking. An experimental analysis was done on several video sequences
+containing various gestures with body occlusions, motion in depth, fast motions and rotations.
+From the experimental analysis, we define an optimal compromise between robustness and
+accuracy with respect to the number of iterations. From this compromise, we have
+demonstrated the efficiency of combining both registration steps to achieve more robust and
+accurate tracking in real-time.
+Although, the accuracy of the 3D poses is still limited because of depth ambiguities in
+monocular images. The major limitation of the previous registration process is that it achieves
+2D ambiguous registration while we are interested in 3D poses, which lack accuracy in the
+depth direction. This limitation can be addressed by propagating, at each time step, multiple
+hypotheses or particles (3D poses) using a particle filtering approach. Unfortunately particle
+filter approaches become very inefficient for 3D motion capture as the number of particles
+(3D poses) increases exponentially with the number of dimensions.
+We have therefore developed a more sophisticated particle filter algorithm to reduce the
+number of particles required for monocular 3D motion capture. It integrates a number of
+heuristics and search strategies into the CONDENSATION approach to guide particles toward
+highly probable solutions. First, children particles are selected and grouped according to their
+parents‟ weights using a weight-based resampling heuristic. Then, large groups of particles
+are guided toward maximums of the posterior density using local optimization while small
+group of particles are diffused randomly in the pose space. Ambiguities from monocular
+images are handled by computing new samples by kinematic flipping. A hierarchical
+partitioned sampling is used to diffuse particles more efficiently based on motion
+observations. 3D poses are described using end-effector position to better model uncertainty
+in depth direction. Finally, evaluation of particles is accelerated by a parallelized GPU
+implementation.
+Our real-time particle filter algorithm that combines all the previous heuristics did
+significantly improved the tracking robustness and accuracy using as little as 200 particles in
+20 degrees of freedom state space. Particularly, we have demonstrated that depth ambiguities
+from monocular images can be handled in real-time by heuristically guiding particles toward
+several local minima while enforcing particles to search along uncertain depth direction.
+Quantitative and qualitative results on real video sequences showed a significant improvement
+when tracking difficult gestures including motions in depth, self-occlusions, whole-body
+translations and rotations. Only motions with whole-body rotations are reported lower
+tracking improvement since turning direction cannot be detected from the image features we
+used so far.
+

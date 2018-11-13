@@ -1,0 +1,2477 @@
+﻿Human motion capture is the process of measuring and recording human body in a computerusable
+form. Interest in human motion analysis - often called “mocap”- has been growing in
+recent years as many potential applications have emerged (human-computer interfaces,
+medical applications, animation, interaction with virtual environments, video surveillance,
+games, etc.). This work focuses on enhancing interaction in virtual environments by
+reproducing user gestures directly in a 3D avatar in real-time (Horain, et al., 2005).
+
+Traditional motion capture involves special sensors (e.g. data gloves, magnetic sensors and
+mechanical exoskeletons) or optical markers on the performer‟s body and limbs. Motion data
+is derived from the positions or angles of markers relative to the sensors. However, the cost
+and complexity of this equipment (personnel required, physical environment, etc.) is
+prohibitive for the general public and for many target applications. Computer vision based
+techniques offer an interesting alternative because they only require images from one or more
+cameras. As special and expensive equipment is not required, motion capture by vision is
+potentially a practical and inexpensive solution. We are interested in estimating 3D human
+motion from monocular images; this enormously increases the range of possible applications
+as many personal computers include a webcam.
+
+We address the problem of 3D human motion capture in real-time without markers from
+monocular images obtained from a webcam. We focus on capturing the motion of the upper
+part of the human body as our objective is to achieve more natural interactions between users
+and 3D virtual collaborative environments. A prototype for 3D motion capture by monoscopic
+vision and virtual rendering was previously proposed in the works of Horain (Horain, et al.,
+2002) and Marques Soares (Marques Soares, et al., 2004). This approach consists basically of
+registering a 3D human upper-body model to video sequences. However, because it is
+designed to work in real time on a personal computer, its robustness and accuracy are
+currently limited and need to be improved. 3D motion capture from monocular images
+remains challenging open problem as many difficulties are involved; for example, the
+ambiguities of monocular images, partial occlusions of human body parts (e.g. crossed arms),
+the large number of degrees of freedom of the human body, variations in body proportions
+and clothing, cluttered and complex environments, image noise, etc. Moreover, the
+computations needed to track the human motion in the images can be very expensive, making
+it difficult to achieve robust real-time performance.
+
+In this thesis, new algorithms are proposed to improve the results of the motion capture
+methods of (Marques Soares, et al., 2004). In the following subsections, we describe our
+target application and some other potential applications of the work; then we discuss the main
+challenges and difficulties involved and present the contributions of this work
+Object oriented programming plays a major role in the development of
+new library. Generally the library developed through this concept is more reliable
+and flexible to use so that the overall time spent is reduced using this object oriented
+programming. Coming to the computer vision field students are spending most of the
+time for combining different libraries and their related applications in the lab. There
+are many libraries in c++ which can be used like Opencv and Point cloud library
+consisting of different modules related to various fields like Image processing,
+camera calibration &3D reconstruction .The point cloud library is also an Image
+processing library which mainly focuses on 3D point cloud data.
+
+There are some problems in using these libraries by the students in the
+image processing lab because it is time consuming in combining the libraries and
+also difficult to predict the functions by the user. In this master thesis we tried to
+solve these problems faced by most of the students and researchers. So we developed
+a class library named SPL short for student perception lab, which is mainly dedicated
+to image processing, camera calibrations, visualization, image analysis .This library
+is developed based on the Opencv, Pcl library as these libraries covers all the
+modules that are related to Image processing and consists of various functionalities
+and can be used easily by the students in the lab. This library is mainly divided into
+classes and each class consists of its own functionalities.
+
+So this proposed class library is designed in such a way that it is
+portable and extendable with better GUI creates a lab environment to the students
+thus saving a lot of time spent and also makes the user predict the functions to obtain
+the required output.
+
+In today's world the open source software's are being used effectively in
+library environment. The main advantage of this open source software is that it is
+free to use by anyone. If we observe in any educational institution or a researcher in
+the field of computer vision & image processing they are using third party libraries,
+such as opencv, pcl, Intel IPP, opengl and openscene graph. These Open source
+libraries are mainly related to computer vision algorithm implementation .But using
+these libraries and integrating with each other libraries by the user is not an easy task
+as the student has to spend a fairly large amount of time on integration and predicting
+the functions.
+
+The motivation of this thesis is to implement a new class library named
+SPL which is completely dedicated to Image processing and some computer vision
+related functionalities using Opencv ,Pcl and Qt for better GUI.
+In this master thesis our supervisor (Dr.siamak khatibi) served as a
+starting point for the work on the overall structure of the library.
+
+Many applications of numerical methods in many scientific disciplines can benefit
+from efficient implementations of linear algebra kernels. There are many implementations
+that provide comparable functionality, often providing standard Basic
+Linear Algebra Subprograms (BLAS) or Linear Algebra Package (LAPACK) interfaces
+that helped a great deal for linear algebra package development using a simple set
+of state-less C or Fortran functions. These functions are divided into several groups
+(or levels) by their complexity; L1 contains the linear time functions on vectors, L2
+contains quadratic time matrix-vector functions and L3 contains cubic time functions
+on matrices.
+
+With the advent of C++, modern object-based interfaces with focus on intuitiveness,
+ease of use and safety became available. But that is not the only thing the
+object-based design has to offer: techniques such as expression templates can help
+fuse the computation kernels and reduce unnecessary data movement. The procedural
+and object-oriented approaches are not mutually exclusive: an efficient BLAS
+implementation can be conveniently wrapped in an expression templates interface.
+Parallel implementations of BLAS kernels are the obvious next step to increase
+performance. Although the technologies are evolving constantly and Moore’s law
+Although seemingly very simple, the implementation of dense operations on modern
+hardware is not straightforward, if it needs to be done efficiently. This is due
+to the complexity of the CPUs in use today, which have a rather complex memory
+subsystem [48] with several levels of cache, support for paging and an autonomous
+prefetcher. There are also very fast Single Instruction Multiple Data (SIMD) instruction
+sets for arithmetics, with their own complicated rules.
+
+To illustrate this with an example, a simple matrix product of the form A B will
+run several times faster if A is first transposed, even at the cost of copying and
+reordering the data. To limit the amount of temporary storage and to otherwise
+aid the memory subsystem, dense routines are often blocked, meaning that the operation
+is not performed on the entire matrix at once but the matrix is divided into
+several blocks that are processed individually. High-performance implementations
+such as the Goto BLAS [69] focus on fine-tuning the sizes of blocks to match various
+machine limits (in this case the size of the Translation Look-aside Buffer (TLB)).
+For certain applications, the matrices have a substantial portion of zero entries.
+Using dense matrix algorithms would be a waste of both memory and computation
+– that is where the sparse linear algebra comes in (and of course also sparse
+BLAS). For sparse algorithms, the matrix is represented in such a way that only
+the non-zero entries are stored and the computation can be performed efficiently
+both in terms of storage and the ratio of the arithmetic operations to the rest of the
+algorithm. Sparse algorithms are typically much more complicated compared with
+the dense algorithms, due to the necessity of matching the non-zero entries that
+interact in the given operation and at the same time forming the sparse structure
+in case the result is a matrix. Efficient sparse algorithms are usually a fine mix of
+numerical methods and graph theory. There is a certain threshold of useful sparsity
+beyond which it is better to just represent the matrix as a dense matrix, from the
+performance point of view.
+
+To illustrate the difficulty in implementing efficient sparse operations, e.g. sparse
+matrix-vector multiplication algorithms often run at one tenth of the peak hardware
+performance [173] and the situation can be even worse for the matrix-matrix
+multiplication [16, 38]. This is due to irregularity of memory accesses and various
+other overheads. At the same time, those algorithms are typically much harder to
+adapt for hardware acceleration.
+
+The general objective of this thesis is to identify a suitable class of problems and
+to propose a computation acceleration scheme. However, the topic of application
+of GPGPU to accelerate linear algebra is too wide to specify a clear research goal.
+Rather than pursuing fast implementations of a few randomly chosen algorithms,
+this thesis examines a particular class of applications that are commonly solved
+using numerical sparse linear algebra.
+
+Several estimation problems fall into this category. In general, an estimation
+problem finds an optimal configuration of a set of variables given a vector of their
+initial values and a set of relations between those variables. If represented using a
+graph, the nodes in the graph are given by the variables to be estimated and the
+edges are the relations between those variables.
+
+A block matrix is a matrix that is conceptually partitioned into blocks. A block
+matrix can have either an exact block pattern or an approximate one where scattered
+nonzero entries are allowed, as in Figure 1.1a. Another distinction is the
+presence of unaligned or overlapping blocks – whether the conceptual edges of a
+block could intersect those of another block, as in Figure 1.1c.
+
+While approximate block patterns are sometimes employed to limit the required
+communication bandwidth in parallel algorithms [140, 164], this work relates to
+exact block patterns such as in the matrix in Figure 1.2. While one may object that
+such matrices are rare, the opposite is true. In Figure 1.3, there is a plot of the
+distribution of matrix nonzeros between elementwise and block matrices in the
+University of Florida Sparse Matrix Collection [39]. To generate it, the algorithm
+from [146] was employed to discover block structure in the matrices. The horizontal
+axis of the plot is given by the percentage of nonzeros of each given matrix
+residing in blocks of at least three elements. Although the number of block matrices
+is somewhat lower than that of sparse matrices, this plot shows that the majority
+of the data in this dataset is in fact in block matrices.
+
+The focus of this thesis is to propose new algorithms and implementations to
+accelerate linear algebra operations in NLS problems with a sparse, block structure.
+A new data structure is proposed to benefit highly from the block structure and
+incremental nature of those problems, when iteratively calculating the solution of
+an NLS. Furthermore, the possibilities of GPU acceleration are explored. The thesis
+shows that the proposed methods supersede all existing implementations in this
+direction and generate state of the art algorithms for problems such as SLAM and
+BA or SfM.
+
+Computer Vision is the field of research which comprises methods for acquiring, 
+processing, analysing, and understanding images with the objective to result in numerical 
+or symbolic information. A typical example is the computerization of visual inspections. 
+With the aid of a computer, images caught on camera are interpreted.
+
+In many industries that manufacture or handle products, visual inspection or measurement 
+is of major importance. In many cases, with the aid of Computer Vision, it is possible to 
+have these inspections or measurements carried out by a computer. In general, this will 
+contribute to a cheaper, more flexible and/or more labour-friendly production process.
+
+Due to the increased performance/cost ratio of both processor speed and amount of 
+memory in the recent decades, low cost Computer Vision applications are now feasible for SMEs 
+using commodity hardware and/or low cost intelligent cameras. However, applications rapidly 
+become more complex and often with more demanding real time constraints, so there is an increasing 
+demand for more processing power. This demand is also accelerated by the increasing pixel resolution 
+of cameras. With the exception of the simple algorithms, most vision algorithms will require a more than 
+linear increase of processing power when the pixel resolution increases. Computer Vision applications are 
+limited by the performance capabilities of sequential processor architectures.
+
+There has been extensive research and development in parallel architectures for CPUs and Graphics Processor 
+Units (GPUs). There has also been significant R&D in the development of programming techniques and systems for 
+exploiting the capabilities of parallel architectures. This has resulted in the development of standards for 
+parallel programming.
+
+A number of standards exist for parallel programming. These are at different levels of development and take 
+different approaches to the problem. It is not clear which approach is the most effective for use in the field 
+of Computer Vision.
+
+This project proposes to apply parallel programming techniques to meet the challenges posed in Computer Vision 
+by the limits of sequential architectures.
+
+The aim of the project is to investigate the use of parallel algorithms to improve execution time in the specific 
+field of Computer Vision using an existing product (VisionLab) and research being undertaken at NHL. The research 
+focus on commodity single system computers, with multi-core CPUs and/or graphics accelerator cards using shared 
+memory.
+
+The primary objective of this project is to develop knowledge and experience in the field of multi-core CPU and 
+GPU programming in order to accelerate in an effective manner a huge base of legacy sequential Computer Vision 
+algorithms. That knowledge and experience can then be used to develop new algorithms.
+
+Computer vision encompasses a wide research field that pursues the comprehension of
+the data captured in digital images or videos. Related to this, a broad variety of highlevel
+applications within the field of artificial vision, such as robotic guidance, objects
+tracking, 3D scene reconstruction, augmented reality, image medical registration, video
+compression and many others, require a low-level process that allows a precise motion
+recovery from their surrounding environment.
+
+In this context, optical flow estimation is very useful because it provides consistent
+information of the apparent displacement of the pixels in a video sequence. Once we
+have calculated our solution, we can determine the movement of the objects through the
+sequence. Owing to its importance and multiple uses, the optical flow problem has become
+a major theme in computer vision and it is the objective of this dissertation.
+In figure 1.1, we observe an example of the meaning of optical flow estimation by using
+the sequence of Alley 1, which belongs to the Sintel Dataset1 [Butler12]. The idea is that,
+if we add into the first image the movement described by the flow field for each pixel, we
+should obtain the following image.
+
+Variational optical flow methods are among the most widely used techniques in the
+literature if accuracy is the main objective. Typically, these approximations obtain their
+solutions as a minimization of an energy functional that allows obtaining dense flow fields,
+which means that the displacement values are provided for the whole domain. Another
+interesting property of the variational methods is that they are transparent, in the sense
+that all the assumptions on the image data and the solution are explicitly formulated in
+the underlying energy functional. There are no intermediate or post processing steps that
+question the consistency of the whole approach. Moreover, the use of a joint minimization
+framework allows a solid mathematical integration of all desired assumptions.
+
+This energy is expressed as a weighted sum of a data and a smoothness terms. The first
+puts in correspondence pixels from consecutive images under a premise, commonly known
+as brightness constancy assumption, that the intensity of the objects remains constant
+through the sequence. The second imposes a constraint on the continuity of the flow that
+ensures that our solution is unique assuming that neighboring pixels present a similar
+motion. Otherwise, the optical flow arise to an ill-posed problem in the sense that there
+may exist an infinity of solutions for the matching of two images.
+
+In order to estimate large displacements and avoid irrelevant local minimum values,
+we embed the optical flow method in a multi-scale strategy as in previous works like
+[Anandan89, Battiti91, Luettgen94, Bornemann96, Enkelmann88, M´emin02]. This allows
+us to create a coarse-to-fine structure for solving the system of equations in each scale,
+starting at the coarsest scale, to get successive approximations of the optical flow for
+refining the solution at finer scales.
+
+We represent the flow fields by using three different strategies. The first one consists in
+using directly a vectorial representation to describe the relative motion while the other two
+strategies use color schemes. Each color denotes a different direction and their intensities
+the magnitude of the moving objects (see figure 1.2). In the document, we call them as
+IPOL and Middlebury color schemes, respectively. The chromaticity of the Middlebury
+color scheme is clearer than the IPOL representation, which is interesting for saving costs
+when printing. However, the IPOL color scheme is more intuitive, since the black color
+represents no motion.
+
+Despite of more than thirty years of optical flow studies, there are still some limitations
+in current variational methods like, for instance, occlusions handling, that arise when a
+portion of the image is visible at one frame but not in its successive, the estimation of large
+displacements or the preservation of discontinuities in the displacement field. From these
+issues, the intention of this manuscript is to contribute in two themes: (i) the influence of
+temporal information compared to traditional spatial variational methods; (ii) Efficient
+strategies for improving the preservation of flow discontinuities.
+
+In the past decade computer vision, has become the most important interface between a human and a 
+machine. Humans use their senses in order to take information on a stimulus and the brain analyses 
+that information. Computer vision aims to develop that “understanding” which when paired with the 
+appropriate tools for data acquisition, will result in similar results. Its main subject is images, 
+image sequences or videos. In this context and throughout this dissertation we are referring to 
+monocular cameras. This effectively means that for a static camera, depth cannot be infered, and 
+thus when viewing an image, it is impossible to determine the spatial characteristics (i.e. the 
+three-dimensionality) of objects.
+
+Machine Learning from an informatics / computer science perspective, and Artificial Intelligence 
+from an engineering perspective, have developed techniques for “teaching” a machine of ways to 
+evaluating and/or learning from experience. Some of these methods, incorporate “learning” algorithms, 
+for which and without explicit prior models, it is possible to build analytical models purely from 
+exploring the application data-space. These algorithms adaptively progress and re-evaluate their rules 
+until they reach a stop criterion. Their performance is also greatly increased when more learning samples 
+are introduced, or further training is pursued.
+
+Learning algorithms are divided in two categories based on what is taken into consideration when modelling 
+the system. In unsupervised learning, the data are grouped and interpreted solely on the input data to the 
+system, whereas in supervised learning, the output data gives feedback to the system to develop a predictive 
+model for further input. In supervised learning the data are labelled; i.e. there is prior knowledge of the 
+‘class’ of the features presented as data in the system. In unsupervised learning no such label is available 
+and the system needs to ‘cluster’ and thus infer categories within the data space.
+
+It is assumed that the images or videos used in this dissertation are from pre-calibrated camera that is 
+static (not moving) with respect to the surrounding environmental objects that are moving in-and-out of 
+the camera frame.
+
+The rationale behind our approach, is to produce a method that accurately recognises humans in different 
+scenes comprising of multi-modal background. The method needs to be adaptive to the scenery and its foreground 
+objects, so that it should not be calibrated if the background is altered in any way. To the best of our 
+knowledge, the combination of adaptive foreground detection and the use of a rule based system (inferred 
+from supervised learning / classification trees) for said applications has not been explored in the literature.
+
+More recently, and with introduction of automotive camera applications (e.g.
+ADAS) several papers have proposed the introduction of unclassifiable objects as
+new labels and re-parametrisation of the classifier [8] in an effort to adapt in an
+ever changing environment and its physical conditions (e.g. abrupt light changes).
+In this kind of cases, there is a need for adaptation in the background subtraction
+method used so as to compensate for non-regular in behaviour parameters. A
+review of some of the methods for adaptive background subtraction can be found
+in [2, 3] as well as comparisons for resulting classification methods in [36].
+
+Various applications in image processing and computer vision are concerned with
+the reconstruction or restoration of a signal from measured data. Examples are the
+tasks of denoising, deblurring and inpainting, segmentation and labeling, the optical
+flow problem and depth estimation from stereo.
+
+From a mathematical point of view, these reconstruction tasks constitute inverse
+problems, which for the considered applications are usually ill-posed. Consequently,
+a direct inversion of the underlying operator is infeasible. To solve these inverse
+problems, variational methods have proven favorable due to the fact that introducing
+regularization leads to well-posed optimization problems. Besides ensuring wellposedness,
+regularization in addition allows to incorporate a-priori knowledge (a
+prior) on the unknown signal to be reconstructed. Such a prior has a strong impact
+on the reconstruction quality and therefore, the choice of a meaningful regularization
+approach is crucial.
+
+Due to the fact that signals in image processing and computer vision typically
+contain discontinuities, regularization with total variation (TV) respecting this property
+has become standard in this field and serves as starting point for various generalizations.
+The focus of this thesis lies on adaptive total variation regularization,
+where the prior is changing locally and, in particular, adjusts to instance-specific
+structures. This adaptivity improves the reconstruction quality compared to nonadaptive
+regularization.
+
+One major contribution of this thesis is to provide a general model for adaptive
+TV regularization. Our model also covers recent trends proposed in the literature,
+such as to higher-order and non-local regularization. Consequently, our model combines
+the benefits of advanced total variation approaches with the advantages of
+adaptivity.
+
+A second major contribution of this thesis is to present a novel concept for
+solution-driven adaptivity, i.e. an adaptivity which is determined by the unknown
+signal itself. In contrast, most adaptive approaches in the literature consider a datadriven
+adaptivity, i.e. an adaptivity steered by the input data. Our approach has the
+advantage that a-priori knowledge can be modeled in a more distinct way, which in
+practical applications further improves the reconstruction quality. Solution-driven
+adaptivity, however, raises a more involved mathematical optimization problem. In
+this work, we provide a rigorous mathematical theory, which in particular answers
+the question of existence and uniqueness.
+
+Before going into more detail, we briefly give some background on variational
+methods and TV regularization.
+
+Let us give a short overview of the organization of this thesis: We start with an
+introduction to TV regularization in Chapter 2. Chapter 3 provides background
+on variational methods and convex optimization. In Chapter 4, we focus on datadriven
+adaptive TV regularization, which results in convex minimization problems.
+
+We discuss our general framework for adaptivity and provide existence and uniqueness
+results. Moreover, we discuss models to steer adaptivity and various examples of
+adaptive TV regularization. Chapter 5 recalls relaxation approaches in W1,p(
+) and
+BV (
+), which in certain cases can serve as an alternative to tackle non-convex minimization
+problems. In Chapter 6, we present our fixed point strategy for solutiondriven
+adaptive regularization. This strategy enables us to transfer the data-driven
+adaptive approaches from Chapter 4 into solution-driven approaches. We stress that
+in the context of adaptive regularization, this strategy is preferable over relaxation
+methods. In Chapter 7, we consider numerical approaches for convex, non-convex,
+and fixed point problems. In particular, we present a new algorithm for solving
+QVIPs with non-strongly monotone operators (Section 7.2) and show convergence.
+Moreover, we provide a Newton-like algorithm for solving non-convex optimization
+problems on Lie groups (Section 7.3). Finally, in Chapter 8, we discuss applications
+using the framework presented in Chapters 4 to 6 and the numerical methods
+from Chapter 7. The considered applications comprise image restoration (denoising,
+deblurring, inpainting), displacement regularization (i.e. correcting errors in
+the location of sampling points), denoising and fusion of time-of-flight depth maps,
+upsampling of color images and, estimation of scene and egomotion from image sequences
+in an automotive environment. We conclude this thesis with a discussion
+in Chapter 9.
+
+The clustering problem has been formulated in many contexts and by researchers
+in many disciplines; this reflects its broad appeal and usefulness as one of the
+steps in exploratory data analysis. Clustering has found applications in such
+diverse disciplines as biology, psychology, archaeology, geology, engineering, information
+retrieval, and remote sensing.
+
+Some interesting applications of clustering include clustering of job analytic data
+[194], grouping homogenous industrial companies [28], seventh and eighth centuries
+A.D. sculptures clustering [144], clustering of collinear line segments in digital images
+[138], clustering is used to study mixture of human populations race [126], clustering
+for document classification and indexing [58, 134] and clustering for investment
+portfolio performance comparison [37].
+
+Cluster analysis is used in numerous applications involving unsupervised learning,
+where there is no category label assigned to training patterns. As can be seen from
+the huge amount of literature several problems from different discipline used clustering
+approach. The use of clustering in computer science and engineering applications
+has been relatively recent. Cluster analysis plays an important role in solving many
+problems in natural language processing, pattern recognition and image processing.
+Recently, its use in the computer vision and pattern recognition community is growing
+exponentially. Clustering is used in speech and speaker recognition [122], clustering
+in multi-target tracking is used to solve data association problem [30, 43, 99, 149, 176],
+group detection in a video is also casted as a clustering problem in [2, 69, 158], [146]
+used clustering to track group, in image geo-localization clustering is used to solve
+matching between query and reference images [178], image retrieval has been effectively
+casted as a clustering problem [180], outlier detection [185], image registration
+[148], and image segmentation is one of the most studied application of clustering
+in computer vision [17, 36, 109, 140, 166, 181, 183].
+
+The availability of a vast collection of clustering algorithms in the literature can
+easily confound a user attempting to select an algorithm suitable for the problem at hand
+[72]. A list of admissibility criteria has been suggested by [106] to make a comparison
+between clustering algorithms. The criteria used in [106] are mainly based on how the
+cluster is formed, sensitivity of the clustering technique to changes that do not affect
+the structure of data, and the way the data was structured.
+
+As there does not exist a universal clustering approach which can be applied for all
+kinds of modalities of problems, we need to find the right clustering approach based of
+the problem at hand. The focus of this dissertation is to propose a unified, novel and
+robust approaches for problems in multi-target tracking, geo-localization and outlier
+detection. In all the proposed frameworks, we used the same graph theoretic clustering
+approach, namely, dominant set clustering (DSC), and its extension, constrained dominant
+set clustering framework. The intrinsic properties of these approaches make them
+very suitable for the above-mentioned problems.
+
+Dominant set clustering framework is first introduced by Pavan and Pelillo [110,
+112], and showed its effectiveness in the areas of segmentation, image retrieval and
+group detection. Dominant set clustering is a graph-theoretic approach for pairwise
+data clustering which is motivated by the analogies between the intuitive concept of a
+cluster and that of a dominant set of vertices. It generalizes a maximal clique problem
+to an edge-weighted graphs. Its correspondence with a linearly constrained quadratic
+optimization program under the standard simplex, allowed us to use of straightforward
+and easily implementable continuous optimization techniques from evolutionary game
+theory. We follow a pill-off strategy to enumerate all possible clusters, that is, at each
+iteration we remove the cluster from the graph. Even though, it has several advantages
+over other clustering approaches, the iterative approach we follow to extract clusters
+cause change in the scale of the problem. Meaning, we do not have a theoretical
+guaranty that clusters found at the consecutive iterations are the local solutions of the
+original graph.
+
+Constrained dominant set clustering framework is first proposed in [183]. It is a
+parametrized version of standard quadratic optimization. By properly controlling a
+regularization parameter which determines the structure and the scale of the underlying
+problem, we are able to extract groups of dominant-set clusters which are constrained
+to contain user-selected elements. A standard algorithm to extract constrained dominant
+sets from a graph is given by the so-called replicator dynamics, whose computational
+complexity is quadratic per step which makes it handicapped for large-scale
+applications. In this work, we propose noble fast algorithm, based on dynamics from
+evolutionary game theory, which is efficient and salable to large-scale real-world applications.
+In this thesis, we aim to address problems in multi-target tracking in single and multiple
+cameras, large scale image geo-localization, and outlier detections by proposing
+several new algorithms, which utilize the above-mentioned clustering frameworks.
+Firstly, we proposed a novel and efficient single camera multi-target tracking approach,
+which formulates the tracking task as finding dominant sets in an auxiliary
+undirected edge-weighted graph. The nodes in the graph represent detection responses
+from consecutive frames and edge weights depict the similarity between detection responses.
+In this formulation, the extracted cluster (dominant set) represents a trajectory
+of a target across consecutive frames. Unlike most techniques, which are limited in
+temporal locality (i.e. few frames are considered), we utilized a pairwise relationships
+(in appearance and position) between different detections across the whole temporal
+span of the video for data association in a global manner. Meanwhile, temporal sliding
+
+window technique is utilized to find tracklets and perform further merging on them.
+Our robust tracklet merging step renders our tracker to long term occlusions with more
+robustness.
+
+Even though, the approach showed competitive result against several state-of-theart
+approaches, it suffers the short comings of the underlined clustering framework, i.e.
+dominant sets. To solve the limitations of the above approach and extend multi-target
+tracking across multiple non-overlapping cameras, we proposed a robust and unified
+three-layered hierarchical approach. We first determine tracks within each camera, by
+solving data association, and later we associate tracks of the same person in different
+cameras in a unified approach, hence solving the across-camera tracking. Since appearance
+and motion cues of a target tend to be consistent in a short temporal window in a
+single camera tracking, tracklets are generated within short temporal window first and
+later they are merged to form full tracks (or trajectories). To best serve our purpose, a
+constrained dominant set clustering (CDSC) technique is employed to solve both tracking
+tasks. The tracking problem is caste as finding constrained dominant sets from a
+graph. That is, given a constraint set and a graph, CDSC generates cluster (or clique),
+which forms a compact and coherent set that contains all or part of the constraint set.
+Clusters represent tracklets and tracks in the first and second layers, respectively. The
+proposed within-camera tracker can robustly handle long-term occlusions, does not
+change the scale of original problem as it does not remove nodes from the graph during
+the extraction of compact clusters and is several orders of magnitude faster (close to real
+time) than existing methods. Also, the proposed across-camera tracking method using
+CDSC and later followed by refinement step offers several advantages. More specifically,
+CDSC not only considers the affinity (relationship) between tracks, observed in
+different cameras, but also considers the affinity among tracks from the same camera.
+Consequently, the proposed approach not only accurately associates tracks from different
+cameras but also makes it possible to link multiple short broken tracks obtained
+during within-camera tracking, which may belong to a single target track.
+
+Next, we present a novel approach for a challenging problem of large scale image
+geo-localization using image matching, in a structured database of city-wide reference
+images with known GPS coordinates. This is done by finding correspondences between
+local features of the query and reference images. We first introduce automatic Nearest
+Neighbors (NN) selection into our framework, by exploiting the discriminative power
+of each NN feature and employing different number of NN for each query feature. That
+is, if the distance between query and reference NNs is similar, then we use several NNs
+since they are ambiguous, and the optimization is afforded with more choices to select
+the correct match. On the other hand, if a query feature has very few low-distance
+reference NNs, then we use fewer NNs to save the computation cost. Thus, for some
+cases we use fewer NNs, while for others we use more requiring on the average approximately
+the same amount of computation power, but improving the performance,
+nonetheless. This also bypasses the manual tuning of the number of NNs to be considered,
+which can vary between datasets and is not straightforward. Next, we cluster
+features from reference images using Dominant Set clustering, which possesses several
+advantages over existing approaches. First, it permits variable number of nodes in
+the cluster. Second, this approach is several orders of magnitude faster than existing
+approaches. Finally, we use multiple weak solutions through constrained Dominant
+image must be included in the cluster. This second level of clustering also bypasses
+heuristic approaches to voting and selecting the reference image that matches to the
+query.
+
+Finally, we present a modified dominant set clustering approach for simultaneous
+clustering and outlier detection from data (SCOD). Unlike most approaches our method
+requires no prior knowledge on both the number of clusters and outliers, which makes
+our approach more convenient for real applications. A naive approach to apply dominant
+set clustering is to set a threshold, say cluster size, and label clusters with smaller
+cluster size than the threshold as outliers. However, in the presence of many cluttered
+noises (outliers) with a uniformly distributed similarity (with very small internal
+coherency), the dominant set framework extracts the set as one big cluster. That is,
+cluster size threshold approaches are handicapped in dealing with such cases. Thus,
+what is required is a more robust technique that can gracefully handle outlier clusters
+of different size and cohesiveness. Dominant set framework naturally provides a principled
+measure of a cluster’s cohesiveness as well as a measure of vertex participation
+to each group (cluster). On the virtue of this nice feature of the framework, we propose
+a technique which simultaneously discover clusters and outlier in a computationally
+efficient manner.
+
+Within the domains of computational geometry and computer vision are two
+problems: Finding large, interesting holes in high dimensional data, and locating and
+automatically classifying facial features from images.
+
+Recent advances in machine learning research promise to bring us closer to the
+original goals of artificial intelligence. Spurred by recent innovations in low cost,
+specialized hardware and incremental refinements in machine learning algorithms,
+machine learning is revolutionizing entire industries. Perhaps the biggest beneficiary of
+this progress has been the field of computer vision. Finding large empty rectangles or
+boxes in a set of points in 2D and 3D space has been well studied. Efficient algorithms
+exist to identify the empty regions in these low dimensional spaces. First, I duplicated
+existing work on this problem, and then evaluated its performance on 1D, 2D, 3D, 4D,
+and 5D datasets. I also developed an application to visualize such holes in 2D and 3D
+space. I then designed a new algorithm for finding holes in high dimensional data that
+runs in polynomial time with respect to the number of dimensions and size of the input.
+This is significant because all previously published algorithms are exponential in the
+number of dimensions. Applications for algorithms that find large empty spaces include
+big data analysis, recommender systems, automated knowledge discovery, and query
+optimization. This new Monte Carlo algorithm discovers interesting maximal empty
+hyper-rectangles in cases where dimensionality and input size would otherwise make
+analysis impractical.
+
+Automatic facial feature classification is an active and rapidly advancing area of
+research within computer vision. The problem of how to best classify facial features is an
+open problem of great interest to industry, government, and academia. The best-known
+methods for this task involve the use of Convolutional Neural Networks (CNN) and are
+performed using graphical processing units (GPUs). I will compare my method with my
+own implementations of facial attribute classifiers using Eigenfaces and Support Vector
+Machines (SVM) as well as classifiers based on CNN that operate directly on pixels
+without filtering. I also investigate the use of dual-tree complex wavelet transform for
+enhanced feature learning and perform a comparative study of existing algorithms for
+gender classification.
+
+I present the first algorithm for finding holes in high dimensional data that runs in
+polynomial time with respect to the number of dimensions. Previous published algorithms
+are exponential. Finding large empty rectangles or boxes in a set of points in 2D and
+3D space has been well studied. Efficient algorithms exist to identify the empty regions
+in these low-dimensional spaces. Unfortunately, such efficiency is lacking in higher
+dimensions where the problem has been shown to be NP-complete when the dimensions
+are included in the input. Applications for algorithms that find large empty spaces include
+big data analytics, recommender systems, automated knowledge discovery, and query
+optimization. This Monte Carlo-based algorithm discovers interesting maximal empty
+hyper-rectangles in cases where dimensionality and input size would otherwise make
+analysis impractical. The run-time is polynomial in the size of the input and the number
+of dimensions. I apply the algorithm on a 39-dimensional data set for protein structures
+and discover interesting properties that could not be inferred otherwise.
+
+An important aspect of data mining research is discovering large empty areas (or
+holes) in data sets. According to Liu et al, “If we view each item (or tuple) in a data set as
+a point in a k-dimensional space, then a hole is a region in the space that contains no data
+points. In a continuous space, there exist a large number of holes because it is not possible
+to fill up the continuous space with data points.”[3]
+
+The impact of mankind on our planet earth is unprecedented (Crutzen & Stoermer,
+2000). All over Europe the biodiversity is decreasing, because habitats get fragmented
+or destructed, alien species are invading due to global flows of goods and the changing
+climate. Unfortunately extinction takes place gradually, delayed and is difficult to
+capture (Krauss et al., 2010). Therefore national and European policies as the
+Bundesnaturschutzgesetz (BNatSchG) and the council directive 92/43/EEC on the
+conservation of natural habitats and of wild fauna and flora (EU) preserve areas in
+order to maintain natural processes. Those policies require to preserve or restore the
+natural habitats and populations. Accordingly, large-scale protected areas (LPAs) such
+as national parks, biosphere reserves or nature parks are of high importance when it
+comes to conserving our planets biodiversity (BfN, 2010). Where there is suitable
+room for them, even species which previously have become extinct, as lynx, wolves and
+moose, are naturally recolonizing Germany (Dudek, 2009; Weber, 2017).
+
+Peaceful landscapes and exciting wildlife attract tourists (Fennell, 2015). Typically
+these nature based touristic destinations are located in rural, peripheral regions, which
+often happen to be ecologically weak. Poor accessibility, loss of medical and educational
+institutions, European focus on metropolitan regions and the demographic change will
+further decrease those economies and lead to rural exodus (Job, 2010; Mayer et
+al., 2010; Miles, 1999). This conflicts with the German aspiration for equal living
+conditions in the federal territory (§ 72.2, Grundgesetz). Therefore ibidem fiscal
+equalization is envisaged and the regional planning policy is equipped with tools to
+develop those regions.
+
+One such tool is the designation of areas for nature conservation, which according
+to the BNatSchG targets both - preservation and regional development. LPAs are
+popular destinations for recreational tourism, which is injecting capital into their local
+economy (Job et al., 2005). Visitors encourage the construction of hotels, restaurants
+and generate the according jobs. Studies by Eagles et al. (2000) and Job et al. (2016)
+showed the significant economic impact of preservation areas on the respective regions,
+which can provide additional support for protecting the environment (Arnberger,
+2007). For example in Germany, fifteen national parks are virtually generating nearly
+fifteen thousands jobs (Job et al., 2016).
+
+The most important variables for modeling the economic impact are the number of days
+visitors stay within a region and the amount of money spent. In contrast to American
+national parks, in Germany access to LPAs is free and precise numbers, to carry the
+models, are missing. But visitor numbers also are important for LPAs world-wide, to
+assess physical and social impacts and fulfill management tasks (Arnberger, 2007;
+Cessford & Muhar, 2003). The necessary data can be gathered by conducting field
+interviews. However, as human resources are expensive, observations may be sampled
+and extrapolated using daily visitor numbers at census points (Job et al., 2005; Mayer
+et al., 2010). Also several systematic monitoring approaches like automated counters
+or video observations are available. Companies such as EcoCounter sell complete
+solutions using photoelectronic and seismic sensitive sensors and are widely used for this
+purpose. Approaches using camera observations are not used frequently, although they
+uniquely can differentiate user-groups, because a lot of human resources are required for
+manual examination the videos to extract the visitor count. All tools have specific pros
+and cons, which have to be considered in accordance to the individual use case, local
+circumstances and pathway layout. Features as distinguishing directions, recognizing
+sport equipment, operational costs and accuracies have to be weighted out (Arnberger,
+2007; Cessford & Muhar, 2003).
+
+Utilizing cameras to count visitors has proven to be accurate, traceable and rich in
+features (Arnberger et al., 2005). Unfortunately however, when evaluating timelapse
+imagery from remote sites, most of the images are without relevant information
+(i.e. visitors) (95% in Muhar et al., 1995) and evaluating them manually consumes
+valuable human resources. To repeal their limitation to short-term projects, two
+innovative approaches were identified in the literature. Lupp et al. (2016b) used trail
+cameras triggered by a photoelectronic sensor, to limit the amount of data in the
+first place. Pretty similar, Muhar et al. (1995) aimed to reduce the data recorded
+on VHS tapes, by using computer vision (CV) to preselecting non-blank frames first.
+His implementation used change detection (CD), a method commonly used in remote
+sensing (İlsever & Ünsalan, 2012; Ashbindu Singh, 1989), cell biology (e.g. Bosc
+et al., 2003) and security industries (e.g. Collins et al., 2000), to pixel-wise subtracts
+two images from each other, highlighting differences. Pixel-based methods though do
+not distinguishing the source of change. Wildlife, for example, would trigger the same
+signal as passing by visitors, tall persons change more pixels than smaller ones and so
+on. Meanwhile however computer technologies developed further by means of processing
+and storage capacities and new possibilities may have opened up. Latest systems work
+object-based. Hypothesizing, that on high resolution images neighboring pixels cover the
+same real-world object, the image in such a case gets segmented (Blaschke & Strobl,
+2001). The segmentation can be supported by not only considering RGB values, but
+enriching the feature space with textural measures such as Histograms of Oriented
+Gradients (HOG). Dalal & Triggs (2005) first utilized these histograms to detect
+humans. Therewith they enabled the technology for most other pedestrian detectors
+used today (see Benenson et al., 2014; Dollár et al., 2012). Today state-of-the-art
+pedestrian detectors utilize Convolutional-Neural-Networks (CNNs). These artificial
+intelligence approaches learned to autonomously extract a large number of features
+directly from raw pixel values (Benenson et al., 2014). As a function of their training,
+these networks then can even differentiate thousands of object classes (e.g. Redmon et
+al., 2016). Although Muhar et al. (1995) outlooks were promising, no visitor counters
+based on CV are utilized in the field of nature conservation today.
+
+To embed this study in a recent context, first the literature of the concerned domains
+was reviewed, providing a comprehensive framework for this interdisciplinary research.
+In chapter 3 the newly developed instrument, tested at Hubland Campus, will be
+discussed in detail. To examine which image properties have to be respected, two
+test-sites necessary to examine the influence of image properties on the hypotheses, will
+be introduced in chapter 4. The methods in detail get described in chapter 5. Finally,
+the results of each test-site will be presented in chapter 6 individually. After methods,
+results and further possibilities were discussed (chapter 7), the research questions will
+be answered in chapter 8, drawing conclusions for the utilization of the newly developed
+instrument and methods in the field.
+
+Bird species are recognised as important biodiversity indicators (Gregory, 2006; Harrison
+et al., 2014; Buckland et al., 2012): they are responsive to changes in sensitive ecosystems,
+whilst population-level changes in behaviour are both visible and quantifiable. They
+can be monitored by ecologists to determine factors causing population fluctuation and to
+help conserve and manage threatened and endangered species. For example, a study by
+Mikusi´nski et al. (2001) has shown that where Woodpecker (Picidae) species are present
+there are also other species present. The research therefore suggested that surveying the
+number of Woodpeckers can serve a proxy for avian diversity if the overall species diversity
+in the forest is unknown. Also, a study of butterfly and bird species (Blair, 1999)
+showed that occurrence of the two were correlated, that is, the number of birds in a particular
+area could also indicate the likely presence of butterflies. Data about bird populations
+is therefore an important tool for ecologists in a wide range of environments and contexts,
+including farmland use, marine settings, and migration behaviour (Hammers et al., 2014;
+Johnston et al., 2014; Goodenough et al., 2014).
+
+These surveys have previously included the Common Birds Census and Nest Record
+Scheme, which were organised annually by the Joint Nature Conservation Committee
+(JNCC) and attracted more than 2500 volunteers. These were succeeded in 2001 by the
+Breeding Bird Survey which is organised jointly by the British Trust for Ornothology
+(BTO), JNCC and Royal Society for the Protection of Birds (RSPB). This current scheme
+has over 2,800 volunteers contributing to it anually. The Wetland Bird Survey is also
+carried out by volunteers at more than 2,200 wetland sites, at monthly intervals, and
+provides additional information on wintering population trends in species of water birds
+including ducks, geese, swans, waders, grebes, rails and cormorants (Robinson et al.,
+2015). Finally the Big Garden Birdwatch attracts well over 312,000 volunteers annually,
+spotting over 6,295,000 individual birds throughout the year.
+
+All of these surveys provide data, collected by volunteer and staff workers, using
+manual techniques. However, manual techniques are labour intensive and error-prone. For
+example in 2015, the BTO reported that "The first Breeding Bird Survey (BBS) volunteers,
+who surveyed their squares 20 years ago, would have counted twice as many migratory
+cuckoos and whinchats as they do today." (Hayhow et al., 2014). This was due to the fact
+that flocks often contain several species and could be very difficult to count by volunteers
+manually. Another important issue relates to protected bird species (including Barn Owl
+(Tyto alba), Kingfisher (Alcedines) and Little Tern (Sternula albifrons)), which by law
+require a handling licence: this places further constraints on monitoring activities and
+techniques, which are particularly important in these cases as protected species are already
+in decline.
+
+Every five years, the health of the bird population found in the UK is reviewed by the
+BTO, based on data gathered about bird populations from these surveys: this has been a
+key function of the BTO since its formation in 1933 (Robinson et al., 2015). Species are
+categorised using three lists (Red, Amber and Green), which indicate the strength of their
+populations, nationally. The last review report (Eaton et al., 2015) included reviews of a
+total of 244 species, with 20 moving onto the red list and only three leaving it.
+There are a number of regular surveys conducted in the UK which provide data
+(Baillie et al., 2014; Robinson et al., 2015) used by the government and other organisations
+to track trends in bird breeding and migration data. This helps to measure progress
+towards international targets set by the Convention on Biological Diversity in 2010, (Gregory
+et al., 2015). 
+
+The use of computer vision techniques to automatically identify, classify and monitor
+bird species in the field is an emerging area of research. Currently, most work in this
+area focuses on the identification of species from a single image (Marini et al., 2013;Wah
+et al., 2011a; Duan et al., 2012; Berg and Belhumeur, 2013; Huang et al., 2013; Branson
+et al., 2014;Wah et al., 2011b; Berg et al., 2014), using features extracted from that image
+which represent the appearance of the bird, such as colour and shape. Datasets for these
+works are based on high-quality and detailed images or stationary birds. However, in the
+field, images taken by biologists, ecologists or camera traps may not be of comparable
+quality, placing some practical limitations on such approaches in the field.
+
+These type of approaches can be further subdivided into those that make use of information
+about the physical structure of individual birds (which is refer to as "part-based")
+and those which do not. Non part-based methods use colour and shape features of the bird
+as a whole to classify its species (Marini et al., 2013; Wah et al., 2011a,b). For example
+the work in Marini et al. (2013) used colour features extracted from the bird to build a
+Support Vector Machine (SVM) species classifier. Most of these works have been used
+to classify between relatively small numbers of species but struggle to maintain peformance
+as the number of species increases. Marini et al. show that in classifying species
+using colour features alone on the caltech-ucsd birds-200-2011 Dataset, accuracy reduces
+from approximately 85% when selecting between 2 species to 20% when differentiating
+between 17 species, and just 7% accuracy with 200 species.
+
+Part-based methods use features associated with the various parts of the bird, based
+on colour and/or shape (Wah et al., 2011a; Duan et al., 2012; Berg and Belhumeur, 2013;
+Huang et al., 2013; Branson et al., 2014; Wah et al., 2011b; Berg et al., 2014). This
+approach uses prior-knowledge of the birds appearance and can help differentiate between
+species with high visual correlation. For Example Collared and Turtle Dove (Streptopelia
+decaocto and Streptopelia turtur) are species with distinguishing features around the neck
+and the eyes: Turtle Doves have a black and white striped neck patch, and a bold red eye
+ring, which are not visible on Collared Doves. Other notable examples are warblers and
+vireos, which have distictive wing markings, compared with flycatchers and sparrows
+which have no such markings (Podulka et al., 2004). In such species these methods have
+achieved good classification accuracy but do require some manual inputs (so are not fully
+automated) and good-quality images in which all parts are present. Typically the manual
+inputs are annotations which identify the bird’s parts prior to feature extraction, and this
+is time consuming and labour intensive, placing some practical limits on the amount of
+data which can be processed. Gavves et al. (2013) introduced some improvments in the
+form of automatic parts identification, however their system still requires some manual
+input being dependent on the grab cut method (Rother et al., 2004a). Techniques based
+on parts are also less applicable to classificastion of flying birds, which have less welldefined
+object shapes and in which specific parts (e.g. feet) are typicaly obscured from
+view.
+
+Flight patterns are known to vary across different species of birds (Briggs et al.,
+2012). For example woodpeckers generally fly in patterns of moderate rises and falls
+whereas finches exhibit a steep, roller-coaster flight (Podulka et al., 2004). Flight patterns
+can sometimes help bird watchers distinguish species with similar colour and shape, for
+example Common Raven (Corvus corax) and the American Crow (Corvus brachyrhynchos)
+(Kilham, 1990). Characteristic flight patterns are particularly helpful to human
+observers and aid the identification of bird species in flight, especially at distances where
+colour tends to attenuate and shape features are too small to distinguish.
+As mentioned, existing computer vision based approaches to automated species classification
+focus on single image inputs and appearance features. The automated classification
+of birds in flight has remained largely un-studied, due to problems with image quality
+and extraction of appearance features. However, the use of video instead of single images
+presents the opportunity to use motion features. Very little existing work has considered
+this, and the primary objective of this research is to combine motion features with appearance
+features to provide robust automated classification of birds in flight: a technology
+which would be immensely useful for deployment in the field. The only existing comparable
+works are those presented by Duberstein et al. (2012) which address only broad
+categorisation (bats, swallows, terns and gulls) and use thermal sensors and also work by
+Matzner et al. (2015). However, both these works are very limited in that the number of
+species/categories, the data sets are small, and the species used in the experiment have
+obviously very different flight patterns. The objective is to build on these preliminaty
+studies to develop a method which can be used robustly with larger numbers of species
+and give similar or better results as methods which use single high-quality images.
+This thesis presents work which combines motion and an extended set of appearance
+features to automatically classify birds in flight from video streams. The research shows
+that robust results across larger numbers of species is possible and that motion and appearance
+features can be combined effectively to achieve this, providing a robust platform
+for deployment in the field.
+
+Computer vision is a compilation of inference problems: given an image or a set of images,
+the aim is to infer properties of the scene depicted in the image. For example, in image
+segmentation the aim is to partition the image into a set of meaningful regions. In 3Dreconstruction
+one is given several views of an object and wants to deduce its geometry. In
+motion estimation the task is to infer how the points in a video are moving over time. A
+complete list might well fill the entire page.
+
+The human body's largest organ is the skin, and it is presumably one of the materials
+we look most at { since we often have another person in our ¯eld-of-view or parts of our
+own body. The appearance of skin is important for humans and human-human relations.
+It gives us, e.g., an indication about the well-being of a person, a person's ethnic origin,
+and the age. Our inherent concern and dissatisfaction about the appearance of our skin
+has resulted in skin-care product sales reaching $34.1 billion worldwide in 2000, which is
+the fastest-growing part of the personal-care market. $19.8 billion were spent worldwide
+in 2000 on makeup/colour cosmetics [10].
+
+In movie and television production it is common that everybody uses make-up to smooth
+the skin appearance, and some television broadcasting cameras even have an electronic
+¯lter to smooth skin colours, i.e., \electronic make-up" [14, p. 86]. But not only the
+capturing of skin images with cameras is carefully controlled, particular attention is taken
+to the reproduction and visualisation of skin colour by television displays, photos, and
+print industry [9; 12; 21]. Imai et al. [8], e.g., suggested a method to improve the skin
+colour reproduction on CRT2 displays and hardcopies. Even more di±cult than realistic
+reproduction is the generation of artificial skin for computer graphics [6; 17], e.g., for
+computer game or movie production.
+
+So far only the human observer looking at skin has been discussed, however, one may
+ask who or what else than humans is looking at humans and their skin? Apart from
+other organisms there is an increasing number of machines watching humans and their
+skin for di®erent reasons such as medical [1; 13; 18] and cosmetic [23]. Yet another area
+are so called computer vision applications, looking at humans, e.g., for human computer
+interfaces and surveillance purposes. Computer vision has to deal with similar issues
+mentioned above, i.e., changing light sources, different skin tones, and diverse cameras
+(artificial observers).
+
+The less obtrusive technology for face recognition, facial expression interpretation, and
+hand gesture recognition is by looking at the user, i.e., computer vision based. The opera-
+tion of such systems includes several processing steps starting with the image acquisition
+by a video camera. In case of a gesture recognition system this is followed by a hand
+detection and localisation step, which then passes the detected hand region in the image
+to a recognition step that recognises the respective gesture. The robustness and relia-
+bility of the detection step is crucial for the success of such systems. That means the
+detection should be person independent, and work in complex dynamic backgrounds and
+under variable lighting. These requirements were also identi¯ed amongst the six require-
+ments for computer vision based gesture recognition systems in Triesch [25]. The other
+three requirements are concerned with processing speed and higher level interpretation,
+i.e., real-time operation, \come as you are", and naturalness of gestures. An example of
+a hand detection step within a gesture interface using skin colour detection is shown in
+figure 1.1.
+
+Today automation is used frequently in industry for different
+applications. The robot industry grew very fast primarily due to large
+investments done by the automotive industry. Modern industrial
+robots have increased in capability and performance through
+controller and language development, improved mechanisms, sensing,
+and drive systems.
+
+The present level of robotics technology, in such areas as machine
+vision, tactile sensing and artificial intelligence is still primitive
+compared to the adaptability and dexterity of humans. This thesis
+investigates the vision applied in a robotics setting.
+Robots with restricted sensor feedback are limited in the kinds of
+behavior they can exhibit. Yet, this is how robots currently used in
+industrial applications perform their tasks.
+
+The needs for motion descriptions and operator interactions clearly
+show that robot control requires its own control techniques.
+In this investigation the robot control is done with visual feedback
+that give the relative position compared to a reference position
+Traditional robot control uses world and joint coordinate system
+representations to describe goals, plan and execute moves. In a static
+industrial environment, where the environment, the robot model and
+the task are known, this works well. Some models are used to
+transform the task into a sequence of robot motions. However, most
+natural settings are not structured or easy to model analytically.
+
+In robotics there are many tasks in which inspection, manipulation, or
+measure of three-dimensional objects are involved. To be able to use
+feedback control in these tasks it is necessary to use techniques that
+return three-dimensional information about the objects. For this
+purpose there are several types of sensors. If we look in the robotics
+domain these types of sensors are denominated as external. External
+sensors can be classified from the way that they acquire the measure
+in two classes; the ones that require direct physical contact, such as
+contact switch, force on tact sensors, and the ones that don’t require
+direct contact, such as ultra-sound sensors, infra-red sensors, laser
+and video cameras. Computer vision systems enables the use of
+robots in non-structured environments, i.e. the work area isn’t limited
+to a special room or environment.
+
+Computer vision is commonly denominated as “Image understanding”
+but understanding is far from being easy. The processing of visual
+information presents problems that are hard to manage. For instance
+many surfaces composed by different materials and with different
+geometric properties have the same image making it hard for the
+vision system to differ between them. Therefore it is difficult to recover
+a good interpretation of images using surface models. These problems
+are especially important for three-dimensional objects being
+represented in two-dimensional images.
+
+Human vision is a controlled hallucination. This means that what we
+infer from images is more than we can explain using physics of light
+or image formation models, as illustrated in Figure 1.1.
+
+An example of how human’s process images is called “pictorial depth
+cues”. A “cue” can be the most familiar size, interposing or occlusion
+(both are represented in Figure 1.1), shades or shaded areas, size of
+the object related to horizon line, motion and motion parallax and
+binocular perception (i.e. stereoscopy).
+
+Stereoscopy means the study of corresponding images to recreate
+three-dimensional coordinates. It is the disparity between the two
+retinal images that enables stereoscopic perception of depth. It is
+based on projective geometry.
+
+What’s between applied mathematics and biblical archaeology? This
+combination would have been considered peculiar a few decades ago. Yet, these days,
+the amalgamation of these disciplines is not only reasonable, but even sought-after.
+Indeed, from the archaeological side, an ever-deepening cooperation with “hard”
+scientific disciplines (including, yet not limited to physics, chemistry, material sciences,
+geophysics, geology, genetics, botany and zoology) provides answers to long-standing
+issues and raises new questions (Shaus et al. 2017b). For several examples of such
+fruitful multi-disciplinary studies see (Finkelstein et al. 2012; Finkelstein et al. 2015,
+describing a major research project under the auspices of the European Research
+Council, with the current study as one of its tracks). On the other hand, “noisy” material
+stemming from the excavations offers a fertile ground for the development of various
+“robust” analytical methods, pushing the boundaries of science.
+
+Inter-related research domains such as image processing, computer vision,
+pattern recognition, data mining, machine learning, text processing and other
+computational tools are not exceptional, and also become increasingly applicable in
+archaeological and historical setting (e.g., Gilboa et al. 2004; Brown at al. 2008;
+Lipschits et al. 2008). One of the fields resulting from this collaboration, is the emerging
+challenging domain of ancient documents’ analysis (e.g., Dinstein and Shapira 1982;
+Schomaker et al. 2007; Bar-Yosef et al. 2007; Ben Messaoud et al. 2011). Beside the
+already mentioned mathematical subjects, this fascinating topic also pertains to
+linguistics, philology, epigraphy, paleography, theology, history and of course
+archaeology.
+
+The practice of modern epigraphers (experts on ancient texts) specializing on
+Iron Age, comprises the following stages. An ostracon (or its photograph) is manually
+drawn, resulting in a facsimile (black and white depiction of the document). Facsimiles
+of various ostraca are utilized for the purpose of creating a “paleographical table”,
+containing “representative” letter instances for each inscription. Subsequently, the
+paleographical table serves as a basis for various typological studies, which compare
+the handwritings’ similarities and discrepancies between different documents, corpora
+and localities, and attempt to trace the evolution of the letters across the ages. Naturally,
+such procedures are extremely labor-intensive, and moreover, face the almost certain
+risk of unintentionally mixing documentation and interpretation. An example of an
+epigraphic procedure for ostracon No. 1 from Tel Arad can be seen at Fig. 1.2. It begins
+with an ostracon (Fig. 1.2a), depicted in a manually created facsimile (Fig. 1.2b).
+Unfortunately, a close inspection of the facsimile shows a mixture of documentation
+and interpretation (Fig. 1.2c). Then, the most representative characters, chosen by the
+epigrapher, populate the paleographic table (Fig. 1.2d), utilized for further tasks of
+typological analysis.
+
+The main goal of this study is establishing a computerized paleographic
+framework for dealing with First Temple period epigraphic material. This toolbox can
+be compared with other similar projects and toolkits dealing with historical documents
+of other languages, eras and writing systems. Examples include the Gamera project
+(Droettboom et al. 2012), the Hadara framework for historical Arabic documents
+(Pantke et al. 2013), the Monk handwritten documents engine (Van der Zant et al. 2009;
+Van Oosten and Schomaker 2014; Schomaker 2016); as well as several ventures dealing
+with Hebrew writing from other ages and media, in particular the Dead Sea Scrolls
+(Grossman 2010; Lavee 2013; Dead Sea Scrolls 2016) and the Cairo Genizah (Wolf et
+al. 2010; Potikha 2011). Undoubtedly, inspiration can, and will be drawn below from
+these and many other references. However, the distinctive challenges (e.g., small
+amount of very short, fragmentary and highly degraded texts; unskilled authors with
+significant intra- and inter-writer characters’ variability; stained, cracked, uneven,
+nonuniform, fluorescent and difficult to image medium; many hotly debated issues
+among epigraphers, leading to the absence of any agreed-upon “ground-truths”), as well
+as the unique research questions related to Hebrew Iron Age epigraphy, necessitate the
+development of an original computational apparatus
+
+We aimed at making each section of the thesis as self-contained as possible,
+with links to other sections supplied whenever necessary. Some of the following results
+were previously presented in papers quoted below, as well as within some brief
+overview articles (Faigenbaum-Golovin, Shaus, Sober et al. 2015; Shaus et al. 2016a;
+Faigenbaum-Golovin, Shaus, Sober et al. 2017). This thesis refines, improves, finalizes
+and connects these developments
+
+The concepts of photogrammetry, which is defined by “the science or art of obtaining
+reliable measurements by means of photographs”, date back to the period of
+Leonardo da Vinci in 1492, where he began investigating perspective and central
+projections. Many other scientists continued da Vinci’s work mathematically and the first
+great step in the formal creation of the science, which later would be called “photogrammetry”
+was in 1759 where a scientist, Johann H. Lambert, developed the mathematical
+principles of a perspective image using resection to find the point in space from where
+the image was created. The first photograph was obtained by Josef N. Ni´epce in the 19th
+century and required eight hours of exposure. Jacques M. Daguerre, in 1837 obtained
+the first practical photograph. Around 1840, the French geodesist Dominique F. J. Arago
+began to advocate photogrammetry in front of the French Arts and Science Academy.
+One of the most important figures in photogrammetry is Aim´e Laussedat, widely referred
+to as the “Father of Photogrammetry”. In 1849 he was the first person to use terrestrial
+photographs for topographic mapping. In 1858 he began experimenting with aerial
+photography and by 1862 he had managed to get the use of photography for mapping
+accepted by the Science Academy of Madrid and so the science of photogrammetry was
+born. The word “photogrammetry” was first mentioned in a publication by Albrecht Meydenbauer
+in 1893.
+
+For over 150 years analog film images have been used for photogrammetric processing,
+whereas these film images are nowadays scanned to enter a digital workflow on current
+computers. Since 2000, digital cameras have been produced to replace analog film
+cameras. Like in the consumer market, this development resumes also for aerial imaging
+and it is very likely that the classical analog aerial cameras will be replaced by their
+digital successors.
+
+The main aim of this work is to investigate aspects of the transition from analog
+to digital sensing for the large format. Additionally, the hypothesis, that digital aerial
+cameras will replace analog ones is stated. This work is placed in the field of computer
+vision, since photogrammetry or remote sensing are parts of computer vision focussing on
+earth surface. This work discusses and solves problems for photogrammetry, however the
+problems itself are settled in computer vision [Leberl, 2001].
+
+The following outline sketches the structure of this thesis and summarizes the key
+results. First, in chapter 2 methods to characterize images are proposed. With this
+framework it is possible to judge image quality quantitatively and it turns out that
+digital images are of superior quality (as expected when taking a look at figures 1.1 and
+1.2). Furthermore, it is shown that scanning an analog film with a pixel size of less than
+20μm is not useful and that a 9μm digital sensed pixel can outperform a 20μm film
+pixel. This aspect is very important in the design of a digital camera, since the needed
+number of pixels, namely 11500 × 11500 pixel, represents the information content in a
+large format film image.
+
+An overview of currently available digital aerial cameras and their design concepts are
+given in chapter 3. Reviewing this literature produces a list of requirements regarding
+computer vision. The following chapters build on these requirements.
+Since no monolithic area-based digital imaging sensor exists to create a large format
+image with 11500 × 11500 pixels, chapter 4 researches ideas for “image stitching”, the
+task of merging smaller images into one big image. Algorithms are proposed and the
+usage of the suggested workflow solves the problem of image stitching. Composing one
+large image from smaller images is feasible with high accuracy, namely with a root mean
+square error of 1/16 pixel. The performance is derived theoretically and is also shown on
+real images captured by UltraCamD. The photogrammetric accuracy of 2μm is obviously
+obtained, since 1/16 pixel at 9μm pixel size represents 0.6μm. It is proven that image
+stitching is a feasible technology of producing large images out from small samples.
+
+During the research of this project it turned out, that the resampling of the input
+data takes a large amount of computation time, to be precise it takes one third of the
+whole stitching process for the UltraCamD. Image resampling or image reconstruction
+is the process of calculating values for arbitrary position from equidistant samples
+and is necessary when correcting the images geometrically from lens distortion and
+within the stitching procedure. Since every pixel of the resulting output image has to
+be resampled, a faster method would directly decrease the post processing time. To
+speed-up the processing of resampling a novel method of fast image reconstruction is
+proposed in chapter 5. This method gives the same results for polynomial interpolation of
+arbitrary order (e.g. such as the famous bicubic interpolation), which is mathematically
+proven in this thesis. However, the evaluation of the novel approach is faster, due
+to a mathematical trick performed by transformation of the polynomials. The evaluation
+itself is speeded-up by a factor between 1.7 and 2.6, depending on the method used
+
+For the past few centuries, the broad overview of the problems faced by a blind or
+visually impaired person are numerous, such as access to information (mails, print media,
+warning systems and computers); access to transportation – to move without a guidance
+either by walk or to board a vehicle (as a passenger); locations and obtaining blind services
+such as training for Braille, shopping, cooking or any other independent living skills;
+obtaining or maintaining employment; lack of inclusive or accessible social activities and
+venues; insufficient finances for necessary assistance devices. The observation on the visually
+impaired person’s living standard and struggle for their livelihood was the biggest motivation
+behind designing and developing a dual-module cost-efficient wearable navigation assistance
+system that guides the visually impaired.
+
+Need for blind assistance – World Health organization (WHO) in the year 2014, has
+estimated 285 million [59] are to be visually impaired and in which 39 million are completely
+blind. Based on the same study, of the 39 million people across the globe who are blind,
+around 15 million people reside in India which makes India now home to the world's largest
+number of blind people. National Federation for Blind (NFB) [56] and American Foundation
+for Blind (AFB) [57], have confirmed that in the United States, 1.3 million are estimated to
+be blind while individuals with visual impairment is approximately 10 million with around
+100,000 to be students. Assistance systems necessity is inevitable in the present-day scenario
+as well as in the future [58]. There is a wide range of assistance systems and tools for making
+navigation of visually impaired individuals possible [1]. White cane and dog guides are
+preferred mostly. Though, they cannot provide the vital information for uninterrupted
+navigation such as distance, dimension of obstacle and speed along with direction, which are
+normally gathered by eyes and are necessary for the perception and the control of movement
+during navigation still white cane is the most popular navigation aid because it’s the cheapest,
+most reliable and the simplest.
+
+For past half century, many researchers developed electronic devices for navigation.
+These certainly fall under three major categories, namely vision enhancement, vision
+replacement, and vision substitution. The function of any sensory aid is “to detect and locate
+objects and provide information that allows user to determine (within acceptable tolerances)
+range, direction, and dimension and height of objects” [1]. Non-contact trailing and tracking
+is made possible, thus enabling the traveler to receive information about directions from
+physical structures that have strategic locations in the environment with additional object
+identification if possible.
+
+Vision enhancement involves simple steps such as obtaining input from a camera then
+processing the information and finally output the visual information in a display. As in many
+virtual reality systems a miniature head-mounted camera with the output on a head-mounted
+visual display is the basic prototype model of this system. Vision replacement involves
+displaying the necessary information directly to the visual cortex of the human brain or fed to
+human brain via the optic nerve. As it is an invasive technique, currently this category is not
+widely accepted or accessible since they deal with scientific, technological and medical
+issues. Vision substitution is similar to vision enhancement but with the output being nonvisual,
+typically tactual or auditory or some combination of the two. Since the senses of touch
+and hearing have a much lower information capacity than vision, it is essential to process the
+information to a level that can be handled by the user [1]. The category that is mostly focused
+in electrical and computer science researchers community is the “vision substitution”. Vision
+substitution category is a non-invasive method with many real time prototypes that are being
+developed to make navigation of blind possible without the help of others.
+
+Our proposed system falls under the category of wearable ETA and they are
+categorized depending on the way of gathering information from the environment and also
+depending on the way of information delivery to the user. Information can be gathered with
+sonars, laser scanners, or cameras, and the user can be informed through the auditory and/or
+tactile sense.
+
+Sounds or synthetic voice are the options for the auditory sense and electrotactile or
+vibrotactile stimulators for the tactile sense. Tactile feedback is more beneficial because
+auditory sense is never blocked (free-ears), because it is the most important perceptual input
+source for a visually impaired user when compared to the others such as temperature, wind,
+odor and touch. Additionally, wearable ETAs benefits the users to a greater extent as they are
+hands-free but some others do not since the user is required to hold them, it is up to the user
+to select which is more appropriate to his/her habits [1].
+
+The project had started around three decades ago in Japan, mainly aimed at designing
+a new model after the bat’s echolocation system [6] to aid mobility. Sizes of the obstacles and
+their directions are indicated by the time differences and varying intensities of the reflected
+ultrasound waves transmitted by the sensors, creating a localized sound images. User’s
+capability is examined by performing few initial experiments to distinguish between objects
+in front of the user’s face, using different ultrasound frequencies. More experiments and
+statistical results are essential to assure the viability of the project but still the results that are
+obtained shows that users discriminate objects and can even identify them in some limited
+cases. The developed prototype was portable as was simple to use. Two ultrasonic sensors are
+attached on conventional eyeglasses and their data, using a microprocessor and A/D
+converter, are down converted to a stereo audible sound, sent to the user via earphones
+
+Borenstein along with his colleagues developed Navbelt [7] a blind guidance system
+in University of Michigan, using obstacle avoidance system in a mobile robot. The computer
+creates a map of the angles using the information received from the eight ultrasonic sensors,
+where each sensor used for one of the eight directions and the object’s distant in that
+particular angle. The sounds appropriate for each mode will be produced by the obstacle
+avoidance algorithm. Guidance mode and image mode are the two modes in Navbelt. A
+single recurring beep assists the user in the optimum direction to travel for reaching his/her
+destination during the guidance mode. This devise is not practically useful because in a nonsimulated
+realistic implementation more sensors are required than what is implemented here
+
+voIce project [8] was started by Meijer, believing that the human auditory system has
+the capability to process and interpret rapidly changing sound patterns even if they are
+extremely complicated. The images captured by the camera is used by a portable computer
+and an unfiltered, direct, invertible one-to-one image to sound mapping is done, later the
+sound is sent through the earphones. Since the main idea was that human auditory system and
+the brain is capable enough to process extremely complicated sound information, there were
+no filters used in order to mitigate the risk of filtering vital information. Recently, the same
+software was redesigned to embed it on a cell phone, so that the user can use his\her personal
+mobile phone’s camera and earphones as a voIce assistant. Furthermore, for better results and
+increased safety along with improved representation of surroundings sonar extension is also
+available. Despite, the user takes an extensive training because of the complex sound
+patterns, the system received very promising feedback from many users who tried it. The
+prototype is wearable and portable because it consists of cameras fitted to eyeglasses,
+earphones, both connected to a laptop with the necessary software.
+
+A portable–wearable system that assists blind people orienting themselves in indoor
+environments was developed by researchers in University of Stuttgart in Germany. The
+prototype is consisted of a sensor module with a detachable cane and a portable computer.
+The sensor is equipped with two cameras, a keyboard, a digital compass, a 3-D inclinator,
+and a loudspeaker. It can be handled like a flashlight and “By pressing designated keys,
+different sequence and loudness options can be chosen and inquiries concerning an object’s
+features can be sent to the portable computer. After successful evaluation these inquiries are
+acoustically answered over a text-to-speech engine and the loudspeaker.” [9] The computer
+contains software for detection of color detection distance and size of objects and wireless
+local area network capabilities.
+
+The device works almost in real time. In order to improve the performance of the
+system, a virtual 3D model of the environment was built, so the information from the sensor
+can be matched with the data stored in the 3D model. A matching algorithm for sensor
+information and 3D model’s data and embedding the system to Nexus framework, a platform
+that allows a general description of arbitrary physical real-world and virtual objects were the
+future work proposals. Concluding, the system’s positives are the robustness of the sensor,
+the near real-time operation and the friendliness to the user. The negatives are that the holdand-
+scan operation and the, until this moment, limited, simulated testing.
+
+This project [10] from researchers in Florida International University is an obstacle
+detection system that uses 3D spatialized sounds based on readings from a multidirectional
+sonar system. The prototype consisted of two subsystems namely, the sonar and compass
+control unit, which consisted of six ultrasonic range sensors pointing in the six radial
+directions around the user and a microcontroller; and the 3D sound rendering engine, which
+consisted of earphones and a personal digital assistant (PDA) equipped with software capable
+of processing information from the sonar and compass control. The algorithm, using Head
+Related Transfer Functions (HRTF), creates a 3D sound environment that represents the
+obstacles detected by the sensors. The user in that way creates a mental map of the layout of
+his/her surroundings so that obstacles can be avoided and open passages can be considered
+for path planning and navigation.
+
+NAVI project is a sound-based ETA developed to assist blind people for identifying
+the obstacle during navigation by Sainarayanan et al. [11] from University Malaysia. This
+system mainly focusses on the objects that are in front of the user’s center of vision, so to
+distinguish obstacle from the background is very significant. Resampling the greyscale video
+captured by the camera to 32 × 32 resolution. Then using a fuzzy learning vector quantization
+(LVQ) neural network the pixels are classified to either background or objects using different
+gray level features. Background is suppressed to enhance the object of interest and finally the
+processed image is segmented into two parts namely left and right and transformed into a
+stereo sound map that is sent via earphones. The prototype consists of a headgear that holds
+the digital camera, a pair of stereo earphones, the single board processing system (SBPS) and
+a vest that holds rechargeable batteries and SBPS.
+
+Low-cost and high-performance cameras are accessible very easily nowadays that led to
+the increased popularity in mobile visual search [28]. Applications of visual search systems
+such as, product or object recognition and landmark recognition systems are being developed
+in the recent years, in which, local image features are extracted from images taken with a
+simple cameras of mobile phones or laptops are matched to a large database using visual
+word indexing techniques [29]. In images, text have been largely discounted as a useful
+features even though current visual search technologies have already reached a considerable
+extent of maturity [35]. In fact, text is particularly interesting because it provides contextual
+clues for the object appearing inside an image. Using the embedded text to retrieve an image
+in the given vast number of text-based search offers an effective enhancement to the visual
+search systems [30].
+
+Automatic text recognition from images is one of the most difficult problems in computer
+vision. Robustly locating the text on images is an essential prerequisite for text recognition.
+In spite of, this still remains a tedious task because of variations in text appearance. This is
+due to variations in size of the text, font, stroke width, color, texture and pattern [31].
+Geometric distortions, partial or complete occlusions, different lighting conditions leading to
+different contrast ratio and image resolutions also play an important role in the increasing the
+difficulty of text detection [33].
+
+Text detection has been considered in many contemporary studies and abundant number
+of methods are reported and discussed in the literature [47], [48], [49]. Texture-based [50]
+and connected component CC-based are the two major classifications and most of the
+existing techniques comes under these two categories. In texture-based methodologies text is
+viewed as a distinct feature or texture which is distinguishable from the background of the
+image. Typically, by machine learning heuristics the features are extracted over a particular
+region of the image and a classifier is usually employed to detect and recognize the text.
+Zhong et al. [37] in their work had assumed that the text has certain horizontal and vertical
+frequencies, furthermore in the discrete cosine transform domain extracted the features to
+perform text detection. Ye et al. [38] collected features from wavelet coefficients and classify
+text lines using SVM. Chen et al. [32], [34], [55] to the Adaboost algorithm fed a set of weak
+classifiers and trained a strong text classifier
+
+Finding individual characters by grouping pixels into regions using connected component
+analysis assuming that pixels belonging to the same character have similar properties.
+Connected component methods differ in the properties like color, stroke-width and others.
+The advantage of the connected component methods is that their complexity typically does
+not depend on the range of scales, orientations, fonts and other properties of text, and that
+they also provide a segmentation which can be exploited in the OCR step [2]. In contrast to
+texture-based method, CC-based approach utilizes geometric constraints to rule out non-text
+background and extracts regions from the image. An adaptive binarization method to
+discover CCs is a top scoring contestant. Based on geometric properties CCs are linked and
+then text lines are formed. Recently, Epshtein et al. [42] proposed transformed image, which
+is generated by shooting rays from edge pixels along the gradient direction using the CCs in a
+stroke width. Shivakumara et al. [43] eliminated false positives by using text straightness and
+edge density as well as extracted CCs by executing K-means clustering in the Fourier-
+Laplacian domain. Disadvantage of CC-method is a sensitivity to clutter and occlusions that
+change connected component structure
+
+Text localization and recognition in natural scene images is still a problem to be solved
+which has been receiving significant attention because it is a vital component in a number of
+computer vision applications like navigation assistance for visually impaired, visual search
+systems and textual based reading business labels in map applications as it is used in Google
+Street View. Despite being the fact that words occupy a substantial part in the image without
+perspective distortion and they were written horizontal without substantial noise, the
+maximum efficiency of localizing 62% words correctly even after the data was not fully
+natural scene. Numerous contests have been held in recent times and the top performing one
+in the most recent ICDAR 2011 [41], [52] was the above mentioned. If N is the number of
+pixels then localizing text in an image is theoretically very expensive task (computationally)
+as commonly any of the 2N subsets can correspond to text.
+
+Only a few methods that perform both text localization and recognition have been
+published. The method of Wong et al. [52] finds individual characters as visual words using
+the sliding-window approach and then uses a lexicon to group characters into words. The
+method is able to cope with noisy data, but its generality is limited as a lexicon of words has
+to be supplied for each individual image. Detect characters as MSER and perform text
+recognition using the segmentation obtained by the MSER detector. An MSER is a particular
+case of an Extremal Region whose size remains virtually unchanged over a range of
+thresholds [46]. The methods perform well but have problems on blurry images or characters
+with low contrast. According to the description provided by the ICDAR 2011 [41], [52]
+Robust Reading competition organizers the winning method is based on MSER detection, but
+the method itself had not been not published and it does not perform text recognition.
+
+In this work, we propose a novel CC-based text detection algorithm, which employs
+MSER as our basic letter candidates [4]. Despite their favorable properties, MSER have been
+reported to be sensitive to image blur. To allow for detecting small letters in images of
+limited resolution, the complimentary properties of Canny edges and MSER are combined in
+our edge-enhanced MSER. Further we propose to generate the stroke width transform image
+of these regions using the distance transform to efficiently obtain more reliable results. The
+geometric as well as stroke width information are then applied to perform filtering and
+pairing of CCs. Finally, letters are clustered into lines and additional checks are performed to
+eliminate false positives. In comparison to previous text detection approaches, our algorithm
+offers the following major advantages. First, the edge-enhanced MSER detected in the query
+image can be used to extract feature descriptors for visual search. Hence our text detection
+can be combined with visual search systems without further computational load to detect
+interest regions. Further, our system provides a reliable binarization for the detected text,
+which can be passed to OCR for text recognition. Finally, the proposed algorithm is simple
+and efficient. MSER as well as the distance transform can be very efficiently computed and
+determining the stroke width only requires a lookup table.
+
+Computer vision involves acquiring the images of the object of interest, further analyzing
+the images for estimation of higher dimensional data from the real world to get a numerical
+information. Computational symmetry and group theory are the fields that contributed for
+image analysis and retrieving structure from scenes of real world [18], [20], [23], [26]. So far
+single perspective view of a scene with minimum information have been used for computing
+metric measurements and for 3D reconstruction [22], [25]. A passive ranging technique
+which is generally applicable for acquiring 3D data is done by stereo camera set up and it is
+better than the single view in many aspects. In single view metrology, the uncertainty is
+added to the calculations and to metric values as the method considers vanishing point and
+vanishing line, hence the errors are inevitable because these parameters are assumed to be at
+infinity [21], [22], [24].
+
+In single view metrology, the distance between parallel planes is computed when the
+corresponding points on the plane are normal to the planes [22], [25]. The homology between
+the two planes are also established by the above mentioned method [18]. The general
+framework of the corresponding points is considered in this proposed framework and thus the
+restrictions that existed in the previous works are eliminated. Two orthogonal planes for
+finding the corresponding points are found by using 360° rotational symmetry and the
+location of the camera centre [21]. Cylindrical 3D volume has 360° rotational symmetry
+around its axis and thus it requires only two homologies to find cylinder on the ground plane
+and the cylinder is imaged by two cameras. Earlier work for obtaining depth of corresponding
+points had been carried out by vanishing point method [21] and hence the error percentage
+was comparatively higher than our method. Our proposed method is developed by blending
+the earlier works viz., (i) 360° rotational symmetry; (ii) stereo vision for 3D reconstruction;
+(iii) depth estimation without vanishing points. Geometrical calculations are carried out with
+some known reference measurements and assumptions. Metric information obtained from
+images and real world, without considering vanishing point and vanishing line gives a better
+3D reconstruction technique with reduced error.
+
+The proposed system has two modules namely, Read Module and Guidance Module.
+Each works within their respective scopes and functions. Read module works based on an
+algorithm for automatic text detection from natural images by MSER. Guidance module
+works in helping the user to recognize the size of the human obstacle in the path. It works by
+3D reconstruction technique. Generally, existing assistance systems [1], [14] helps in
+informing the user about the distance, orientation and direction of the object but out
+algorithm helps the user to know about the dimension of the obstacle. It is based on the
+assumption that when any human stands or walks he occupies a 3D cylindrical volume in the
+space.
+
+Main hurdle for visually challenged persons are the reading of texts. Education and
+reading texts by visually impaired persons is made possible by Braille system or other similar
+tactile methods. But the main problem for the blind comes into existence when they have to
+interact with the natural environments such as to read the normal texts for example from a
+newspaper, menu card in a hotel and the destination of a bus mentioned in the digital board.
+Our proposed system helps not only as a travelling aid but also helps in reading the texts
+when it is in read module. Either reading module or guidance module is exclusively selected
+by the user of the system. The algorithm designed for extracting the text from the images are
+extensively studied and a better feasible technique is incorporated in this module.
+
+The MSER feature detector works well for finding text regions. It works well for text
+because the consistent color and high contrast of text leads to stable intensity profiles.
+Although the MSER algorithm picks out most of the text, it also detects many other stable
+regions in the image that are not text. A rule-based approach to remove non-text regions can
+be used. For example, geometric properties of text can be used to filter out non-text regions
+using simple thresholds [31]. Alternatively, you can use a machine learning approach to train
+a text vs non-text classifier [32]. Typically, a combination of the two approaches produces
+better results. This algorithm uses a simple rule-based approach to filter non-text regions
+based on geometric properties namely, aspect ratio, eccentricity, Euler number, extend,
+solidity.
+
+Another common metric used to discriminate between text and non-text is stroke
+width. Stroke width is a measure of the width of the curves and lines that make up a
+character. Text regions tend to have little stroke width variation, whereas non-text regions
+tend to have larger variations. The stroke width can be used to remove non-text regions and
+to estimate the stroke width of one of the detected MSER region can be did by using a
+distance transform and binary thinning operation. The stroke width image has very little
+variation over most of the regions of a text. This indicates that the region is more likely to be
+a text region because the lines and curves that make up the region all have similar widths,
+which is a common characteristic of human readable text.
+
+Stroke width detected and later, all the detection results are composed of individual
+text characters. To use these results for recognition tasks, such as OCR, the individual text
+characters must be merged into words or text lines. This enables recognition of the actual
+words in an image, which carry more meaningful information than just the individual
+characters, where the meaning of the word is lost without the correct ordering. For merging
+individual text regions into words or text lines is to first find neighboring text regions and
+then form a bounding box around these regions. To find neighboring regions, the computed
+bounding boxes are extended. This makes the bounding boxes of neighboring text regions
+overlap such that text regions that are part of the same word or text line form a chain of
+overlapping bounding boxes.
+
+Text regions detected and later, using the OCR the text is recognized within each
+bounding box and the meaningful text is stored in a text file. The text-to-speech synthesizer
+converts this text into speech and reads it out loud for the user. The user hears the text
+through his noise cancellation earphones so that he can understand the text and act
+accordingly depending on the situation.
+
+The German newspaper Der Postillion reported in an article in August 2012 that the
+human memory (“das menschliches Erinnerungsvermögen”) offends against data
+protection regulations. In reference to a recent study presented by the German Federal
+Commissioner for Data Protection and Freedom of Information, it was argued that the
+human memory draws up movement profiles, recognises faces out of every thinkable
+angle and thus, it constantly collects and analyses every kind of information. The article
+brings in some examples of these abilities: The human memory, in contrast to video
+surveillance cameras is able to recognise behaviour patterns such as recognising that
+“this guy with the horn-rimmed glasses goes with the same S-Bahn every day“. In
+addition, with the human memory it is possible to analyse the overall shopping
+behaviour of people in order to place personalised product recommendations. An
+example would be the situation in which a salesperson asks the customer “For you the
+same as yesterday?” Standard integrated face recognition in the human memory is also
+highly problematic. Indeed, does this tool facilitate personal salutation, for example
+when entering your own favourite pub. However, in all likelihood, behaviour patterns
+can be formed using the face recognition tool (e.g. “This guy gets drunk every night.”).
+In order to cope with the human memory and its mania for collecting data, the
+Commissioner for Data Protection and Freedom of Information calls for a general rule
+that blindfolds and earflaps should be worn. Those items should be carried at all times,
+except in situations in which the other person has agreed to the storage and use of his
+or her personal data (so-called “opt-in”). For those that cannot wait for the regulation,
+the Commissioner advises carrying balaclavas or burka (so-called “opt-out”).
+
+As you may have recognised—at least if you are able to make use of human memory—
+the article, and the medium of its publication, The Postillon, are satiric. So obviously that
+means, there just is no such recent study presented by the German Federal Commissioner
+for Data Protection and Freedom of Information that reported about human memory
+offending against data protection regulations. As is the case with most satire, there is a
+lot of truth, or at least some elements of it, that refer to more serious issues. So this
+satiric article opens up some of my major research concerns and as such, concerns of
+this thesis. As you can expect from the title ‘Computers and the Ability to See’ this refers
+not so much to the earflaps as to the blindfolds. In short, my basic research interest is in
+computer vision and connected to it what could be called in reference to the satiric
+article ‘computer memory’ that in this context, is more than the physical device used in
+computers that stores programs and data; it is the ability of computers to remember or
+clearly recognise specific visual entities in the physical-optical world such as objects,
+people, cows, (individual) faces, (suspicious) behaviour patterns, facial expressions and
+so on.
+
+This same interest in computer vision and computer memory is in human vision, and
+therefore in the human memory, as well. That means, computer or more generally,
+machine vision and human vision are not as clearly distinguishable from each other as
+one might expect. There is a close and ongoing relationship between computer vision
+and human vision, and as there is between computers and humans in general.
+Nevertheless, the boundaries between humans and computers and, ever since the late
+1960s, also between human vision and computer vision are constant subjects for
+discussion and negotiation. To speak in Lucy Suchman’s terms (2007: 226) we can ask
+the question how these boundaries between humans and non-humans, and adapted to
+fit my research interest between human and computer vision, are drawn and re-drawn?
+How are humans and non-humans, and how are human vision and computer vision (re-
+)configured in mundane practices by specific members of society? It is essential for the
+further reading of this thesis to note here that moments that address questions of
+computer vision are simultaneously always moments that address questions of human
+vision too. This is very briefly and broadly speaking because humans are inevitably
+involved in the design and development of computers or machines that are able to see.
+Humans are the ones teaching computers sight. Humans are also the ones to use and be
+affected by “seeing” computers. But what does “seeing” actually mean? What (different)
+understandings of seeing and closely connected to it, recognizing, do members of
+society have, especially when it comes to teaching computers to achieve sight? Is there
+one universal, global way of seeing that could be easily transferred to machines, or is
+seeing rather a diverse “situated” and cultural activity that hampers a simple and
+smooth transformation of this ability? In the context of computer vision, one has to ask
+how computers are taught to be able to see in which ways, by whom and how these
+processes might change our understanding of human vision and similarly of what is
+(perceived as) true and real in our world?
+
+These introductory queries are the primary and fundamental questions that framed and
+guided my research and the writing of this thesis. However it would be presumptive to
+claim to answer these substantive questions anywhere near sufficiently deep enough
+within the frame of this thesis. As a consequence, it might provide a modest
+contribution towards a reflection on these fundamental questions, and might enrich the
+academic literature dealing with these questions by empirically exploring the social and
+political significance of Image Processing Algorithms in the aforementioned ‘Human-
+Computer Vision (Re-) Configurations’. Before turning to the concrete research
+questions of this thesis and thus, the explication of how and where the thesis might
+provide a more major contribution, I shall provide in a nutshell, basic information on
+the background and embedding of the thesis that is further explained later on.
+
+The thesis is based on an interdisciplinary, multiperspective approach that is framed by
+the academic fields of Science and Technology Studies (STS), Visual Culture Studies and
+Surveillance & Identification Studies. It especially is inspired by Lucy Suchman’s work
+on ‘Human-Machine Reconfigurations’ (Suchman 2007) and the Visual STS approach of
+the ‘Social Studies of Scientific Imaging and Visualization’ (Burri & Dumit 2008). This
+links to what could be summarised as the theoretical frames of (feminist) posthumanism
+and material-semiotics, and connected to it, to the commitment “to empirical investigations 
+of the concrete practices” of nonhuman entities and their specific agencies (Suchman 2007: 1).
+
+The most relevant sociotechnical (transformation) processes that frame my involvement
+with computer vision and more specifically with Image Processing Algorithms are what
+could be condensed in the “grand narrative” (cf. Law 2008: 629) terms of surveillance
+society (especially what often is referred to as Smart CCTV or intelligent video
+surveillance) as well as the digitalisation, automatisation, and “smartisation” of social
+practices, artefacts and devices. On these grounds, the thesis explores ‘Human-
+Computer Vision (Re-) Configurations’ by analysing the negotiation and the
+development of Image Processing Algorithms in different sites from the computer
+vision laboratory to the news media. In doing so, my research followed a ‘visiographic’
+strategy that will be explained in more detail in the last part of this introductory
+chapter.
+
+To start with, in the hope of making the issue at stake more accessible to readers,1 I shall
+try to lead to my concrete research questions and to explain their significance and my
+approach with a short (semi-fictional) story that will serve as an ethnographic
+Gedankenexperiment (cf. Gobo 2008: 151). It is “an attempt to solve a problem using the
+power of the human imagination and the head as laboratory” (ibid.). In doing so, I go
+back to the satirical example from the beginning.
+
+One day, however, newspaper articles reported in reference to a so-called
+‘transdisciplinary study’ of the public health office and the OECD about the area as the
+“World Capital of Drunks”, the once quiet neighbourhood became known as a boisterous
+party and thus, drinking location. As a consequence to political pressure by the local
+authorities, the public health office initiated a costly anti-alcohol campaign in the area
+and in addition, the local police started a so-called ‘Smart CCTV’ scheme equipped with
+automatic FUTURE VISION criminal behaviour detection software. Its ICVV application
+having already proved the value of their systems as they provided the public health
+office with data about the grade of peoples drunken in public spaces throughout the
+neighbourhood.
+
+The guys from FUTURE VISION, now well-dressed in business like suites, also dropped
+into the ‘Good Old Times’ again and offered Dani a new system they called ‘The Smart
+Pub.’ They told him about a prototype system they had already installed in a special
+university lab in the Smarter World Valley called ‘The Pub of the Future’ and reported
+about increased costumer and sales figures in this special pub. They told him how ‘The
+Smart Pub’ system automatically recognises how many people enter the pub, how old
+they are (in this regard they could also install the automatic pub gate in order to ban
+minors from the pub) whether they are male or female, in what mood they are and of
+course if they are already inebriated as well. A new special feature is the automatic
+recognition of body shapes in order to define people’s general health situation. This data
+is subsequently automatically connected to current weather, biorhythm and sports
+events data and as a result, displays the perfect drinks and food recommendation on a
+mobile device called ‘iPub 24’ for every customer. The system already predicts what the
+customer wants, they said. In addition they are currently working on an add-on that
+automatically starts the desired beer pump once people enter the pub. Dani was a bit
+sceptical towards the Smart Pub system as it was not clear if the pub actually needed
+another increase in customers and sales. And anyways, folks like Steph would always
+drink IPAs and not change their drinking behaviour because of a “shrewd” pub. Three
+months later—things never turn out the way you expect—the ‘Good Old Times’ beamed
+itself into the future and was proud to finally call itself a SMART PUB.
+
+One night, in a sudden realisation in the wee small hours, Dani, Chris, Steph, Michele
+and the other guests recognised that their pub and the whole area has changed and they
+jokingly decided that the introduction of the mysterious little black box had been the
+starting point of this change. They were not sure if it had changed for the better as sales
+had increased significantly, especially soon after the newspapers had reported about the
+“World Capital of Drunks”. On the other hand, it had also changed for the worse because
+new and strange people, hipsters and bobos, had begun to turn up at the formerly quiet
+pub. The ‘Good Old Times’ had even made it into the ‘Lonely Planet’ guide. Steph even
+switched from drinking IPAs to carrot juice, following a quite annoying, recurring
+recommendation of the smart pub control panel. The smart pub—that was Dani’s
+guess—somehow must have recognised the bad condition of his eyes. Finally, all of
+them knew that something fundamental had changed. “That’s life” they said, and kept
+on drinking carrot juice and occasionally, as an act of resistance against the will of the
+‘Smart Pub’, also IPAs.
+
+A large proportion of the underground infrastructure in the major cities around the
+world has shown evidence of deterioration due to ageing. The maintenance of this infrastructure
+remains a significant challenge for engineers in order to meet the public demand
+for safety, the uninterrupted operation of train services and budgetary constraints.
+Current maintenance procedures still rely largely on visual inspection, which has many
+limitations. The aim of this research is to develop a system based on state-of-the-art
+computer vision technology to improve the accuracy and efficiency of the inspection of
+underground infrastructure. The research presented in this thesis offers an improvement
+in two areas of inspection: (1) the visualisation of a large image database, and (2) the
+automatic detection of changes between images. This introductory chapter provides a
+background to the problems related to the current maintenance procedures and the motivations
+for this research. A brief overview and the contributions of the proposed system
+are presented. The structure of the rest of the thesis is outlined at the end of the chapter.
+
+Most underground infrastructure was constructed more than half a century ago and is now
+deteriorating (Stajano et al., 2010). Tunnels, in particular, are vulnerable to adjacent
+ground disturbance, caused by nearby activities, such as piling and deep excavation.
+Excessive stresses in tunnel linings, caused by the deformation of tunnels due to ground
+disturbance, may result in tunnel collapse. Therefore, effective maintenance strategies
+are urgently required in order to manage underground infrastructure properly to assure
+public safety while at the same time meeting usage demands. The most commonly used
+strategy is regular inspections, in which checks and assessments of the infrastructure
+conditions are performed periodically. This ensures that any defects are detected early
+and properly monitored in order to prevent failure, which may lead to costly repairs and
+even catastrophes.
+
+Infrastructure management is aimed at devising strategies to manage and maintain
+the safety and functionality of the infrastructure effectively, under challenging circumstances.
+Disruption due to closures for maintenance usually results in high economic
+costs and should be avoided. Infrastructure managers are, therefore, seeking tools to
+help them to manage the infrastructure with minimal disruption, ultimately increase efficiency
+and reduce inspection costs. The current techniques used to assess the condition
+of infrastructure can be categorised into network-wide visual inspection, destructive and
+non-destructive tests. The technologies involved range from those aiming to detect the
+characteristics of the flaws in the structural components, to localised surveying and the
+deployment of instruments for monitoring performance in critical sections.
+
+To obtain a complete picture of the state of a structural system, a combination of monitoring
+sensors and regular inspection is required. For monitoring sensors, a number of
+state-of-the-art sensors are used to monitor displacement, and infer how structures deform.
+For example, fibre optics are able to monitor the strain profiles of a structural
+system over a long distance, inclinometers are used to see how a structure’s wall move
+and incline from the vertical plane, and crackmeters are used to monitor crack width
+openings. Deploying these sensors can be costly, and infrastructure owners generally have
+to prioritise the sites to be monitored due to cost considerations. Inspection can often
+help to provide an overview of the state of structural systems so that the owners can
+then make informed decisions about determining the sites at which the sensors should be
+deployed. Inspection and monitoring are, generally, closely linked.
+
+The technologies employed in inspection as well as other surfacing technologies have
+their limitations, as will be reviewed in more detail in Chapter 2. One of the most
+widely used surfacing technologies is the LiDAR system, which is used to obtain 3D point
+clouds of structural systems. The density of the point clouds from the LiDAR system is
+high enough to be used to represent objects’ surfaces, which makes LiDAR technology
+very attractive for 3D modelling. However, as shown in Leberl et al. (2010), an imagebased
+reconstruction can provide many advantages over a LiDAR system in terms of
+accuracy (e.g. greater point density, the ability to fuse data, thus providing seamless
+coverage), economy (e.g. single workflow, faster data collection, cheaper technology),
+interpretation (e.g. road sign classification, full automation and scene interpretation).
+The main attraction of an image-based system is not only the cost, but also the capability
+to process the image data further to recognise scenes similarly to how humans interpret
+their surroundings using vision. The ability to understand scenes has a large number of
+applications, which is a feature that is missing from the LiDAR system. Previously, a
+LiDAR system costs over £100k, although this has decreased over the last few years to
+around £30k. However, this system is still relatively expensive compared with a system of
+similar capability using just a standard digital camera costing less than £1000, as shown
+in this thesis.
+
+This research aims to improve the current inspection techniques, especially visual inspection.
+Visual inspection is generally carried out by inspectors, who visually assess the
+condition of structural components based on their experience, so the problems arising
+from the use of this technique include inaccuracy, subjectivity and labour-intensiveness.
+This technique is expected to become difficult to implement in the future due to public
+demand for the continuous operation of metro systems as well as the limited human resources
+available. Hence, there is an urgent need to conduct inspections more rapidly and
+automatically, which will ultimately lead to savings in terms of inspection costs. This research
+proposes a damage detection system based on computer vision technologies, which
+has a number of advantages over other existing surface imaging technologies (e.g. line
+sensor cameras, LiDAR and infrared cameras). A major advantage is that the proposed
+system is cheaper than the other imaging technologies available, since has been developed
+for use with a standard digital camera.
+
+Metronet alliance1 and Tubelines2 were commissioned by London Underground to manage
+and maintain the underground infrastructure. One project involved the use of a digital
+photographic technique to aid visual inspection. The technique is particularly useful for
+the inspection of shafts (e.g. ventilation shafts), which are usually not easily accessible.
+The technique starts by collecting a set of images for each ring of tunnel lining and then
+manually arranges these to form a mosaic-like diagram, as shown in Figure 1.1. The figure
+shows an example of an inspection report, in which one cell corresponds to one panel on
+the tunnel lining. Then, the manual sketching or marking of detected anomalies is done
+to produce a final inspection report. The report provides information indicating the type,
+location and size of any defects found on the tunnel surfaces.
+The aim of inspection reporting is to provide a record of any anomalies found on a
+section of tunnel during inspection sessions so that subsequent analysis can be performed
+in out-of-inspection hours. Unfortunately, a current inspection report takes a long time
+to create due to such manual procedures. Commercial stitching software was used in an
+attempt to stitch images together automatically. The software can only create panoramas
+for each individual ring of tunnel lining, but it is impossible to stitch these panoramas
+together to form a bigger mosaic. This problem has led to one of the research focuses
+presented in this thesis.
+
+Several techniques for crack detection through visual inspection have been
+proposed (Yamaguchi and Hashimoto, 2008). Crack detection systems generally involve
+a pre-processing step and a crack identification step. The pre-processing step applies
+image processing techniques to extract potential crack features, such as edges, while the
+subsequent crack identification step involves crack modelling and pattern recognition techniques.
+There are a number of systems that develop algorithms for crack detection, although
+practical systems used for long term monitoring are not commonly reported (Chen
+et al., 2006).
+
+This area of development is concerned with improving the visualisation
+and organisation of a large number of images. As the number of images increases, it
+is essential to be able to organise them so that the image data can be visualised for a
+thorough examination. One solution is to use image mosaicing, which stitches images
+together to form a larger image. The resulting image or mosaic provides a larger field of
+view, which cannot be achieved with a single image. In the civil engineering literature,
+most mosaicing techniques are borrowed from the remote sensing community, which deals
+with the detection of landscape changes in satellite images. Their techniques usually
+require manually-identified control points to perform mosaicing and registration tasks.
+However, in the computer vision literature, the use of keypoint descriptors, such as Scale
+Invariant Feature Transform (SIFT) (Lowe, 2004), allows automatic image mosaicing
+without the need for manual control points. There exists a small number of software
+packages that can perform automatic mosaicing for home and industrial use (Brown and
+Lowe, 2003). Some programs have been applied to assist inspection (Jahanshahi et al.,
+2009, 2011), although they have some limitations, as shown later in Chapter 2.
+
+Advances in computer vision offer opportunities to improve the current inspection procedures.
+In the area of reconstruction, systems, such as Phototourism (Snavely et al., 2006),
+are able to recover the sparse 3D point clouds of scenes and camera poses from a large
+database of uncalibrated cameras with a high success rate. A denser 3D model, which
+can provide more realistic visualisation, can also be reconstructed. An example of a dense
+3D system is the work by Hernandez et al. (2007), which is used for the reconstruction
+of museum collections. Recently, there have been systems that are capable of creating a
+3D model of an entire city, although they still require considerable improvement before
+they will prove of any practical use. The accuracy of the 3D models produced by certain
+reconstruction systems is comparable to the results from LiDAR systems (Seitz et al.,
+2006). Hence, reconstruction systems offer much sought-after opportunities to create 3D
+models of structures in civil engineering, and raise the possibility of inspections being
+carried out in a virtual environment.
+
+In the area of registration, algorithms to create panoramas are now commonly embedded
+in many modern digital cameras. There are commercial systems that can create
+panoramas automatically using smart keypoints, such as SIFT (Lowe, 2004), instead of
+traditional systems which rely on the user input of control points. Image mosaicing has
+many applications, such as in medical imaging, as shown in Can et al. (2002b,a), in which
+the stitched images of a curved human retina are used for medical examinations. In remote
+sensing, image registration is a common technique that is used to transform different
+satellite images into the same coordinate frame. Registration is used as a pre-processing
+step before change detection algorithms are applied to detect the changes in landscape
+in satellite images. Mosaicing offers possibilities to enhance the visualisation of a large
+image collection taken for inspection by providing an enlarged field of view.
+
+Hand gesture recognition for human computer interaction is an area of active
+research in computer vision and machine learning. One of the primary goal of
+gesture recognition research, is to create systems, which can identify specific
+gestures and use them to convey information or to control a device. Though, gestures
+need to be modelled in the spatial and temporal domains, where a hand posture is the
+static structure of the hand and a gesture is the dynamic movement of the hand.
+Being hand-pose one of the most important communication tools in human’s daily
+life, and with the continuous advances of image and video processing techniques,
+research on human-machine interaction through gesture recognition led to the use of
+such technology in a very broad range of applications, like touch screens, video
+game consoles, virtual reality, medical applications, among others.
+There are areas where this trend is an asset, as for example in the application of these
+technologies on interfaces that can help people with physical disabilities, or areas
+where it is a complement to the normal way of communicating.
+
+There are basically two types of approaches for hand gesture recognition: visionbased
+approaches and data glove methods.
+
+This work focus on creating a vision-based approach, to implement a system capable
+of performing gesture recognition for real-time applications. Vision-based hand
+gesture recognition systems were the main focus of the work since they provide a
+simpler and more intuitive way of communication between a human and a computer.
+Using visual input in this context makes it possible to communicate remotely with
+computerized equipment, without the need for physical contact.
+
+In the context of these research areas, it is important to mention the RoboCup
+competition, a challenging international research and educational initiative, being
+held every year since 1997, that provides a test-bed where a significant number of
+technologies can be experienced and integrated [1, 2]. Every year, new technical
+challenges are presented, and the progress in fields like intelligent robotics, artificial
+intelligence (AI) and applied technology are extremely relevant, especially in the
+Middle Size League (MSL) [1], and RoboCup@Home league. The RoboCup@Home
+league aims to develop service and assistive robot technology with high relevance for
+future personal domestic applications [3]. On the other hand, the RoboCup MSL
+games, use real wheeled robot teams, to play with an ordinary soccer ball,
+autonomously. One referee and at least one assistant are assigned for judgment of a
+match. They use assisting technology, the RefereeBox, to support them, in particular
+for conveying referee decisions for players, with the help of a wireless
+communication system.
+
+Also, the possibility to have systems able to interpret sign language in real-time is an
+important aspect to take into account. Those systems could be used to facilitate the
+communication between humans and machines and help disabled people or people
+with physical limitations taking care of generic domestic tasks.
+As previously said, the main objective of this work consists of studying and
+implementing solutions, generic enough, with the help of machine learning
+algorithms, allowing their application in a wide range of human-computer interfaces,
+for online gesture recognition. In pursuit of this, it is intended to use a depth camera
+to detect and track the user hands, and extract information (hand features), for
+gesture classification. With the implemented solutions it is intended to develop an
+integrated vision-based hand gesture recognition system, for offline training of static
+and dynamic hand gestures, in order to create models, that can be used for online
+classification of user commands, that could be defined with the help of a new formal
+language.
+
+The main objective of this work is to build an integrated vision-based system able to
+interpret a set of defined commands composed of static and dynamic gestures. That
+system should provide the ability to quickly learn new gestures and be configured to
+recognize new commands. The solutions should be generic and easily applied to a
+wide range of applications where the core of vision-based interaction is the same
+thereby facilitating its implementation.
+
+Coronary Cine-angiogram (CCA) is one of the invasive medical image modalities
+used in interventional cardiology for the detection of luminal obstructions or stenosis
+in Coronary Artery (CA) vasculature. It provides excellent visualizations of the CA
+lumen and the clinical judgments based on angiography are subjective. Hence, it
+leads to overestimation and underestimation of the detected stenosis and causes
+negative effects to the patients’ quality of life. Angiography based quantitative
+coronary analysis is known as the way of assessing the detected stenosis in an
+objective manner and this research study is done for devising a novel method to
+objectively assess the severity of stenosis recorded in CCAs. This thesis has been
+elaborated the introduction to the problem, research background, methodology,
+experimental methods, results and discussion of the study comprehensively in the
+following chapters. Moreover, the objective of this chapter is to discuss about the
+biological and medical background of the domain of this research study, which is the
+CA vasculature.
+
+The CAs are the blood vessels that supply Oxygen and nutrients to the heart muscles.
+Therefore, at the very outset, it is important to discuss about the anatomy of the
+human heart and the blood vessels to recognize the organization and interrelation
+ship among them. Hence, the first section of this chapter is allocated to discuss about
+the anatomy of human heart and the blood vessels broadly. Since this study is based
+on CAs, it is important to emphasize the anatomy of the CA vasculature
+comprehensively. Thus, the structure and localization of the main CAs on heart are
+discussed as the second section of this chapter. Further, the images of heart, CAs and
+arterial diseases are illustrated. A discussion about the common CA diseases is
+included in the next section of this chapter. Subsequently, the clinically relevant
+medical image modalities that are widely used in diagnosing the CA diseases have
+been elaborated with possible illustrations. The treatment options for the clinically
+diagnosed CA diseases are also in the fifth section of the chapter. The next section of
+this chapter briefly emphasizes the problems in coronary angiography. Moreover, the
+objectives of this research study have been elaborated consequently. Finally, the
+chapter organization of this thesis is elaborated based on the chapter objectives and it
+makes easy for navigation to the interesting topics of this research study promptly.
+
+The heart is composed of three layers of tissues namely pericardium, myocardium
+and endocardium. Further, the heart consists of four chambers. Top left and right side
+chambers are known as left and right atrium respectively and bottom left and right
+chambers are known as left and right ventricle. The wall between the right and left
+side atrium and ventricle is known as septum. The atrium and the ventricle of the
+same side are separated by an atrio-ventricular valve. These valves are made of
+cusps. The left atrio-ventricular valve has two cusps and it is called the mitral valves,
+while the right atrio-ventricular valve has three cusps and it is called the tri-cuspid
+valve. Figure 1.2 depicts the interior of the heart.
+
+Year 2012 world population was 7.2 billion. In the year 2100 world population is estimated
+to be between 9.0 and 13.2 billion. (Gerland, Ratrely, et al. 2014) In the beginning of the
+20th century life expectancy was perhaps 30 years, a hundred years later it has raised to
+65 years (Cohen 2003, 1173-1174). The decline of child mortality (death before the fifth
+birthday) has had a big impact on life expectancy but a five-year olds life expectancy has
+still increased significantly within the last century. Higher ages mortality patterns have also
+changed. Today a 50-year old is expected to live over 20 years longer than in 1845. (Roser
+2016) In the coming half century, as a result of these factors, we will see dramatic
+population aging. By year 2050 the global fraction of population aged 65 years or older will
+rise from 7% (year 2010) to 16% (Cohen 2003, 1173-1174). In the year 2050 we will have
+four times more over 60 years old year than in the year 2000. The rising amount of elderly
+population will generate stress in our health care system. (Ropponen 2012, 8) This raises
+the question how will we be able to take care of the aging generations? Some of the solutions
+are discussed further in this paper
+
+Ground truth generation is a fundamental task in the design and testing of
+computer vision algorithms, thus in the last decade the multimedia and, more in
+general, the computer vision community have developed a disparate number of
+annotation frameworks and tools to help researchers in collecting datasets, which
+are then used in the tasks of image segmentation, object detection and tracking,
+face recognition and classification. The majority of the existing approaches for
+ground truth generation are “ad-hoc” tools created by isolated research groups,
+and as such, they are designed to fulfill specific requirements. 
+
+Finally, in [20] two methods, namely Minimean and Minimax, are proposed to
+generate consensus ground truth for real images, which can be used for
+comparing edge detection techniques. The main drawbacks of this method are 1)
+the usage of the system specifically targeted to still images and not videos and, 2)
+the system seems to be suitable only for task-oriented purposes (e.g. edge
+detection) and cannot be generalized for recognition, classification and
+segmentation tasks. To overcome all these limitations, in recent years several semiautomatic
+tools, which integrate reliable object detection and tracking algorithms,
+have been proposed for supporting video annotation with the aim of minimizing
+users’ involvement in gathering ground truth data, and ensuring high-quality
+labeled objects.
+
+Semi-automatic approaches concern all those methods which integrate
+specific image processing techniques (such as object detection and tracking
+modules) that might help user in gathering annotations in a simpler and more
+immediate fashion. As we previously discussed, the scientific community has put a
+lot of effort in designing efficient and affordable platforms to minimize the
+cognitive load of the user, still providing trustworthy ground truth data collection.
+In line with this goal, much research has been carried out to build specialized
+interfaces tailored for video annotation. On the other hand, the rapid growth of
+the Internet have also favored, in the last years, the expansion of web-based
+collaborative tools, which take advantage of the efforts of large groups of people
+in collecting labeled datasets. In [12] the authors introduced an early description of
+LabelMe, a database and an online annotation tool that allows the sharing of
+images and annotations providing functionalities such as drawing polygons,
+querying images, and browsing the database. Since the proposed tool was
+designed only for annotating images and not videos, in [21] the web-based
+platform was upgraded to be able to provide high-quality video labels with
+arbitrary polygonal paths using homography, preserving linear interpolation, and
+generating complex event annotations between interacting objects. However,
+LabelMe lacks intelligent mechanisms for quality control and integration of user
+annotations. In fact, quality control is achieved by a simple approach that counts
+the number of annotation landmarks, and it does not exploit the full potential of
+its collaborative nature (being a web-based platform) since annotations of multiple
+users of the same object instance are not combined. In fact, the LabelMe dataset,
+though being one of the largest datasets available, is notably inaccurate. As for
+previous tools, LabelMe was designed specifically for still images and although the
+video based version has been proposed in [21], it has not reached the same
+success of the image based version.
+
+Similarly, in [22] the FlowBoost tool is presented. The method starts from a
+sparse labeling of the video, and alternates the training of an appearance-based
+detector with a convex, multi-target, time-based regularization. The latter re-labels
+the full training video in a manner that is both consistent with the response of the
+current detector, and in accordance with physical constraints on target motions.
+Although the proposed tool is able to cope with geometrical poses of greater
+complexity, only the location in the image plane, without variations in scale or
+orientation can be considered.
+
+Again, Buchanan and Fitzgibbon in [24] discuss efficient data structures that
+enable interactive tracking for video annotation, while Fisher [25] simply discusses
+the labeling of human activities in videos where the sequences regard a public
+space surveillance task, and are ground truth labeled frame-by-frame by
+considering the bounding boxes and some semantic description of the activity in
+each frame.
+
+In [26], a large benchmark video database of annotated television programs
+(TRECVid) was suggested, to support Video Retrieval Evaluation. What is
+important to highlight is that the proposed architecture allows a comparison of
+the collected data with others in an open, metric-based environment. Thus they
+provide shared data, common evaluation and often also offer collaboration and
+sharing of resources.
+
+The fundamental reason to investigate label propagation methods is the need
+of reducing the manual effort in the labeling process. Generally, the process of
+inferring images’ labels from community-contributed images and noisy tags is
+performed by considering the available small dataset of labeled data as a reference
+and attempting to classify the large dataset of unlabeled images through a set of
+specific semantic methods to extend the dataset of labeled data.
+
+Also, many traditional methods, such as the support vector machine and k
+nearest neighbors (kNN) method, have been applied to infer images’ labels from
+the user-shared images and associated tags, starting from the assumption that
+closed data points tend to have similar class labels. By exploiting this simple
+concept, in [30] the author dealt with the semantic labeling problem by using an
+SVM-based scheme to transfer the massive 2D image labels from ImageNet [31]
+to point clouds. Also they proposed a graphical model to integrate both the intraimage
+and inter-image spatial context in and among reference images to fuse
+individual superpixel labels onto 3D points.
+
+To overcome these limitations, the linear neighborhood propagation method
+[46] has been considered in which the sample reconstruction method is used to
+construct a graph. It has been proved that in most cases, linear neighborhood
+propagation is more effective and robust than the traditional semi-supervised
+methods on similarity graphs [47], but still cannot handle the links among
+semantically unrelated samples. As a consequence, visual similarity does not
+guarantee semantic similarity, which in general is conflicting with the behavior of
+many generative-based image annotation tools. To this aim, in [48] a solution to
+the mismatch problem between semantic and visual space has been proposed.
+
+Starting from the assumption that each unlabeled image corresponds to one topic
+implied by the training image, the method adaptively models a local multi-label
+classification indicator function which captures the keyword contextual
+correlations and also exploits the discrimination between visual similar concepts.
+Though innovative and reliable, unfortunately the procedure of finding the
+neighborhood of an image for large datasets, is a very time-consuming task. Also
+no information is gathered by exploiting the Web which could enhance the
+estimation of semantic and visual similarity
+
+To overcome these limitations, the linear neighborhood propagation method
+[46] has been considered in which the sample reconstruction method is used to
+construct a graph. It has been proved that in most cases, linear neighborhood
+propagation is more effective and robust than the traditional semi-supervised
+methods on similarity graphs [47], but still cannot handle the links among
+semantically unrelated samples. As a consequence, visual similarity does not
+guarantee semantic similarity, which in general is conflicting with the behavior of
+many generative-based image annotation tools. To this aim, in [48] a solution to
+the mismatch problem between semantic and visual space has been proposed.
+Starting from the assumption that each unlabeled image corresponds to one topic
+implied by the training image, the method adaptively models a local multi-label
+classification indicator function which captures the keyword contextual
+correlations and also exploits the discrimination between visual similar concepts.
+Though innovative and reliable, unfortunately the procedure of finding the
+neighborhood of an image for large datasets, is a very time-consuming task. Also
+no information is gathered by exploiting the Web which could enhance the
+estimation of semantic and visual similarity.
+
+The use of this kind of methodologies has the objective to allow the
+collection of raw but, at the same time, meaningful data which can be used to
+address the tedious task of collecting ground truth in order to enable the build up
+of large scale annotation datasets.
+
+Since these methodologies typically rely on users’ motivation and quality
+control for creating reliable image and video annotation, the scientific community
+has turned a lot of attention on crowdsourcing to human resources (non-experts)
+[49, 50] demonstrating the utility of this approach with respect to the annotation
+task. Nevertheless, two main aspects have to be taken into account when
+crowdsourcing: workers’ motivation and quality control. The easiest and most
+natural way to motivate people is paying them for their work. This strategy is
+applied by Amazon’s Mechanical Turk service [14], which has revolutionized static
+data annotation in vision, and enabled almost all large-scale image data sets
+collected since then to be labeled [51, 12, 52], and CrowdFlower [53].
+
+A valid alternative for workers motivation is personal amusement: this is the
+case of the ESP and Peekaboom games [54, 55] which exploit players’ agreement
+(randomly pairing two players and let them guess each other’s labels) to collect
+ground truth data. While fun, these games aim at producing high level labels
+which describe the contents of the image, providing no means to acquire lower
+level data (e.g. object contours). Moreover, these games do not offer any means of
+quality control and the annotation integration mechanisms adopted are rather
+primitive.
+
+In fact, besides workers motivation, another concern of crowdsourcing
+solutions is the quality control over annotators, which has been tackled with
+different strategies that can be summarized [57] as: Task Redundancy (ask multiple
+users to annotate the same data), User Reputation and Ground Truth seeding (i.e.
+coupling ground truth with test data). Although these solutions are able to build
+large scale datasets, they might be very expensive and contain low quality
+annotation since workers (even if paid) are not as motivated as researchers.
+
+To this end, Vondrik et al. in [50] outlined a protocol for generating highquality
+annotations by classifying the workers into three types and describing
+methods for identifying each: good workers who are honest and skilled; bad
+workers who are honest but unskilled and ugly workers who are dishonest and
+cheaters. Thus, the aim of this protocol becomes to eliminate bad and ugly
+workers, which unfortunately cause a decrease of the throughput. To overcome
+this limitation, the authors also propose a mechanism based on workers
+compensation with respect to the workload needed for labeling more or less
+objects also considering the related difficulty.
+
+Computer vision aims at building artificial systems that extract useful information
+(e.g., objects, their boundaries, motion and 3D information, etc.) from images and
+videos. Unlike humans, this is an extremely difficult task for a computer, because it
+needs to interpret image data (a bunch of matrices) to descriptions of the world. Due
+to the inherent uncertainty, many of these problems are formulated as inference in
+probabilistic graphical models.
+
+Probabilistic Graphical Models (PGM) [Koller and Friedman, 2009] describe multivariate
+probability distributions which factor according to a graph structure. Specifically,
+the underlying graph expresses the conditional dependence structure between
+random variables that hold in the encoded distribution. Two branches of graphical
+models are commonly used, namely, Bayesian networks and Markov Random Fields
+(MRF). These two models differ in the graph structure (i.e., in the set of independences
+they can encode), namely, for Bayesian networks, the underlying graph is
+directed and acyclic and in the case of MRFs, it is an undirected graph.
+
+In this thesis, we focus on Markov random fields. Inference in an MRF is often
+expressed as a discrete optimization problem, where the dependencies of the variables
+are encoded in a graph. Such problems are often referred to as combinatorial
+optimization1 problems. This combinatorial nature makes it a theoretically interesting
+research problem and in general, the optimization is NP-hard, i.e., computationally
+intractable [Nemhauser and Wolsey, 1988]. Furthermore, many computer vision applications
+of MRF have millions of variables and complex dependencies between
+them, making the inference more challenging. Therefore, to develop practically efficient
+algorithms, researchers either restrict themselves to a certain class of MRFs
+(e.g., restricted graph structures and restricted cost functions) or focus on developing
+approximate algorithms.
+
+Here we briefly discuss some core computer vision applications that are usually formulated
+as MRFs and hence a discrete labelling problem. We will formally define an
+MRF and related inference algorithms in Chapter 2. However, for better understanding,
+we first define the labelling problem and then turn to the examples.
+
+In stereo correspondence estimation [Scharstein and Szeliski, 2002], a pair of calibrated
+images are given, a left image and a right image, and the objective is to find
+the disparity between those two images. Here, by calibrated, we mean that the two
+images are aligned up to a horizontal displacement only, and disparity means that
+the horizontal displacement of a pixel in the left image to the corresponding pixel
+in the right image. Hence, it is a labelling problem where V is the set of pixels and
+L is the set of possible disparities. See Figure 1.1 for an example. In fact, given the
+disparity, the depth can be determined [Hartley and Zisserman, 2003] and therefore
+stereo estimation is essential to obtain 3D information of a scene.
+
+Semantic segmentation is a high-level vision task [Everingham et al., 2010] where we
+need to partition a given an image into regions and assign each region to an object
+class. In fact, in contrast to putting bounding boxes around objects, we need to segment
+the images according to object boundaries. Similarly to stereo and inpainting,
+this is also a labelling problem, where V is the set of pixels and L is the possible
+object classes. A more sophisticated task of semantic segmentation is instance segmentation,
+where we need to identify and segment different instances of the same
+object. See Figure 1.3 for examples of object segmentation and instance segmentation.
+These problems are useful for scene understanding and practical applications,
+such as autonomous driving.
+
+Note that, in most vision applications, there is a variable in the MRF corresponding
+to each pixel in the image2. Therefore, a typical MRF has millions of variables and
+complex dependencies between them, defined by the underlying graph structure.
+Usually, in computer vision, a sparse connectivity is assumed (e.g., 4-connected or
+8-connected neighbourhood structure). However, as will be seen later, in certain
+applications, dense connectivity (i.e., each node is connected to every other node) is
+preferred [Krähenbühl Philipp, 2011]. In fact, the difficulty of optimizing an MRF
+depends on the underlying graph structure and the form of the cost function used to
+model the problem.
+
+Over the past decade, various MRF optimization algorithms have been introduced.
+They can be categorized into three groups: 1) exact algorithms for certain
+special cases; 2) move-making style algorithms; 3) continuous relaxation based methods.
+In fact, exact optimization is possible only for certain restricted cases (e.g.,
+submodular energy functions and tree structured MRFs). For example, when the
+MRF energy is submodular (defined later in Chapter 2), it can be optimized using
+the max-flow algorithm [Kolmogorov and Zabin, 2004]. However, for general MRFs
+one has to settle for an approximate algorithm. One class of algorithms approximate
+the original MRF energy by iteratively minimizing a surrogate energy (usually a submodular
+energy), and guarantee a monotonic decrease in the original MRF energy. At
+each iteration, such an algorithm moves from the current labelling to a lower energy
+labelling, and therefore this class of algorithms are referred to as move-making algorithms
+[Boykov et al., 2001]. On the other hand, the discrete labelling problem can
+be relaxed to a continuous optimization problem (such as a linear program [Chekuri
+et al., 2004; Werner, 2007] or a quadratic program [Ravikumar and Lafferty, 2006])
+and tackled using convex optimization techniques.
+
+The time where computers have stepped out of the stage of development where
+their only task was to assist people to solve merely tedious and error-prone calculations,
+is long ago. Nowadays, computers are capable to mimic human activities
+which often require a certain kind of intelligence. With the increasing computational
+capacity and the declining costs of such systems, their field of application
+is also constantly expanding. One of these new technologies with great potential
+is to capture the environment using a 3-D sensor in order to analyze and interpret
+the content of a scene with the final goal of scene understanding.
+The benefits of scene understanding are manifold. Autonomous robots and interactive
+systems will profit from it, e. g., for the purpose of orienting themselves
+in unfamiliar environments, for the detection of certain objects, or for their manipulation.
+
+In this context, autonomous vehicles should not remain unmentioned,
+since they combine many of these requirements. Further fields of application are,
+for example, augmented reality in which virtual objects are integrated into real
+scenes, or environmental monitoring in the context of smart homes or surveillance.
+
+The next challenge is an abstraction of the objects that should be recognized
+within a scene. Only in this way it is possible to recognize the plurality of
+different and similar objects under varying conditions. For this classification task
+of multiple objects in various scenes, the individual objects have be distinguished
+and separated from unimportant elements such as the background. Classification
+of 3-D objects is the problem this thesis deals with. Finally, in order to understand
+the meaning of a scene, the detected objects have to be brought into relationship,
+which is beyond the scope of this thesis
+
+There are many ways to classify objects by analysis of a wide variety of sensor
+data such as color images, radar signals, 3-D points clouds from rotating laser
+scanners, depth data from time-of-flight cameras. A significant break-through in
+this complex but important area of computer vision was brought by the development
+of scale and rotation invariant feature descriptors for color images over
+the last 15 years. These methods have become integral parts of computer vision
+and can be found in many application scenarios, e. g., in cameras with built-in
+face detection and tracking, in augmented reality applications, e. g., city guides
+which superimpose and align historical photos in live views, or as visual control
+in manufacturing processes, just to name a few examples. By the end of 2014
+research teams from Google [97] and Stanford University [39] have demonstrated
+independently the capability of these 2-D methods in combination with artificial
+intelligence.
+
+There are, however, a few situations where 2-D color images are not a sufficient
+source to classify objects. The methods mentioned above usually require color
+information or at least enough contrast between elements of a picture to classify
+the displayed objects. Accordingly, these methods work neither under difficult
+lighting conditions, e. g., in darkness nor on objects without appropriate color or
+brightness structures, e. g., a gray cup of coffee on a gray office table. A possibility
+to solve these problems or essentially decrease their disadvantage is to exploit the
+third dimension as additional source of information.
+
+With the advent of new cheaply available depth sensors, the use of the third
+dimension became available to a rapidly growing group of people who use the
+three-dimensional (3-D) data in a wide range of 3-D applications. This gave rise
+to a number of new algorithms for object recognition and classification tasks on
+the basis of object representations in the form of 3-D point clouds in the last
+few years. However, in contrast to object recognition and classification based
+on color images, none of the current algorithms that utilize the 3-D point cloud
+representations of objects was able facilitate the decisive breakthrough in the field
+of object classification, neither in terms of higher recognition and classification
+rates, nor in terms of lower computation times.
+
+Considering the aforementioned state of object recognition and classification utilizing
+3-D point clouds, one can ask for the reasons why the description of objects
+in the form of 3-D point clouds does – despite using similar approaches as for
+color images – not facilitate improved classification and recognition results.
+
+There are several reasons for this. On the one hand the processing of 3-D
+data is due to the continuous domain of the coordinates of 3-D points often
+computationally expensive. Additionally, the calculation effort is, in contrast to
+other 3-D object representations such as meshes, higher, because 3-D point clouds
+typically do not contain structural information such as edges or faces of a mesh.
+On the other hand the depth information provided by sensors is often affected by
+excessive noise, or it is quantized in a way that the depth value of the 3-D point
+is too vague to allow a high-quality description of a 3-D object.
+
+One possibility would be to develop yet another algorithm to create descriptions
+based on 3-D point clouds. This algorithm would, however, be struggling
+with the same problems as all other state-of-the-art algorithms before. Since
+many of these algorithms are based on different concepts, the question arises
+whether a skillful combination of several algorithms can improve the detection
+and classification results.
+
+Starting point of this work is the precise treatment and analysis of existing 3-D
+point cloud classification techniques. Therefore, the functional principle of the
+most widely used classification pipeline is examined and all relevant components
+are analyzed. This begins with the selection of an algorithm for the detection
+of the so-called keypoints, continues with the inspection of numerous algorithms
+for the local description of 3-D point clouds and closes with an optimization of
+numerous parameters of the classification method used.
+
+Nowadays it is common practice to use digital cameras for capturing and recording
+images. These images are usually stored with the intensity values of the red,
+green and blue color channels (RGB color space) or with the raw sensor data in
+a 2-D matrix. The elements of this matrix are called pixel.
+
+Human beings have always looked at nature and searched for patterns. Eons ago
+we gazed at the stars and discovered patterns we call constellations, even coming
+to believe they might control our destiny. We have watched the days turn to night
+and back to day, and seasons, as they come and go, and called that pattern time. We
+see symmetrical patterns in the human body and the tiger’s stripes, and build those
+patterns into what we create, from art to our cities.
+
+In computer science, the problem of recognizing patterns and regularities in
+data has a long and successful history. The birth of the pattern recognition grew
+out of engineering schools, whereas machine learning has its origins in computer
+science. However, these areas of study can be viewed as two facets of the same
+medal, and together they have undergone substantial development over the past
+ten years. Indeed, the last decade has seen a revolution in the theory and application
+of machine learning and pattern recognition. Within these domains, variable
+ranking is a key problem and it plays an increasingly significant role with
+respect to many pattern recognition applications. Recently, ranking methods based
+on machine learning approaches, called learning-to-rank, become the focus for researchers
+and practitioners in the fields of information retrieval and recommendation
+systems. However, learning to rank exists beyond these domains as it remains
+a crucial operation within the pattern recognition community, since, many problems
+are by nature ranking problems. For example, areas of interest include, but
+are not limited to, feature ranking and selection, identity authentication, biometric
+verification, re-identification of anonymous people, and so forth.
+
+Without loss of generality, learning to rank aims at designing and applying
+methods to automatically learn a model from training data, such that the model can
+be used to sort objects according to their degrees of relevance, preference, or importance
+as defined in a specific application [94]. With few exceptions, all of these
+algorithms follow the same guiding principle: a sample’s relevant neighbors should
+lie closer than its irrelevant neighbors [162]. The exact definitions of relevant and
+irrelevant vary across problem settings. For example, if the goal is classification, the
+aim is to find useful features that separate well two or more classes, therefore, relevant
+is a feature which is highly representative of a class [87]. A second, somewhat
+different, example is user re-identification (Re-ID). Re-ID is defined as a process of
+establishing correspondence between a probe user q (unknown) and her true identity
+within a predefined database of users (i.e., gallery-set). In this context, relevancy
+is closely related to similarity between q and her real identity. Therefore, a good
+ranking algorithm can sort the gallery-set by increasing distance from q resulting in
+relevant (similar) neighbors at the front of the ranked list, and irrelevant neighbors
+at the end. In keeping with this principle, the ranking problem is a special case of
+information retrieval in the query-by-example paradigm [94, 162, 192].
+
+For most practical applications, before learning can take place, the original input
+variables are typically pre-processed to transform them into some new space of
+variables where, it is hoped, the pattern recognition problem will be easier to solve.
+This pre-processing stage is sometimes also called feature engineering [15, 226].
+Clearly, the performance of machine learning methods is heavily dependent on the
+choice of features on which they are applied. Different features can entangle and
+hide the different explanatory factors of variation behind the data. As a result, a first
+challenging aspect for robust pattern recognition algorithms is related to feature extraction
+and engineering [226]. Designing features is often a laborious task and may
+require specific domain knowledge of the data that is sometimes difficult to obtain.
+
+Although feature engineering is important, it highlights difficulties to extract and
+organize the discriminative information from the data. Often, the designed features
+contain many cues that are either redundant or irrelevant with respect to the application.
+This unwanted stream of data results in a reduced learning rate and, then, a lower 
+overall accuracy.
+
+In response to these issues, much efforts in deploying pattern recognition algorithms
+goes in improving the pre-processing stage by studying new solution for
+feature selection or different approaches to data representation that turn out to support
+effective machine learning. Recent work in the area of unsupervised feature
+learning and deep learning is expanding the scope of machine learning by making
+algorithms less dependent on feature engineering [15, 93, 227, 265], so that to make
+progress towards the automatic discovery of regularities in low-level sensory data.
+Among the various ways of learning representations, deep learning methods (e.g.,
+convolutional neural networks) have gained a lot of interest in the recent years:
+“those that are formed by the composition of multiple non-linear transformations,
+with the goal of yielding more abstract - and ultimately more useful - representations”
+[15].
+
+In other pattern recognition problems, the training data consists of a set of input
+vectors without any corresponding target values. The goal in such unsupervised
+learning problems may be to discover groups of similar examples within the data,
+where it is called clustering, or to determine the distribution of data within the input
+space, known as density estimation, or to project the data from a high-dimensional
+space down to two or three dimensions for the purpose of visualization. Within such
+situations, the curse of irrelevant or redundant cues is still present, and since this
+information is not important to the solution of the problem then the overall accuracy
+of the system can suffer. A crucial operation is of selecting a subset of the original
+features while retaining the optimal salient characteristics of the data.
+
+Variable ranking might also be performed in order to help in handling data
+variability by improving performance in real-time settings. For example, in visual
+tracking (i.e., a highly popular research area of computer vision), the appearance of
+the target object may change drastically due to intrinsic or extrinsic factors such as
+sudden illumination variations, occlusions, motion blur, fast motion of the camera
+or target, and so on. Ranking and selecting the most suitable features for tracking,
+at the right time, allows the tracking system to be flexible enough to handle drastic
+changes in appearance in real-world scenarios.
+
+This thesis explores the ranking process from feature engineering to representation
+learning and deep learning. We address motivations, advantages, and challenges
+of ranking under many different conditions while dealing with diverse scenarios.
+Moreover, we propose possible improved solutions in feature selection,
+biometric re-identification, identity authentication and verification that promise enhanced
+system accuracy, ranking quality and less of a need for manual parameter
+adaptation.
+
+This thesis is inserted in the above scheme, and is aimed at investigating the role of
+variable ranking in the wide field of pattern recognition considering many different
+conditions and dealing with diverse scenarios. The first contribution of this thesis is
+therefore the identification of some real-world scenarios which can be faced from a
+ranking perspective. For each scenario, motivations, advantages, and challenges of
+both feature engineering and ranking approaches are addressed, proposing possible
+solutions.
+
+From a methodological point of view, this thesis contributes in different ways:
+i) the term “learning-to-rank” has been exported from the information retrieval context
+and tailored to different pattern recognition scenarios; ii) the different problematics
+related to the curse of irrelevant and redundant cues have been discussed.
+This unwanted information affects negatively every pattern recognition algorithm,
+the merits of ranking features according to their degrees of relevance have been addressed
+contributing with novel ranking solutions that help in removing irrelevant
+cues from the information stream, enabling the learning algorithm to reach higher
+generalization levels; iii) supervised and unsupervised scenarios have been taken
+into account, contributing with a novel graph-based ranking method exploiting the
+convergence properties of power series of matrices and demonstrating the quality
+of being particularly good in extensive experimental evaluations; iv) a further contribution
+of this work is given with respect to real-time systems, in response to the
+need of handling data variability in visual object tracking, we investigated on the
+possibility to produce robust and stable ranked lists of features with the aim of selecting
+the most significant ones at each frame (i.e., features that better discriminate
+between foreground and background), under the hard constraint of speed required
+for such an application setting; v) learning to rank approaches have been explored
+in the context of biometric authentication from textual conversations, in particular
+text chats. Here, novel biometric features have been derived from recent literature
+on authorship attribution and keystrokes biometrics. From a more applicative
+perspective, we explored different techniques which turn out to produce effective
+ranks for the tasks of automatic user re-identification and verification, contributing
+to push forward the state of the art; vi) we provided evidence that deep learning
+approaches can be applied to the problem of ranking. In this work, we overview
+the history and training of modern convolutional neural networks (CNNs), then we
+proposed a possible solution to the ranking problem (i.e., user re-identification and
+ad recommendation) by deep CNNs with shallow architectures. vii) Finally, new
+representative datasets in different research fields have been introduced along with
+code libraries that integrate several algorithms and evaluation metrics with uniform
+input and output formats to facilitate large scale performance evaluation. For example,
+the Feature Selection Library (FSLib), which was the most downloaded
+toolbox in 2016, received a Matlab official recognition for the outstanding contribution,
+the DFST tracker released to the international Visual Object Tracking
+(VOT) challenge 2016, and the ADS-16 dataset for computational advertising released
+on kaggle repository, among others.
+
+attern recognition, computer vision, and biometrics. Firstly, ranking is performed
+to improve machine learning. In this scenario we contributed with a novel solution
+in feature selection called Infinite Feature Selection, and a second algorithm based
+on the same concepts of the previous one but considering the ranking step from
+a graph theory perspective, therefore performing feature selection via Eigenvector
+Centrality. Other contributions of this work fall under the area of computer vision,
+in particular, visual object tracking. In this context, we analysed the characteristics
+of a variety of feature selection methods to individuate some approaches suitable
+for real-time object tracking. The second part of this work focuses on learning to
+rank, that is to say, using machine learning to provide high quality rankings. For example,
+ranking items for personalized recommendations or performing tasks such
+as re-identification. Indeed, re-identification is closely related (at least methodologically)
+to object retrieval, where the first step is usually ranking. In this scenario we
+considered textual chats, we firstly proposed a novel set of soft-biometric features
+able to measure the style and the typing behavior of the subjects involved in the
+conversations. Then, we explored different ways to re-identification and verification,
+among them, we moved a step toward deep ranking as a possible framework
+for future re-identification systems. This part of the thesis is also providing insights
+on what concerns social and psychological dimensions underlying the data, such
+as machine detectable traces of the user’s gender within a text. As a result of this
+work, we provided four public datasets and different code libraries and tools like
+the Feature Selection Library for Matlab.
+
+Vision offers rich sensor information to robotic vehicles interacting in complex dynamic
+environments. As robots are increasingly deployed in unconstrained dynamic environments,
+the requirements of the visual system become more demanding in terms of accuracy and response
+time. Thanks to the expansion of the mobile phone industry, image sensors and embedded
+processors have experienced an increase in compute performance as well as a reduction in
+price, making the use of such technologies cost effective within the robotics industry. However,
+the extraction of meaningful information from a vision sensor is a complicated and computationally
+intensive task.
+
+The focus of this thesis is on the design and implementation of dense real-time visual flow
+algorithms. A visual flow field is a vector field on the camera’s image surface that provides
+motion information for each pixel in the image. There are at least three types of visual flows,
+illustrated in Figure 1.1a, that can be extracted from image sequences: scene flow, optical flow
+and the novel structure flow that I introduce in Chapter 4. The scene flow, so called by Vedula
+et al. [1999], is the three-dimensional motion field of points in the world relative to the camera.
+That is, the Euclidean 3D velocity between the closest object in the scene at a given pixel
+location and the robot’s camera. Optical flow is the projection of the scene flow onto the image
+plane of the camera. It describes the velocity of each pixel in the image plane induced by
+the motion of the robot and the environment Barron [1994]. Structure flow, introduced in this
+thesis Adarve and Mahony [2016b], sits in between scene and optical flow. Mathematically,
+structure flow is the three-dimensional scene flow scaled by the inverse depth at each pixel in
+the image. Intuitively, it is the complete velocity field associated with image motion, including
+both optical flow and scale-change or apparent divergence of the image. Analogously to optic
+flow, structure flow provides a robotic vehicle with perception of the motion of the environment
+as seen by the camera. However, structure flow encodes the full 3D image motion of the scene
+whereas optic flow only encodes the tangential image motion.
+
+From an algorithm complexity perspective, optical flow is the easiest to compute from
+image data among the three types of visual flow. Estimation of dense optical flow can be
+seen as a dense registration of two images separated in time Lucas and Kanade [1981]. For
+each pixel in the first image, a displacement vector is computed such that the brightness value
+in the second image matches. Consequently, computation of optical flow is purely a data
+matching process, and it does not depend directly on the underlying scene or camera geometry.
+Algorithms for estimating optical flow can be counted by the hundreds and they have been
+summarized over the last two decades in the survey papers of Barron [1994] and Baker et al.
+[2011]. Optical flow has been widely used in robotic systems. Application examples include:
+visual servoing Hamel and Mahony [2002], vehicle landing on a moving platform Herisse et al.
+[2012], height regulation Ruffier and Franceschini [2005] and obstacle avoidance Srinivasan
+[2011a].
+Computation of Scene flow is less studied than optical flow. State of the art algorithms
+using two-pair stereo-images can be found in the Kitti scene flow dataset of Menze and Geiger
+[2015]. Other approaches such as those using RGB-D sensors (e.g., the Microsoft Kinect)
+have also been studied Hadfield and Bowden [2011], Herbst et al. [2013]. Real-time scene
+flow algorithms are relatively slow compared to optical flow, running between 20-30 Hz Rabe
+et al. [2010], Wedel et al. [2011]. Runtime performance of modern two-pair stereo based
+approaches are reported in the Kitti scene flow dataset1.
+
+Figure 1.1b illustrates the scene, structure and optical fields for a vehicle moving at 10 m=s
+in collision course with a building located approximately at 15 meters. The image and depth
+map are from the visual odometry dataset of Zhang et al. [2016]. The simulated perspective
+camera (with the Z axis matching the camera focal axis) runs at 100 Hz and all flow fields
+are expressed in pixel units. Since the simulated scene is static, the calculated scene flow is
+equal for all pixels in the image and is equal to the negative of the camera velocity. As the
+vehicle moves along the focal axis of the camera, the xy component of the scene flow are
+zero. Scaling the scene flow by the inverse of the depth field, we obtain the structure flow
+field. The structure flow distinguishes between objects close to or far away from the camera
+since the relative angular divergence of closer objects is larger. That is, they are growing in
+the image more quickly than distant objects. Last row of Figure 1.1b is the optical flow field
+on the image plane of the camera. Since optical flow is the projection of the scene flow onto
+the image plane, the z component of the optical flow is zero. That is, no motion along the
+focal axis of the camera. In fact, the optical flow is a divergent vector field with the focus of
+expansion located in the center of the image; the direction of motion. Notice that, although the
+vehicle is moving quickly, the optical flow in the central region of the image is small, and it is
+difficult to evaluate the time to contact before the vehicle collides with the building.
+
+Current algorithms developed within the Computer Vision community aim at improving
+the accuracy of the estimated optical flow fields. This trend can be observed in the latest results
+of standard optical flow benchmark datasets Baker et al. [2011]; Butler et al. [2012];
+Geiger et al. [2013]. At the same time, the complexity of the top performing algorithms has
+increased and thus their computational demands, as reported in the benchmarks. While these
+algorithms can be used in applications where runtime performance is not a critical constraint,
+their application on real-time vision pipelines, as those required by robotic platforms, is questionable
+
+A key challenge of using high-speed image sensors is processing the stream of data in realtime.
+As an example, the high-speed camera used in the experiments of this thesis provides
+1016 544 images with 256 brightness levels per pixel at 300 Hz. This is equivalent to 158
+Megabytes of image data to be processed every second. This resolution and frame rate places
+a heavy load on the available computational resources such as USB3 and RAM bandwidth as
+well as the compute resources of typical GPU hardware.
+
+An important contribution of this thesis is the use of partial differential equations (PDE)
+to model the spatio-temporal evolution of the optical and structure flow fields on the image
+surface. Efficient numerical methods that match the massive parallel compute power of GPU
+and FPGA platforms are developed to solve these PDEs.
+For each visual flow algorithm, experimental validation is provided using both groundtruth
+data simulating a high-speed camera mounted on a mobile vehicle. Additionally, results
+on real-life videos captured are provided to validate the algorithms; for optical flow, a 300 Hz
+high-speed monocular camera is used, while a 60 Hz stereo camera array is used to test the
+structure flow algorithm. All the algorithms were implemented and tested on a Nvidia GTX
+780 Desktop GPU card and partially tested on a embedded Nvidia Tegra K1 System on Chip.
+
+This thesis is the first completed within the scope of the RAPA project. It reports on 
+research conducted to automatically asses the two quality parameters nacre thickness and color. 
+Those two parameters were prioritized for the following reasons: an automatized nacre thickness 
+measurement has a direct impact on the current French Polynesian pearl export flux, as it is a crucial 
+parameter of the obligatory quality control of pearls deemed for exportation. The color was chosen as 
+partner institutes are currently working on projects aiming at identifying cultivation parameters that 
+influence the color of the cultivated pearls. To obtain a suitable correlation function between both, 
+a reliable mathematical description of the pearls color, that is as independent as possible from human 
+subjectivity and other external parameters, is necessary. Additionally, the color is one of the most 
+appealing and characteristic parameters of the Tahitian pearl, while being probably the most difficult 
+to access numerically due to its perceptual character and the variety of colors and color combinations 
+that can appear on Tahitian pearls. Tackling the difficult parameter from the beginning was deemed 
+strategically advantageous, to allow a better prediction of the further ongoing of the project.
+
+The two quality parameters color and nacre thickness are fundamentally different. The color is a 
+perceptual parameter that is visually evaluated by observing the surface of the pearl. The computer 
+vision equivalent is an analysis of color images of the pearls surface. The nacre thickness instead 
+is a measurable physical parameter that depends on the internal structure of the pearl and has to be 
+visualized with methods such as X-raying. Due to the different nature of both parameters and the according 
+images, this thesis is divided in two parts. Part I covers the research conducted to automatize the nacre 
+thickness out of X-ray images and Part II covers the color classification based on color images of the pearls 
+surface. Both parts are independent and contain each a specific introduction, description of methods, results, 
+discussion, conclusion, bibliography, etc. A general description of each part and its contribution is given 
+in section 3 while a detailed summary of goals, used methods and results can be found in the introduction 
+section of each part.
+
+In recent years, applications of Computer Vision Photogrammetry have become popular in nautical archaeology. 
+This technology has been repeatedly tested in archaeological surveys and excavations, both in dry and submerged 
+environments, yet there are still active discussions about the efficiency and accuracy of photogrammetry models. 
+With a team from the Nautical Archaeology Program in the Anthropology and analyze underwater shipwreck sites with 
+off-the-shelf software. The methodology utilized a technique called Computer Vision Photogrammetry (Fig. 1-1). As 
+a modification of traditional photogrammetry, Computer Vision Photogrammetry does not require the traditional 
+two-camera equipment set-up. Instead, it uses sets of independent images with a certain amount of overlap (Agisoft 
+LLC, 2014). This methodology produces reliable archaeological data based on 1:1 scale-constrained photogrammetry 
+models. Examples of data that can be produced include 2D site plans, artifact and timber drawings, section profiles 
+of shipwreck sites and reconstructed hull lines, georeferenced archaeological information databases, point based 
+site-monitoring systems, digital format fragment models for hull analysis, and various styles of 3D models of 
+shipwrecks, all in an easily shared format.
+
+This dissertation follows the methodological workflow developed by the author and his colleagues, Dr. Rodrigo 
+Torres and Dr. Luis Filipe Viera de Castro, and proposes a methodology to fuse new technologies with conventional 
+nautical archaeology research methods. This dissertation is composed of six chapters, with Chapter I introducing 
+the topic. Chapter II reviews techniques and methods employed to collect data used to produce accurate 3D 
+photogrammetric models and to capture other important archaeological information to understand the shipwreck site. 
+Chapter III discusses methods used to process data in order to create accurate 1:1 scale-constrained photogrammetric 
+models, and to produce organized databases, accurate 2D site plans and artifact drawings, section profiles of 
+shipwreck sites, and georeferenced high resolution photo mosaics. Chapter IV presents a method for analyzing 
+shipwreck sites using generated output to better understand the ship; this chapter is similar to conventional 
+research applied by nautical archaeologists, but it includes additional new methods proposed to facilitate 
+archaeological research. These proposed analysis methods are the Interactive Fragment Model for hull analysis, 
+and a cloud-based site monitoring method for site analysis. Chapter V discusses methods for sharing research 
+outcomes with the general public, and Chapter VI concludes the dissertation by reviewing potential uses of the 
+proposed methodology.
+
+In this dissertation the author will discuss methodology for acquiring data, processing data, and analyzing data. 
+The core of the recording method is Computer Vision Photogrammetry; the goal of this methodology is to understand 
+and reconstruct the ship during its operational career. The author originally designed the methodology as a 
+guideline for archaeologists to record and analyze underwater shipwreck sites. The dissertation also discusses 
+different methods used to collect data and to evaluate the accuracy of acquired data. In the main discussion, 
+Chapter IV, the author presents methods for reconstructing the original ships based on data extracted from Computer 
+Vision photogrammetric models.
+
+This proposed methodology is not blinding flash of an original idea; instead, it is a combination of conventional 
+archaeological recording and research methods with newly available technologies. In other words, archaeologists 
+still need the same information to understand shipwreck sites; however, this methodology provides the required 
+information faster and more accurately. Consequently, nautical archaeologists can proceed and complete their 
+excavations and research more efficiently using this proposed methodology, while concurrently preserving 
+tridimensional data of underwater shipwreck sites for subsequent generations of researchers.

@@ -1,0 +1,856 @@
+﻿It is difficult to come up with an original introduction for a thesis on parallel computing
+in an era when the same story has been told over and over so many times. So many
+paper abstracts, technical reports, doctoral thesis and funding requests begin in the same
+way – the constant improvements in processor technology have reached a point where the
+processor clock speed, or the running frequency, can no longer be improved. This once
+driving factor of the computational throughput of a processor is now kept at a steady rate
+of around 3.5 GHz. Instead of increasing the processor clock speed, major commercial
+processor vendors like Intel and AMD have shifted their focus towards providing multiple
+computational units as part of the same processor, and named the new family of central
+processing units multicore processors. These computer systems, much like their older
+multiprocessor cousins, rely on the concept of shared-memory in which every processor
+has the same read and write access to the part of the computer called the main memory.
+
+Despite this clichéd story that every parallel computing researcher, and since recently the
+entire developer community, heard so many times, the shift in the processor technology has
+resulted in a plethora of novel and original research. Recent architectural developments
+spawned incredibly fruitful areas of research and helped start entire new fields of computer
+science, as well as revived some older research from the end of the 20th century that had
+previously quieted down. The main underlying reason for this is that, while developing a
+program that runs correctly and efficiently on a single processor computer is challenging,
+creating a program that runs correctly on many processors is magnitudes of times
+harder with the programming technology that is currently available. The source of
+this difficulty lies mostly in the complexity of possible interactions between different
+computations executed by different processors, or processor cores. These interactions
+manifest themselves in the need for different processors to communicate, and this
+communication is done using the above-mentioned main memory shared between different
+processors.
+
+There are two main difficulties in programming a multiprocessor system in which processors 
+communicate using shared-memory. The first is achieving the correctness of an
+algorithm or a program. Parallel programs that communicate using shared-memory
+usually produce outputs that are non-deterministic. They may also contain subtle,
+hard-to-reproduce errors due to this non-determinism, which occasionally cause unexpected
+program outputs or even completely corrupt the program state. Controlling
+non-determinism and concurrency errors does not rely only on the programmer’s correct
+understanding of the computational problem, the conceptual solution for it and the
+implementation of that solution, but also on the specifics of the underlying hardware
+and memory model.
+
+The second difficulty is in achieving consistent performance across different computer
+architectures. The specific features of the underlying hardware, operating systems
+and compilers may cause a program with optimal performance on one machine to run
+inefficiently on another. One could remark that both these difficulties are present in
+classical single-threaded programming. Still, they seem to affect us on a much larger
+scale in parallel programming.
+
+To cope with these difficulties, a wide range of programming models, languages and
+techniques have been proposed through the years. While some of these models rise
+briefly only to be replaced with new ideas, several seem to have caught on for now and
+are becoming more widely used by software developers. There is no single best among
+these programming models, as each approach seems to fit better for a different class of
+programs. In this thesis we focus on the data-parallel programming model.
+Modern software relies on high-level data structures. A data structure is a set of rules
+on how to organize data units in memory in a way such that specific operations on that
+data can be executed more efficiently. Different types of data structures support different
+operations. Data collections (or data containers) are software modules that implement
+various data structures. Collections are some of the most basic building blocks of any
+program, and any serious general purpose language comes with a good collections library.
+Languages like Scala, Haskell, C#, and Java support bulk operations on collections, which
+execute a certain computation on every element of the collection independently, and
+compute a final result from all the computations. Bulk operations on collections are
+highly parametric and can be adapted and composed into different programs.
+
+This high degree of genericity does not come without a cost. In many high-level languages
+bulk operations on collections can be quite far from optimal, hand-written code – we
+explore the reasons for this throughout this thesis. In the past this suboptimality was
+disregarded with the hope that a newer processor with a higher clock will solve all the
+performance problems. Today, the case for optimizing collection bulk operations feels
+more important.
+
+Another venue of achieving more efficient collection operations is the data-parallel
+computing model, which exploits the presence of these bulk operations. Bulk collection
+operations are an ideal fit for the data-parallel programming model since both execute
+operations on elements in parallel.
+
+In this thesis we describe how to implement a generic data-parallel computing framework
+running on a managed runtime inside a host language – we cover a wide range of singlethreaded,
+concurrent thread-safe and reactive data structures to show how data-parallel
+operations can be executed on their data elements. In doing so, we introduce the necessary
+abstractions required for the generic data-parallel framework design, the implementations
+of those abstractions in the form of proper algorithms and data structures, and compileand
+runtime techniques required to achieve optimal performance. The specific managed
+runtime we focus on is the JVM, and the host language is Scala. We note that the
+algorithms and data structures described in this thesis are applicable to other managed
+runtimes. For programming languages that compile directly into native code most of the
+data structures can be reused directly with minor modifications.
+
+Generic data-parallelism refers to the ability of the data-parallel framework to be used for
+different data structures, data element types and user-specified operators. In the example
+above we chose the Scala Range collection to represent our array indices, but it could
+really have been any other collection. In fact, instead of indices this collection could have
+contained String keys in which case the lambda passed to the foreach method (i.e. the
+operator) could have accessed a map of strings and integers to increase a specific value.
+The same foreach operation should apply to any of these collections and data-types.
+
+Many modern data-parallel frameworks, like Intel TBB, STAPL, Java 8 Streams or
+PLinq, are generic on several levels. However, there are many data-parallel frameworks
+that are not very generic. For example, the basic MPI implementation has a limited
+predefined set of parallel operators and data types for its reduce operation, and some
+GPU-targeted data-parallel frameworks like C++ AMP are very limited at handling
+arbitrary data structures. The framework in this thesis is fully generic in terms of data
+structures it supports, data element types in those data structures and user-defined
+operators for different parallel operations.
+
+When it comes to algorithm properties, a property usually implicitly agreed upon is their
+correctness – given a set of inputs, the algorithms should produce outputs according to
+some specification. For concurrent algorithms, the outputs also depend on the possible
+interactions between concurrent processes, in addition to the inputs. In this thesis we
+always describe what it means for an algorithm or an abstraction to be correct and strive
+to state the specification as precisely as possible.
+
+A standard methodology to assess the quality of the algorithms is by showing their
+algorithmic complexity. The running time, memory or energy requirements for a given
+size of the problem are expressed in terms of the big O notation. We will state the
+running times of most algorithms in terms of the big O notation.
+
+Concurrent algorithms are special in that they involve multiple parallel computations.
+Their efficiency is dictated not by how well a particular parallel computation works,
+but how efficient they are in unison, in terms of memory consumption, running time or
+something else. This is known as horizontal scalability. There is no established theoretical
+model for horizontal scalability. This is mainly due to the fact that it depends on a large
+number of factors, many of which are related to the properties of the underlying memory
+model, processor type, and, generally, the computer architecture characteristics such as
+the processor-memory throughput or the cache hierarchy. We mostly rely on benchmarks
+to evaluate horizontal scalability.
+
+Linearizability is an important property of operations that may be executed concurrently
+[Herlihy and Wing(1990)]. An operation executed by some processor is linearizable if
+the rest of the system observes the corresponding system state change as if it occured
+instantaneously at a single point in time after the operation started and before it finished.
+This property ensures that all the linearizable operations in the program have a mutual
+order observed in the same way by the entire system.
+
+While concurrent operations may generally have weaker properties, linearizability is
+particularly useful to have, since it makes reasoning about the programs easier. Linearizability
+can be proven easily if we can identify a single instruction or sub-operation which
+changes the data structure state and is known to be itself linearizable. In our case, we
+will identify CAS instructions as linearization points.
+
+Most modern runtimes are designed to be cross-platform. The same program code should
+run in the same way on different computer architectures, processor types, operating
+systems and even versions of the managed runtime – we say that a combination of these is
+a specific platform. The consequences of this are twofold. First, runtimes aim to provide
+a standardized set of programming primitives and work in exactly the same way on any
+underlying platform. Second, because of this standardization the set of programming
+primitives and their capabilities are at least as limited as on any of these platforms. The
+former makes a programmer’s life easier as the application can be developed only on one
+platform, while the second makes the programming task more restrictive and limited.
+
+In the context of concurrent lock-free algorithms, primitives that allow different processors
+to communicate to each other and agree on specific values in the program are called
+synchronization primitives. In this section we will overview the standardized set of synchronization
+primitives for the JVM platform – we will rely on them throughout the thesis.
+A detailed overview of all the concurrency primitives provided by the JDK is presented
+by Goetz et al. [Goetz et al.(2006)Goetz, Bloch, Bowbeer, Lea, Holmes, and Peierls].
+
+On the JVM different parallel computations are not assigned directly to different processors,
+but multiplexed through a construct called a thread. Threads are represented as
+special kinds of objects that can be created programatically and started with the start
+method. Once a thread is started, it will eventually be executed by some processor.
+The JVM delegates this multiplexing process to the underlying operating system. The
+thread executes its run method when it starts. At any point, the operating system may
+temporarily cease the execution of that thread and continue the execution later, possibly
+on another processor. We call this preemption. A thread may wait for the completion
+of another thread by calling its join method. A thread may call the sleep method
+to postpone execution for approximately the specified time. An important limitation
+is that it is not possible to set the affinity of some thread – the JVM does not allow
+choosing the processor for the thread, similar how it does not allow specifying which
+region of memory is allocated when a certain processor allocates memory. Removing
+these limitations would allow designing more efficient algorithms on, for example, NUMA
+systems.
+
+Different threads do not see memory writes by other threads immediately after they
+occur. This limitation allows the JVM runtime to optimize programs and execute them
+more efficiently. All memory writes executed by a thread that has stopped are visible to
+the threads that waited for its completion by invoking its join method.
+
+To allow different threads to communicate and exchange data, the JVM defines the
+synchronized block to protect critical sections of code. A thread that calls synchronized
+on some object o has a guarantee that it is the only thread executing the critical section
+for that object o. In other words, invocations of synchronized on the same object are
+serialized. Other threads calling synchronized on o have to wait until there is no other
+thread executing synchornized on o. Additionally, all the writes by other threads in the
+previous corresponding synchronized block are visible to any thread entering the block.
+The synchronized blocks also allows threads to notify each other that a certain condition
+has been fulfilled. This is done with the wait and notify pair of methods. When a
+thread calls wait on an object, it goes to a dormant state until another thread calls
+notify. This allows threads to check for conditions without spending processor time
+to continuously poll if some condition is fulfilled – for example, it allows implementing
+thread pools.
+
+We also assume that the managed runtime does not allow access to hardware counters
+or times with submicrosecond precision. Access to these facilities can help estimate
+how much computation steps or time a certain computation takes. Similarly, the JVM
+and most other managed runtimes do not allow defining custom interrupts that can
+suspend the main execution of a thread and have the thread run custom interrupt code.
+These fundamental limitations restrict us from improving the work-stealing scheduler in
+Chapter 5 further.
+
+A defining feature of most managed runtimes is automatic memory management. Automatic
+memory management allows programmers to dynamically allocate regions of
+memory for their programs from a special part of memory called a heap. Most languages
+today agree on the convention to use the new keyword when dynamically allocating
+objects. What makes automatic memory management special is that the new invocation
+that produced an object does not need to be paired with a corresponding invocation that
+frees this memory region. Regions of allocated memory that are no longer used are freed
+automatically – to do this, heap object reachability analysis is done at program runtime
+and unreachable allocated memory regions are returned to the memory allocator. This
+mechanism is called garbage collection [Jones and Lins(1996)]. While garbage collection
+results in a non-negligible performance impact, particularly for concurrent and parallel
+programs, it simplifies many algorithms and applications.
+
+Algorithms in this thesis rely on the presence of accurate automatic memory management.
+In all code and pseudocode in this thesis objects and data structure nodes that are
+dynamically allocated on the heap with the new keyword are never explicitly freed. In
+some cases this code can be mended for platforms without automatic memory management
+by adding a corresponding delete statement. In particular, this is true for most of the
+code in Chapters 2 and 3.
+
+There are some less obvious and more fundamental ways that algorithms and data
+structures in this thesis depend on a managed runtime. Lock-free algorithms and
+data structures in this thesis rely on the above-mentioned CAS instruction. This
+synchronization primitive can atomically change some location in memory. If this
+location represents a pointer p to some other object a (i.e. allocated region) in memory,
+then the CAS instruction can succeed in two scenarios. In the first scenario, the allocated
+region a at p is never deallocated, thread T1 attempts a CAS on p with the expected value
+a and succeeds. In the second scenario, some other thread T2 changes p to some other
+value b, deallocates object at address a, then allocates the address a again, and writes a
+to p – at this point the original thread T1 attempts the same CAS and succeeds. There is
+fundamentally no way for the thread T1 to tell these two scenarios apart. This is known
+as the ABA problem [Herlihy and Shavit(2008)] in concurrent lock-free computing, and
+it impacts the correctness of a lock-free algorithm.
+
+The benefit of accurate automatic garbage collection is the guarantee that the object at
+address a above cannot be deallocated as long as some thread is about to call CAS with
+a as the expected value – if it were deallocated, then no thread would have a pointer with
+the address a, hence no stale CAS could be attempted with address a as the expected
+value. As a result, the second scenario described above can never happen – accurate
+automatic memory management helps ensure the monotonicity of CAS writes to memory
+locations that contain address pointers.
+
+Modifying lock-free algorithms for unmanaged runtimes without accurate garbage collection
+remains a challenging task. In some cases, such as the lock-free work-stealing tree
+scheduler in Chapter 5, there is a point in the algorithm when it is known that there
+some or all nodes may be deallocated. In other cases, such as lock-free data structures in
+Chapter 4 there is no such guarantee. Michael studied approaches like hazard pointers
+[Michael(2004)] to solve these issues, and pointer tagging is helpful in specific cases, as
+shown by Harris [Harris(2001)]. Still, this remains an open field of study.
+
+Most managed runtimes do not allow arbitrary pointer arithmetic or treating memory
+addresses as representable values – memory addresses are treated as abstract data types
+created by the keyword new and can be used to retrieve fields of object at those addresses
+according to their type. There are several reasons for this. First, if programmers are
+allowed to form arbitrary addresses, they can corrupt memory in arbitrary ways and
+compromise the security of programs. Second, modern garbage collectors do not just
+free memory regions, but are allowed to move objects around in the interest of better
+performance – the runtime value of the same pointer in a program may change without
+the program knowing about it. Storing the addresses in ways not detectable to a garbage
+collector (e.g. in a file) means that the programmers could reference a memory region
+that has been moved somewhere else.
+
+The algorithms in this thesis will thus be disallowed from doing any kind of pointer
+arithmetic, such as pointer tagging. Pointer tagging is particularly useful when atomic
+changes depend on the states of several parts of the data structure, but we will restrict
+ourselves to a more narrow range of concurrent algorithm techniques.
+
+We have already defined variables that contain memory addresses as pointers, and their
+restricted form as references. We will use these terms interchangeably, as the distinction
+is usually not very important. Note that references are not exactly the C++ language
+references, but restricted pointers in a broader sense.
+
+We will often use the term abstraction to refer to some isolated program state with clearly
+defined operations that access and possibly change that state. For example, a stack
+is an abstraction – it defines a string of elements along with a pair of operations push
+and pop that extend this string by a single element and remove the last element in the
+string, respectively. We will call a concrete program that allocates memory for this state
+and manipulates it with a set of program subroutines an abstraction implementation.
+A stack may be implemented with an array or a linked list – an abstraction can have
+many implementations. A data structure is a specific class of allowed arrangements of
+memory regions and contents of those regions, along with the operations to access them.
+Throughout the thesis we often use these three terms interchangeably, but we make sure
+to use the correct term to disambiguate when necessary.
+
+A basic abstraction in this thesis is a collection. A collection usually implies the element
+traversal operation. In Scala a collection is represented by the Traversable type, while
+in Java it is the Iterable type. There are many more specific collections. A pool implies
+the existence of an add operation – upon invoking it with some element x, a subsequent
+traversal should reflect that x was added. A set also allows querying if a specific element
+is a part of it, and removing the element if so. A map allows adding pairs of keys and
+values, and later retrieving values associated with specific keys. A sequence is a collection
+that defines a specific integral index for each element such that indices form a contiguous
+range from 0 to n − 1, where n is the number of elements. We refer to the operation
+that retrieves an element associated with an index as indexing. A priority queue is a
+pool that allows retrieving the previously added element that is the smallest according
+to some total ordering. There are other collection abstractions, but we will mostly be
+focusing on these.
+
+Mutable data structures support operations that can change their state after their
+construction. These operations are called destructive operations or modification operations.
+A special kind of mutable data structures are called concurrent – their modification
+operations can be safely invoked by several processors concurrently without the risk of
+corrupting the state of the data structure.
+
+Immutable data structures can be used both ephemerally and persistently. In the
+ephemeral use, whenever a persistent data structure is used to produce a new version, the
+old version is discarded and never used by the program again. In the persistent use all the
+old versions are kept, and can be repetitively used in operations. Ephemeral and persistent
+use of the same persistent data structure may result in very different asymptotic running
+times – usually the distinction manifests itself as a difference in amortized running time
+[Okasaki(1998)]. Mutable data structures are always used ephemerally.
+
+Part of this thesis focuses on combining data structures – efficiently converting many
+data structures produced by different processors into a single data structure containing
+the union of their elements. Depending on the data structure in question, we will call
+this process differently. Concatentation is an operation that given two input sequences
+produces a third sequence composed of the elements in the first input sequence and the
+elements of the second input sequence with their indices shifted. In essence, concatenation
+works on sequences and appends one sequence at the end of another. Merge is an operation
+that given two pools, sets, maps or priority queues returns a new collection composed of
+the elements of both input collections. Merging is more closely related to the set union
+operation than concatenation, as it does not assume that elements are ordered according
+to some indices as they are in a sequence.
+
+The code examples in this thesis are written in Scala. In Chapters 4 and 5 we frequently
+use pseudocode when presenting lock-free concurrent algorithms. This decision is made
+to simplify the understanding of these algorithms and to clearly highlight their important
+components, such as the linearization points. Nevertheless, reading the thesis requires
+some knowledge of Scala, but the differences with most other mainstream languages are
+only syntactic. In fact, there are many similarities between Scala and other languages,
+so readers with different backgrounds should find the code understandable.
+
+In Scala, variables are declared with the keyword var much like in JavaScript or C#, and
+their type is inferred from the initialization expression. Methods are defined with the
+keyword def like in Python or Ruby, and type ascriptions come after a : sign. First-class
+functions are written as an argument list followed by their body after the => arrow,
+similar to Java 8 lambdas. Like the final modifier in Java, keyword val denotes fields
+and local variables that cannot be reassigned. The keyword trait denotes an interface,
+but can also have concrete members – in fact, implements is called with in Scala. The
+keyword object denotes a placeholder for static methods belonging to some type.
+Generic types are enclosed in [] brackets, similar to the <> notation in other languages.
+The type Unit is the analogue of the void type in C or Java. Statements in the body of
+a class or trait are considered parts of its primary constructor. Finally, suffixing an
+object with an expression list in parenthesis syntactically rewrites to calling its apply
+method – this is similar to operator() overloading in C++. After this brief overview
+of Scala, we feel that readers with a good Java, Scala or C# background will have no
+problem reading this thesis.
+
+Some basic understanding of concurrent programming and multithreading is also welcome.
+We feel that a basic operating systems course or knowledge about concurrency in Java
+should be sufficient to understand the algorithms in this thesis. For readers seeking
+more insight into these topics, we strongly recommend the books Art of Multiprocessor
+Programming by Herlihy and Shavit [Herlihy and Shavit(2008)], and Java Concurrency
+in Practice [Goetz et al.(2006)Goetz, Bloch, Bowbeer, Lea, Holmes, and Peierls].
+
+This chapter gives an overview of bioinformatics applications on Gel images (e.g. DNA, RNA and Protein), 
+because of the most important biological information for biologist that can be extracted from gel image by 
+bioinformatics' software can be created. The accuracy of that information is depending on the accurate 
+detection of some important parameters. Some of the most famous previous gel image analysis commercial 
+software would be illustrate with its advantage and disadvantage comparing between our software which called 
+"Eg Gel analyzer" and material properties of gel electrophoresis image. Finally methodology of our software 
+gel image analysis is explained.
+
+Bioinformatics is mainly focuses on using advanced computational techniques for solving complicated biological 
+problems. In this regard, scientists use different mathematical, statistical and computational methods to solve 
+biological problems Figure (1.1).
+
+Bioinformatics is an interdisciplinary research area at the interface between computer science and biological 
+science. A variety of definitions exist in the literature and on the World Wide Web; some define bioinformatics 
+as a union of biology and informatics. Bioinformatics involves the technology that uses computers for storage, 
+retrieval, manipulation, and distribution of information related to biological macromolecules such as DNA, RNA, 
+and proteins. The emphasis here is on the use of computers because most of the tasks in genomic data analysis are 
+highly repetitive or mathematically complex. The use of computers is absolutely indispensable in mining genomes for 
+information gathering and knowledge building [36].
+
+The ultimate goal of bioinformatics is to better understand a living cell and how it functions at the molecular 
+level. By analyzing raw molecular sequence and structural data, bioinformatics research can generate new insights 
+and provide a "global" perspective of the cell. The reason that the functions of a cell can be better understood 
+by analyzing sequence data is ultimately because the flow of genetic information is dictated by the "central dogma" 
+of biology in which DNA is transcribed to RNA, which is translated to proteins [35, 36, 44].
+
+DNA molecules "Deoxyribonucleic acid" is a long double helix structure consists of two complementary chains of 
+nucleotides Nucleotides are composed of a sugar, phosphate groups and a base. The base may be adenine, cytosine, 
+guanine or thymine. Hydrogen bonds between the base pairs hold the chains together. Single-stranded DNA can be 
+found for example in PCR or in telomeres, where the 3’ DNA is always longer than the 5’ end. Single-stranded DNA 
+may pair with itself as it shown in Figure (1.2) [5]. Human DNA contains nearly 3 Billion base pairs.
+
+How fast can a computer program solve this problem? Answering this question is at the very
+heart of computer science. It wouldn’t be an exaggeration to say that the word fast in the
+above question primarily distinguishes computer science from conventional mathematics.
+Developing computer programs that solves a problem faster or with reduced resource usage is
+a subject of enormous practical value which has obsessed practitioners and theoreticians alike.
+This quest for better performance has led to remarkable algorithms and theoretical results,
+which are routinely implemented and deployed at large scales and thus profoundly influencing
+our modern civilization by driving scientific discoveries, commerce and social interaction.
+However, a question that developers are often faced with is whether an implementation of an
+algorithm conforms to the performance expected out of it. The techniques presented in this
+dissertation are aimed at addressing this challenge.
+
+Unfortunately, statically determining the resource usage of a program has proven to be very
+challenging. This is not only because the space of possible inputs of realistic programs is huge
+(if not infinite), but also because of the sophistication in the modern runtimes, like virtualization,
+on which the programs are executed. On the one hand this complexity poses serious
+impediment to developing automated tools that can help with reasoning about performance,
+on the other it has increased the need for developing such tools since programmers are also
+faced with similar (if not more) difficulties in analyzing the resource usage of programs. These
+challenges have resulted in wide ranging techniques for static estimation of resource usage of
+programs that model the resource usage at various levels of abstraction.
+
+Algorithmic Resources Approaches such as those described by Wilhelm et al. [2008] and
+Carbonneaux et al. [2014] aim at estimating resource usage of programs in terms of concrete
+physical quantities (e.g. seconds, bytes etc.) under controlled environments, like embedded
+systems, for restricted class of programs where the number of loop iterations is a constant
+or is independent of the inputs. On the other extreme there are the static analysis tools that
+derive asymptotic upper bounds on the resource usage of general-purpose programs [Albert
+et al., 2012, Gulwani et al., 2009, Nipkow, 2015]. Using concrete physical quantities to measure
+resource usage has the disadvantage that they are specific to a runtime and hardware, and
+applicable to only restricted programs and runtimes. However, the alternative of using asymptotic
+complexities results in overly general estimates for reasoning about implementations,
+especially for applications like compiler optimizations or for comparing multiple implementations.
+For instance, a program executing ten operations on each input and another executing
+a million operations on every input have the same asymptotic complexity of O(1). For these
+reasons, recent techniques such as Resource Aware ML [Hoffmann et al., 2012, 2017] have
+resorted to more algorithmic measures of resource usage, such as the number of steps in
+the evaluation of an expression (commonly referred to as steps) or the number of memory
+allocations (alloc). These resources have the advantage that they are fairly independent of the
+runtime, but at the same time provide more concrete information about the implementations.
+This dissertation, which is a culmination of the prior research works: [Madhavan and Kuncak,
+2014,Madhavan et al., 2017], further advances the static estimation of such algorithmic measures
+of resource usage to functional programs with recursive functions, recursive datatypes,
+first-class functions, lazy evaluation and memoization.
+
+Although the objective of our approach is not to compute bounds on physical time, our
+initial experiments do indicate a strong correlation between the number of steps performed at
+runtime and the actual wall-clock execution time for our benchmarks. Figure 1.1 shows a plot
+of thewall-clock execution time and the number of steps executed by a function that computes
+the kth minimum of an unsorted list using a lazy selection sort implementation. The figure
+shows a strong correlation between one step performed at runtime and one nanosecond. (The
+bounds inferred by our tool in this case almost accuratelymatched the runtime steps usage
+for this benchmark as discussed in section 5.) Furthermore, for a lazy, bottom-upmerge sort
+implementation [Apfelmus, 2009] one step of evaluation at runtime corresponded to 2.35
+nanoseconds (ns) on average with an absolute deviation of 0.01 ns, and for a real-time queue
+data structure implementation [Okasaki, 1998] it corresponded to 12.25 ns with an absolute
+deviation of 0.03 ns. These results further add to the importance of establishing resource
+bounds even if they are with respect to the algorithmic resourcemetrics.
+
+Contracts for Resources Most existing approaches for analyzing resource usage of programs
+aim for complete automation but trade off expressive power and the ability to interact with
+users. Many of these techniques offer little provision for users to specify the bounds they are
+interested in, or to provide invariants needed to prove bounds of complex computation. For
+instance, establishing precise resource usage of operations on balanced trees requires the
+height or weight invariants that ensure balance. As a result, most existing approaches are
+limited in the programs and resources that they can verify. This is somewhat surprising since
+resource usage is as hard and as important as proving correctness properties, and the latter is
+being accomplished with increasing frequency on large-scale, real-world applications such
+as operating systems and compilers, by using user specifications [Harrison, 2009, Hawblitzel,
+2009, Kaufmann et al., 2000, Klein et al., 2009, Leroy, 2009]. This dissertation demonstrates
+that user-provided contracts are an effective means to make resource verification feasible on
+complex resources and programs that are well outside the reach of automated techniques.
+Moreover, it also demonstrates that the advances in SMT-driven verification technology,
+traditionally restricted to correctness verification, can be fully leveraged to verify resource
+usage of complex programs.
+
+Specifying Resource Bounds Specifying resources using contracts comes with a set of challenges.
+Firstly, the resources consumed by the programs are not program entities that programmers
+can refer to. Secondly, the bounds on resources generally involve constants that
+depend on the implementations, and hence are difficult to estimate by the users. Furthermore,
+the bounds, and invariants needed to establish the bound, often contain invocations of
+user-defined recursive functions specific to the program being verified, such as size or height
+functions on a tree structure.
+
+Our system provides language-level support for a predefined set of algorithmic resources.
+These resources are exposed to the users through special keywords like steps or alloc. Furthermore,
+it allows users to specify a desired bound on the predefined resources as templates
+with numerical holes e.g. as steps · ?*size(l) + ? in the contracts of functions along with other
+invariants necessary for proving the bounds. The templates and invariants are allowed to
+contain user-defined recursive functions. The goal of the system is to automatically infer
+values for the holes that will make the bound hold for all executions of the function. (Section 2
+formally describes the syntax and semantics of the input language.).
+
+Verifying Resource Specifications In order to verify such resource templates along with
+correctness specifications, I developed an algorithmfor inferring an assignment for the holes
+that will yield a valid resource bound. Moreover, under certain restrictions (such as absence
+of nonlinearity) the algorithm infers the strongest possible values for the holes and infers
+the strongest bound feasible for a given template. Specifically, the following are the three
+main contributions of the inference algorithm. (a) It provides a decision procedure for a
+fragment of 98 formulas with nonlinearity, uninterpreted functions and algebraic datatypes.
+(b) It scales to complex formulas whose solutions involved large, unpredicatable constants.
+(c) It handles highly disjunctive programs with multiple paths and recursive functions. The
+system was used to verify the worst-case resource usage of purely functional implementations
+of many complex algorithms including balanced trees and meldable heap data structures.
+For instance, it was able to establish that the number of steps involved in inserting into a
+red-black tree implementation provided to the system is bounded by 132blog(size(t)Å1))cÅ66.
+The inference algorithmand the initial results appeared in the publication [Madhavan and
+Kuncak, 2014], and is detailed in Section 3.
+
+Memoization and Lazy Evaluation Another challenging feature supported by our system
+are first-class functions that rely on (built-in) memoization and lazy evaluation. (Memoization
+refers to caching of outputs of a function for each distinct input encountered during an execution,
+and lazy evaluationmeans the usual combination of call-by-name and memoization
+supported by languages like Haskell and Scala.) These features are quite important. From a
+theoretical perspective, it was shown by Bird et al. [1997] that these features make the language
+strictly more efficient, in asymptotic terms, than eager evaluation. From a practical perspective,
+they improve the running time (as well as other resource usage) of functional programs
+sometimes by orders of magnitude. For instance, the entire class of dynamic programming
+algorithms is built around the notion of memoizing recursive functions. These features have
+been exploited to design some of most practically efficient, functional data structures known
+[Okasaki, 1998], and often find built-in support in language runtimes or libraries in various
+forms e.g. Scala’s lazy vals and stream library, C#’s LINQ library.
+
+However, in many cases, it has been notoriously difficult tomake precise theoretical analysis
+of the running time of programs that uses lazy evaluation or memoization. In fact, precise
+running time bounds remain open in some cases (e.g. lazy pairing heaps described in page
+79 of Okasaki [1998]). Some examples illustrative of this complexity are the Conqueue data
+structure [Prokopec and Odersky, 2015] used to implement Scala’s data parallel operations,
+and Okasaki’s persistent queues [Okasaki, 1998] that run in worst-case constant time. The challenge
+that arises with these features is that reasoning about resources like running time and
+memory usage becomes state-dependent and more complex than correctness. Nonetheless,
+they preserve the functional model (referential transparency) for the purpose of reasoning
+about the result of the computation making themmore attractive and amenable to functional
+verification in comparison to imperative programming models.
+
+Resource Verification with Memoization In this dissertation, I also show that the userdriven,
+contract-based approach can be effective in verifying complex resource bounds in this
+challenging domain: higher-order functional programs that rely on memoization and lazy
+evaluation. Froma technical perspective, verifying resource usage with these features present
+unique challenges that are outside the purview of existing verifiers. For instance, consider a
+function take that returns the first n elements of a stream. If accessing the tail of the stream
+takes O(n) time then accessing n elements would take O(n2) time. However, invoking the
+function take twice or more on the same list would make every call except the first run in
+O(n) time due to the memoization of the tail of the stream. (Figure 1.3 presents a concrete
+example.).
+
+Verifying such programs require invariants that depend on the state of thememoization table.
+Also in some cases, it is necessary to reason about aliasing of references to higher-order functions.
+This dissertation presents new specification constructs that allow users to specify such
+properties succinctly. It presents a multi-staged approach for verifying the specifications that
+gradually encodes the input program and specifications into 98 formulas (VCs) that use only
+theories efficiently decidable by state-of-the-art SMT solvers. The resulting formulas i.e, VCs
+are solved using the inference algorithmdiscussed in the previous paragraph. The encoding
+was carefully designed so that it does not introduce any abstraction by itself. This meant that
+users can help the system with more specifications until the desired bounds are established,
+which adheres with the philosophy of verification. The main technical contributions of this
+approach are: (a) development of novel specification constructs that allow users to express
+properties on the state of the memoization table in the contracts and also specify the behavior
+of first-class functions passed as parameters, (b) design of a new modular, assume-guarantee
+reasoning for verifying state-dependent contracts in the presence of higher-order functions.
+This approach and related results appeared in a prior publication: [Madhavan et al., 2017],
+and is detailed Section 4.
+
+Evaluation and Results The approach presented in this dissertation is implemented within
+the open-source LEON verification and synthesis framework [Blanc et al., 2013]. The implementation
+is free and open source and available at https://github.com/epfl-lara/leon. The
+implementation was used to infer precise resource usage of complex functional data structures
+– balanced trees, heaps and lazy queues, as well as programtransformations, static analyses,
+parsers and dynamic programming algorithms. Some of these benchmarks have never been
+formally verified before even with interactive theorem provers.
+
+Furthermore, through rigorous empirical evaluation, the precision of the constants inferred by
+our tool was compared to those obtained by running the benchmarks on concrete inputs (for
+the resources steps and alloc). Our results confirmed that the bounds inferred by the tool were
+sound over-approximations of the runtime resource usage, and showed that the worst-case
+resource usage was, on average, at least 80% of the value inferred by the tool when estimating
+the number of evaluation steps, and is 88% for the number of heap-allocated objects. For
+instance, our system was able to infer that the number of steps spent in accessing the kth
+element of an unsorted list l using a lazy, bottom-up merge sort algorithm[Apfelmus, 2009] is
+bounded by 36(k ¢ blog(l .si ze)c)Å53l .si ze Å22. The number of steps used by this program at
+runtime was compared against the bound inferred by our tool by varying the size of the list
+l from 10 to 10K and k from 1 to 100. The results showed that the inferred values were 90%
+accurate for this example. To the best ofmy knowledge, our tool is the first available system
+that can establish such complex resource bounds with this degree of automation.
+
+In this section, I provide a brief overview of how to express programs and specifications in our
+system using pedagogical examples, and summarize the verification approach. This section
+is aimed at highlighting the challenges involved in verifying the resource usage of programs
+that are considered in this dissertation. It also provides an overview of a few specification
+constructs supported by our system, which will be formally introduced in the later chapters.
+Consider the Scala program shown in Figure 1.2 that defines a list as a recursive datatype
+and defines three operations on it. This example is aimed at highlighting the deep inter-relationships 
+between verifying correctness properties and resource bounds. The function
+size computes the size of the list, the function append concatenates a list l2 to a list l1, and
+the function reverse reverses the list by invoking append and itself recursively. Consider the
+function reverse. The resource template shown in the postcondition of reverse specifies that
+the number of steps performed by this function is quadratic in the size of the list. The goal is to
+infer a bound that satisfies this template.
+
+Intuitively, the reason for this quadratic complexity is because the call to append that happens
+at every recursive step of reverse takes time linear in the size of the argument passed to it: tl
+(which equals l.tail). To establish this we need two facts: (a) the function append takes time
+that is linear in the size of its first formal parameter. (b) The size of the list returned by reverse
+is equal to the size of the input list, since append is invoked on the list returned by the recursive
+call to reverse. Therefore, we have the predicate: size(res)== size(l) in the postcondition of
+reverse. However, in order to establish this, we also need to know the size of the list returned by
+append in terms of the sizes of its inputs. This necessitates a postcondition for append which
+asserts that the size of the list returned by append is equal to sumof the sizes of the input lists.
+Thus, to verify the steps bound, one requires all the invariants specified in the program. This
+example also illustrates the need for an expressive contract language, since even for this small
+program we need all the invariants shown in the figure to verify its resource bounds.
+A major feature offered by our system is that it allows seamless combination of such userdefined
+invariants with resource templates. The invariants are utilized during the verification
+of resource bounds to verify the bound and also infer precise values for the constants. T
+
+PropertiesDependent onMemoization State. The quadratic bound of primesUntil is precise
+only when the function is called for the first time. If primesUntil(n) is called twice, the time
+taken by the second call would be linear in n, since every access to tail within takePrimes will
+take constant time as it has been cached during the previous call to takePrimes. The time
+behavior of the function depends on the state of the memoization table (or cache) making the
+reasoning about resources imperative.
+
+To specify such properties the system supports a built-in operation cached(f(x)) that can query
+the state of the cache. This predicate holds if the function f is a memoized function and is
+cached for the value x. Note that it does not invoke f(x). The function concrUntil(s, i) shown in
+Figure 1.4 uses this predicate to state a property that holds iff the first i calls to the tail field of
+the stream s have been cached. (Accessing the lazy field s.tail is similar to calling amemoized
+function tail(s).) This property holds for primes streamat the end of a call to primesUntil(n), and
+hence is stated in the postcondition of primesUntil(n) (line 10 of Figure 1.4). Moreover, if this
+property holds in the state of the cache at the beginning of the function, the number of steps
+executed by the function would be linear in n. This is expressed using a disjunctive resource
+bound (line 11).
+
+Observe that in the postcondition of the function, one need to refer to the state of the cache
+at the beginning of the function, as it changes during the execution of the function. For this
+purpose, our system supports a built-in construct “inSt" that can be used in the postcondition
+to refer to the state at the beginning of the function, and an “in" construct which can be used
+to evaluate an expression in the given state. These expressions are meant only for use in
+contracts. These constructs are required since the cache is implicit and cannot be directly
+accessed by the programmers to specify properties on it. On the upside, the knowledge that
+the state behaves like a cache is exploited by the system to reason functionally about the result
+of the functions, which results in fewer contracts and more efficient verification.
+
+Verification Strategy. Our approach, through a series of transformations, reduces the problem
+of resource bound inference for programs like the one shown in Figure 1.3 to invariant
+inference for a strict, functional first-order program. It solves it by applying an inductive,
+assume-guarantee reasoning. The inductive reasoning exploits and uses the monotonic evolution
+of cache, and the properties that are monotonic with respect to the changes to the cache.
+
+The inductive reasoning works on the assumption that the expressions in the input program
+terminate, which is verified independently using an existing termination checker. Our system
+uses the Leon termination checker for this purpose [Nicolas Voirol and Kuncak, 2017], but
+other termination algorithms for higher-order programs [Giesl et al., 2011, Jones and Bohr,
+2004, Sereni, 2006] are also equally applicable. Note that memoization only affects resource
+usage and not termination, and lazy suspensions are in fact lambdas with unit parameters.
+This strategy of decoupling termination checks from resource verification enables checking
+termination using simpler reasoning, and then use proven well-founded relations during
+resource analysis. This allows us to use recursive functions for expressing resource bounds
+and invariants, and enables modular, assume-guarantee reasoning that relies on induction
+over recursive calls (previously used in correctness verification) to establish resource bounds.
+This aspect is discussed inmore detail in section 3.2.
+
+Connectedness is an important topological property meaning, in an intuitive sense,
+“all one piece”. In conventional definition, connectedness describes two states of a mathematic
+object: if we say an object has the property of connectedness, each component of the
+object must be connected with all other components; otherwise at least one component is
+disconnected to other components.
+
+Connectedness is mostly discussed in topology. It is one of the main topological
+properties utilized to distinguish different topological spaces. In topology, if we say a topological
+space has the property of connectedness if and only if it cannot be partitioned into
+two disjoint nonempty open sets, otherwise it does not have the property of connectedness.
+There are two definitions associated with topological connectedness: path connectedness
+and local connectedness.
+
+Within the context of graph theory, a graph is called connected (has the property of
+connectedness) if every two vertices are joined by a path in the graph. The definition is the
+same with path connectedness in topology. A measure of connectedness, named clustering
+coefficient is proposed in graph theory. It measures the degree to which nodes in a graph
+tend to cluster together and has been defined both locally and globally. The global clustering
+coefficient gives an overall measurement of a graph, while the local version was designed
+to quantify the embeddedness of single nodes.
+
+Existing computer systems traditionally separate main memory from storage. This distinction is
+not a design imperative, but rather imposed by limitations of access latency, cost, volatility, power
+or capacity of the existing memory and storage technologies.
+Programming languages typically reflect this distinction using semantically different representations
+for data in memory (e.g. data structures, objects) and in storage (e.g. files, databases).
+Moving and translating data back and forth between these different representations is inefficient both
+for programming (additional effort, complexity, maintenance challenges, and probability of defects)
+and execution (unnecessary data movement and duplication, increased number of instruction cycles
+and memory/storage usage). Data type protection offered by programming languages is also often
+lost across this mapping. This problem, dubbed impedance mismatch, has been described as the
+Vietnam of Computer Science [31].
+
+Based on these observations, the concept of orthogonal persistence (OP) was proposed in the
+early 1980s [11]. It proposes that from a programmer’s standpoint there should be no differences
+in the way that short-term and long-term data are manipulated. In other words, persistence should
+be an orthogonal property of data, independent of data type and the way in which data is handled.
+Programmers should focus on the core aspects of their applications, while the runtime environment
+would take care of managing the longevity of data. During the 1980s and 1990s, this concept was
+explored in several research initiatives, including programming languages, operating systems, and
+object-oriented databases [29,31]. However, OP ended up not being widely adopted, as its underlying
+implementation still had to cope with the complexity of moving data between memory and storage,
+and the resulting performance consequences.
+
+Recent byte-addressable, non-volatile memory (NVM) technologies such as Phase-Change RAM
+(PCRAM) [50, 74], Resistive RAM (ReRAM) [79], and Magnetoresistive RAM (MRAM) [18, 32, 49]
+are expected to enable memory devices that are non-volatile, require low-energy and have density
+and latency closer to DRAM. These technologies make it possible to collapse main memory and
+storage into a single entity: persistent memory (PM).
+
+As consequence, many recent studies proposed persistent memory programming interfaces to
+manipulate data in byte-addressable, non-volatile memory [77]. Interfaces were proposed for languages
+with explicit memory management (such as C and C++) as early as 2011 [20,22,27,40,44,82]. Until
+very recently, little work had been carried out in order to explore persistent memory programming
+interfaces in languages with managed runtimes and automatic memory management, such as Java,
+Python, Ruby, and JavaScript, among others. Since 2016, works such as PyNVM [69], Persistent
+Collections for Java [28], Managed Data Structures [34], and Apache Mnemonic [5]) introduced
+specialized libraries for persistent memory in this category of programming languages.
+
+This work introduces a design for the runtime environment of languages with automatic memory
+management based on an original combination of orthogonal persistence, persistent memory
+programming, persistence by reachability, and lock-based failure-atomic transactions. It also presents
+JaphaVM, an implementation of the proposed design based on the JamVM [55] open-source Java
+Virtual Machine, in order to validate and demonstrate the presented concepts. To the best of our
+knowledge, our work is the first to propose an orthogonal persistence-oriented design for programming
+languages using persistent memory, and JaphaVM is the first JVM especially designed to take
+advantage of non-volatile memory technologies.
+
+Three-dimensional (3D) andmulti-viewvideo and imaging technologies are emerging
+trends in the development of digital video systems. Multi-view video is typically obtained
+from a set of synchronised cameras that capture the same scene from different
+viewing angles, also known as viewpoints. This technique especially enables applications
+such as free viewpoint video (FVV) [42] and 3D-TV. FVV applications provide
+users with the operability to interactively select a virtual viewpoint and render a synthetic
+view of the scene from that viewpoint on-the-fly (Figure 1.1). With 3D-TV, the
+depth of the scene can be perceived using a multi-view display that renders several
+views of the same scene simultaneously in synchrony.
+
+To be able to render these multiple views on a remote display, an efficient transmission,
+and thus, compression of themulti-view video is required. However, amajor
+problemwhile dealingwithmulti-viewvideos is the intrinsically large amount of data
+that needs to be compressed, de-compressed and rendered. To support multi-view
+videos with a large number of views, efficient compression techniques are a prerequisite.
+
+In 2008, the popular H.264/MPEG-4 advanced video coding (AVC) [88] standard
+was extended with themulti-view video coding (MVC) [40] extension, featuringmore
+efficient prediction schemes using multiple views and high compression gains for 3D
+videos. However, the data volume of an MVC bit stream is proportional to the number
+of views in the multi-view video [37]. It is clear that, in order to support the large
+number of views demanded by high-quality multi-view displays, new video coding
+architectures are needed. Motivated by this, a new approach to 3D-TV that efficiently
+exploits the scene geometry was proposed by Fehn et al. [20]. Instead of sending information
+on all views, video plus depth information of specific views can be encoded
+to synthesise any number of output views desired at the receiver side. Depth maps
+collectively specify the distance between 3D points in the scene and the camera planes
+(independent of view) and thus describe the scene geometry.
+
+A depth map is not directly shown to the viewer as it is used to synthesise intermediate
+views by depth image based rendering (DIBR) [20]. The performance of view
+synthesis algorithms strongly depend on the accuracy of depth information. For this
+reason, current multi-view video coding techniques are motivated to encode depth
+maps efficiently by exploiting some unique characteristics of depth map. Recently,
+multi-view video plus depth (MVD) [41] architecture has been adopted by the multiview
+video coding standard 3D-HEVC [85]. Depth map coding has much wider
+applications besides view synthesis: e.g., object tracking, gesture recognition, augmented
+reality, scene analysis, 3D object reconstruction, interactive gaming, and many more.
+
+The scientific problems related to MVD instantiate the general scope of this thesis.
+In MVD, besides the conventional texture video, depth maps have to be transmitted
+in an efficient way. Coding of depth maps differs from coding of natural scenes as
+it has been found that the classical video coding techniques are inefficient in that instance
+[1, 4, 84]. This comes mainly from the following facts relating to the distinctive
+characteristics of depth maps.
+
+First, the spatial and temporal characteristics of depth maps are significantly different
+from those of texture images. Depth images are more homogeneous or smooth,
+except for the boundary regions that preserve the shape of the objects. Therefore,
+depth value discontinuity occurs mostly on the edges. Figure 1.2 shows an example
+of the MVD format including (a) a texture image and (b) its associated depth map
+where the objects closer to the camera plane are marked in high intensity (light) and
+the farther objects are marked in low intensity (dark). In this figure, the shape of the
+man can be identified by the edges (marked in red) and the inside regions are comparatively
+smooth.
+
+Second, edges in depthmaps aremore sensitive to coding errors that affect perceptual
+video quality. Therefore, recent depthmap coding algorithms [58,78,111,112,138,
+162] are motivated to preserve edges. But these techniques are computationally expensive 
+as they try to detect edges by segmentation and preserve the edges explicitly.
+
+Moreover, these techniques use operations such as transformation and high quantisation.
+As the human visual system is less sensitive to the high frequency components
+of an image/block, therefore, for natural images, transform coefficients representing
+high frequency values are converted to 0 (or smaller values) by applying a high quantisation
+step. Later the transform coefficients are discarded by particular scan order
+to encode the image/block with fewer bits. However, depth maps possess high frequency
+values at the edges, so the use of transformation and high quantisation can
+distort edges and directly affect view synthesis quality.
+
+Third, current depthmap coding techniques [33,85,89–91]mostly depend on reusing
+motion and other prediction information from texture. However, due to changes in
+lighting conditions, illumination compensation is not similar for texture and depth.
+As a result, their motion and prediction information are not always correlated. Moreover,
+depth motion information shows some unique characteristics compared to texture
+motion (details in Chapter 4).
+
+Fourth, due to high temporal and spatial correlations, the difference between two
+successive depth frames known as the residual frames, are mostly zeros except in the
+moving regions where variance of depth can be observed. This is, however, not true
+for texture images. Moreover, non-zero values in depth residual frames do not arise
+in isolation; instead they exhibit strong clustering tendencies (details in Chapter 5).
+Therefore, much work on developing depth-specific coding tools is still required,
+which is the core target of this thesis. Moreover, the abovementioned unique depth
+characteristics need to be exploited to bring further compression. Current multi-view
+coding systems use texture-depth join coding architecture, which makes it infeasible
+to use depth information independently for some applications as a depth map cannot
+be decoded without decoding the corresponding texture frame. Moreover, in depth
+map coding, introducing dependency between view levels (the use of one view to
+compress another view) decreases the randomaccess and interactivity between views.
+The solutions to the aforementioned issues are studied in this thesis in the context
+of multi-view video systems. The scope of the thesis is portrayed by the structure
+of a multi-view video system presented in Figure 1.3. The main goal of the thesis is
+to design an independent and autonomous depth map coder that can specifically exploit 
+the data clustering tendency in depthmaps in order to achieve high compression
+efficiency and synthetic view quality without any texture- and/or view-level dependency.
+
+The aim of this thesis is to contribute to preserving edges in texture-independent
+depth map coding schemes by exploiting unique structural properties of depth in
+order to achieve compression efficiency. This scheme is targeted at supporting multiview
+video coding, computer vision problems, and video summarisation in compressed
+domain.
+
+The philosophical contribution of the thesis stands out from the existing depth map
+coding techniques in two primary ideas. First, the importance of preserving edges
+in depth images has been stressed here by demonstrating that edge distortion significantly
+affects the perceived quality of view synthesis. In response, a novel inherently
+edge preserving technique is developed to improve view rendering quality. Second,
+a significant level of clustering tendency is observed in depth data across coding unit
+division, coding mode, motion vector component, and residual domains. In response,
+a novel partitioning technique is developed, which can efficiently dissect a frame of
+depth data into a number non-overlapping cuboids of distinctively different data distribution
+so that encoding them separately would contribute to a gain in compression
+efficiency. These primary ideas are briefly outlined in the following sub-sections.
+
+The current state-of-the-art 3D-HEVC coder approximates depth edges usingwedgelets
+[78] where a straight line dissects a block. A wedgelet is signalled explicitly using a
+fixed starting and ending points pattern to represent the line in order to avoid pointlocation
+encoding costs. A depth block with edges is partitioned into two regions using
+wedgelets that are represented by constant depth values. The values are signalled
+as their difference from the predicted values that are also available at the decoder.
+This kind of approximation can distort the shape of objects, especially when applied
+in larger blocks, resulting in rendering flaws in view synthesis. Moreover, the use
+of transformation and high quantisation at depth residual frame introduces artefacts
+at the depth edges. Figure 1.7 (left image) presents an example of 3D-HEVC’s edge
+handling by approximation using lossy coding. It is clearly visible from this figure
+that arbitrarily shaped edges are approximated using straight lines with a fixed pattern
+of starting and ending points (starting and ending points are marked with red
+dots connected by a black straight line). The effect of applying high quantisation, on
+transformation coefficients representing depth residual values, can be observed from
+the shape of the distorted depth edges in Figure 1.7. Here shape of depth edges is
+changed from the original (either for approximation or lossy coding); of these, some
+are highlighted using black rectangles in Figure 1.7 (left image).
+If scalar quantisation is introduced on depth residual frames at pixel-level, unlike
+the conventional block-based transformation and frequency based quantisation
+(where different quantisation levels are applied on different frequency components),
+quantisation errors are evenly distributed among the nearby pixels. By restricting
+the maximum possible quantisation error in a frame, inherent edge preservation can
+be guaranteed. Figure 1.7 (right image) presents how the proposed idea inherently
+preserves depth edges without any approximation.

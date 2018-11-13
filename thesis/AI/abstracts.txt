@@ -1,0 +1,173 @@
+The habilitation thesis aims at presenting a selection of research
+results obtained in the field of artificial intelligence, mainly dealing with
+intelligent agents, multiagent systems, optimization and machine learning
+methods.
+Concerning multiagent role allocation, a method is proposed by
+which the agents can self-organize based on the changes of their individual
+utilities. Agents have different preferences regarding the features of the
+tasks they are given and their adaptive behaviour is based on the
+psychological theory of cognitive dissonance, where an agent working on a
+low-preference task gradually improves its attitude towards it. The total
+productivity is shown to increase as an emergent property of the system.
+Another demonstration of emergent behaviour is based on the design
+of an interaction protocol for a task allocation system, which can reveal the
+formation of social networks. The agents can improve their solving ability
+by learning and can collaborate with their peers to deal with more difficult
+tasks. The average number of connections and resources of the agents
+follows a power law distribution.
+Also, a simple set of interaction rules is proposed that can generate
+overall behaviours with different levels of complexity, from asymptotically
+stable to chaotic. It is shown that very small perturbations can have a great
+impact on the evolution of the system, and some methods of controlling
+such perturbations are investigated in order to have a desirable final state.
+Another contribution in the subfields of planning and learning is a
+method that includes a learning phase into the plan itself, so that the agent
+can dynamically recognize the preconditions of an action when the states are
+not fully determined, and it can even directly choose its actions based on
+learning results.
+The notion of state attractor is introduced, which allows the agents to
+compute their actions based on the proximity of their current state to the
+nearest state attractor. This technique is considered to be an alternative way
+of approaching difficult multiagent reinforcement learning problems.
+Considering autonomous learning, a system for solving classification
+and regression problems is proposed, which involves competition between different types of agents. They use neural networks to solve external
+problems given by the user, but they can also build their own internal
+problems out of their experience in order to increase their performance.
+Due to the recent research advances in quantum computing, ideas
+from this field have been increasingly used as a source of inspiration for
+new evolutionary algorithms. Two variants of quantum-inspired
+evolutionary algorithms are proposed, characterized by a steady state model
+(population-based elitism), a repairing procedure to keep all the individuals
+feasible and an evolutionary hill-climbing phase meant to further improve
+the quality of the solution. The first one uses binary encoding and the
+second one uses real-valued encoding. These algorithms are applied for
+
+solving multi-attribute combinatorial auction problems and for finding near-
+optimal outcomes of multi-issue multi-lateral negotiation in multiagent
+
+systems.
+Another contribution is the application of classification methods to
+chemical engineering problems. One example is the prediction of the liquid
+crystalline property of compounds, using methods such as neural networks,
+decision trees, instance-based techniques etc. The best results are obtained
+with an original algorithm, Non-Nested Generalized Exemplars with
+Prototypes, NNGEP.
+The classification algorithms are also applied for 27-class problems
+and on 4-class reduced problems of protein fold classification.
+A modelling methodology based on stacked neural networks is
+suggested by combining several individual networks in parallel, whose
+outputs are weighted to provide the output of the stack. For time series
+forecasting, a stacked neural network is designed containing one normal
+multilayer perceptron with bipolar sigmoid activation functions, and the
+other with an exponential activation function in the output layer. Other two
+chemical engineering phenomena are modelled with stacked neural
+networks, and they are shown to outperform individual networks in terms of
+generalization capabilities.
+The final section of the thesis is concerned with the combination of
+different modelling and optimization methods into hybrid ones. In case of
+chemical processes which are difficult to model analytically, a hybrid model
+is obtained by combining a simplified phenomenological model with a
+neural network which approximates the difficult parts of the reaction.
+Different types of evolutionary algorithms, such as classical genetic
+algorithms, standard differential evolution and self-adaptive differential
+evolution are used to determine both the architecture and the internal
+parameters of a neural network that models other chemical processes.
+Neural networks can handle multiple outputs corresponding to
+multiobjective optimization problems. The Non-dominated Sorting Genetic
+Algorithm, NSGA-II, is adapted with alternative metrics such as the set
+coverage metric and the spacing metric in order to increase the solution
+diversity.
+
+A stacked neural network is designed using an evolutionary hyper-
+heuristic, called NSGA-II-QNSNN, based on the NSGA-II algorithm as a
+
+global optimization method and incorporating a Quasi-Newton algorithm as
+a local optimization method for training the neural networks of the stack.
+The results prove to be very good not only in terms of accuracy, but also in
+terms of structural complexity of the stacks.
+In a world that is becoming more and more technology centric, it is only appropriate to
+consider the ramifications of creating various forms from that technology. One form that has
+long been a dream of scientists and Science Fiction enthusiasts, such as me, is artificial
+intelligence. From almost as early as when I first truly started to read for enjoyment, I have loved
+stories about robots and computers with the capability to think and feel. One of my favorite
+authors has always been Isaac Asimov, who has written numerous stories and books concerning
+thinking robots.
+In one of his first short stories concerning robots, “Runaround” (Asimov), Isaac Asimov
+mentions the ‘Three Laws of Robotics’, which were his first iteration of rules concerning how an
+artificial construct would act and react to various stimuli. Asimov uses the three laws to create a
+situation in which two of the laws conflict, thus causing all kinds of trouble for the humans
+involved. This conflict, in a broad sense, is the same conflict that is of concern even today to
+those who desire to create, or stop the creation of, artificial intelligence. Ethics are one of the
+major questions because there are so many different ways that an ‘unethical’ construct could
+hurt, or even kill, humans. How can ethics be codified so that a construct can accomplish its job,
+while keeping it from doing something wrong or ‘unethical?’
+In the movie ‘I, Robot’ (Vintar), the premise of which is based on Isaac Asimov’s series
+of the same name, the Three Laws of Robotics become a critical factor in the progression of the
+storyline. When a murder is committed, the only possible culprit is a robot, but the robot is
+suppose to be unable to harm a human. The story unfolds, as the main character, a detective
+played by Will Smith, must discover how this could happen against all evidence to the contrary.
+In the end, the detective discovers that this one robot does not have the laws installed, and was
+ordered to commit murder by the very man who was killed! This story is a great way to see one problem in which ethics might have provided a
+solution, but it also gives the viewer some real ethical questions to think about as well. This
+consideration shows the problems inherent in assuming any one ethical standard can be perfect. I
+highly recommend that the readers of this paper watch the movie!
+In “Here’s Why Scientists Think You Should be Worried about Artificial Intelligence”
+(Infante), Andre Infante describes a toy AI structure called ‘AIXI.’ This is a very simple
+construct used by researchers to study the theory of reasoning. Infante says that the toy has three
+core components: learner, planner, and utility function. One way of understanding what these
+components each do would be to say the learner learns from input, the planner decides what to
+do with the input, and the utility function accomplishes the plan. This sums up the basic
+definition of an ‘intelligent agent’, or an artificial intelligence.
+Another way to describe artificial intelligence might be to call it a computer with the
+ability to create questions, gather information, and come to a correct conclusion based on the
+information, all without the control of a human. While this is a very simplistic definition, it is
+complete enough for this essay, and is how I define artificial intelligence at a very basic level.
+One of the most important questions concerning artificial intelligence arises from a
+concern that the decisions one might arrive at will not have an ethical foundation. How can a
+computer, or construct, possibly understand the difference between right and wrong, especially
+considering that humans themselves have so many differing views? How do you define the
+indefinable for a system that can only understand two states, on and off? This lack of the ability
+to work outside the physical limitations of its very makeup is one of the primary reasons cited as
+why we should not create artificial intelligence in the first place.
+The development of Artificial Intelligence (AI) has profound implications for improving
+human and computational productivity in the future. However, it also is an existential risk
+to human life because it could exceed human capabilities. As such, information about the
+technology, the direction of the development and its purpose is important. This can be
+
+achieved through openness and transparency of processes. Indeed, companies hold prop-
+erty rights over AI and monopolies of software, data and experts. As a countermovement
+
+to leading AI companies, the “Open AI Movement” has evolved to push open-source AI
+
+research and products, to empower users, and to bridge the digital divide through partic-
+ipation and access. In this thesis, the implications of the declaration of AI as a commons
+
+have been analyzed through interviews with AI experts in the United States. The legal
+
+placement of AI is controversial but it could be seen as a basic human right. Other find-
+ings are that this field is very competitive and that the best approach is to collaboratively
+
+develop software that adds additional value on the edge of the commons.
+Flooding is an important concern for the UK, as evidenced by the many extreme
+flooding events in the last decade. Improved flood risk intervention strategies are
+therefore highly desirable. The application of hydroinformatics tools, and
+optimisation algorithms in particular, which could provide guidance towards
+improved intervention strategies, is hindered by the necessity of performing flood
+modelling in the process of evaluating solutions. Flood modelling is a
+computationally demanding task; reducing its impact upon the optimisation
+process would therefore be a significant achievement and of considerable benefit
+to this research area. In this thesis sophisticated multi-objective optimisation
+algorithms have been utilised in combination with cutting-edge flood-risk
+assessment models to identify least-cost and most-benefit flood risk interventions
+that can be made on a drainage network. Software analysis and optimisation has
+improved the flood risk model performance. Additionally, artificial neural networks
+used as feature detectors have been employed as part of a novel development
+of an optimisation algorithm. This has alleviated the computational time-demands
+caused by using extremely complex models. The results from testing indicate that
+the developed algorithm with feature detectors outperforms (given limited
+computational resources available) a base multi-objective genetic algorithm. It
+does so in terms of both dominated hypervolume and a modified convergence
+metric, at each iteration. This indicates both that a shorter run of the algorithm
+produces a more optimal result than a similar length run of a chosen base
+algorithm, and also that a full run to complete convergence takes fewer iterations
+(and therefore less time) with the new algorithm.

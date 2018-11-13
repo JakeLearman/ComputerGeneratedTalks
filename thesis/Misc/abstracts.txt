@@ -1,0 +1,80 @@
+Digitalization of a 3D scene has been a fundamental yet highly active topic in the
+field of computer science. The acquisition of detailed 3D information on street sides
+is essential to many applications such as driver assistance, autonomous driving, or
+urban planning. Over decades, many techniques including active scanning and passive
+reconstruction have been developed and applied to achieve this goal. One of the stateof-
+the-art solutions of passive techniques uses a moving stereo camera to record a video
+sequence on a street which is later analysed for recovering the scene structure and the
+sensor’s egomotion that together contribute to a 3D scene reconstruction in a consistent
+coordinate system.
+As a single reconstruction may be incomplete, the scene needs to be scanned
+multiple times, possibly with different types of sensors to fill in the missing data. This
+thesis studies the egomotion estimation problem in a wider perspective and proposes
+a framework that unifies multiple alignment models which are generally considered
+individually by existing methods. Integrated models lead to an energy minimisationbased
+egomotion estimation algorithm which is applicable to a wider range of sensor
+configurations including monocular cameras, stereo cameras, or LiDAR-engaged vision
+systems.
+This thesis also studies the integration of 3D street-side models reconstructed
+from multiple video sequences based on the proposed framework. A keyframe-based
+sequence bag-of-words matching pipeline is proposed. For integrating depth data
+from difference sequences, an alignment is initially found from established crosssequence
+landmark-feature observations, based on the aforementioned outlier-aware
+pose estimation algorithm. The solution is then optimised using an improved bundle
+adjustment technique. Aligned point clouds are then integrated into a 3D mesh of the
+scanned street scene.
+
+Recently, along with the development of data-driven models, artificial neural networks (ANN) have been used in
+ocean wave forecasting models. Hybridization of ANN with wavelet analysis or fuzzy logic approach has also been
+used. The wavelet and neural network hybrid models (WNN models) show better performance than ANN models.
+However, their accuracy decreases with increasing lead time because they do not consider the relation between
+wave and meteorological variables. Moreover, the WNN model has been developed to forecast the wave height at
+a single location where the past wave height data are available. To resolve these problems, in this paper, a hybrid
+model is developed by combining the empirical orthogonal function analysis and wavelet analysis with the neural
+network (abbreviated as EOFWNN model). The past wave height data at multiple locations and the past and future
+meteorological data in the surrounding area including the wave stations are used as input data. The model then
+forecasts the wave heights at the locations for various lead times. The developed model is employed to forecast
+the wave heights at eight wave observation stations in the coastal waters around the East/Japan Sea. The
+EOFWNN model is shown to perform better compared with the WNN model for all lead times regardless of the
+decomposition level of wavelet analysis. The EOFWNN model is proven to be a promising tool for forecasting
+wave heights at multiple locations where the past wave height data and the past and future meteorological data in
+the surrounding area are available.
+
+Vision offers important sensor cues to modern robotic platforms. Applications such as control
+of aerial vehicles, visual servoing, simultaneous localization and mapping, navigation and
+more recently, learning, are examples where visual information is fundamental to accomplish
+tasks. However, the use of computer vision algorithms carries the computational cost of extracting
+useful information from the stream of raw pixel data. The most sophisticated algorithms
+use complex mathematical formulations leading typically to computationally expensive,
+and consequently, slow implementations. Even with modern computing resources, high-speed
+and high-resolution video feed can only be used for basic image processing operations. For
+a vision algorithm to be integrated on a robotic system, the output of the algorithm should be
+provided in real time, that is, at least at the same frequency as the control logic of the robot.
+With robotic vehicles becoming more dynamic and ubiquitous, this places higher requirements
+to the vision processing pipeline.
+This thesis addresses the problem of estimating dense visual flow information in real time.
+The contributions of this work are threefold. First, it introduces a new filtering algorithm for
+the estimation of dense optical flow at frame rates as fast as 800 Hz for 640  480 image resolution.
+The algorithm follows a update-prediction architecture to estimate dense optical flow
+fields incrementally over time. A fundamental component of the algorithm is the modeling
+of the spatio-temporal evolution of the optical flow field by means of partial differential equations.
+Numerical predictors can implement such PDEs to propagate current estimation of flow
+forward in time. Experimental validation of the algorithm is provided using high-speed ground
+truth image dataset as well as real-life video data at 300 Hz.
+The second contribution is a new type of visual flow named structure flow. Mathematically,
+structure flow is the three-dimensional scene flow scaled by the inverse depth at each pixel in
+the image. Intuitively, it is the complete velocity field associated with image motion, including
+both optical flow and scale-change or apparent divergence of the image. Analogously to optic
+flow, structure flow provides a robotic vehicle with perception of the motion of the environment
+as seen by the camera. However, structure flow encodes the full 3D image motion of the scene
+whereas optic flow only encodes the component on the image plane. An algorithm to estimate
+structure flow from image and depth measurements is proposed based on the same filtering
+idea used to estimate optical flow.
+The final contribution is the spherepix data structure for processing spherical images. This
+data structure is the numerical back-end used for the real-time implementation of the structure
+flow filter. It consists of a set of overlapping patches covering the surface of the sphere.
+Each individual patch approximately holds properties such as orthogonality and equidistance
+of points, thus allowing efficient implementations of low-level classical 2D convolution based
+image processing routines such as Gaussian filters and numerical derivatives.
+These algorithms are implemented on GPU hardware and can be integrated to future Robotic
+Embedded Vision systems to provide fast visual information to robotic vehicles.

@@ -1,0 +1,933 @@
+As a discipline, computer science spans a range of topics from theoretical studies of algorithms and the limits of computation 
+to the practical issues of implementing computing systems in hardware and software.[43][44] CSAB, formerly called Computing 
+Sciences Accreditation Board—which is made up of representatives of the Association for Computing Machinery (ACM), and the IEEE 
+Computer Society (IEEE CS)[45]—identifies four areas that it considers crucial to the discipline of computer science: theory of 
+computation, algorithms and data structures, programming methodology and languages, and computer elements and architecture. In 
+addition to these four areas, CSAB also identifies fields such as software engineering, artificial intelligence, computer 
+networking and communication, database systems, parallel computation, distributed computation, human–computer interaction, 
+computer graphics, operating systems, and numerical and symbolic computation as being important areas of computer science.
+
+Theoretical Computer Science is mathematical and abstract in spirit, but it derives its motivation from practical and everyday 
+computation. Its aim is to understand the nature of computation and, as a consequence of this understanding, provide more 
+efficient methodologies. All studies related to mathematical, logic and formal concepts and methods could be considered as 
+theoretical computer science, provided that the motivation is clearly drawn from the field of computing.
+
+According to Peter Denning, the fundamental question underlying computer science is, "What can be (efficiently) automated?"[12] 
+Theory of computation is focused on answering fundamental questions about what can be computed and what amount of resources are 
+required to perform those computations. In an effort to answer the first question, computability theory examines which 
+computational problems are solvable on various theoretical models of computation. The second question is addressed by computational 
+complexity theory, which studies the time and space costs associated with different approaches to solving a multitude of
+computational problems.
+
+Information theory is related to the quantification of information. This was developed by Claude Shannon to find fundamental limits 
+on signal processing operations such as compressing data and on reliably storing and communicating data.[47] Coding theory is the 
+study of the properties of codes (systems for converting information from one form to another) and their fitness for a specific 
+application. Codes are used for data compression, cryptography, error detection and correction, and more recently also for network 
+coding. Codes are studied for the purpose of designing efficient and reliable data transmission methods.
+
+Programming language theory is a branch of computer science that deals with the design, implementation, analysis, characterization, 
+and classification of programming languages and their individual features. It falls within the discipline of computer science, 
+both depending on and affecting mathematics, software engineering, and linguistics. It is an active research area, with numerous 
+dedicated academic journals.
+
+Formal methods are a particular kind of mathematically based technique for the specification, development and verification of 
+software and hardware systems. The use of formal methods for software and hardware design is motivated by the expectation that, as 
+in other engineering disciplines, performing appropriate mathematical analysis can contribute to the reliability and robustness of 
+a design. They form an important theoretical underpinning for software engineering, especially where safety or security is 
+involved. Formal methods are a useful adjunct to software testing since they help avoid errors and can also give a framework for 
+testing. For industrial use, tool support is required. However, the high cost of using formal methods means that they are usually 
+only used in the development of high-integrity and life-critical systems, where safety or security is of utmost importance. Formal 
+methods are best described as the application of a fairly broad variety of theoretical computer science fundamentals, in particular 
+logic calculi, formal languages, automata theory, and program semantics, but also type systems and algebraic data types to problems 
+in software and hardware specification and verification.
+
+Computer architecture, or digital computer organization, is the conceptual design and fundamental operational structure of a 
+computer system. It focuses largely on the way by which the central processing unit performs internally and accesses addresses in 
+memory.[48] The field often involves disciplines of computer engineering and electrical engineering, selecting and interconnecting 
+hardware components to create computers that meet functional, performance, and cost goals.
+
+Concurrency is a property of systems in which several computations are executing simultaneously, and potentially interacting with 
+each other. A number of mathematical models have been developed for general concurrent computation including Petri nets, process 
+calculi and the Parallel Random Access Machine model. A distributed system extends the idea of concurrency onto multiple computers 
+connected through a network. Computers within the same distributed system have their own private memory, and information is often 
+exchanged among themselves to achieve a common goal.
+
+Artificial intelligence (AI) aims to or is required to synthesize goal-orientated processes such as problem-solving, 
+decision-making, environmental adaptation, learning and communication found in humans and animals. From its origins in cybernetics 
+and in the Dartmouth Conference (1956), artificial intelligence research has been necessarily cross-disciplinary, drawing on areas 
+of expertise such as applied mathematics, symbolic logic, semiotics, electrical engineering, philosophy of mind, neurophysiology, 
+and social intelligence. AI is associated in the popular mind with robotic development, but the main field of practical application 
+has been as an embedded component in areas of software development, which require computational understanding. The starting-point 
+in the late 1940s was Alan Turing's question "Can computers think?", and the question remains effectively unanswered although the 
+Turing test is still used to assess computer output on the scale of human intelligence. But the automation of evaluative and 
+predictive tasks has been increasingly successful as a substitute for human monitoring and intervention in domains of computer 
+application involving complex real-world data.
+
+Software engineering is the study of designing, implementing, and modifying software in order to ensure it is of high quality, 
+affordable, maintainable, and fast to build. It is a systematic approach to software design, involving the application of 
+engineering practices to software. Software engineering deals with the organizing and analyzing of software—it doesn't just deal 
+with the creation or manufacture of new software, but its internal maintenance and arrangement. Both computer applications 
+software engineers and computer systems software engineers are projected to be among the fastest growing occupations from 2008 
+to 2018.
+
+An algorithm is a step-by-step procedure for calculations. Algorithms are used for calculation, data processing, and automated 
+reasoning. An algorithm is an effective method expressed as a finite list[4] of well-defined instructions[5] for calculating a 
+function.[6] Starting from an initial state and initial input (perhaps empty),[7] the instructions describe a computation that, 
+when executed, proceeds through a finite[8] number of well-defined successive states, eventually producing "output"[9] and 
+terminating at a final ending state. The transition from one state to the next is not necessarily deterministic; some algorithms, 
+known as randomized algorithms, incorporate random input.[10]
+
+A data structure is a particular way of organizing data in a computer so that it can be used efficiently.[11][12] Different kinds 
+of data structures are suited to different kinds of applications, and some are highly specialized to specific tasks. For example, 
+databases use B-tree indexes for small percentages of data retrieval and compilers and databases use dynamic hash tables as look 
+up tables.
+
+Data structures provide a means to manage large amounts of data efficiently for uses such as large databases and internet indexing 
+services. Usually, efficient data structures are key to designing efficient algorithms. Some formal design methods and programming 
+languages emphasize data structures, rather than algorithms, as the key organizing factor in software design. Storing and 
+retrieving can be carried out on data stored in both main memory and in secondary memory.
+
+Computational complexity theory is a branch of the theory of computation that focuses on classifying computational problems 
+according to their inherent difficulty, and relating those classes to each other. A computational problem is understood to be a 
+task that is in principle amenable to being solved by a computer, which is equivalent to stating that the problem may be solved by 
+mechanical application of mathematical steps, such as an algorithm.
+
+A problem is regarded as inherently difficult if its solution requires significant resources, whatever the algorithm used. The 
+theory formalizes this intuition, by introducing mathematical models of computation to study these problems and quantifying the 
+amount of resources needed to solve them, such as time and storage. Other complexity measures are also used, such as the amount 
+of communication (used in communication complexity), the number of gates in a circuit (used in circuit complexity) and the number 
+of processors (used in parallel computing). One of the roles of computational complexity theory is to determine the practical 
+limits on what computers can and cannot do.
+
+Distributed computing studies distributed systems. A distributed system is a software system in which components located on 
+networked computers communicate and coordinate their actions by passing messages.[13] The components interact with each other 
+in order to achieve a common goal. Three significant characteristics of distributed systems are: concurrency of components, lack 
+of a global clock, and independent failure of components.[13] Examples of distributed systems vary from SOA-based systems to 
+massively multiplayer online games to peer-to-peer applications.
+
+A computer program that runs in a distributed system is called a distributed program, and distributed programming is the process 
+of writing such programs.[14] There are many alternatives for the message passing mechanism, including RPC-like connectors and 
+message queues. An important goal and challenge of distributed systems is location transparency.
+
+Parallel computing is a form of computation in which many calculations are carried out simultaneously,[15] operating on the 
+principle that large problems can often be divided into smaller ones, which are then solved "in parallel". There are several 
+different forms of parallel computing: bit-level, instruction level, data, and task parallelism. Parallelism has been employed for 
+many years, mainly in high-performance computing, but interest in it has grown lately due to the physical constraints preventing 
+frequency scaling.[16] As power consumption (and consequently heat generation) by computers has become a concern in recent years,
+[17] parallel computing has become the dominant paradigm in computer architecture, mainly in the form of multi-core processors.[18]
+
+
+Parallel computer programs are more difficult to write than sequential ones,[19] because concurrency introduces several new classes 
+of potential software bugs, of which race conditions are the most common. Communication and synchronization between the different 
+subtasks are typically some of the greatest obstacles to getting good parallel program performance. The maximum possible speed-up 
+of a single program as a result of parallelization is known as Amdahl's law.
+
+Very-large-scale integration (VLSI) is the process of creating an integrated circuit (IC) by combining thousands of transistors 
+into a single chip. VLSI began in the 1970s when complex semiconductor and communication technologies were being developed. The 
+microprocessor is a VLSI device. Before the introduction of VLSI technology most ICs had a limited set of functions they could 
+perform. An electronic circuit might consist of a CPU, ROM, RAM and other glue logic. VLSI allows IC makers to add all of these 
+circuits into one chip.
+
+Machine learning is a scientific discipline that deals with the construction and study of algorithms that can learn from data.[20] 
+Such algorithms operate by building a model based on inputs[21]:2 and using that to make predictions or decisions, rather than 
+following only explicitly programmed instructions. Machine learning can be considered a subfield of computer science and statistics. 
+It has strong ties to artificial intelligence and optimization, which deliver methods, theory and application domains to the field. 
+Machine learning is employed in a range of computing tasks where designing and programming explicit, rule-based algorithms is 
+infeasible. Example applications include spam filtering, optical character recognition (OCR),[22] search engines and computer 
+vision. Machine learning is sometimes conflated with data mining,[23] although that focuses more on exploratory data analysis.[24] 
+Machine learning and pattern recognition "can be viewed as two facets of the same field."
+
+Computational biology involves the development and application of data-analytical and theoretical methods, mathematical modeling 
+and computational simulation techniques to the study of biological, behavioral, and social systems.[25] The field is broadly 
+defined and includes foundations in computer science, applied mathematics, animation, statistics, biochemistry, chemistry, 
+biophysics, molecular biology, genetics, genomics, ecology, evolution, anatomy, neuroscience, and visualization.[26] Computational 
+biology is different from biological computation, which is a subfield of computer science and computer engineering using 
+bioengineering and biology to build computers, but is similar to bioinformatics, which is an interdisciplinary science using 
+computers to store and process biological data.
+
+Computational geometry is a branch of computer science devoted to the study of algorithms that can be stated in terms of geometry. 
+Some purely geometrical problems arise out of the study of computational geometric algorithms, and such problems are also 
+considered to be part of computational geometry. While modern computational geometry is a recent development, it is one of the 
+oldest fields of computing with history stretching back to antiquity. An ancient precursor is the Sanskrit treatise Shulba Sutras,
+or "Rules of the Chord", that is a book of algorithms written in 800 BCE. The book prescribes step-by-step procedures for 
+constructing geometric objects like altars using a peg and chord. The main impetus for the development of computational geometry as 
+a discipline was progress in computer graphics and computer-aided design and manufacturing (CAD/CAM), but many problems in 
+computational geometry are classical in nature, and may come from mathematical visualization. Other important applications of 
+computational geometry include robotics (motion planning and visibility problems), geographic information systems (GIS) 
+(geometrical location and search, route planning), integrated circuit design (IC geometry design and verification), computer-aided 
+engineering (CAE) (mesh generation), computer vision (3D reconstruction).
+
+Information theory is a branch of applied mathematics, electrical engineering, and computer science involving the quantification of 
+information. Information theory was developed by Claude E. Shannon to find fundamental limits on signal processing operations such 
+as compressing data and on reliably storing and communicating data. Since its inception it has broadened to find applications in 
+many other areas, including statistical inference, natural language processing, cryptography, neurobiology,[27] the evolution[28] 
+and function[29] of molecular codes, model selection in statistics,[30] thermal physics,[31] quantum computing, linguistics, 
+plagiarism detection,[32] pattern recognition, anomaly detection and other forms of data analysis.[33] Applications of fundamental 
+topics of information theory include lossless data compression (e.g. ZIP files), lossy data compression (e.g. MP3s and JPEGs), and 
+channel coding (e.g. for Digital Subscriber Line (DSL)). The field is at the intersection of mathematics, statistics, computer 
+science, physics, neurobiology, and electrical engineering. Its impact has been crucial to the success of the Voyager missions to 
+deep space, the invention of the compact disc, the feasibility of mobile phones, the development of the Internet, the study of 
+linguistics and of human perception, the understanding of black holes, and numerous other fields. Important sub-fields of 
+information theory are source coding, channel coding, algorithmic complexity theory, algorithmic information theory, 
+information-theoretic security, and measures of information.
+
+Cryptography is the practice and study of techniques for secure communication in the presence of third parties (called adversaries).
+[34] More generally, it is about constructing and analyzing protocols that overcome the influence of adversaries[35] and that are 
+related to various aspects in information security such as data confidentiality, data integrity, authentication, and non-repudiation.
+[36] Modern cryptography intersects the disciplines of mathematics, computer science, and electrical engineering. Applications of 
+cryptography include ATM cards, computer passwords, and electronic commerce. Modern cryptography is heavily based on mathematical 
+theory and computer science practice; cryptographic algorithms are designed around computational hardness assumptions, making such 
+algorithms hard to break in practice by any adversary. It is theoretically possible to break such a system, but it is infeasible to 
+do so by any known practical means. These schemes are therefore termed computationally secure; theoretical advances, e.g., 
+improvements in integer factorization algorithms, and faster computing technology require these solutions to be continually adapted. 
+There exist information-theoretically secure schemes that provably cannot be broken even with unlimited computing power—an example 
+is the one-time pad—but these schemes are more difficult to implement than the best theoretically breakable but computationally 
+secure mechanisms.
+
+A quantum computer is a computation system that makes direct use of quantum-mechanical phenomena, such as superposition and 
+entanglement, to perform operations on data.[37] Quantum computers are different from digital computers based on transistors. 
+Whereas digital computers require data to be encoded into binary digits (bits), each of which is always in one of two definite 
+states (0 or 1), quantum computation uses qubits (quantum bits), which can be in superpositions of states. A theoretical model is 
+the quantum Turing machine, also known as the universal quantum computer. Quantum computers share theoretical similarities with 
+non-deterministic and probabilistic computers; one example is the ability to be in more than one state simultaneously. The field 
+of quantum computing was first introduced by Yuri Manin in 1980[38] and Richard Feynman in 1982.[39][40] A quantum computer with 
+spins as quantum bits was also formulated for use as a quantum space–time in 1968.[41] As of 2014, quantum computing is still in 
+its infancy but experiments have been carried out in which quantum computational operations were executed on a very small number of 
+qubits.[42] Both practical and theoretical research continues, and many national governments and military funding agencies support 
+quantum computing research to develop quantum computers for both civilian and national security purposes, such as cryptanalysis.
+
+Automata theory is the study of abstract machines (or more appropriately, abstract 'mathematical' machines or systems) and the 
+computational problems that can be solved using these machines. These abstract machines are called automata. Automata comes from 
+the Greek word (Αυτόματα) which means that something is doing something by itself. Automata theory is also closely related to 
+formal language theory,[5] as the automata are often classified by the class of formal languages they are able to recognize. An 
+automaton can be a finite representation of a formal language that may be an infinite set. Automata are used as theoretical models 
+for computing machines, and are used for proofs about computability.
+
+Language theory is a branch of mathematics concerned with describing languages as a set of operations over an alphabet. It is 
+closely linked with automata theory, as automata are used to generate and recognize formal languages. There are several classes 
+of formal languages, each allowing more complex language specification than the one before it, i.e. Chomsky hierarchy,[6] and each 
+corresponding to a class of automata which recognizes it. Because automata are used as models for computation, formal languages are 
+the preferred mode of specification for any problem that must be computed.
+
+Computability theory deals primarily with the question of the extent to which a problem is solvable on a computer. The statement 
+that the halting problem cannot be solved by a Turing machine[7] is one of the most important results in computability theory, as 
+it is an example of a concrete problem that is both easy to formulate and impossible to solve using a Turing machine. Much of 
+computability theory builds on the halting problem result. Another important step in computability theory was Rice's theorem, which 
+states that for all non-trivial properties of partial functions, it is undecidable whether a Turing machine computes a partial 
+function with that property.[8] Computability theory is closely related to the branch of mathematical logic called recursion 
+theory, which removes the restriction of studying only models of computation which are reducible to the Turing model.[9] Many 
+mathematicians and computational theorists who study recursion theory will refer to it as computability theory.
+
+Complexity theory considers not only whether a problem can be solved at all on a computer, but also how efficiently the problem can 
+be solved. Two major aspects are considered: time complexity and space complexity, which are respectively how many steps does it 
+take to perform a computation, and how much memory is required to perform that computation. In order to analyze how much time and 
+space a given algorithm requires, computer scientists express the time or space required to solve the problem as a function of the 
+size of the input problem. For example, finding a particular number in a long list of numbers becomes harder as the list of numbers 
+grows larger. If we say there are n numbers in the list, then if the list is not sorted or indexed in any way we may have to look at 
+every number in order to find the number we're seeking. We thus say that in order to solve this problem, the computer needs to 
+perform a number of steps that grows linearly in the size of the problem.
+
+A computation consists of an initial lambda expression (or two if you want to separate the function and its input) plus a 
+finite sequence of lambda terms, each deduced from the preceding term by one application of Beta reduction.
+
+Formal semantics is the formal specification of the behaviour of computer programs and programming languages. Three common 
+approaches to describe the semantics or "meaning" of a computer program are denotational semantics, operational semantics and 
+axiomatic semantics.
+
+Type theory is the study of type systems; which are "a tractable syntactic method for proving the absence of certain program 
+behaviors by classifying phrases according to the kinds of values they compute".[3] Many programming languages are distinguished by 
+the characteristics of their type systems.
+
+Program analysis is the general problem of examining a program and determining key characteristics (such as the absence of classes 
+of program errors). Program transformation is the process of transforming a program in one form (language) to another form.
+
+Compiler theory is the theory of writing compilers (or more generally, translators); programs which translate a program written in 
+one language into another form. The actions of a compiler are traditionally broken up into syntax analysis (scanning and parsing), 
+semantic analysis (determining what a program should do), optimization (improving the performance of a program as indicated by some 
+metric; typically execution speed) and code generation (generation and output of an equivalent program in some target language; 
+often the instruction set of a CPU).
+
+Most computer hardware engineers research, develop, design, and test various computer equipment. This can range from circuit boards 
+and microprocessors to routers. Some update existing computer equipment to be more efficient and work with newer software. Most 
+computer hardware engineers work in research laboratories and high-tech manufacturing firms. Some also work for the federal 
+government. According to BLS, 95% of computer hardware engineers work in metropolitan areas.[citation needed] They generally work 
+full-time. Approximately 33% of their work requires more than 40 hours a week. For example, the typical computer hardware engineer 
+with a bachelor's degree as of 2015 makes 111,730 USD annually and an hourly pay of 53.72 USD. The expected ten year growth as of 
+2014 for computer hardware engineering was an estimated three percent and there was a total of 77,700 jobs that same year.
+
+Computer software engineers develop, design, and test software. They construct, and maintain computer programs, as well as set up 
+networks such as "intranets" for companies. Software engineers can also design or code new applications to meet the needs of a 
+business or individual. Some software engineers work independently as freelancers and sell their software products/applications 
+to an enterprise or individual. A computer software engineer with a bachelor's degree as of 2015 makes 100,690 USD annually and an 
+hourly rate of 48.41 USD. The expected ten year growth as of 2014 for computer software engineering was an estimated seventeen 
+percent and there was a total of 1,114,000 jobs that same year.
+
+Computer engineers work in coding, cryptography, and information protection to develop new methods for protecting various 
+information, such as digital images and music, fragmentation, copyright infringement and other forms of tampering. Examples include 
+work on wireless communications, multi-antenna systems, optical transmission, and digital watermarking.
+
+Those focusing on communications and wireless networks, work advancements in telecommunications systems and networks (especially 
+wireless networks), modulation and error-control coding, and information theory. High-speed network design, interference 
+suppression and modulation, design and analysis of fault-tolerant system, and storage and transmission schemes are all a part of 
+this specialty.
+
+This specialty focuses on compilers and operating systems design and development. Engineers in this field develop new operating 
+system architecture, program analysis techniques, and new techniques to assure quality. Examples of work in this field includes 
+post-link-time code transformation algorithm development and new operating system development.
+
+Individuals working in this area design technology for enhancing the speed, reliability, and performance of systems. Embedded 
+systems are found in many devices from a small FM radio to the space shuttle. According to the Sloan Cornerstone Career Center, 
+ongoing developments in embedded systems include "automated vehicles and equipment to conduct search and rescue, automated 
+transportation systems, and human–robot coordination to repair equipment in space."
+
+Most entry-level computer engineering jobs require at least a bachelor's degree in computer engineering. Typically one must learn 
+an array of mathematics such as calculus, algebra and trigonometry and even a few computer science classes. Sometimes a degree in 
+electronic engineering is accepted, due to the similarity of the two fields. Because hardware engineers commonly work with computer 
+software systems, a background in computer programming usually is needed. According to BLS, "a computer engineering major is 
+similar to electrical engineering but with some computer science courses added to the curriculum".[12] Some large firms or 
+specialized jobs require a master's degree.
+
+It is also important for computer engineers to keep up with rapid advances in technology. Therefore, many continue learning 
+throughout their careers. This can be helpful, especially when it comes to learning new skills or improving existing ones. For 
+example, as the relative cost of fixing a bug increases the further along it is in the software development cycle, there can 
+be greater cost savings attributed to developing and testing for quality code as soon as possible in the process, and particularly 
+before release.[13]
+
+Formally, a "database" refers to a set of related data and the way it is organized. Access to this data is usually provided by a 
+"database management system" (DBMS) consisting of an integrated set of computer software that allows users to interact with one or 
+more databases and provides access to all of the data contained in the database (although restrictions may exist that limit access 
+to particular data). The DBMS provides various functions that allow entry, storage and retrieval of large quantities of information 
+and provides ways to manage how that information is organized.
+
+Because of the close relationship between them, the term "database" is often used casually to refer to both a database and the DBMS 
+used to manipulate it.
+
+Outside the world of professional information technology, the term database is often used to refer to any collection of related 
+data (such as a spreadsheet or a card index). This article is concerned only with databases where the size and usage requirements 
+necessitate use of a database management system.[2]
+
+Existing DBMSs provide various functions that allow management of a database and its data which can be classified into four main 
+functional groups:
+
+Data definition – Creation, modification and removal of definitions that define the organization of the data.
+Update – Insertion, modification, and deletion of the actual data.[3]
+
+Retrieval – Providing information in a form directly usable or for further processing by other applications. The retrieved data may 
+be made available in a form basically the same as it is stored in the database or in a new form obtained by altering or combining 
+existing data from the database.[4]
+
+Administration – Registering and monitoring users, enforcing data security, monitoring performance, maintaining data integrity, 
+dealing with concurrency control, and recovering information that has been corrupted by some event such as an unexpected system 
+failure.[5]
+
+Both a database and its DBMS conform to the principles of a particular database model.[6] "Database system" refers collectively to 
+the database model, database management system, and database.[7]
+
+Physically, database servers are dedicated computers that hold the actual databases and run only the DBMS and related software. 
+Database servers are usually multiprocessor computers, with generous memory and RAID disk arrays used for stable storage. RAID is 
+used for recovery of data if any of the disks fail. Hardware database accelerators, connected to one or more servers via a 
+high-speed channel, are also used in large volume transaction processing environments. DBMSs are found at the heart of most 
+database applications. DBMSs may be built around a custom multitasking kernel with built-in networking support, but modern DBMSs 
+typically rely on a standard operating system to provide these functions.
+
+Since DBMSs comprise a significant market, computer and storage vendors often take into account DBMS requirements in their own 
+development plans.[8]
+
+Databases and DBMSs can be categorized according to the database model(s) that they support (such as relational or XML), the 
+type(s) of computer they run on (from a server cluster to a mobile phone), the query language(s) used to access the database (such 
+as SQL or XQuery), and their internal engineering, which affects performance, scalability, resilience, and security.
+
+Databases are used to support internal operations of organizations and to underpin online interactions with customers and 
+suppliers (see Enterprise software).
+
+Databases are used to hold administrative information and more specialized data, such as engineering data or economic models. 
+Examples of database applications include computerized library systems, flight reservation systems, computerized parts inventory 
+systems, and many content management systems that store websites as collections of webpages in a database.
+
+DBMS may become a complex software system and its development typically requires thousands of human years of development effort.[a] 
+Some general-purpose DBMSs such as Adabas, Oracle and DB2 have been upgraded since the 1970s. General-purpose DBMSs aim to meet the 
+needs of as many applications as possible, which adds to the complexity. However, since their development cost can be spread over a 
+large number of users, they are often the most cost-effective approach. On the other hand, a general-purpose DBMS may introduce 
+unnecessary overhead. Therefore, many systems use a special-purpose DBMS. A common example is an email system that performs many of 
+the functions of a general-purpose DBMS such as the insertion and deletion of messages composed of various items of data or 
+associating messages with a particular email address; but these functions are limited to what is required to handle email and don't 
+provide the user with all of the functionality that would be available using a general-purpose DBMS.
+
+Application software can often access a database on behalf of end-users, without exposing the DBMS interface directly. Application 
+programmers may use a wire protocol directly, or more likely through an application programming interface. Database designers and 
+database administrators interact with the DBMS through dedicated interfaces to build and maintain the applications' databases, and 
+thus need some more knowledge and understanding about how DBMSs operate and the DBMSs' external interfaces and tuning parameters.
+
+The first task of a database designer is to produce a conceptual data model that reflects the structure of the information to be 
+held in the database. A common approach to this is to develop an entity-relationship model, often with the aid of drawing tools. 
+Another popular approach is the Unified Modeling Language. A successful data model will accurately reflect the possible state of 
+the external world being modeled: for example, if people can have more than one phone number, it will allow this information to be 
+captured. Designing a good conceptual data model requires a good understanding of the application domain; it typically involves 
+asking deep questions about the things of interest to an organization, like "can a customer also be a supplier?", or "if a product 
+is sold with two different forms of packaging, are those the same product or different products?", or "if a plane flies from New 
+York to Dubai via Frankfurt, is that one flight or two (or maybe even three)?". The answers to these questions establish definitions 
+of the terminology used for entities (customers, products, flights, flight segments) and their relationships and attributes.
+
+Producing the conceptual data model sometimes involves input from business processes, or the analysis of workflow in the 
+organization. This can help to establish what information is needed in the database, and what can be left out. For example, 
+it can help when deciding whether the database needs to hold historic data as well as current data.
+
+Having produced a conceptual data model that users are happy with, the next stage is to translate this into a schema that 
+implements the relevant data structures within the database. This process is often called logical database design, and the output 
+is a logical data model expressed in the form of a schema. Whereas the conceptual data model is (in theory at least) independent 
+of the choice of database technology, the logical data model will be expressed in terms of a particular database model supported 
+by the chosen DBMS. (The terms data model and database model are often used interchangeably, but in this article we use data model 
+for the design of a specific database, and database model for the modelling notation used to express that design.)
+
+The most popular database model for general-purpose databases is the relational model, or more precisely, the relational model as 
+represented by the SQL language. The process of creating a logical database design using this model uses a methodical approach 
+known as normalization. The goal of normalization is to ensure that each elementary "fact" is only recorded in one place, so that 
+insertions, updates, and deletions automatically maintain consistency.
+
+The final stage of database design is to make the decisions that affect performance, scalability, recovery, security, and the like, 
+which depend on the particular DBMS. This is often called physical database design, and the output is the physical data model. A 
+key goal during this stage is data independence, meaning that the decisions made for performance optimization purposes should be 
+invisible to end-users and applications. There are two types of data independence: Physical data independence and logical data 
+independence. Physical design is driven mainly by performance requirements, and requires a good knowledge of the expected workload 
+and access patterns, and a deep understanding of the features offered by the chosen DBMS.
+
+A database model is a type of data model that determines the logical structure of a database and fundamentally determines in which 
+manner data can be stored, organized, and manipulated. The most popular example of a database model is the relational model (or the 
+SQL approximation of relational), which uses a table-based format.
+
+The external level defines how each group of end-users sees the organization of data in the database. A single database can have 
+any number of views at the external level.
+
+The conceptual level unifies the various external views into a compatible global view.[31] It provides the synthesis of all the 
+external views. It is out of the scope of the various database end-users, and is rather of interest to database application 
+developers and database administrators.
+
+The internal level (or physical level) is the internal organization of data inside a DBMS. It is concerned with cost, performance, 
+scalability and other operational matters. It deals with storage layout of the data, using storage structures such as indexes to 
+enhance performance. Occasionally it stores data of individual views (materialized views), computed from generic data, if 
+performance justification exists for such redundancy. It balances all the external views' performance requirements, possibly 
+conflicting, in an attempt to optimize overall performance across all activities.
+
+While there is typically only one conceptual (or logical) and physical (or internal) view of the data, there can be any number of 
+different external views. This allows users to see database information in a more business-related way rather than from a technical,
+processing viewpoint. For example, a financial department of a company needs the payment details of all employees as part of the 
+company's expenses, but does not need details about employees that are the interest of the human resources department. Thus 
+different departments need different views of the company's database.
+
+The three-level database architecture relates to the concept of data independence which was one of the major initial driving 
+forces of the relational model. The idea is that changes made at a certain level do not affect the view at a higher level. For 
+example, changes in the internal level do not affect application programs written using conceptual level interfaces, which reduces 
+the impact of making physical changes to improve performance.
+
+Data control language (DCL) – controls access to data;
+
+Data definition language (DDL) – defines data types such as creating, altering, or dropping and the relationships among them;
+
+Data manipulation language (DML) – performs tasks such as inserting, updating, or deleting data occurrences;
+
+Data query language (DQL) – allows searching for information and computing derived information.
+
+The conceptual view provides a level of indirection between internal and external. On one hand it provides a common view of the 
+database, independent of different external view structures, and on the other hand it abstracts away details of how the data are 
+stored or managed (internal level). In principle every level, and even every external view, can be presented by a different data 
+model. In practice usually a given DBMS uses the same data model for both the external and the conceptual levels (e.g., relational 
+model). The internal level, which is hidden inside the DBMS and depends on its implementation, requires a different level of detail 
+and uses its own types of data structure types.
+
+Database storage is the container of the physical materialization of a database. It comprises the internal (physical) level in the 
+database architecture. It also contains all the information needed (e.g., metadata, "data about the data", and internal data 
+structures) to reconstruct the conceptual level and external level from the internal level when needed. Putting data into permanent 
+storage is generally the responsibility of the database engine a.k.a. "storage engine". Though typically accessed by a DBMS through 
+the underlying operating system (and often utilizing the operating systems' file systems as intermediates for storage layout), 
+storage properties and configuration setting are extremely important for the efficient operation of the DBMS, and thus are closely 
+maintained by database administrators. A DBMS, while in operation, always has its database residing in several types of storage 
+(e.g., memory and external storage). The database data and the additional needed information, possibly in very large amounts, are 
+coded into bits. Data typically reside in the storage in structures that look completely different from the way the data look in 
+the conceptual and external levels, but in ways that attempt to optimize (the best possible) these levels' reconstruction when 
+needed by users and programs, as well as for computing additional types of needed information from the data (e.g., when querying 
+the database).
+
+Database security deals with all various aspects of protecting the database content, its owners, and its users. It ranges from 
+protection from intentional unauthorized database uses to unintentional database accesses by unauthorized entities (e.g., a person 
+or a computer program).
+
+Database access control deals with controlling who (a person or a certain computer program) is allowed to access what information 
+in the database. The information may comprise specific database objects (e.g., record types, specific records, data structures), 
+certain computations over certain objects (e.g., query types, or specific queries), or utilizing specific access paths to the 
+former (e.g., using specific indexes or other data structures to access information). Database access controls are set by special 
+authorized (by the database owner) personnel that uses dedicated protected security DBMS interfaces.
+
+This may be managed directly on an individual basis, or by the assignment of individuals and privileges to groups, or (in the most 
+elaborate models) through the assignment of individuals and groups to roles which are then granted entitlements. Data security 
+prevents unauthorized users from viewing or updating the database. Using passwords, users are allowed access to the entire database 
+or subsets of it called "subschemas". For example, an employee database can contain all the data about an individual employee, but 
+one group of users may be authorized to view only payroll data, while others are allowed access to only work history and medical 
+data. If the DBMS provides a way to interactively enter and update the database, as well as interrogate it, this capability allows 
+for managing personal databases.
+
+Data security in general deals with protecting specific chunks of data, both physically (i.e., from corruption, or destruction, or 
+removal; e.g., see physical security), or the interpretation of them, or parts of them to meaningful information (e.g., by looking
+at the strings of bits that they comprise, concluding specific valid credit-card numbers; e.g., see data encryption).
+
+Change and access logging records who accessed which attributes, what was changed, and when it was changed. Logging services allow 
+for a forensic database audit later by keeping a record of access occurrences and changes. Sometimes application-level code is used 
+to record changes rather than leaving this to the database. Monitoring can be set up to attempt to detect security breaches.
+
+A database built with one DBMS is not portable to another DBMS (i.e., the other DBMS cannot run it). However, in some situations, 
+it is desirable to move, migrate a database from one DBMS to another. The reasons are primarily economical (different DBMSs may 
+have different total costs of ownership or TCOs), functional, and operational (different DBMSs may have different capabilities). 
+The migration involves the database's transformation from one DBMS type to another. The transformation should maintain 
+(if possible) the database related application (i.e., all related application programs) intact. Thus, the database's conceptual and 
+external architectural levels should be maintained in the transformation. It may be desired that also some aspects of the 
+architecture internal level are maintained. A complex or large database migration may be a complicated and costly (one-time) 
+project by itself, which should be factored into the decision to migrate. This in spite of the fact that tools may exist to help 
+migration between specific DBMSs. Typically, a DBMS vendor provides tools to help importing databases from other popular DBMSs.
+
+A typical AI perceives its environment and takes actions that maximize its chance of successfully achieving its goals.[1] An AI's 
+intended goal function can be simple ("1 if the AI wins a game of Go, 0 otherwise") or complex ("Do actions mathematically similar 
+to the actions that got you rewards in the past"). Goals can be explicitly defined, or can be induced. If the AI is programmed 
+for "reinforcement learning", goals can be implicitly induced by rewarding some types of behavior and punishing others.[a] 
+Alternatively, an evolutionary system can induce goals by using a "fitness function" to mutate and preferentially replicate 
+high-scoring AI systems; this is similar to how animals evolved to innately desire certain goals such as finding food, or 
+how dogs can be bred via artificial selection to possess desired traits.[48] Some AI systems, such as nearest-neighbor, instead 
+reason by analogy; these systems are not generally given goals, except to the degree that goals are somehow implicit in their 
+training data.[49] Such systems can still be benchmarked if the non-goal system is framed as a system whose "goal" is to 
+successfully accomplish its narrow classification task
+
+Many AI algorithms are capable of learning from data; they can enhance themselves by learning new heuristics (strategies, or "rules 
+of thumb", that have worked well in the past), or can themselves write other algorithms. Some of the "learners" described below, 
+including Bayesian networks, decision trees, and nearest-neighbor, could theoretically, if given infinite data, time, and memory, 
+learn to approximate any function, including whatever combination of mathematical functions would best describe the entire world. 
+These learners could therefore, in theory, derive all possible knowledge, by considering every possible hypothesis and matching it 
+against the data. In practice, it is almost never possible to consider every possibility, because of the phenomenon of 
+"combinatorial explosion", where the amount of time needed to solve a problem grows exponentially. Much of AI research involves 
+figuring out how to identify and avoid considering broad swaths of possibililities that are unlikely to be fruitful.[52][53] For 
+example, when viewing a map and looking for the shortest driving route from Denver to New York in the East, one can in most cases 
+skip looking at any path through San Francisco or other areas far to the West; thus, an AI wielding an pathfinding algorithm like 
+A* can avoid the combinatorial explosion that would ensue if every possible route had to be ponderously considered in turn.[54]
+
+The earliest (and easiest to understand) approach to AI was symbolism (such as formal logic): "If an otherwise healthy adult has a 
+fever, then they may have influenza". A second, more general, approach is Bayesian inference: "If the current patient has a fever,
+adjust the probability they have influenza in such-and-such way". The third major approach, extremely popular in routine business 
+AI applications, is analogizers such as SVM and nearest-neighbor: "After examining the records of known past patients whose 
+temperature, symptoms, age, and other factors mostly match the current patient, X% of those patients turned out to have influenza".
+A fourth approach is harder to intuitively understand, but is inspired by how the brain's machinery works: the neural network 
+approach uses artificial "neurons" that can learn by comparing itself to the desired output and altering the strengths of the 
+connections between its internal neurons to "reinforce" connections that seemed to be useful. These four main approaches can 
+overlap with each other and with evolutionary systems; for example, neural nets can learn to make inferences, to generalize, and to 
+make analogies. Some systems implicitly or explicitly use multiple of these approaches, alongside many other AI and non-AI 
+algorithms; the best approach is often different depending on the problem.[55][56]
+
+Learning algorithms work on the basis that strategies, algorithms, and inferences that worked well in the past are likely to 
+continue working well in the future. These inferences can be obvious, such as "since the sun rose every morning for the last 
+10,000 days, it will probably rise tomorrow morning as well". They can be nuanced, such as "X% of families have geographically 
+separate species with color variants, so there is an Y% chance that undiscovered black swans exist". Learners also work on the 
+basis of "Occam's razor": The simplest theory that explains the data is the likeliest. Therefore, to be successful, a learner 
+must be designed such that it prefers simpler theories to complex theories, except in cases where the complex theory is proven 
+substantially better. Settling on a bad, overly complex theory gerrymandered to fit all the past training data is known as 
+overfitting. Many systems attempt to reduce overfitting by rewarding a theory in accordance with how well it fits the data, but 
+penalizing the theory in accordance with how complex the theory is.[57] Besides classic overfitting, learners can also disappoint 
+by "learning the wrong lesson". A toy example is that an image classifier trained only on pictures of brown horses and black cats 
+might conclude that all brown patches are likely to be horses.[58] A real-world example is that, unlike humans, current image 
+classifiers don't determine the spatial relationship between components of the picture; instead, they learn abstract patterns 
+of pixels that humans are oblivious to, but that linearly correlate with images of certain types of real objects. Faintly 
+superimposing such a pattern on a legitimate image results in an "adversarial" image that the system misclassifies.
+
+Compared with humans, existing AI lacks several features of human "commonsense reasoning"; most notably, humans have powerful 
+mechanisms for reasoning about "naïve physics" such as space, time, and physical interactions. This enables even young children 
+to easily make inferences like "If I roll this pen off a table, it will fall on the floor". Humans also have a powerful mechanism 
+of "folk psychology" that helps them to interpret natural-language sentences such as "The city councilmen refused the demonstrators 
+a permit because they advocated violence". (A generic AI has difficulty inferring whether the councilmen or the demonstrators are 
+the ones alleged to be advocating violence.)[64][65][66] This lack of "common knowledge" means that AI often makes different 
+mistakes than humans make, in ways that can seem incomprehensible. For example, existing self-driving cars cannot reason about the 
+location nor the intentions of pedestrians in the exact way that humans do, and instead must use non-human modes of reasoning to 
+avoid accidents.
+
+Early researchers developed algorithms that imitated step-by-step reasoning that humans use when they solve puzzles or make logical 
+deductions.[70] By the late 1980s and 1990s, AI research had developed methods for dealing with uncertain or incomplete information,
+employing concepts from probability and economics.[71]
+
+These algorithms proved to be insufficient for solving large reasoning problems, because they experienced a "combinatorial 
+explosion": they became exponentially slower as the problems grew larger.[52] In fact, even humans rarely use the step-by-step 
+deduction that early AI research was able to model. They solve most of their problems using fast, intuitive judgements.[72] 
+Modern statistical approaches to AI (e.g. neural networks) mimic this human ability to make a quick guess based on experience, 
+solving many problems as people do. However, they are not capable of step-by-step deduction.
+
+Knowledge representation[73] and knowledge engineering[74] are central to AI research. Many of the problems machines are expected 
+to solve will require extensive knowledge about the world. Among the things that AI needs to represent are: objects, properties, 
+categories and relations between objects;[75] situations, events, states and time;[76] causes and effects;[77] knowledge about 
+knowledge (what we know about what other people know);[78] and many other, less well researched domains. A representation of "what 
+exists" is an ontology: the set of objects, relations, concepts, and properties formally described so that software agents can 
+interpret them. The semantics of these are captured as description logic concepts, roles, and individuals, and typically 
+implemented as classes, properties, and individuals in the Web Ontology Language.[79] The most general ontologies are called upper 
+ontologies, which attempt to provide a foundation for all other knowledge[80] by acting as mediators between domain ontologies that 
+cover specific knowledge about a particular knowledge domain (field of interest or area of concern). Such formal knowledge 
+representations are suitable for content-based indexing and retrieval, scene interpretation, clinical decision support, knowledge 
+discovery via automated reasoning (inferring new statements based on explicitly stated knowledge), etc. Video events are often 
+represented as SWRL rules, which can be used, among others, to automatically generate subtitles for constrained videos.
+
+Many of the things people know take the form of "working assumptions". For example, if a bird comes up in conversation, people 
+typically picture an animal that is fist sized, sings, and flies. None of these things are true about all birds. John McCarthy 
+identified this problem in 1969[82] as the qualification problem: for any commonsense rule that AI researchers care to represent, 
+there tend to be a huge number of exceptions. Almost nothing is simply true or false in the way that abstract logic requires. AI 
+research has explored a number of solutions to this problem.
+
+Machine learning, a fundamental concept of AI research since the field's inception,[93] is the study of computer algorithms that 
+improve automatically through experience.[94][95]
+
+Unsupervised learning is the ability to find patterns in a stream of input. Supervised learning includes both classification and 
+numerical regression. Classification is used to determine what category something belongs in, after seeing a number of examples of 
+things from several categories. Regression is the attempt to produce a function that describes the relationship between inputs and 
+outputs and predicts how the outputs should change as the inputs change. In reinforcement learning[96] the agent is rewarded for 
+good responses and punished for bad ones. The agent uses this sequence of rewards and punishments to form a strategy for operating 
+in its problem space. These three types of learning can be analyzed in terms of decision theory, using concepts like utility. The 
+mathematical analysis of machine learning algorithms and their performance is a branch of theoretical computer science known as 
+computational learning theory.
+
+Within developmental robotics, developmental learning approaches are elaborated upon to allow robots to accumulate repertoires of 
+novel skills through autonomous self-exploration, social interaction with human teachers, and the use of guidance mechanisms 
+(active learning, maturation, motor synergies, etc.)
+
+Natural language processing[101] gives machines the ability to read and understand human language. A sufficiently powerful natural 
+language processing system would enable natural language user interfaces and the acquisition of knowledge directly from 
+human-written sources, such as newswire texts. Some straightforward applications of natural language processing include information 
+retrieval, text mining, question answering[102] and machine translation.
+
+Affective computing is the study and development of systems that can recognize, interpret, process, and simulate human affects.
+[113][114] It is an interdisciplinary field spanning computer sciences, psychology, and cognitive science.[115] While the origins 
+of the field may be traced as far back as the early philosophical inquiries into emotion,[116] the more modern branch of computer 
+science originated with Rosalind Picard's 1995 paper[117] on "affective computing".[118][119] A motivation for the research is the 
+ability to simulate empathy, where the machine would be able to interpret human emotions and adapts its behavior to give an 
+appropriate response to those emotions.
+
+Emotion and social skills[120] are important to an intelligent agent for two reasons. First, being able to predict the actions of 
+others by understanding their motives and emotional states allow an agent to make better decisions. Concepts such as game theory, 
+decision theory, necessitate that an agent be able to detect and model human emotions. Second, in an effort to facilitate 
+human–computer interaction, an intelligent machine may want to display emotions (even if it does not experience those emotions 
+itself) to appear more sensitive to the emotional dynamics of human interaction
+
+There is no established unifying theory or paradigm that guides AI research. Researchers disagree about many issues.[124] A few of 
+the most long standing questions that have remained unanswered are these: should artificial intelligence simulate natural 
+intelligence by studying psychology or neurobiology? Or is human biology as irrelevant to AI research as bird biology is to 
+aeronautical engineering?[14] Can intelligent behavior be described using simple, elegant principles (such as logic or optimization)
+? Or does it necessarily require solving a large number of completely unrelated problems?[15] Can intelligence be reproduced using 
+high-level symbols, similar to words and ideas? Or does it require "sub-symbolic" processing?[16] John Haugeland, who coined the 
+term GOFAI (Good Old-Fashioned Artificial Intelligence), also proposed that AI should more properly be referred to as synthetic 
+intelligence,[125] a term which has since been adopted by some non-GOFAI researchers.[126][127]
+
+Stuart Shapiro divides AI research into three approaches, which he calls computational psychology, computational philosophy, and 
+computer science. Computational psychology is used to make computer programs that mimic human behavior.[128] Computational 
+philosophy, is used to develop an adaptive, free-flowing computer mind.[128] Implementing computer science serves the goal of 
+creating computers that can perform tasks that only people could previously accomplish.[128] Together, the humanesque behavior, 
+mind, and actions make up artificial intelligence
+
+Many problems in AI can be solved in theory by intelligently searching through many possible solutions:[148] Reasoning can be 
+reduced to performing a search. For example, logical proof can be viewed as searching for a path that leads from premises to 
+conclusions, where each step is the application of an inference rule.[149] Planning algorithms search through trees of goals and 
+subgoals, attempting to find a path to a target goal, a process called means-ends analysis.[150] Robotics algorithms for moving 
+limbs and grasping objects use local searches in configuration space.[109] Many learning algorithms use search algorithms based on 
+optimization.
+
+Simple exhaustive searches[151] are rarely sufficient for most real world problems: the search space (the number of places to 
+search) quickly grows to astronomical numbers. The result is a search that is too slow or never completes. The solution, for many 
+problems, is to use "heuristics" or "rules of thumb" that prioritize choices in favor of those that are more likely to reach a 
+goal, and to do so in a shorter number of steps. In some search methodologies heuristics can also serve to entirely eliminate some 
+choices that are unlikely to lead to a goal (called "pruning the search tree"). Heuristics supply the program with a "best guess" 
+for the path on which the solution lies.[152] Heuristics limit the search for solutions into a smaller sample size.[110]
+
+A very different kind of search came to prominence in the 1990s, based on the mathematical theory of optimization. For many 
+problems, it is possible to begin the search with some form of a guess and then refine the guess incrementally until no more 
+refinements can be made. These algorithms can be visualized as blind hill climbing: we begin the search at a random point on the 
+landscape, and then, by jumps or steps, we keep moving our guess uphill, until we reach the top. Other optimization algorithms are 
+simulated annealing, beam search and random optimization.[153]
+
+Evolutionary computation uses a form of optimization search. For example, they may begin with a population of organisms (the 
+guesses) and then allow them to mutate and recombine, selecting only the fittest to survive each generation (refining the guesses). 
+Forms of evolutionary computation include swarm intelligence algorithms (such as ant colony or particle swarm optimization)[154] 
+and evolutionary algorithms (such as genetic algorithms, gene expression programming, and genetic programming).
+
+In 1950, Alan Turing proposed a general procedure to test the intelligence of an agent now known as the Turing test. This procedure 
+allows almost all the major problems of artificial intelligence to be tested. However, it is a very difficult challenge and at 
+present all agents fail.[232]
+
+Artificial intelligence can also be evaluated on specific problems such as small problems in chemistry, hand-writing recognition 
+and game-playing. Such tests have been termed subject matter expert Turing tests. Smaller problems provide more achievable goals 
+and there are an ever-increasing number of positive results.[citation needed]
+
+For example, performance at draughts (i.e. checkers) is optimal,[citation needed] performance at chess is high-human and nearing 
+super-human (see computer chess: computers versus human) and performance at many everyday tasks (such as recognizing a face or 
+crossing a room without bumping into something) is sub-human.
+
+A quite different approach measures machine intelligence through tests which are developed from mathematical definitions of 
+intelligence. Examples of these kinds of tests start in the late nineties devising intelligence tests using notions from 
+Kolmogorov complexity and data compression.[233] Two major advantages of mathematical definitions are their applicability to 
+nonhuman intelligences and their absence of a requirement for human testers.
+
+A derivative of the Turing test is the Completely Automated Public Turing test to tell Computers and Humans Apart (CAPTCHA). 
+As the name implies, this helps to determine that a user is an actual person and not a computer posing as a human. In contrast 
+to the standard Turing test, CAPTCHA is administered by a machine and targeted to a human as opposed to being administered by a 
+human and targeted to a machine. A computer asks a user to complete a simple test then generates a grade for that test. Computers 
+are unable to solve the problem, so correct solutions are deemed to be the result of a person taking the test. A common type of 
+CAPTCHA is the test that requires the typing of distorted letters, numbers or symbols that appear in an image undecipherable by a 
+computer.
+
+Object-oriented programming uses objects, but not all of the associated techniques and structures are supported directly in 
+languages that claim to support OOP. The features listed below are, however, common among languages considered strongly class- 
+and object-oriented (or multi-paradigm with OOP support), with notable exceptions mentioned.
+
+Variables that can store information formatted in a small number of built-in data types like integers and alphanumeric characters. 
+This may include data structures like strings, lists, and hash tables that are either built-in or result from combining variables 
+using memory pointers.
+
+Procedures – also known as functions, methods, routines, or subroutines – that take input, generate output, and manipulate data. 
+Modern languages include structured programming constructs like loops and conditionals.
+
+Modular programming support provides the ability to group procedures into files and modules for organizational purposes. Modules 
+are namespaced so identifiers in one module will not be accidentally confused with a procedure or variable sharing the same name 
+in another file or module.
+
+Objects sometimes correspond to things found in the real world. For example, a graphics program may have objects such as "circle", 
+"square", "menu". An online shopping system might have objects such as "shopping cart", "customer", and "product".[7] Sometimes 
+objects represent more abstract entities, like an object that represents an open file, or an object that provides the service of 
+translating measurements from U.S. customary to metric.
+
+n class-based languages the classes are defined beforehand and the objects are instantiated based on the classes. If two objects 
+apple and orange are instantiated from the class Fruit, they are inherently fruits and it is guaranteed that you may handle them 
+in the same way; e.g. a programmer can expect the existence of the same attributes such as color or sugar content or is ripe.
+
+In prototype-based languages the objects are the primary entities. No classes even exist. The prototype of an object is just 
+another object to which the object is linked. Every object has one prototype link (and only one). New objects can be created based 
+on already existing objects chosen as their prototype. You may call two different objects apple and orange a fruit, if the object 
+fruit exists, and both apple and orange have fruit as their prototype. The idea of the fruit class doesn't exist explicitly, but 
+as the equivalence class of the objects sharing the same prototype. The attributes and methods of the prototype are delegated to 
+all the objects of the equivalence class defined by this prototype. The attributes and methods owned individually by the object may 
+not be shared by other objects of the same equivalence class; e.g. the attributes sugar content may be unexpectedly not present in 
+apple. Only single inheritance can be implemented through the prototype.
+
+Encapsulation is an object-oriented programming concept that binds together the data and functions that manipulate the data, and 
+that keeps both safe from outside interference and misuse. Data encapsulation led to the important OOP concept of data hiding.
+
+If a class does not allow calling code to access internal object data and permits access through methods only, this is a strong 
+form of abstraction or information hiding known as encapsulation. Some languages (Java, for example) let classes enforce access 
+restrictions explicitly, for example denoting internal data with the private keyword and designating methods intended for use by 
+code outside the class with the public keyword. Methods may also be designed public, private, or intermediate levels such as 
+protected (which allows access from the same class and its subclasses, but not objects of a different class). In other languages 
+(like Python) this is enforced only by convention (for example, private methods may have names that start with an underscore). 
+Encapsulation prevents external code from being concerned with the internal workings of an object. This facilitates code 
+refactoring, for example allowing the author of the class to change how objects of that class represent their data internally 
+without changing any external code (as long as "public" method calls work the same way). It also encourages programmers to put all 
+the code that is concerned with a certain set of data in the same class, which organizes it for easy comprehension by other 
+programmers. Encapsulation is a technique that encourages decoupling.
+
+Objects can contain other objects in their instance variables; this is known as object composition. For example, an object in the 
+Employee class might contain (point to) an object in the Address class, in addition to its own instance variables like "first_name" 
+and "position". Object composition is used to represent "has-a" relationships: every employee has an address, so every Employee 
+object has a place to store an Address object.
+
+Languages that support classes almost always support inheritance. This allows classes to be arranged in a hierarchy that represents 
+"is-a-type-of" relationships. For example, class Employee might inherit from class Person. All the data and methods available to 
+the parent class also appear in the child class with the same names. For example, class Person might define variables "first_name" 
+and "last_name" with method "make_full_name()". These will also be available in class Employee, which might add the variables 
+"position" and "salary". This technique allows easy re-use of the same procedures and data definitions, in addition to potentially 
+mirroring real-world relationships in an intuitive way. Rather than utilizing database tables and programming subroutines, the 
+developer utilizes objects the user may be more familiar with: objects from their application domain.[9]
+
+Subclasses can override the methods defined by superclasses. Multiple inheritance is allowed in some languages, though this can 
+make resolving overrides complicated. Some languages have special support for mixins, though in any language with multiple 
+inheritance, a mixin is simply a class that does not represent an is-a-type-of relationship. Mixins are typically used to add the 
+same methods to multiple classes. For example, class UnicodeConversionMixin might provide a method unicode_to_ascii() when included 
+in class FileReader and class WebPageScraper, which don't share a common parent.
+
+Abstract classes cannot be instantiated into objects; they exist only for the purpose of inheritance into other "concrete" classes 
+which can be instantiated. In Java, the final keyword can be used to prevent a class from being subclassed.
+
+The doctrine of composition over inheritance advocates implementing has-a relationships using composition instead of inheritance. 
+For example, instead of inheriting from class Person, class Employee could give each Employee object an internal Person object, 
+which it then has the opportunity to hide from external code even if class Person has many public attributes or methods. Some 
+languages, like Go do not support inheritance at all.
+
+The "open/closed principle" advocates that classes and functions "should be open for extension, but closed for modification".
+Delegation is another language feature that can be used as an alternative to inheritance.
+
+The messages that flow between computers to request services in a client-server environment can be designed as the linearizations 
+of objects defined by class objects known to both the client and the server. For example, a simple linearized object would consist 
+of a length field, a code point identifying the class, and a data value. A more complex example would be a command consisting of 
+the length and code point of the command and values consisting of linearized objects representing the command's parameters. Each 
+such command must be directed by the server to an object whose class (or superclass) recognizes the command and is able to provide 
+the requested service. Clients and servers are best modeled as complex object-oriented structures.
+
+It is intuitive to assume that inheritance creates a semantic "is a" relationship, and thus to infer that objects instantiated from 
+subclasses can always be safely used instead of those instantiated from the superclass. This intuition is unfortunately false in 
+most OOP languages, in particular in all those that allow mutable objects. Subtype polymorphism as enforced by the type checker in 
+OOP languages (with mutable objects) cannot guarantee behavioral subtyping in any context. Behavioral subtyping is undecidable in 
+general, so it cannot be implemented by a program (compiler). Class or object hierarchies must be carefully designed, considering 
+possible incorrect uses that cannot be detected syntactically. This issue is known as the Liskov substitution principle.
+
+OOP can be used to associate real-world objects and processes with digital counterparts. However, not everyone agrees that OOP 
+facilitates direct real-world mapping (see Criticism section) or that real-world mapping is even a worthy goal; Bertrand Meyer 
+argues in Object-Oriented Software Construction[29] that a program is not a model of the world but a model of some part of the 
+world; "Reality is a cousin twice removed". At the same time, some principal limitations of OOP have been noted.[30] For example, 
+the circle-ellipse problem is difficult to handle using OOP's concept of inheritance.
+
+However, Niklaus Wirth (who popularized the adage now known as Wirth's law: "Software is getting slower more rapidly than hardware 
+becomes faster") said of OOP in his paper, "Good Ideas through the Looking Glass", "This paradigm closely reflects the structure of 
+systems 'in the real world', and it is therefore well suited to model complex systems with complex behaviours"[31] (contrast KISS 
+principle).
+
+Steve Yegge and others noted that natural languages lack the OOP approach of strictly prioritizing things (objects/nouns) before 
+actions (methods/verbs).[32] This problem may cause OOP to suffer more convoluted solutions than procedural programming
+
+Christopher Strachey[4] chose the term ad hoc polymorphism to refer to polymorphic functions that can be applied to arguments of 
+different types, but that behave differently depending on the type of the argument to which they are applied (also known as 
+function overloading or operator overloading). The term "ad hoc" in this context is not intended to be pejorative; it refers simply 
+to the fact that this type of polymorphism is not a fundamental feature of the type system. In the Pascal / Delphi example below, 
+the Add functions seem to work generically over various types when looking at the invocations, but are considered to be two entirely 
+distinct functions by the compiler for all intents and purposes
+
+In dynamically typed languages the situation can be more complex as the correct function that needs to be invoked might only be 
+determinable at run time.
+Implicit type conversion has also been defined as a form of polymorphism, referred to as "coercion polymorphism".
+
+Parametric polymorphism allows a function or a data type to be written generically, so that it can handle values uniformly without depending on their type.[6] Parametric polymorphism is a way to make a language more expressive while still maintaining full static type-safety.
+
+The concept of parametric polymorphism applies to both data types and functions. A function that can evaluate to or be applied to 
+values of different types is known as a polymorphic function. A data type that can appear to be of a generalized type (e.g. a list 
+with elements of arbitrary type) is designated polymorphic data type like the generalized type from which such specializations are 
+made.
+Parametric polymorphism is ubiquitous in functional programming, where it is often simply referred to as "polymorphism". 
+
+John C. Reynolds (and later Jean-Yves Girard) formally developed this notion of polymorphism as an extension to lambda calculus 
+(called the polymorphic lambda calculus or System F). Any parametrically polymorphic function is necessarily restricted in what it 
+can do, working on the shape of the data instead of its value, leading to the concept of parametricity.
+
+Some languages employ the idea of subtyping (also called subtype polymorphism or inclusion polymorphism) to restrict the range of 
+types that can be used in a particular case of polymorphism. In these languages, subtyping allows a function to be written to take 
+an object of a certain type T, but also work correctly, if passed an object that belongs to a type S that is a subtype of T 
+(according to the Liskov substitution principle). This type relation is sometimes written S <: T. Conversely, T is said to be a 
+supertype of S—written T :> S. 
+
+In another example, if Number, Rational, and Integer are types such that Number :> Rational and Number :> Integer, a function 
+written to take a Number will work equally well when passed an Integer or Rational as when passed a Number. The actual type of the 
+object can be hidden from clients into a black box, and accessed via object identity. In fact, if the Number type is abstract, it 
+may not even be possible to get your hands on an object whose most-derived type is Number (see abstract data type, abstract class). 
+This particular kind of type hierarchy is known—especially in the context of the Scheme programming language—as a numerical tower, 
+and usually contains many more types.
+
+Object-oriented programming languages offer subtype polymorphism using subclassing (also known as inheritance). In typical 
+implementations, each class contains what is called a virtual table—a table of functions that implement the polymorphic part of the 
+class interface—and each object contains a pointer to the "vtable" of its class, which is then consulted whenever a polymorphic 
+method is called.
+
+Row polymorphism is a similar, but distinct concept from subtyping. It deals with structural types. It allows the usage of all 
+values whose types have certain properties, without losing the remaining type information.
+
+Polymorphism can be distinguished by when the implementation is selected: statically (at compile time) or dynamically (at run time, 
+typically via a virtual function). This is known respectively as static dispatch and dynamic dispatch, and the corresponding forms 
+of polymorphism are accordingly called static polymorphism and dynamic polymorphism.
+
+Static polymorphism executes faster, because there is no dynamic dispatch overhead, but requires additional compiler support. 
+Further, static polymorphism allows greater static analysis by compilers (notably for optimization), source code analysis tools, and
+human readers (programmers). Dynamic polymorphism is more flexible but slower—for example, dynamic polymorphism allows duck typing,
+and a dynamically linked library may operate on objects without knowing their full type.
+
+Static polymorphism typically occurs in ad hoc polymorphism and parametric polymorphism, whereas dynamic polymorphism is usual for 
+subtype polymorphism. However, it is possible to achieve static polymorphism with subtyping through more sophisticated use of 
+template metaprogramming, namely the curiously recurring template pattern.
+
+A number of concepts and paradigms are specific to functional programming, and generally foreign to imperative programming 
+(including object-oriented programming). However, programming languages are often hybrids of several programming paradigms, so 
+programmers using "mostly imperative" languages may have utilized some of these concepts.
+
+Higher-order functions are closely related to first-class functions in that higher-order functions and first-class functions both 
+allow functions as arguments and results of other functions. The distinction between the two is subtle: "higher-order" describes a 
+mathematical concept of functions that operate on other functions, while "first-class" is a computer science term that describes 
+programming language entities that have no restriction on their use (thus first-class functions can appear anywhere in the program 
+that other first-class entities like numbers can, including as arguments to other functions and as their return values).
+
+Higher-order functions enable partial application or currying, a technique that applies a function to its arguments one at a time, 
+with each application returning a new function that accepts the next argument. This lets a programmer succinctly express, for 
+example, the successor function as the addition operator partially applied to the natural number one.
+
+Pure functions (or expressions) have no side effects (memory or I/O). This means that pure functions have several useful properties, 
+many of which can be used to optimize the code
+
+If the result of a pure expression is not used, it can be removed without affecting other expressions.
+If a pure function is called with arguments that cause no side-effects, the result is constant with respect to that argument list 
+(sometimes called referential transparency), i.e., if calling the pure function again with the same arguments returns the same 
+result. (This can enable caching optimizations such as memoization.)
+
+While most compilers for imperative programming languages detect pure functions and perform common-subexpression elimination for 
+pure function calls, they cannot always do this for pre-compiled libraries, which generally do not expose this information, thus 
+preventing optimizations that involve those external functions. Some compilers, such as gcc, add extra keywords for a programmer to 
+explicitly mark external functions as pure, to enable such optimizations. Fortran 95 also lets functions be designated pure.
+
+Iteration (looping) in functional languages is usually accomplished via recursion. Recursive functions invoke themselves, letting 
+an operation be repeated until it reaches the base case. Though some recursion requires maintaining a stack, tail recursion can be 
+recognized and optimized by a compiler into the same code used to implement iteration in imperative languages. The Scheme language 
+standard requires implementations to recognize and optimize tail recursion. Tail recursion optimization can be implemented by 
+transforming the program into continuation passing style during compiling, among other approaches.
+
+Common patterns of recursion can be factored out using higher order functions, with catamorphisms and anamorphisms (or "folds" and 
+"unfolds") being the most obvious examples. Such higher order functions play a role analogous to built-in control structures such 
+as loops in imperative languages.
+
+Functional languages can be categorized by whether they use strict (eager) or non-strict (lazy) evaluation, concepts that refer to 
+how function arguments are processed when an expression is being evaluated. The technical difference is in the denotational 
+semantics of expressions containing failing or divergent computations. Under strict evaluation, the evaluation of any term 
+containing a failing subterm fails.
+
+Most general purpose functional programming languages allow unrestricted recursion and are Turing complete, which makes the halting 
+problem undecidable, can cause unsoundness of equational reasoning, and generally requires the introduction of inconsistency into 
+the logic expressed by the language's type system. Some special purpose languages such as Coq allow only well-founded recursion and 
+are strongly normalizing (nonterminating computations can be expressed only with infinite streams of values called codata). As a 
+consequence, these languages fail to be Turing complete and expressing certain functions in them is impossible, but they can still 
+express a wide class of interesting computations while avoiding the problems introduced by unrestricted recursion. Functional 
+programming limited to well-founded recursion with a few other constraints is called total functional programming.[41]
+
+Purely functional data structures are often represented in a different way than their imperative counterparts.[60] For example, the 
+array with constant access and update times is a basic component of most imperative languages, and many imperative data-structures, 
+such as the hash table and binary heap, are based on arrays. Arrays can be replaced by maps or random access lists, which admit 
+purely functional implementation, but have logarithmic access and update times. Therefore, purely functional data structures can 
+be used in non-functional languages, but they may not be the most efficient tool, especially if persistence is not required.
+
+There are tasks (for example, maintaining a bank account balance) that often seem most naturally implemented with state. Pure 
+functional programming performs these tasks, and I/O tasks such as accepting user input and printing to the screen, in a different 
+way.
+
+The pure functional programming language Haskell implements them using monads, derived from category theory. Monads offer a way to 
+abstract certain types of computational patterns, including (but not limited to) modeling of computations with mutable state (and 
+other side effects such as I/O) in an imperative manner without losing purity. While existing monads may be easy to apply in a 
+program, given appropriate templates and examples, many students find them difficult to understand conceptually, e.g., when asked 
+to define new monads (which is sometimes needed for certain types of libraries).[61]
+
+Another way that functional languages can simulate state is by passing around a data structure that represents the current state 
+as a parameter to function calls. On each function call, a copy of this data structure is created with whatever differences are 
+the result of the function. This is referred to as 'state-passing style'.
+
+Impure functional languages usually include a more direct method of managing mutable state. Clojure, for example, uses managed 
+references that can be updated by applying pure functions to the current state. This kind of approach enables mutability while 
+still promoting the use of pure functions as the preferred way to express computations.
+
+Alternative methods such as Hoare logic and uniqueness have been developed to track side effects in programs. Some modern research 
+languages use effect systems to make the presence of side effects explicit.
+
+Functional programming languages are typically less efficient in their use of CPU and memory than imperative languages such as C 
+and Pascal.[62] This is related to the fact that some mutable data structures like arrays have a very straightforward 
+implementation using present hardware (which is a highly evolved Turing machine). Flat arrays may be accessed very efficiently with 
+deeply pipelined CPUs, prefetched efficiently through caches (with no complex pointer chasing), or handled with SIMD instructions. 
+It is also not easy to create their equally efficient general-purpose immutable counterparts. For purely functional languages, the 
+worst-case slowdown is logarithmic in the number of memory cells used, because mutable memory can be represented by a purely 
+functional data structure with logarithmic access time (such as a balanced tree).[63] However, such slowdowns are not universal. 
+For programs that perform intensive numerical computations, functional languages such as OCaml and Clean are only slightly slower 
+than C according to The Computer Language Benchmarks Game.[64] For programs that handle large matrices and multidimensional 
+databases, array functional languages (such as J and K) were designed with speed optimizations.
+
+Immutability of data can in many cases lead to execution efficiency by allowing the compiler to make assumptions that are unsafe 
+in an imperative language, thus increasing opportunities for inline expansion.[65]
+
+Lazy evaluation may also speed up the program, even asymptotically, whereas it may slow it down at most by a constant factor 
+(however, it may introduce memory leaks if used improperly). Launchbury 1993[44] discusses theoretical issues related to memory 
+leaks from lazy evaluation, and O'Sullivan et al. 2008[66] give some practical advice for analyzing and fixing them. However, 
+the most general implementations of lazy evaluation making extensive use of dereferenced code and data perform poorly on modern 
+processors with deep pipelines and multi-level caches (where a cache miss may cost hundreds of cycles)
+

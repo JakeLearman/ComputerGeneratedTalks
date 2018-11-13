@@ -1,0 +1,319 @@
+Photo editing and image stylization has become increasingly popular, especially on mobile
+devices. Filtering and stylization apps allow users to transform their photos using the
+available image processing operations. Most commonly, the focus of image editing and
+stylization applications is put on the result image as a creative good, not the image
+operation itself. Furthermore, the operations are usually only customizable within narrow
+bounds. For instance, the popular photo editing app VSCO [4] only offers a limited
+amount of effect presets in addition to common global photo editing parameters such
+as contrast or saturation. The possibility of more detailed effect parameterization by
+non-expert users, e.g., in casual creativity apps on mobile devices, was recently explored
+by Semmo et al. [36]. Still, even in Semmos work, local and global changes to effect
+parameters are only temporary and serve the greater purpose of achieving an aesthetic
+processed image by fostering a creative image editing process.
+Snapchat, a highly popular image filtering smartphone app, recently started to
+experiment with user-generated filters [27]. The filters are limited to transparency-based
+overlay of images and text. An extension of this idea to complex, GPU-based image
+processing operations, such as a watercolor filter as proposed by Bousseau et al. [1]
+and Wang et al. [37], is possible: This would include an ecosystem that allows the
+on-device creation and modification of complex image processing operations and the
+sharing and exchange of these effects via an online community platform. Users could
+download existing image processing operations from the online database, adjust them
+to their aesthetic preferences on their mobile or desktop device and upload them back
+into the database. Such a community would enable collaborative creation of a previously
+unexploited creative good - the image processing operation itself. Furthermore, this
+approach has educational value since it introduces novice users to basic computer graphics
+concepts during the on-device creation and modification of image effects using modular
+image processing components as demonstrated by Dürschmid [9].
+
+Building such an ecosystem comes with major challenges. Firstly, GPU-based image
+processing operations are highly platform-dependent. Native computer graphics pipelines
+need to be developed for each device with a different graphics Application Programming
+Interface (API), such as OpenGL. Therefore, in order to be able to execute the same
+effect on different devices with varying computer graphics hardware and graphics APIs,
+it needs to be implemented multiple times. Even then, customizing an image processing
+operation on-device would require changing every possible implementation in order to
+retain platform independence, which is not feasible.
+While on-device modification of image processing operations is non-trivial but feasible
+using an Extensible Markup Language (XML) document format, sharing modified image
+effects to other devices presents an additional challenge. At first, there needs to be a clientserver
+infrastructure which allows to upload and download effects. This architecture will
+need to support multiple use cases: the exploration of available effects and the download
+and the upload of effects.
+Furthermore, complex image stylization effects have a significant total file size (5MB–
+45MB) and naively packaging, versioning and sharing them is inefficient. Additionally,
+typical non-linear image stylization effects often consist of similar pipelines and reuse
+common resources like an extended Difference-of-Gaussian [38] or implementation-agnostic
+textures. Therefore, a separation of the resources into logical units would allow for efficient
+transmission and enable reusability.
+
+In order to solve the aforementioned challenges, this thesis presents the following contributions:
+First, a client-server infrastructure is proposed that allows the exploration,
+the download and the upload of image processing operations. For that, multiple architectural
+styles and technologies are evaluated. Furthermore, a platform-independent
+XML description of image processing operations is proposed that strictly separates
+implementation-agnostic and implementation-dependent parts and extends the existing
+framework described by Semmo et al. [36]. This enables cross-platform execution and
+editing of effects for novice users while still allowing modification of implementation
+details by advanced users. In addition, a segmentation of the document description
+and depended resources into assets and an asset storage concept is proposed. The
+segmentation enables low-level versioning of documents similar to a package manager
+and the efficient transmission of effect resources.
+
+
+Security issues recently become the major issues in this era. For instance, hacking and cracking 
+to gain confidential information of files grow faster and more effective than before. Therefore, 
+applications including open source software such as budget management software will receive side-impact. 
+For an instance, jGnash- an open source budget management software which is based on Java language. 
+The software offers many functionalities to manage budget, and fortune forecasting. With more than
+three hundred thousand downloads, and most of the users are accountant who manage finance in their
+company. By using jGnash, they can manage, and audit the flow of money within the company. They are 
+working in finance department of the company. This department can forecast the fortune or the loss 
+in the future. However, there is a weakness of the security inside jGnash. JGnash store credential 
+data inside its database, and yet the security vulnerability is existing inside jGnash system. JGnash 
+system only provides password security to protect the database, and this kind of protection still 
+vulnerable to the professional cracker. Since there is a problem with the security protection offered
+by jGnash,accountants are worried if the information within the jGnash’s database may leak. JGnash 
+software writes a binary file as its database to store many data. The data inside database might be 
+confidential especially if a company uses this software to manage the finance of the company.
+The database files should be protected to prevent data stealing by the hacker when the company
+ sending the report to the partner company. By sending protected files or in secure format, it
+ can protect the company from bankruptcy even the chance is not one hundred percent. In fact, 
+some companies didn’t protect their files because of limited timeline, the heavy working time, 
+or lack of security knowledge. Ignoring this kind of issue will risk company’s finance or even 
+lifetime, because some files contain confidential information that would be risky to be exposed
+ to public. Since not all of company is not open company which openly announce their fortune each year.
+The unencrypted file is different with the encrypted file; unencrypted file is an ordinary binary file 
+made by the software. Its binary structure is readable by the software, different with encrypted file 
+which its binary structure changed with cryptography’s algorithm, which make it unreadable by the
+ software. The unencrypted file is accessible by its software even if the file is protected by password.
+ Compared with encrypted file, the file is not accessible by any program including its software. Until 
+the decryption is done, the encrypted file’s structure remains altered and protected. Unencrypted file 
+has great risk from data leak by third party.
+
+Cryptography algorithm will help user encrypt his files, there are lots of methods which can be used
+to protect the files, or even convert those kinds of files into more secure format. In order to protect 
+the files, usually the developer of software already provides password locking as the file security. 
+However, that’s not enough to protect the files from the hacker [1], since the hacker can do either 
+trial-error method or brute-force method. The current security weakness in jGnash system is same with 
+simple door lock, which is easy to unlock with its key (the password) and lock pick (brute force method). 
+JGnash uses a password to lock the database without any encryption in the file (similar with locking door).
+ To open database, either the user can use the password (the key) or brute force (lock pick). Because of 
+this, this paper proposes how to enhance the security of jGnash database files with password-based encryption 
+with AES.
+
+The algorithm has great advantages if compared with current security inside jGnash. Its advantages are: 
+resistance against all known attacks, great performance, and the block length of the encryption [2]. 
+Brute force attack is one of capable methods which is able to break simple encryption algorithm. Brute f
+orce attack will try all possibilities of key and forcefully inject the key to the system. Weak encryption
+ which has small key size is breakable by brute force attack. Since AES has at least 128-bit key size, brute 
+force attack will experience difficulty to break the algorithm with great key size. For instance: algorithm 
+with 4-bit key size has 16 possibilities of keys, Brute force will break this quickly since the key is short,
+ and the possibilities are small. AES 128-bit key size has 3.4x108 possibilities. If brute forces try to break
+AES, then 1.02 x 1018 years is needed to break AES with Faster Super Computer (10.51 Pentaflops).
+AES has many advantages compared to another algorithm like Data Encryption Standard and 3DES. AES algorithm is 
+strong against brute force attacks [3]. Another advantages of AES based on performance analysis is faster 
+encryption time and writing speed in disk [4]. In order to encrypt 512KB file, AES only needs 49.03s compared
+ with DES 66.09s (comparison based on entropy). Beside performance, AES only need small memory to implements
+ into jGnash system so it won’t bother another application which runs under the same system [5]. Because of
+ these reasons, Advantage Encryption Standard is decided as algorithm in this project
+
+For decades our society has been experiencing an increasing digitalization
+of almost all of its aspects: business processes, financial
+transactions, governance, online shopping, research in all disciplines,
+medicine, personal communication, transport, and living, and many
+more. Mankind produces and collects unprecedented amounts of
+data that are difficult to apprehend; and at the same time, the ability
+to extract meaning out of it becomes more important and technically
+challenging. A large variety of software applications has emerged
+with that goal—sometimes grouped under the term business intelligence—,
+offering concepts, such as data analytics and reporting, online
+analytical processing (OLAP), data mining, et cetera, and are continuously
+being extended.
+
+This trend is paralleled by technological advances in computing
+hardware. Processing power and storage space have sustained exponential
+growth since their early days half a century ago and promise
+to continue to do so in the future. For a long time, this development
+was completely transparent to software, but now advances often can
+only be achieved by specializing and explicitly exposing more and
+more hardware components. Software can thus benefit from the full
+computational power only if it is conscious about the inner workings
+of the hardware. This means that more and more responsibility is
+shifted to the software level, making software increasingly complex
+and difficult to develop.
+
+To handle the confluence of these two trends, special software has
+been developed as abstraction layer: relational database management systems.
+By providing a logical, structured view of the data, they relieve
+applications from many technical aspects of data management so that
+they can focus on what should be done, while the systems take care
+about how to do it. In particular, it is the task of database management
+systems to process application requests such that the hardware
+is used at its fullest potential. Building database management systems
+is therefore a continuous race of adapting to every new hardware
+generation in order to process faster and faster the ever increasing
+amounts of data.
+
+At the heart of this race lies a set of operators—algorithmic building
+blocks that the system combines to carry out computations upon
+application requests. One of the most important operators is Aggregation.
+It consists in summarizing a collection of records by dividingt hem into groups, 
+each of which is aggregated into a single value. For example, the entries of all
+sold products in the book of a retail chain could be summarized by the total number 
+of items sold by each store.
+
+Virtually all analytical applications require this functionality and a
+typical database system spends a large fraction of its processing time
+with this operator. The goal of the present thesis is to engineer a new
+generation of Aggregation operators that advances database management
+systems in their race to leverage modern hardware.
+
+Building Aggregation operators is challenging for a number of reasons.
+Starting with the aforementioned hardware consciousness, concrete
+challenges are the following: First, it is important that the operators
+reduce costly data movement. In modern database systems
+that keep almost all data in main memory, this concerns vertical data
+movement between the main memory and processor caches, but also
+horizontal data movement between different processing units. Furthermore,
+modern processors can execute certain types of computing
+instructions faster than others, so algorithms should be implemented
+such that they use efficient instruction sequences as often as possible.
+Finally, today’s computers consist of numerous computing units
+running in parallel—as multiple components inside a single chip, as
+several chips inside the same computer, or as several computers clustered
+together. Software can thus only use all compute resources if it
+can split its work into pieces that can be executed in parallel by independent
+processing units and communication between them is kept
+low. In short, to leverage modern hardware, Aggregation operators
+need to be built such that they are cache-efficient, CPU-friendly, highly
+parallelizable, and communication-efficient.
+
+Another group of challenges is related to the desired generality of
+database operators. They should provide good performance independently
+of properties of the input data. For Aggregation, different
+strategies work best with modern hardware depending on the number
+of groups in the data. This is a property that is difficult to know
+in advance. Therefore, it is attractive for Aggregation operators to
+automatically adapt their strategy to the data during execution. Similarly,
+a situation where more records in the data belong to a certain
+group than to others is difficult to handle. In order to work robustly
+for all applications, we need mechanisms to deal with skewed distributions
+of groups. Both adaptivity and skew resistance are thus desirable
+properties, but challenging to achieve.
+
+A final group of challenges stems from the fact that Aggregation
+operators are part of a larger system. First, this means that they need
+to share hardware resources with other software components. In the
+context of in-memory database systems, this is particularly difficult to
+achieve with the resource main memory. Operators need main memory
+to store intermediate results, but, depending on the system, the
+amount available for that purpose may be limited. Finally, different
+types of database management systems have different interfaces between
+operators, which may affect choices in the algorithm design.
+For the design of Aggregation algorithms, it is thus important to
+make sure that they are capable to run even under constrained memory
+and are integrable into state-of-the-art architectures of database management
+systems.
+
+Each of these challenges is difficult enough to achieve in isolation.
+Matters are further complicated if all of them should be addressed
+at the same time. Each design decision to improve a certain property
+may negatively affect how well the resulting operator performs in a
+different dimension. The task of engineering complete Aggregation
+operators is therefore also challenging because it consists of balancing
+trade-offs that lead to an overall good solution.
+
+In this thesis we take on the challenges of engineering Aggregation
+operators in the context of in-memory database systems.
+In a first part, we study Aggregation from a theoretical point of
+view. We analyze the problem in several external memory machine
+models in order to understand its limits in cache efficiency. We are
+able to show that for many realistic parameters of these machine models,
+Aggregation has the same lower bound as MultisetSorting.
+This proves a long-standing folklore conjecture of the database community,
+which implies that the best strategy for Aggregation depends
+on how many groups there are in the input and that using a
+sort-based algorithm is optimal if the number of groups is large. The
+insights gained from this theoretical analysis form a timeless guideline
+for designing cache-efficient Aggregation algorithms.
+In a second part, we iteratively engineer a practical algorithm that
+meets all challenges mentioned earlier.With the first iteration we challenge
+the commonly accepted view that the two traditional strategies,
+HashAggregation and SortAggregation, are completely opposite.
+Instead, we design a single algorithm that inherits features of both
+strategies. A simple, cheap mechanism lets our operator adapt its behavior
+to the data, during execution and without relying on external
+information given in advance. It is therefore at least as cache-efficient
+as any of the two static choices. Furthermore, the careful integration
+of a probabilistic streaming algorithm provides our operator with an
+accurate estimate of the number of groups in the input, which avoids
+potentially prohibitive resizing costs of the data structure that will
+hold the result. We also use a number of low-level tuning techniques
+to make our algorithm CPU-friendly and ensure that it can be inte
+grated with state-of-the-art execution models of database systems. Finally,
+we show how to parallelize our operator both within and across
+processors and despite skewed input distribution such that it executes
+fully in parallel at all times.
+With the second iteration we take away the common, but unrealistic
+assumption that memory available for intermediate results is unlimited.
+We develop techniques that allow executing different phases of
+a recursive algorithm in a pipeline and apply them to our Aggregation
+operator. They ensure that intermediate results after a phase can
+quickly be consumed by the next phase and their memory can be released.
+The more frequent switching of tasks inherent to pipelining is
+a potential source of overhead, but with clever intra-operator scheduling
+we are able to sustain performance close to the one of the original
+version while fully preserving its adaptivity and skew resistance.
+We confirm the viability of our algorithm design with extensive
+experiments. In comparison with several state-of-the-art competitors
+our implementation is the fastest in almost all situations, with large
+speed-ups in many situations, peaking at a 3.7 times lower execution
+time for large numbers of groups. Our operator runs at the speed of
+the memory bandwidth, scales to a high number of processing units,
+and achieves the same performance even for extremely skewed inputs.
+Our cardinality estimator effectively eliminates resizing costs
+of the result data structure with very low overhead, thus saving up
+to half of the execution time. If memory for intermediate results is
+constrained to a mere 1.6% of the original memory usage, our operator
+experiences an overhead of just 20% to 47% and can be tuned to
+higher performance by increasing the constraint.
+
+In summary, by combining a thorough theoretical analysis, clever
+algorithmic design, and a series of engineering techniques, we build a
+single, versatile Aggregation operator that is state-of-the-art with respect
+to all challenges that arise in the context of in-memory database
+systems.
+
+The rest of the thesis is organized as follows: In Chapter 2 and 3,
+we review the foundations of this thesis and prior work on Aggregation,
+respectively. In Chapter 4 we present the theoretical study
+of Aggregation in external memory models. The two design iterations
+of our practical operator are presented in Chapter 5 (combining
+Hashing and Sorting) and Chapter 6 (memory constraint) respectively.
+Finally, Chapter 7 concludes the thesis with a discussion of
+limits and possible extensions of our work.
+
+Database is an important building block of any modern information system as it 
+manages data proficiently and permits users to execute multiple tasks. Database
+Management System is a set of logically connected data and software package to
+ retrieve, manipulate and manage a large amount of data efficiently. DBMS not 
+only boost the efficiency of business process but also decrease the overall cost. 
+Edgar Codd is the inventor of RDBMS which based on Relational Data Model having 
+data in tabular shape (rows & columns), whereas in Object-Oriented Database,
+everything including data is modeled as objects rather than as table which help
+to deal with complex data structure. Object-Oriented Database Management System (OODBMS)
+should assure the standard of DBMS as well as Object Oriented System. Relational Database 
+Management System based on very strong mathematical foundation which allows the consumer 
+to query the tables to get the requisite data from one or more tables easily but inefficient
+in processing of large amount of complex data, whereas, Object-Oriented Database can easily
+handle the huge volume of complex data.
+
+In 1985, Object-Oriented Database System comes into existence to remove the inadequacy of 
+conventional Relational Database and to support the advance applications, such as CAD, CAM, 
+CIM and CASE. Object-Oriented Database schema is a conceptual explanation of the real world 
+data, which considered as future database to maintain high-level data abstraction. This paper
+portrays the stream of two most popular technologies, Relational and Object-Oriented Databases.
+The basic theme of this study is to reflect the real picture of these technologies, so that, 
+Database Administers could be well aware about pros and cons of Relational and Object-Oriented
+Database Systems before its implementation.
+

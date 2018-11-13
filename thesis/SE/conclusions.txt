@@ -1,0 +1,801 @@
+The purpose of evaluating the proposed framework is to determine the extent to which the framework is perceived as 
+useful for the enhancement of software measurement education at the undergraduate level prior its deployment in a 
+university setting.
+
+The scope of the evaluation is limited to analyzing the perceptions of university teachers about the impact that 
+the framework may have in an educational context. The evaluation does not include the implementation of the 
+framework in the academic environment. However, previous to the evaluation by teachers, the understandability 
+of the activities and examples proposed in the framework were evaluated by novices in software measurement.
+
+The criteria employed for evaluating the proposed educational framework have been adapted from the theoretical
+model of Gopal et al 2002. The Gopal et al. model was used to test the effects of various factors that affect
+metrics programs success (Gopal et al., 2002). Other evaluation works (Gresse von Wangenheim, Thiry and Kochanski,
+2009; Kay, 2011; Stamelos et al., 2000) - focused on learning objects, learning games, and educational software
+- were also used to develop a new evaluation model for the present thesis (see Figure 5.2). This new model is
+meant to investigate the factors (Factor 1 and Factor 2 from figure 5.2) that may influence teachers on adopting
+the educational framework.
+
+According to our model, the framework's design (Factor 1), on the one hand, is expected to have an effect on the 
+usage and perceived usefulness of the educational framework. On the other hand, the engagement of academia -
+teachers and authorities- (Factor 2) can influence the perceived enhancement of the teaching and learning 
+process in software measurement. In addition, the usefulness of the framework can positively affect the 
+stakeholders’ perception that the teaching and learning of software measurement can be improved.
+
+As shown in Fig. 5.2, factors 1 and 2 may influence the adoption of the proposed framework (i.e. Impact 1: 
+Usefulness USEF) and the enhancement of software measurement education at the undergraduate level (i.e. Impact
+2: Enhancement ENHA).
+
+In the case of factor 1, the issues involved are: the content, and the friendliness of the framework. 
+In the case of factor 2, the issues consist of: the willingness of teachers to adopt the framework, and the 
+facilities provided by universities for facilitating the adoption of the framework. These issues are based 
+on the work of (Anderson et al., 2001; Biggs, 1995; Biggs and Tang, 2007; Kay, 2011; Stamelos et al., 2000). 
+The issues per type of factor are listed next.
+
+Regarding the Impacts 1 and 2 shown in Figure 5.2, they represent the dependent variables of Factors 1 and 2. 
+This means that a positive relationship exists between the framework’s design (in terms of its capacity to 
+attract teachers - CONT & FRIE) and the teachers’ perceptions of its usefulness as a resource for teaching and 
+learning. Because of its usefulness (USEF), teachers would be willing to adopt the framework (Factor 2: 
+Willingness - WILL) which, in turn, may enhance software measurement education (Impact 2: Enhancement - ENHA). 
+To accomplish this, support from universities (in terms of resources and policies - FACI) is needed to promote 
+new trends in higher education.
+
+In the evaluation model, the two factors (Factor 1 and Factor 2) and their impacts (Impact 1 and Impact 2) are 
+constructs - an abstraction of a subject that is being studied. A construct cannot be observed and measured 
+directly; therefore, it needs to be inferred through observable and directly measured variables (SAGE Research 
+Methods, 2013).
+
+The next section describes the instruments used for the evaluation of the framework, including a detailed 
+explanation of the constructs.
+
+To evaluate the framework, two instruments were designed; one for learners and the other for university 
+teachers. The ethics committee of ETS gave the approval for performing the evaluation of the framework and 
+using the instruments on February 28th 2013.
+
+The objective of this instrument (instrument #1) is to know the perception of students about the understandability 
+of a sample of software measurement examples and assessment tasks (exercises, readings, project, etc) to be 
+included in the framework.
+
+The instrument designed for this purpose is a questionnaire containing two sections: 1) general information and 
+2) evaluation of the understandability of examples and tasks (see appendix XVI).
+
+The section 1 (general information) includes three questions about the previous knowledge of software measurement, 
+while section 2 includes five activities to inquire learners about the improvements needed to make the examples 
+and tasks clearer and more understandable. Section 2 is meant to receive written feedback from the learners for 
+building a useful framework. That is, a framework that contains: guidelines with clear examples of how to measure 
+the functional size of a piece of software, and comprehensible instructions for learners of how to perform tasks 
+proposed in the framework to assess their level of learning.
+
+Each of the five activities included in the questionnaire requires from learners: indicating the level of 
+agreement with statements related to the understandability of the examples or tasks; circling the words or 
+phrases that were not understood; and providing suggestions of how to improve those examples or tasks (i.e. 
+what to add or change). Each activity was measured through a set of statements by using a five points Likert 
+scale - from Strongly agree (5) to Strongly disagree (1).
+
+It can be observed that each construct has several statements. This is necessary to test the reliability of 
+the constructs. This means that the responses to the statements within the same construct should demonstrate 
+correlation. A high correlation ensures that the constructs are measured properly (Gopal et al., 2002).
+
+The statements in the constructs were arranged randomly to avoid the respondents’ bias in choosing similar 
+value for each statement’s answer. This means that we wanted to diminish the respondents’ tendency to agree 
+with the statements independent of content. 
+
+The data collection was performed at the beginning of June 2013 with 12 voluntary participants: 4 students who 
+were taking the course of Software Measurement at ETS, 1 foreign student doing an internship at ETS, 3 PhD 
+students, 3 practitioners with a bachelor diploma in computer science working on software related areas, and 
+1 practitioner from the telecommunication sector. Eight participants did not have previous knowledge of software 
+measurement and four had little knowledge acquired in courses such as: project management, software engineering 
+and software quality.
+
+The participants took 30 to 70 minutes to review the examples and answer the questionnaire, plus a short break 
+of 5 minutes. The purpose of the break was to keep them attentive to identify improvements needed in the 
+educational material included in the questionnaire (functional size measurement examples and assessment tasks). 
+
+When the participants finished answering the questionnaire, I reviewed their responses with each of them to assure 
+that I understood all their comments and suggestions. Special attention was given to the participant from the 
+telecommunication sector since we wanted to test the pre-requisites (see chapter 4) needed to learn from the 
+examples proposed in the framework.
+
+The tables 5.1 and 5.2 show the results obtained for each activity. The second column of the table represents 
+the statistical mean of the level of agreement expressed by participants (inexperienced students and practitioners) 
+regarding the statements formulated for each of the five activities (see section 5.3.1). The results in terms of 
+level of agreement show that the activities #1 and #4 are less clear and understandable than the other three 
+activities. Therefore, both activities are less likely to contribute with the expected learning outcomes and need 
+to be improved for understandability and clearness purposes. The suggested improvements are shown in the third 
+column of the table. All of them were made to develop the whole version of the framework.
+
+At the end of August 2013, we sent invitations by e-mail to 34 university teachers who participated in the 
+previous studies and manifested their interest in knowing and evaluating the proposed educational framework. 
+The invitation contained a link to the questionnaire developed with LimeSurvey 2.0 which appears in the 
+appendix XVII. From the date that teachers received the invitation, they had 30 days to review the framework 
+and return the evaluation questionnaire (instrument #2). Since only few teachers met with the deadline, it was 
+necessary to extend the evaluation period until mid of November. During this period, only 21 teachers returned 
+the evaluation questionnaire. As it was difficult to find more respondents, the data analysis was performed with 
+this number of responses.
+
+In order to test the relationship between the independent variables (content - CONT, friendliness FRIE, willingness 
+WILL, and facilities FACI) and the dependent variables (usefulness USEF, enhancement ENHA, and willingness WILL), 
+a regression analysis was performed (see section 5.2 for the explanation about the independent and dependent 
+variables). Table 5.3 shows the coefficients, standard errors and level of significance of the linear relationship 
+between the independent and dependent variables.
+
+Finally, the results of the present study should be considered with caution since the number of data is small. 
+Therefore, generalizations should not be made from these results as more data are needed to perform more precise 
+analysis about the relationships among the variables. As mentioned in chapter 6, future research should consider 
+the evaluation of the framework to determine the impacts in terms of students' learning. For this kind of 
+evaluation, a model similar to the one presented in this chapter can be used
+
+The research in this thesis leverages the potential of ABMS with a focus on PGG. The main
+motivation of the thesis is provided by the mismatch between ABMS in Computer Science and
+its adaptation to Economics. As an effort to leverage ABMS’s potential, software engineering
+techniques such as OOAD and UML were integrated into a novel development framework,
+namely ABOOMS. This ABOOMS framework was then used to investigate three aspects
+economists encounter when modelling PGG: (1) modelling principles: KISS vs. KIDS, (2)
+modelling of psychological mechanisms, and (3) continuous-time setting. After evaluating and
+revising with three case studies, the final version (v3) of the ABOOMS framework includes a
+development lifecycle of the macro process and a step-by-step development guideline of the
+micro process, and a short guide to model agent behaviour with statecharts.
+
+The main purpose of the ABOOMS framework is to provide a unified development methodology
+for the ABMS community. The central idea is that by following activities in the framework
+modellers can practise the object-oriented mindset. Even though the framework focuses on
+the development process of agent-based models, the simulation model that is designed with
+the framework will have a good documentation as a co-product since UML diagrams are used
+throughout the framework. With good documentation, the framework can facilitate better
+communication and serve as a bridge between disciplines.
+
+Indeed, for better communication, there are other work focus on the documentation of
+agent-based models. One example is the ODD (Overview, Design concepts, and Details)
+protocol that is first developed by Grimm and Railsback (2006) then improved by Grimm et al.
+(2010). The primary objective of the ODD protocol is to standardize the descriptions of agentbased
+models by making a common format that is complete, understandable, and reproducible.
+To use the ODD protocol, modellers fill in information following a given sequence of seven
+elements, grouped in three categories (Overview, Design concepts, Details). The ODD protocol
+is not designed to support the development process; however, it is a good tool to describe an
+implemented agent-based simulation. Then if we compare the documentation between the
+ODD protocol and the ABOOMS framework, the ODD protocol ensures consistency using a
+specified order of elements. But the information provided can be in various formats such as
+text, graph, or flow chart. On the other hand, the ABOOMS framework ensures consistency
+using UML diagrams but does not require a fixed order when describing the elements. It can be
+said that the ABOOMS framework suggests the use of a common modelling language (UML)
+but it is flexible in the describing order of design elements; thus modellers can follow any order
+they prefer to describe the final simulation. In addition, it is a good idea to use the framework
+in combination with the ODD protocol: the modellers can use the ABOOMS framework for
+development, then integrate the documentation from the ABOOMS with the ODD protocol for
+model description.
+
+So in term of flexibility, the ABOOMS framework provides a loose structure which leaves
+room for other practices and tools to be incorporated. For example, during the Analysis process,
+modellers can apply other proposed system structures when identifying agents, such as the
+structure consisting of active and passive agents by Li (2013). Another example is that in
+the Design process, the modellers have the flexibility of using other design concepts such as
+different classes for emotions, learning, etc., because the two tasks in the Design process (define
+structure and define behaviour) are generic. Modellers can also design different classes for
+various methods of reasoning such as fuzzy system, genetic algorithm, and neural network.
+In addition, the use of UML diagrams, which is independent of the implementation software,
+means that the design can be implemented in any object-oriented programming language or
+simulation software.
+
+Lastly, the framework is designed to be easy to use by providing details on both macro and
+micro level of the development process. And modellers can also practise the object-oriented
+mindset just by following the detailed tasks listed in the micro process. However, the framework
+does require modellers to have an understanding of UML, not all the diagrams, but at least the
+five essential ones that are introduced and mentioned in the framework documentation (use
+case diagram, class diagram, statechart, sequence diagram, and activity diagram). Beginners
+can use the case studies in this thesis as examples. When having enough experience, people can
+start to apply advanced software engineering concept such as design patterns when utilising the
+framework
+
+This section evaluates the influence of using SE methods in the framework. The spread of
+ABMS to various disciplines and the ongoing increase in size and complexities of the simulation
+models have forced the need of standard definitions and development processes. Using SE
+methods can satisfy this need because it has been developed by computer scientists and software
+engineers for many years to fulfil similar needs for software projects. A big benefit is the
+better documentation using UML diagrams which has been discussed in the previous section
+(Section 7.2.1). Furthermore, in term of project management, SE methods can also provide a
+better control over the development process, whether the modellers working individually or in
+multi-disciplinary team; thus it leads to the improvement of quality of the simulations.
+Additionally, practising the object-oriented mindset from conceptual modelling to implementation
+ensures that the key software engineering principle of separation of concerns is
+properly applied. The general idea is that the system is broken into layers and components that
+each has specific concerns and responsibilities with as little overlap as possible. This reduces
+the complex system into a series of manageable components. Therefore, the system is easy
+to change, since a change of a feature are usually isolated to a single component (or a few
+components directly associated with that feature), instead of interlaced throughout a large and
+complex code base.
+
+Furthermore, the minimal functionality overlaps also improve the extensibility of the system.
+For example, in the third case study, when a new preference type (Generous Conditional
+Cooperator) is introduced, only one class needs to be created to implement the behaviour for
+that new agent type. This class inherits from the Person class, which means the programmer
+does not have to worry about other actions carried out by the Person class (such as getting
+payoff) or about logic in main game loop.
+
+Moreover, since each component addresses a separate concern, it also improves the reusability
+of the system. For example, a modeller wants to explore how agents in one of our PGG
+simulations behave in another economic game that has a slightly different set of rules. Since
+the game structure is similar with PGG, the modeller can start with designing the game loop
+and then reuse the Person class and related subclasses in the new simulation. We can reuse
+not only the whole agents, but also parts of them such as their behaviours. For instance, we
+assume that there is a PGG simulation in which contribution behaviours use complex optimization
+algorithms. Therefore, each contribution behaviour is designed as a class. Each class
+has a contribute() function that takes inputs, then uses an algorithm to calculate and returns
+the amount of money units to contribute to the game. If a modeller wants to use one of the
+algorithms in a new simulation, s/he only needs to reuse relevant classes of that algorithm, as
+long as the new system can provide it with the relevant inputs.
+
+In summary, in the context of increased complexity of simulation models, it can be difficult
+to control and manage projects without SE methods. Impromptu development approaches can
+result in simulations with inflexible design, insufficient testing, and ambiguous documentation.
+Using SE methods leads to the benefits of identifying correct requirements to implement the
+simulation that meets the modellers’ needs. By identifying the necessary features and designing
+a good model, the development cost is optimised and it also reduces the post-development cost
+(maintenance or continuous improvement).
+
+The main contribution that this thesis makes to the body of knowledge is a methodology of
+developing agent-based models of PGGs using well established tools from SE. The methodology
+is manifested in form of a framework that has been developed throughout the thesis and tested
+in several case studies. The framework utilizes OOAD to provide a structured approach to
+identify agent interactions, and design simulation architecture and agent behaviour. It includes
+a development lifecycle, a step-by-step development guideline, and a guide to model agent
+behaviour with statecharts. These statecharts allow us to better capture the realism of human
+decision making behaviour.
+
+Several directions could be followed from the research presented in this thesis. In terms of
+strategic interactions, the framework could be tested with other variations of the PGG. Some
+ideas would include spatial PGG in which agent locations affect its access to resoruces, or
+PGG with variant income. It could also be tested for related games. Some candidates would
+be Prisoner’s Dilemma and Common Pool Resources. Furthermore, the application of the
+framework could be tested for related disciplines which also use the PGG as a research tool.
+These include Ecology (Grimm and Railsback, 2013) and Sociology (Macy and Willer, 2002).
+Since ABMS is utilized by many disciplines, it is beneficial to use a unified development
+framework, and our framework is a step toward that goal.
+
+In addition, the simulation can also be implemented with other simulation packages or
+programming languages to validate the framework’s independence of simulation softwares.
+AnyLogic is not a favourite choice in Economics. Even though it supports object-orientation
+very well and works well with complex statecharts, it is a commercial package and has a steep
+learning curve. It would be good to test the implementability of models developed with this
+framework in other packages. This would allow everyone to use his/her preferred software
+package and would support the spread of the framework. One recommendation is Repast
+Symphony since it has good support for object-orientation and graphical statecharts. Another
+approach is to implement using a general programming language such as Java or C/C++.
+With a general programming language, there are less restrictions compared to a simulation
+package, but some supported features (statechart support, statistical presentations) have to be
+implemented from scratch. The other problem is that most non computer scientists are not
+professional programmers, thus the learning curve for a general programming language is
+steeper than that of a simulation package.
+
+The study was inspired by holistic models such as Continuous *, ESAO, and
+BAPO in the classification of key practices and prerequisites for using CSE. The
+case company evaluations performed with STH+ and the CRUSOE framework
+indicated the viability of these approaches for analysing company and development
+project level capabilities in the use of CSE. CSE addresses a wide range of
+continuous activities that may require an even more radical “blurring of classical
+boundaries” between business, development, and operations. Consequently,
+addressing DevOps and BizDev concepts in CSE is a very useful way to emphasise
+the continuous interdependencies between development, business, and operations.
+Hence, CSE reference models should also clearly indicate stakeholder value and
+flow aspects throughout different functions in product development. The emphasis
+of locally effective continuous practices could also easily lead to harmful suboptimisation.
+This is where lean thinking and related techniques, such as Kanban
+boards and value stream mapping, could significantly aid in establishing a
+continuous flow of value.
+
+Related studies on CSE (Rahman et al., 2015; Rodríguez et al., 2017) indicated a
+close relationship with cloud computing, e.g. the development of websites and
+applications that exploit cloud capabilities for data processing. The dissertation
+conducted case studies mainly in the product-intensive embedded systems domain.
+The investigated companies applied CSE practices only within some individual
+teams and product programs, but CSE was not a prevailing and dominant software
+development approach in the enterprise level.
+
+The empirical studies almost unanimously indicated that ARE practices impacted
+“shorter lead times” and “improved communication within and between
+development teams”. However, studies have frequently indicated contextual
+challenges in particular in the adoption of CSE. Existing evidence related to the
+success of software development in using CSE is largely based on practitioners’
+perceptions of how CI and test automation helps in shortening the integration
+process, lead times, and communication within and between stakeholders.
+Identified challenges were often related to several dimensions of CSE. The
+CRUSOE model addressed these dimensions with seven areas related to an
+ecosystem-driven approach to analysing product development. The SLR (Paper IV)
+indicated the impacts of ARE practices on various subdomains of software
+development. The case studies conducted in product-oriented software
+development indicated that CSE is seen as a beneficial strategic long-term objective
+for ICT companies. In the very large companies investigated in this dissertation,
+CSE practices were often already used in individual teams and sometimes even at
+the product program level. The conducted interviews indicated the CSE
+dependency on products and stakeholders. Customers and technology platforms
+especially may have strong impacts on the release and experimentation cycles.
+
+When performing a deeper analysis on the quality and context of the primary
+studies, the SLR indicated that almost half of the 71 published empirical studies
+were experience reports (i.e. casual industry experience sharing), which lack a
+rigorous description of the research context and applied development practices.
+This further limits opportunities for the synthesis and accumulation of knowledge
+related to the impacts of ARE practices and the evaluation of the applicability of
+the CSE approach in software development. Empirical studies on ARE practices
+have mainly applied qualitative research approaches, e.g. surveys and interviews
+on analysing challenges in the adoption and use of CSE
+
+This section discusses the main threats to the validity of the results presented in this
+dissertation. Threats to research validity are discussed using a classification scheme
+presented in (Runeson & Höst, 2008): construct validity, internal validity, external
+validity, and reliability.
+
+External validity threats are related to situations when the researcher aims for
+a generalisation of the findings. The main concerns related to external validity are
+to what extent the findings can be generalised, and to what extent the findings are
+of interest to other people outside the investigated case (Runeson & Höst, 2008).
+In this dissertation, the case study findings were used in conjunction with building
+insight into CSE as a phenomenon and for understanding the common
+characteristics of CSE theory building, i.e. model design and evaluation.
+
+A reliability threat is concerned with researchers’ dependency on the data and
+the analysis of the results. Thus, a reliability threat analysis aims to understand the
+extent to which results are dependent on the researcher. Ideally, research can be
+repeated by another researcher and produce the same results. To mitigate reliability
+threats, the interviews and data analysis were conducted collaboratively with two
+or three researchers. At least two researchers participated in all interviews. While
+one researcher was responsible for asking questions, another researcher was
+responsible for taking notes. Immediately after each interview, the researchers
+shared their observations and notes with each other. This helped them achieve a
+common insight on case company practices. It also helped the researchers to
+identify areas that needed more details on company practice and to improve
+interview techniques for the following interviews. In Paper IV, the SLR primary
+study selection and assessment steps were duplicated by two researchers to mitigate
+subjective bias in the SLR findings.
+
+Construct validity addresses threats related to operational measures and how
+they represent the research questions and the investigated phenomena that the
+researcher has in mind. Runeson et al. (Runeson & Höst, 2008) states that a
+potential threat related to interviews is that constructs discussed in an interview are
+interpreted differently by the interviewer and interviewee. Risks related to construct
+validity regarding CSE research are substantial, especially because terminology
+related to various continuous activities (continuous experimentation, continuous
+integration, continuous delivery, continuous deployment, rapid release, etc.) is not
+self-evident and clear either for SE researchers or practitioners.
+
+The interviews at the companies aimed at understanding how company
+practices have changed and how they would have to be further changed in order to
+move towards CSE. In addition, the interviewees were asked to evaluate benefits
+and barriers in the transition towards CSE. However, the transition from traditional
+development towards CSE could take many years. Consequently, the interviewees’
+memories about the early stage transition may not be as accurate as they are for
+more recent events in the company. This situation could involve validity threats
+related to perceived and anticipated benefits and barriers.
+
+To mitigate risks related to construct validity, before the interview, each
+interviewee was given an introductory document on research background, goals,
+etc. However, there was still no certainty about whether the interviewee had
+actually read and understood the introduction. Consequently, each interview started
+with an approximately 5–10 min introduction to the N4S program goals and to the
+research topic. This was considered to help the interviewees to more accurately
+evaluate and associate their existing development practices with, for example,
+“real-time value delivery” and “deep customer insight” goals. In addition, the STH
+model was also briefly explained, and the steps associated with the model were
+discussed during the interview.
+
+The construct validity threat related to the aggregation of impacts of ARE
+practices, presented in Paper IV, involves the risk of comparing very different
+research contexts and implementations of ARE practices. This is generally
+considered a larger problem related to the reporting of empirical research. If the
+context and practices are not properly addressed, synthesis of the impacts of ARE
+practices will also be limited in the following years, as empirical evidence on CSE
+practices increases.
+
+This dissertation applied SLR and case study methods in conjunction with the DSR
+approach to investigate CSE. Consequently, the main objective was to design and
+evaluate models for the abstraction of key CSE concepts and their relationships.
+The study largely applied existing approaches and models in SE, and hence, the
+limitations of LESAT for SW, STH+, and CRUSOE are related to the assumptions
+used in the baseline approaches.
+
+Two related topics on CSE were deliberately not included in this dissertation.
+The study focused mostly on the reference model design and evaluation related to
+software development and the business dimensions of CSE. Consequently, the
+research does not address the operations aspect of CSE research. Operations aspects
+are elaborated more in DevOps-related studies (L E Lwakatare et al., 2016). In
+addition, the research does not specify empirical findings on continuous customer
+feedback and the involvement cycles, which are elaborated by Sauvola et al.
+(Sauvola et al., 2015).
+
+One of the main limitations in the dissertation is that the LESAT for SW, STH+,
+and CRUSOE models has been used in conjunction with only a few case companies.
+Moreover, applying models in different contexts and together with companies
+where continuous deployment and experimentation practices are institutionalised
+would be useful for validating assumptions related to CSE practices. Experiences
+from different companies would allow a more accurate evaluation of compatibility
+and transferability between different software development contexts.
+
+The interviews involved 4–7 employees from each company. Significantly
+more interviews and empirical data would be needed to establish a more reliable
+analysis of companies’ capabilities, barriers, and benefits in the transition towards
+CSE. Therefore, the results presented in this dissertation should still be considered
+tentative, aiming for a piloting of models to evaluate CSE capabilities.
+
+CSE has been described as a development approach used by companies, such
+as Amazon and Google, which are considered to have unique capabilities to
+continuously deploy disruptive new product innovations to markets. To summarise
+the above-mentioned notions regarding CSE, understanding the principles and
+holistic viewpoint of CSE is important to be able to lead a transformation towards
+CSE. However, one must also ensure sufficient investment in underlying modern
+technology enablers and tools that allow the continuous flow of materials and
+information.
+
+Established ICT companies are addressing the need to adopt capabilities for
+continuous deployment and an experiment-driven development approach (Järvinen
+et al., 2014). Hence, the SE research discipline must address this change in theories
+and models, which could aid in the assimilation of new capabilities, namely the
+adoption of methods to identify desired and non-desired development practices and
+to plan and evaluate the results and efficiency, i.e. the speed and direction of
+change-related investments and activities.
+
+To conclude this dissertation, the CSE clearly addresses multidisciplinary
+aspects related to the business, innovation, development, and operation of softwareintensive
+products and services. Thus, resolving issues related to the use and
+transition towards CSE may provide plenty of research opportunities and
+increasingly address collaboration activities and information sharing, especially
+between the software engineering, information systems, and business management
+disciplines.
+
+In order to draw solid conclusions, the experimenter should be aware about the model and data validity, 
+as well as non-mitigated threats to validity, to limit the findings. The reasoning should establish a 
+link from the goals, using the output analysis proce-dures, to the findings. In other words, the results 
+need to be explained through a chain of decisions and performed steps that generate the outcomes, 
+including the reason for these results reflecting the simulated phenomenon.
+
+Furthermore, it is important to discuss the implications about the applicability of the solution in real 
+scenarios, e.g., use in practice. The experimenter should realize how to implement the solution, as well 
+as the required knowledge, capabilities and training needed. In addition, the associated risks in adopting 
+the solution should be explicitly stated. The risks relate to contextual description (facets in SG2), so it 
+means that changes do occur not only in processes and methods, but also with personnel, IT infra-structure, 
+financial costs, need for consultancy, and so on.
+
+Mainly, future directions consist in new or refined goals, detailing a specific phenomenon by including new 
+variables and relationships. The investigation of particular cases or multiple cases can be addressed too. 
+Additional validation can be required as well, concerning with different types of validity not covered before.
+
+Short cycles tend to decrease maintainability. Releases in short cycles are usually as-sociated with quick 
+corrections, as mentioned before. In this case, successive short cycles accumulate more hours for corrections 
+than longer cycles, in which the enhancements (not accounted for as corrections) are most likely to be performed. 
+An increase in the effort to correct suggests a decrease in maintainability. However, we also can observe 
+increasing trends for Size and Complexity over successive releases, which also explains the increasing trend 
+in the correction effort. Thus, again, if there were an opportunity to perform improvements regarding any quality 
+goal, it would be better to include such enhancements in the same release, amongst the corrections, rather than 
+building a release only with quality improvements. Instead, it should be clear that, for short cycles where 
+critical corrections have to be done, longer cycles need to be avoided; so, perfective maintenance waits for 
+the next releases. Stabilization of reliability and maintainability. It is possible to observe that corrected 
+defects and the effort to correct become stable (on average) in the long term when a fixed-duration is selected. 
+However, we could not see the same behavior for the variable-duration strategy. This behavior suggests that 
+fixed-duration cycles are more suitable for quality control. This way, the alternation between enhancement and 
+correction releases should be done with caution, as some enhancements may generate new defects, penalizing 
+conflicting quality at-tributes.
+
+The proposed set of simulation guidelines presented in this chapter embraces different stages of the SBS lifecycle. 
+Intentionally, the scope share common aspects with other research strategies, such as controlled experiments, case 
+studies or action re-search. However, in these guidelines we discuss and present examples for these as-pects under 
+the simulation and SE perspectives. Additionally, it is possible to identify similar concerns in other simulation
+related works already mentioned in this Thesis (Sec-tion 3.2). Nevertheless, the simulation guidelines originated 
+in the former planning per-spective (presented in Chapter 5) add a new perspective on the mitigation of validity 
+threats that has not been presented in the technical literature before.
+
+In this Thesis, we presented the organization, evaluation and evolution of a set of guidelines concerned with the 
+reporting and planning of simulation experiments in Software Engineering. Such guidelines were organized based on 
+evidence acquired through a secondary study (quasi-Systematic Literature review), evolved with the results of the 
+conducted primary studies and information from other research areas. These guidelines concentrate on how 
+conventional aspects of empirical studies should be con-sidered when conducting simulation experiments in SE. 
+Moreover, the concerns regard-ing the simulation model and study validity are justified by the importance that 
+such model assumes (main observational instrument) and the bias promoted by the experi-mental design over the 
+interpretation of results.
+
+Besides the possible overlap to some extent with other disciplines and research strategies, the guidelines suggest 
+how they should appear in SE studies. Some particu-larities can be observed since SE, at least as a science field, 
+is not mature yet. Examples of these particularities include lack of knowledge about relevant factors and variables 
+for a given phenomenon, both quantitative and qualitative nature of SE phenomena, and the relevance of social and 
+technical aspects involved.
+
+Despite the frequent use of survey research in SE, a few discussions have been provided about how to overcome 
+the common lack of samples’ representativeness typically caused by different issues observed in planning 
+activities, such as the unclear characterization of the survey target audience and its units, the use of 
+convenience on sampling and the ineffectiveness of the recruitment activities applied. Our investigation 
+allowed us to observe that guidance to overcome such limitation is desirable and can be useful in the field. 
+In this sense, this thesis presented a conceptual framework to support researchers to identify representative 
+samples for surveys in SE.
+
+The conceptual framework presented in this thesis does not intend to provide definitive solutions such as a 
+list of attributes to characterize survey subjects in different research topics. In fact, we initially had 
+planned to support specific SE research topics. However, after investigating the state of practice we observed 
+that basic points from survey research should have been clarified and tailored to SE research in general. Thus, 
+we understood that a less specific technology could be more useful to the community. In addition, the 
+considerable diversity of contexts observed in the field may require different subject characterization 
+to different investigations in the same research topic.
+
+In this chapter, we draw conclusions from the research conducted as part
+of this thesis. The chapter is divided into one section covering our software
+engineering research (Section 18.1) and one regarding our ecological
+modeling research (Section 18.2). Both of these sections themselves are
+structured according to the work packages presented in the corresponding
+research design descriptions in Chapters 5 and 9. With respect to our software
+engineering research, we also discuss the role of software engineers
+in computational science (Section 18.1.5) and lessons learned for designing
+DSLs for scientists (Section 18.1.6).
+
+In this thesis, we introduced the model-driven software engineering approach
+Sprat, which aims to facilitate the collaboration of scientists from
+different disciplines in the development of well-engineered simulation software
+without the need for extensive software engineering training.
+
+To understand the requirements for an engineering approach for computational
+science, in Chapter 6, we identified the most pressing challenges
+of computational science today (its productivity and credibility crisis) and
+the specific characteristics of software engineering in this discipline that
+presently prevent overcoming these challenges. Examining the characteristics
+of software engineering in computational science enabled us to show
+that current attempts at solving the dual crisis of computational science
+(peer-review of source code, having software engineers implement software
+for the scientists, and workshop-based software engineering training) do not
+suffice alone and that software engineering techniques have to be adapted
+in order to be adopted by this community. Furthermore, we demonstrated
+that MDSE methods and specifically Domain-Specific Languages (DSLs) are
+good starting points for such adaptations.
+
+The results of our analysis of the characteristics of scientific software
+engineering answer our research question SERQ1 from Chapter 5 (What
+is specific about software engineering in computational science?) with its subquestion
+SERQ1.1 (Which software engineering methods are well-suited for being
+adapted for computational science?).
+
+Furthermore, this conceptual framework does not intend to provide a list of sources to be used to search for 
+suitable populations, since such sources could be unstable, typically not designed to support survey research 
+as exemplified in the studies presented in this thesis. Besides, there are survey topics involving audiences 
+eventually available in pretty specific sources.
+
+It is also important to point out that the presented technology does not intend to support the whole survey 
+process, nor even all the survey planning activities. For instance, it does not provide guidance to establish 
+the survey research objective, since we understand it transcends the technology purpose. It also does not 
+provide guidance to design the survey questionnaire, although its consistence with the research objective 
+and target audience and its brevity would influence on the subjects’ participation.
+
+Despite the spread of survey research in the field, we highlight that few works are concerned with samples’ 
+epresentativeness and apply more complex sampling designs. Thus, many of the recommendations reported in the 
+conceptual framework are grounded in our own experience to conduct different surveys. Our expectation is that 
+the evolution of the field will allow the conceptual framework to improve with more precise and specific 
+recommendations.
+
+Finally, due to restrictions of time/scope of the presented thesis we did not design/adapt a specific automated 
+environment to support applying the conceptual framework which definitively could influence on the acceptance of 
+the technology in a positive way. One can see that the use of survey tools by researchers is very common, but 
+typically driven to the survey questionnaire design.
+
+The third and current version of the conceptual framework was conceived based on findings from individual 
+cases and in vitro empirical studies conducted over its previous versions. By adding specific activities, 
+tasks and recommendations to the typical survey planning process, the conceptual framework systematically 
+guides the survey target audience characterization, the identification, the assessment and the selection of 
+available sources of population, the establishment of suitable sampling frames, the establishment of procedures 
+to identify representative samples and the planning of their recruitment.
+
+To evaluate the Sprat Approach, we applied it to the engineering of the Sprat
+Marine Ecosystem Model in an exploratory case study. For this purpose,
+we designed the Sprat PDE DSL and the Sprat Ecosystem DSL and reused
+the Ansible Playbook DSL. The integration of these DSLs into a suitable DSL
+hierarchy, which is described in Chapter 8, answers the research question
+SERQ3 (Which DSLs are suitable for the implementation of the Sprat Marine
+Ecosystem Model with the Sprat Approach and how can they be integrated into a
+DSL hierarchy?).
+
+We are currently inviting partners from different SE research groups to use the conceptual framework in the
+“battlefield”, i.e., to plan surveys addressed to their current researches. Such researches include different 
+SE topics from those already used in our empirical evaluations. After designing their survey plans, the 
+researchers are answering a follow up questionnaire to present their impressions regarding their experience 
+on using of the conceptual framework.
+
+In general, the current set of guidelines organization intends to provide a logical sequence, by specifying the 
+next step in a straightforward way, which supports the or-ganization of research protocols and reports for SBS 
+in the context of SE. Such se-quence allows a reasonable reasoning flow from goals to output analysis, through 
+dis-cussions involving experimental validity, which can help according to the experience in the decision-making. 
+The different evaluations performed and evidence used to evolve the set of simulation guidelines enhanced its 
+quality under different perspectives and enabled its application on situations that indicate the feasibility.
+
+The motivation for simulation guidelines emerged from the opportunity to promote the quality on reported simulation 
+studies in SE, since it is one of the issues identified in the qSLR (Chapter 2). Additionally, we reinforce that 
+the issues revealed in the previous characterization of SBS in the context of SE are still present in the studies 
+so far reported in the technical literature (Section 4.4). These simulation guidelines can help authors, 
+researchers interested in simulation results, practitioners, and reviewers, on which infor-mation should be 
+presented when reporting SBS in the context of SE. As far as we are aware, this is the first set of simulation 
+experiments guidelines in the context of SE.
+
+The contextual and planning information suggested by the guidelines motivate the software engineers to observe 
+specific features when planning simulation studies in SE. Researchers and practitioners can recognize core 
+information concerning the SBS results that may be applicable to their interests. Reviewers, members of conference 
+pro-grams and editorial boards of journals need to identify the relevant contributions, as well as the evidence 
+confirming the contributions and the possible limitations of the SBS.
+We recognize the need for more evaluation on this set, including both experi-mental studies and application on 
+simulation experiments. Furthermore, our expectation is to spread this set of simulation guidelines over the SE 
+community and to get feedback from its application on actual SBS as well as discuss possible improvements to 
+evolve the knowledge and benefit more from the experimentation with dynamic simulation mod-els in SE, as it has 
+been started with (DE FRANÇA and TRAVASSOS, 2015).
+
+Our evaluation of Sprat consisted mainly in assessing the individual DSLs
+we designed for the Sprat Model, as detailed in the discussion of our research
+design in Chapter 5. To evaluate the Sprat PDE DSL, we conducted
+several micro- and macro-benchmark experiments to demonstrate that the
+runtime performance of solutions implemented with the DSL is not inferior
+and in some cases even superior to comparable GPL solutions. This answers
+our research question SERQ4.1 (How does the runtime performance of solutions
+implemented with the Sprat PDE DSL compare to equivalent GPL solutions?).
+Furthermore, expert interviews with both professional DSL developers and
+domain experts working with PDE solvers showed that the Sprat PDE DSL can
+increase the comprehensibility, maintainability, and testability of PDE solver
+implementations. The fact that most of the interviewed domain experts can
+envisage using our DSL as part of their own work shows that we succeeded
+in designing a DSL which is actually accepted by a community often critical
+of new technologies. With the results from our expert interviews, we
+were able to answer the research question SERQ4.2 (How do experts rate the
+functional and technical quality of the Sprat PDE DSL?).
+
+As with any other approach for bridging the gap between software engineering
+and computational science, Sprat requires software engineers to assist
+scientists in the development of scientific software (in our case, language
+engineers have to design and implement DSLs). This can be problematic
+because positions for software engineers to provide development support in
+scientific research institutions have typically not been supported by funding
+agencies in the past (Carver et al. 2007). The neglect of such positions by
+most funding bodies should be reconsidered, as it has been shown that
+investing in such positions can have a markedly positive impact (Killcoyne
+and Boyle 2009). In the meantime, Sprat minimizes the input that is needed
+from trained software engineers by letting the scientists stay in full control
+of all development activities of the scientific software itself (using the DSLs
+designed by professional language engineers).
+
+In conclusion, we have seen how the software engineering process and the software itself 
+can minimize the impact on environment. We specifically looked as to how software engineering 
+process can be made more sustainable and also tried to plug the generic model into agile methodology. 
+Lastly, we also see how Quality model could minimize the effects on environment caused by software itself.
+
+Overall, to achieve sustainability in the software and its engineering process, every process of hardware, 
+software engineering and other concepts of ICT for sustainability must be taken into consideration, as 
+sustainable software engineering and sustainable software are not standalone problems.
+
+Along with other techniques for enhancing the quality of soware, testing is
+undoubtedly one of the most eective and important instruments in the arsenal
+of quality assurance engineers. No mainstream soware development process
+should underestimate the importance of eectively testing the system under
+development. Nevertheless, it still remains a very labor intensive and tedious
+task, which has to be carried out manually to a large extent. In this dissertation
+we have discussed a new approach that is a first step towards an integrated test
+reuse environment. Beside the pure reuse of soware tests, we envisage a more
+extensive speculative analysis mechanism that is able to evaluate the fitness
+for purpose of reusable artifacts and to learn from users’ choices. Furthermore,
+such a test recommendation system should not represent a single, isolated
+island of functionality in a developers environment, but should play a proactive
+part in the evolution of the repository of reusable information. In particular,
+when a developer discovers a wrong test and corrects it, the system should
+propagate the new version to the repository so that other users can benefit from
+the improvement.
+The idea of combining soware reuse with soware testing can also be a first
+step towards a more integrated approach to soware development and soware
+testing, where the development of a system is influenced by previously created
+tests. Similar to the ideas from test-driven development, a newly created class
+can be developed according to the behavioral description of an already existing
+test suite. Even further, the tests contained in a repository can be used as an
+additional search criterion for reusable components to support the search for
+previously developed programs. Through the work described in this dissertation
+we have therefore delivered an initial tool set that opens up a whole set of future
+research perspectives, not only in the area of test reuse, but also in the further
+automation of soware testing and soware reuse in general.
+
+During these three years we learned to apply methods from the statistical and data mining
+field onto domain-specific concerns of software engineering. The roadmap we roughly
+followed is depicted in figure 10.2: we elaborated a semantic, methodological and technical
+framework to generate safe data sets; these were used in specific workshops. Conclusions
+and consequences were either developed in Squore Labs or expressed in papers and ideas.
+
+This last part, composed of the Squore Labs, has been the very projects that
+enabled us to draw practical conclusions from Maisqual. The Outliers detection and
+Clustering Squore Labs contributed practical developments to Squoring Technologies
+and enabled us to provide useful tools and methodological help for the consultants. The
+Correlation Squore Lab, albeit not yet complete, has already provided some good insights
+pertaining to the nature of data and the tooling needed for further analysis. Besides
+the implementation of novel ideas into pragmatic applications, it was an opportunity for
+Squoring Technologies and our collaborators to build a bridge with the academic field
+of data mining and its thrilling contributions.
+
+After taking a step back, doing an extensive research project was difficult to achieve
+in the designated time of two days a week. We had to put aside many interesting ideas
+and constantly check the scope of the project to make it fit into the restricted time frame
+and still deliver valuable and practical results. Here are a few of the interesting paths
+that we did not follow up on but are undoubtedly very promising.
+
+We finally need to better communicate about our work and results to foster
+our collaboration with practitioners and to investigate new uses and applications for
+our research. First, the data sets should be publicised, with a thorough description of
+the metrics extracted (definition, samples as requirements for reproduction, and links
+between metrics), a clear description of the retrieval process, a quick analysis showing
+important events on the project, and examples of usage for the data set with working R
+code samples. New projects will be added with time thanks to the automated architecture
+we setup. Second, the Maisqual wiki will be further elaborated upon and updated with
+new information and insights resulting from our work.
+
+This paper contributed by extending the GSE taxonomy proposed by Smite
+et al. [149]. Furthermore, it presented a specialized GSE effort estimation
+taxonomy, which was designed by specializing the extended general GSE
+taxonomy by Smite et al. [149]. Both the extended and specialized dimensions
+proposed in this paper are consistent and concise with the original
+taxonomy, i.e. the original terminology proposed by Smite et al. was preserved;
+new terms were incorporated to the original terminology, without
+changing the meaning of the original terms.
+
+The designed extension and specialization were based on a literature
+review and expert opinion. As a result, five extended and three specialized
+dimensions were incorporated into the original GSE taxonomy. In addition,
+a classification process and a notation were defined to guide the usage of
+the specialized GSE effort estimation taxonomy proposed in this paper.
+To illustrate the usage of the specialized GSE taxonomy, eight finished
+GSE projects were classified. The specialized taxonomy was representative
+enough to classify the projects in a clear and simple manner. Nevertheless,
+considering the amount of possible scenarios, it was not possible to
+illustrate all possible GSE configurations based on the classified projects.
+The GSE specialized effort estimation taxonomy has some limitations,
+such as the weak evidence in the state of the art of effort estimation in GSE
+(used as basis to select incorporated factors) and the reduced number of
+experts who participated during its design.
+
+We believe that further research can be conducted to develop and evaluate
+an instrument to enable the use of the specialized GSE effort estimation
+taxonomy in the software industry. By doing so, practitioners could better
+understand the different GSE scenarios, so that it may help them to optimize
+their effort estimation processes and techniques
+
+Research work has been conducted to deal with the problems of designing and
+evaluating management policies related to the SG paradigm. These policies are
+aimed at different stakeholders to benefit their interests. For instance, final customer’s
+interests is the reduction of the electricity costs and the improvement of
+the energy efficiency. The interests of operators and retailers is to improve their
+profit by reducing operation and production costs. Globally, people want to have a
+more efficient power grid in which CO2 emissions are reduced with a higher RES
+penetration.
+
+The motivation for conducting research in the field of Power Grids is due to its
+proposed evolution to SGs. In this evolution, IT seems to have an important role.
+This evolution is proposed because there is a significant need for the improvement
+of power grids, such as: reduction of the dependency on fossil-fuel based energy
+production; market concerns such as fuel prices volatility; and reduction of GHG
+emissions.
+
+This is the case of the Canary Islands. In this territory, there are excellent
+environmental conditions for increasing the exploitation of RES. The Canary Islands
+have 2,500-3,000 hours/year of solar radiation producing an average of 5-
+6kWh=m2 per day (source: Canary Institute of Technology). Furthermore, there
+are 3,000-4,500 hours/year of wind with a speed average of 7-8m=s. This produces
+625MWh per day having installed 75MW of wind energy. In this sense, the results
+of this research can be directly applied to improving power grids in the Canary
+Islands.
+
+The study of these smart management policies requires models representing
+the system at the lowest level of detail allowing to analyse side-effects. Aggregated
+models are not able to represent events on the demand side that should be considered
+in designing these policies. Therefore, Power Grid models should be disaggregated
+to represent all loads that can be managed. In these models, complexity
+arises since there are many heterogeneous components which are interacting at different
+scales.
+
+The emergent behaviour of the system cannot be inferred with traditional models,
+because complexity cannot be represented. SGs cannot be studied using traditional
+approaches since these are not able to capture all of the system’s properties.
+The best way to study complex models is through Software tools. However, if SGs
+are not supported by the required formalisms and methodologies, software technologies
+by themselves are not sufficient to perform these studies. This means,
+the problem is not choosing the software tool, but applying the right formalisms
+and methodologies. For these reasons, several authors have suggested the use of
+complex system based formalisms to represent SGs. A Complex Systems approach
+facilitates the representation of SGs at the lowest level of detail.
+
+Under the complex system approach, only software tools that support this formalism
+can be considered to study SGs. Nevertheless, there are structural concerns
+that must be taken into account to support the engineering of large-scale complex
+systems. In the case of SGs, models may have millions of components. To model
+them, several complex system simulation software tools have been reviewed in this
+document. In all these tools, a lack of a methodological orientation to face the
+modelling of large-scale complex systems was found.
+

@@ -1,0 +1,1053 @@
+﻿2.1 Machine Intelligence Library
+Google TensorFlow[1] was used to implement the neural network
+models in this study – both the proposed and its comparator.
+2.2 The Dataset
+The 2013 network traffic data obtained by the honeypot systems in
+Kyoto University[25] was used in this study.
+It has 24 statistical features[25]; (1) 14 features from the KDD
+
+Cup 1999 dataset[26], and (2) 10 additional features, which accord-
+ing to Song, Takakura, & Okabe (2006)[25], might be pivotal in a
+
+more effective investigation on intrusion detection. Only 22 dataset
+features were used in the study.
+
+, , Abien Fred M. Agarap
+2.3 Data Preprocessing
+The dataset consists of logs for 360 days for the year 2013 (16.2 GB
+in file size). Only the logs for the following dates are non-existing:
+(1) March 2-4, and (2) October 13-14 – totalling to 5 days. The reason
+why the data for those days were not available was not stated.
+However, for the experiment, only 25% of the whole 16.2 GB
+network traffic dataset was used, i.e. ≈4.1 GB of data (from January
+
+1, 2013 to June 1, 2013). Before using the dataset for the experi-
+ment, it was normalized first – standardization (for continuous
+
+data, see Eq. 1) and indexing (for categorical data), then it was
+binned (discretized).
+where X is the feature value to be standardized, μ is the mean
+
+value of the given feature, and σ is the value of its standard devia-
+tion.
+
+But for efficiency, the StandardScaler().fit_transform() func-
+tion of Scikit-learn[23] was used for the data standardization in
+
+this study.
+As for the feature indexing, the categories were mapped to
+[0,n − 1] using the LabelEncoder().fit_transform() function
+of Scikit-learn[23].
+After dataset normalization, the continuous features were binned
+(decile binning, a discretization/quantization technique). This was
+done by getting the 10th
+, 20th
+, ..., 90th, and 100th quantile of the
+features, and their indices served as their bin number. This process
+was done using the qcut() function of pandas[18].
+Binning reduces the required computational cost, and improves
+the classification performance on the dataset[17].
+Lastly, the features were one-hot encoded (with a depth of 10,
+since it was decile binned), making it ready for use in the models.
+2.4 The GRU-SVM Neural Network
+Architecture
+Similar to the work of Alalshekmubarak & Smith (2013)[2] and Tang
+(2013)[27], the present paper proposes to use SVM as the classifier
+in a neural network architecture. Specifically, a Gated Recurrent
+Unit (GRU) RNN (see Figure 1).
+
+Figure 1: The proposed GRU-SVM architecture model, withn−1
+GRU unit inputs, and SVM as its classifier.
+
+For this study, there were 21 features used as the model input.
+Then, the parameters are learned through the gating mechanism of
+GRU[3]:
+The L2-SVM was used for the proposed GRU-SVM architecture.
+As for the prediction, the decision function f (x) = siдn(wx + b)
+produces a score vector for each classes. So, to get the predicted
+class label y of a data x, the arдmax function is used:
+predicted_class = arдmax (siдn(wx + b))
+The arдmax function will return the index of the highest score
+across the vector of the predicted classes.
+The proposed GRU-SVM model may be summarized as follows:
+(1) Input the dataset features {xi
+| xi ∈ R
+m } to the GRU model.
+(2) Initialize the learning parameters weights and biases with
+arbitrary values (they will be adjusted through training).
+(3) The cell states of GRU are computed based on the input
+features xi
+, and its learning parameters values.
+(4) At the last time step, the prediction of the model is computed
+using the decision function of SVM: f (x) = siдn(wx + b).
+(5) The loss of the neural network is computed using Eq. 8.
+(6) An optimization algorithm is used for loss minimization (for
+this study, the Adam[14] optimizer was used). Optimization
+adjusts the weights and biases based on the computed loss.
+(7) This process is repeated until the neural network reaches
+
+the desired accuracy or the highest accuracy possible. After-
+wards, the trained model can be used for binary classification
+
+on a given data.
+The program implementation of the proposed GRU-SVM model
+is available at https://github.com/AFAgarap/gru-svm.
+
+2.5 Data Analysis
+The effectiveness of the proposed GRU-SVM model was measured
+through the two phases of the experiment: (1) training phase, and
+(2) test phase. Along with the proposed model, the conventional
+GRU-Softmax was also trained and tested on the same dataset.
+The first phase of the experiment utilized 80% of total data points
+(≈3.2 GB, or 14, 856, 316 lines of network traffic log) from the 25%
+of the dataset. After normalization and binning, it was revealed
+
+through a high-level inspection that a duplication occurred. Us-
+ing the DataFrame.drop_duplicates() of pandas[18], the 14, 856,
+
+316-line data dropped down to 1, 898, 322 lines (≈40MB).
+The second phase of the experiment was the evaluation of the
+two trained models using 20% of total data points from the 25% of
+the dataset. The testing dataset also experienced a drastic shrinkage
+in size – from 3, 714, 078 lines to 420, 759 lines (≈9 MB).
+
+The parameters for the experiments are listed below. These pa-
+rameters are based on the ones considered by Mukkamala, Janoski,
+Lastly, the statistical measures for binary classification were
+measured (true positive rate, true negative rate, false positive rate,
+and false negative rate).
+In this Chapter we propose a methodology to train Convolutional Neural Networks on
+texture classification problems. We start with a general definition on the learning process,
+and introduce the texture datasets that we use to evaluate the methodology. We then
+present our method for training the networks on texture problems, and the method we
+use to transfer learning between tasks.
+From a high-level, the process to train and evaluate the models follows the standard
+method for pattern recognition problems. The objective is to use a machine learning
+algorithm to learn a classification model, using a training dataset. We can then use this
+model to classify new samples, with the expectation that the patterns learned by the
+model in the training set generalize for new data. This process is illustrated in Figure 4.1.
+
+Machine Learning
+Algorithm
+
+Figure 4.1: An overview of the Pattern Recognition process.
+
+To evaluate the models, we use a held-out testing set to calculate the accuracy of the
+model, to verify how the model performs on unseen data:
+
+Accuracy = # correct predictions
+
+# samples in the testing set (4.1)
+For each dataset, the best architectures are validated using 3-fold cross-validation, that
+
+28
+is, the dataset is split three times (folds) into training, validation and testing. For each
+fold, a model is trained using the training and validation sets, and tested in the testing
+set. We then report the mean and standard deviation of the accuracy and compare them
+with the state-of-the-art in each dataset.
+
+4.1 Texture datasets
+
+A total of six texture datasets were selected to evaluate the method. These datasets were
+selected for two main reasons: they represent problems in different domains, and each
+dataset contain different challenges for pattern recognition. Below is a description of the
+selected datasets, with the different challenges that they pose. Examples of these datasets
+can be found in Appendix A
+
+4.1.1 Forest Species datasets
+The first dataset contains macroscopic images for forest species recognition: pictures of
+cross-section surfaces of the trees, obtained using a regular digital camera. This dataset
+consists in 41 classes, containing high-resolution (3264 x 2448) images for each class. The
+procedure used to collect the images, and details on the initial dataset (that contained 11
+classes at the time) can be found in [49], and the full dataset in [50].
+The second dataset contains microscopic images of forest species, obtained using a
+
+laboratory procedure. This dataset consists of 112 species, containing 20 images of res-
+olution 1024x768 for each class. Details on the dataset, including the procedure used to
+
+collect the images can be found in [51]. Examples of this dataset are presented in Figure
+A.2. It is worth noting that the colors on the images are not natural from the forest
+species, but a result of the laboratory procedure to produce contrast on the microscopic
+images. Therefore, the colors are not used for training the classifiers.
+The main challenge on the two forest species datasets is the image size. Most successful
+deep network models rely on small image sizes (e.g. 64x64), and these datasets contain
+images that are much larger.
+
+29
+
+4.1.2 Writer identification
+
+We consider two writer identification datasets. The first is the Brazilian Forensic Let-
+ter Database (BFL), containing 945 images from 315 writers (3 images per writer)[52].
+
+Hanusiak et al. [53] introduced a method to create textures from this type of image,
+transforming it into a texture classification problem. This method was later explored
+in depth by Bertolini [8] in two datasets: The Brazilian Forensic Letter Database, and
+the IAM Database. The IAM Database was presented by Marti and Bunke[54] for offline
+handwritten recognition tasks. The dataset includes scanned handwritten forms produced
+by approximately 650 different writers. Samples of these datasets, and their associated
+texture can be found in Figures A.4 and A.5. To allow direct comparison with published
+
+results on these datasets, we use the same subsets of the data as Bertolini [8]. In partic-
+ular, we use 115 writers from the BFL dataset, and 240 writers from the IAM dataset.
+
+This large number of classes is the main challenge in these datasets.
+
+4.1.3 Music genre classification
+The Latin Music Dataset, introduced by Silla et al. [55] contains 3227 songs from 10
+different Latin genres, and it was primarily built for the task of automatic music genre
+
+classification. Costa et al. [56] introduced a novel approach for this task, using spec-
+trograms: a visual representation of the songs. With this approach, a new dataset was
+
+constructed, with the images (spectrograms) of the songs, enabling the usage of classic
+texture classification techniques for this task.
+The music genre dataset contains a property that distinguishes it from the other
+datasets: on the other datasets, the textures are more homogeneous, in the sense that
+patches from different parts of the image have similar characteristics. For this dataset,
+however, there are differences in both axis: The music change its structure over time (X
+axis), and different patterns are expected on the frequency domain (Y axis). This suggest
+that convolutions can be less effective in this dataset, as patterns that are useful for one
+part of the image may not be useful for other parts. The challenge is to test if convolutions
+obtain good results in spite of these differences, or adapt the methodology to use a zoning
+
+30
+division, as described in the work by Costa et al. [56] and illustrated in figure 4.2.
+
+Figure 4.2: The zoning methodology used by Costa [56].
+
+4.1.4 Brodatz texture classification
+The Brodatz album is a classical texture database, dating back to 1966, and it is widely
+used for texture analysis. [57]. This dataset is composed of 112 textures, with a single
+640x640 image per each texture. In order to standardize the usage of this dataset for
+texture classification, Valkealahti [58] introduced the Brodatz-32 dataset, a subset of
+32 textures from the Brodatz album, with 64 images per class (64x64 pixels in size),
+containing patches of the original images, together with rotated and scaled versions of
+them (see Figure A.6).
+The challenge with the Brodatz dataset is the lower number of samples per image. In
+the original Brodatz dataset, only a single image per texture is available (640x640). Since
+it is common for Convolutional Networks to have large number of parameters, this type
+of network usually require large datasets to be able to learn the patterns from the data.
+
+31
+
+4.1.5 Summary of the datasets
+Table 4.1 summarizes the properties of the datasets used in this research, showing the
+different challenges (in terms of number of classes, database size, etc.) as mentioned in
+the previous sections.
+The last column of the table counts the number of bytes used to represent the images
+in a bitmap format (i.e. 1 byte per pixel for grayscale images, 3 bytes per pixel for color
+images), to give a sense on the amount of information available for the classifier in each
+dataset.
+
+
+4.2 Training Method for CNNs on Texture Datasets
+The proposed method for training CNNs on texture datasets is outlined below. The next
+sections describe the steps in further detail, and provide a rationale for the decisions.
+1. Resize the images from the dataset
+2. Split the dataset into training, validation and testing
+3. Extract patches from the images
+
+5. Test the network on the test patches
+6. Combine the patches to report results on the whole test images
+
+4.2.1 Image resize and patch extraction
+Most tasks that were successfully modeled with deep neural networks usually involve
+small inputs (e.g 32x32 pixels up to 108x108 pixels). Networks with larger input sizes
+contain more trainable weights requiring significant more computing power to train, and
+also requiring more data to prevent overfitting.
+In the case of texture classification, it is common to have access to high-resolution
+texture images, and therefore we need to methods that can explore larger inputs. Instead
+of simply training larger networks, we explore the hypothesis that we can classify a texture
+image with only a small part of it, and train a network not on the full texture images,
+but on patches of the images. This assists in reducing the size of the input to the neural
+network, and also allows us to combine, for a given image, different predictions made
+using patches from different parts of the image.
+Besides the size of the input to the neural network, another important aspect is the size
+of the filter (feature map) for the first convolutional layer. The first layer is responsible
+for the first level of feature extractors, which are closely related to local features in the
+image. Therefore, the filter size must be adequate for the dataset images (and vice-versa),
+in the sense that relevant visual cues should be present in image patches of the size of
+the filter. Considering this hypothesis, we first resize the images so that relevant visual
+cues are found within windows of fixed filter sizes. We consider different filter sizes for
+the first layer following the results from Coates et al. [59], that investigated the impact
+of filter sizes in classification. Coates et al. empirically demonstrated that the best filter
+sizes are between 5x5 and 8x8. The usage of larger filter sizes would require significantly
+larger amounts of data to improve accuracy.
+
+33
+Besides this intuitive approach for choosing the filter size and the factor to resize the
+images, we also explore a more systematic approach, considering both as hyperparameters
+of the network, and optimizing them.
+
+4.2.2 CNN architecture and training
+The architecture of the neural networks are based on the best results on the CIFAR dataset
+(as reviewed in Chapter 3). In particular, we use multiple convolutional layers (each
+followed by max-pooling layers), followed by multiple non-convolutional layers, ending
+with a softmax layer. This architecture is illustrated in Figure 4.3
+
+
+
+Input
+
+Figure 4.3: The Deep Convolutional Neural Network architecture.
+This architecture consists of the following layers, with the following parameters:
+1. Input layer: the parameters are dependent on the image resolution and the number
+of channels of the dataset;
+2. Two combinations of convolutional and pooling layers: each convolutional layer has
+64 filters, with a filter size defined for each problem, and stride set to 1. The pooling
+
+34
+
+layers consist of windows with size 3x3 and stride 2;
+3. Two locally-connected layers: 32 filters of size 3x3 and stride 1;
+4. Fully-connected output layer: dependent on the number of classes of the problem.
+The network has a high number of hyperparameters, such as the number of layers,
+
+the number of neurons in each layer, and different parameters in each layer’s configura-
+tion. In the present work we do not optimize all these hyperparameters. Instead, we
+
+started with network configurations that achieved state-of-the-art results on the CIFAR
+dataset, as described in Chapter 3, and performed tests in one of the texture datasets
+to select an architecture suitable for texture classification. We fixed the majority of the
+hyperparameters with this approach, we left the following hyperparameters for tuning:
+• Patch Size: The size of the input layer in the CNN (cropped from the input image)
+• Filter Size: The size of the filter in the first convolutional layer
+• Image size (Resize factor): The size of the image (before extracting its patches),
+resized from the original dataset. This is a parameter from our training strategy, not
+a parameter for the Convolutional Network. During initial tests, we found that this
+parameter is correlated with the Filter size, impacting the network’s performance.
+For example, when the input image is large and does not contain relevant visual cues
+in a small area (e.g. 5x5 pixels) it requires larger filters to achieve good performance.
+To explore the impact of the image sizes together with the filter sizes, we consider
+both as hyperparameters to be optimized.
+
+The training algorithm is similar to the Stochastic Gradient Descent algorithm (Al-
+gorithm 1) described in Chapter 2. The key difference is that the network is trained on
+
+random patches of the image - that is, for each epoch, a random patch is extracted for
+each image. We found that this strategy helps to prevent the model from overfitting the
+training set, while allowing training of a network with a large number of parameters. This
+procedure is defined in Algorithm 2 and illustrated in Figure 4.4.
+
+Here, Random Image Crop is a function that, given an image and a desired patch-
+Size, returns a random patch of size (patchSize x patchSize). ForwardProp and Back-
+Prop are the forward-propagation and back-propagation phases of the CNN training, as
+
+defined in Chapter 2. ApplyGradients updates the weights using the gradients (deriva-
+tives), the learning rate and applying momentum. We considered different termination
+
+criteria, and good results were obtained by setting a maximum number of iterations with-
+out improvement in the error function.
+
+We train the Convolutional Neural Networks on a Tesla C2050 GPU, using the cuda-
+convnet library1
+
+.
+
+4.2.3 Combining Patches for testing
+
+During training, the patches extracted from the images are classified individually, to cal-
+culate the error function and the gradients. During test, the different predictions on each
+
+Figure 4.4: The training procedure using random patches
+
+patch that compose an image need to be combined. For each patch, the model predicts
+the a posteriori probability of each class given the patch image. These probabilities are
+combined following the classifier combination strategies from Kittler et al. [39], reviewed
+in Chapter 2.
+In the present work, we made the decision to use the set of all non-overlapping patches
+from the image during test (called here Grid Patches). For each image, we extract a list
+of patches, classify them all, and combine the probabilities from all patches of the image.
+This procedure is described in Algorithm 3 and illustrated in Figure 4.5.
+
+Here, ExtractGridPatches is a function that divides an image in patches of size
+
+(patchSize x patchSize) and returns a list of patches. ForwardProp is the forward-
+propagation phase of the CNN; CombineProbabilities is a function that combines the
+
+probabilities from all patches of each image, using either the Product Rule or Sum Rule
+as defined in Chapter 2. The prediction for each sample is the class that has highest
+probability among all classes. We then calculate the Accuracy as the count of correctly
+classified samples, divided by the total number of samples in the testing set. When
+combining the probabilities, we experimented with both combination rules, and the Sum
+Rule consistently presented better results. Therefore this combination rule was used in
+our experiments.
+
+4.3 Training Method for Transfer Learning
+To explore the concept of transfer learning across different texture classification tasks, we
+use a procedure similar to the one used by Oquab et al. [41], but adapted to the training
+procedure above that considers random patches during training.
+To recall, the objective of Transfer Learning is to improve the performance in a target
+task TT with a source task TS trained on a source domain DS. For example, we train a
+
+Figure 4.5: The testing procedure using non-overlapping patches
+
+model on the IAM author identification task, and use this knowledge to improve a model
+trained for the BFL author identification task.
+With this objective in mind, we follow these steps:
+• Train a Convolutional Neural Network in the source task
+• Use this network to obtain a new representation of the target task (project the data
+to another feature space)
+• Use the new representation on the target task to train a new model
+One interpretation for this procedure is to consider that the source task (e.g. learn a
+CNN model on the IAM dataset) learn feature extractors that are generic, to some extent,
+and that are useful for the target task. We use the CNN to extract a new representation
+for the target dataset, which is similar to using a feature extractor to the input, obtaining
+a new vector representation for each sample. When extracting the new representation,
+similar to Oquab et al. [41], we use the layers of the CNN (trained on the source task)
+up to the last layer before softmax. In contrast to their work, instead of training a neural
+network on the new representation, we experiment with two models: logistic regression
+and SVM (Support Vector Machines).
+
+39
+One challenge to apply this technique on our methodology is that, when training
+the CNN, we use patches of the original images, instead of the full image. This means
+that when we generate a new representation on the target dataset, we are generating
+new representations for patches of the target images. The challenge is how to select the
+patches from the target dataset for training. On the CNN training, we use one random
+patch per epoch, but this procedure does not work well with SVM, that require a static
+(fixed) dataset. To address this issue, for each image in the target dataset, we extract
+the set of all non-overlapping patches (Grid Patches). This fixed dataset is then used for
+training. On the test phase, we follow the same approach described above: extract the
+grid patches of the dataset, and later combine the results of all patches for each image.
+The algorithm for learning the new model is described in Algorithm 4 and illustrated in
+Figure 4.6.
+Algorithm 4 Transfer Learning - training
+Require: dataset trainsource, dataset traintarget, dataset testtarget, patchSize
+modelsource ← Train With Random Patches(dataset trainsource, patchSize)
+Patches traintarget ← empty list
+for each image in dataset traintarget do
+Insert(Patches traintarget, ExtractGridPatches(image, patchSize))
+end for
+NewDataset traintarget ← GetNewRepresentation(modelsource, Patches traintarget)
+Modeltarget ← TrainModel(NewDataset traintarget)
+
+Here, Train With Random Patches is the training procedure described in Algo-
+rithm 2; ExtractGridPatches is a function to extract all non-overlapping patches from a
+
+image; GetNewRepresentation is a function that runs the Forward-propagation phase
+of the CNN up to the last layer before Softmax, and returns the activations of the neurons
+on this layer. TrainModel is a function that trains a classifier using the given dataset.
+In our experiments we used a simple model (Logistic Regression) and Support Vector
+Machines (SVM).
+The test procedure using Transfer Learning is also adapted to the fact that we use
+
+41
+Here, GetModelPredictions is a function on the target model (Logistic Regression
+or SVM) that returns the probabilities of each class for each training example (each patch).
+The remainder of the procedure follows the same steps as algorithm 3: the probabilities
+of patches of each image are combined, and the accuracy is reported as the number of
+correctly predicted samples divided by the number of samples in the testing set.
+The evolved modulated spiking neural networks (for both the normal and the
+huge t-maze) show a variety of structures with four or more neurons and different
+spiking behaviours. One example of an evolved modulated spiking neural network
+(b modulated) can be seen in 5.3. The structure of the network can be seen in
+figure 5.1.
+In this network neuron 2 does not spike at all because the robot does not need
+to go backwards. Since it does not have any connections to other neurons and it
+
+Figure 5.1: Example structure of a modulated spiking neural network (b modu-
+lated) solving the t-maze.
+
+25
+
+Chapter 5. Analysis
+
+(a) MSNN reaching goal 1 (b) MSNN reaching goal 2
+Figure 5.2: Example spiking frequency of a modulated spiking neural network (b
+modulated) solving the t-maze
+does not emit any gas, it has no further influence.
+Neuron 0 (forward) and neuron 1 (goal 1) always spike at the same frequency
+while neuron 3 is responsible for choosing the correct goal. If neuron 3 does not
+receive any input the spiking rate will decrease at the end resulting in the robot
+taking goal 1 (one example see figure 5.2a), however if neuron 3 receives correct
+input it will increase the spiking rate resulting in the robot taking goal 2 (one
+example see figure 5.2b). This way the whole decision is done only by neuron 3.
+Since each neuron can only have one input the information of the other input
+values needs to reach neuron 3 through the other neurons. This is done by the
+connections neuron 0 → neuron 1 and neuron 1 → neuron 3 (see figure 5.1).
+Some examples on how this information is propagated can be seen in figure 5.4,
+where each line represents a different run. However because this requires the
+cooperation of multiple neurons it seems to be hard to evolve networks that use
+all five input values (no network analysed was able to use all input values). The
+example network was able to use two input values (neuron 1 and 3 used the input
+of the value 1, neuron 0 the input of value 4). However this seems to be enough to
+be correct in most cases, because to know the two values are different it is enough
+to know that you only get one input.
+Since the gas is at a constant level, it is not used at all at the network. This is
+also true for almost every other evolved modulated spiking neural network solving
+the t-maze, where there is either no gas at all, highly fluctuating gas or gas at a
+constant level.
+
+28
+
+5.2. Reber grammar
+
+5.2 Reber grammar
+5.2.1 Reber detect a word
+If you look at the evolved size changing networks (including all modulated spiking
+neural networks), you can see that neither of them has found a way of detecting
+correct grammar (for both embedded and non-embedded Reber grammar). One
+typical example of modulated spiking neural networks can be found in figure 5.5.
+This network consists of one single neuron which listens for the character E. The
+network only accepts words with the letter E at the end, which is slightly better
+than random guessing.
+If you look at the words processed by the network, you can see a constant
+spiking rate at the beginning, high enough that a word gets accepted. Around
+time step 60 the height of the spikes suddenly increases - however this has nothing
+to do with the input. The internal charge of the neuron alternates between negative
+values and a value slightly over 30 in steps 0 to 60 (approximately −66 → 30 →
+−66), which leads to a constant spiking rate of one spike every two steps. This
+way a word would be accepted. However at about step 60 the spiking changed
+- instead of reaching a value higher than 30 it reaches a value slightly below 30.
+The reason for this is that the u value gets increased after each spike (see formula
+(2.17)), resulting in a smaller charge per step (see formula 2.13). This way one
+spiking goes approximately −66 → 29 → 300 → −66, resulting in a lower spiking
+rate (one spike every three steps). If no letter E is in the word the spiking rate
+stays at the lower level resulting in the network not accepting the word (e.g. figure
+5.5b). However if the letter E is put into the network, the additional input is
+enough to add up to 30 in the second step leading to the original spiking rate. If
+this is at the end of the word the word is accepted because of the higher spiking
+rate (e.g. figure 5.5a, 5.5c, 5.5d). Otherwise the spiking rate returns to the lower
+version after the letter (e.g. figure 5.5d).
+In all networks analysed, the gas had no impact at all.
+
+
+5.2.2 Reber create a word
+The modulated spiking neural network tried to learn specific patterns to finish
+words, however because the grammar is really hard they only developed patterns
+that work for certain words. Therefore the network tries combinations of the last
+characters (VE or SE for Reber grammar, TE or PE for embedded Reber) to
+finish the words. Some of the found examples can be seen in tables 5.1 and 5.2.
+One interesting aspect that could be observed are feedback loops in which the
+internal charge of the neuron (normally up to about 400) could get up to really
+high values. This occurs when a word is longer than the network expected. Some
+examples of these feedback loops can be seen in figure 5.6. They normally happen
+when the simulation is running for a longer time than expected by the network (for
+example because it should complete a long Reber grammar word). These feedback
+loops could hinder these networks to be used in long running tasks or tasks with
+highly variable running times.
+The reason why these feedback loops occur is a combination of the increase of
+the u parameter after a spike (see formula (2.17)) and the selection of the parameter
+ranges, especially the a parameter (see formula (2.18)). When such a feedback loop
+occurs the function which should reset the u parameter (formula (2.14) and (2.16))
+
+Figure 5.6: Example of feedback loops observed in “Reber create word” task
+does not work correctly because the a parameter is either zero or very small. This
+leads to the u parameter growing bigger the more spikes have occurred (see figure
+5.7). At one point the value of u has grown so big it is the most prominent factor
+in the formula for the internal value of a neuron (see formula (2.13) and (2.15)).
+At this point the spiking cycle turns into the following three steps:
+1. Reset and increase of u
+2. Highly negative v value because of −u in formula (2.13)
+3. Huge v due to v
+
+
+Figure 5.8: Example of gas usage in modulated spiking neural networks
+Once again the gas does not seem to have a huge impact on the final networks,
+with often no gas at all (figure 5.8a), highly fluctuating gas (figure 5.8b) or a
+constant gas concentration (figure 5.8c). This indicates that the evolution is not
+able to use the gas mechanism to an advantage. The problem with the observed
+gas patterns are as follows:
+• If no gas is emitted at all, then the special feature - the modulation of the
+neuron behaviour - is never used.
+• If the gas is highly fluctuating it means the gas has no or only a small impact,
+especially because it is often emitted and decayed in the same simulation step
+and thus it can’t have a long-time effect.
+• If the gas is constant, this means we can simply change the value of the
+modulated parameter of the neuron to get the same effect, thus it is almost
+equal to having no gas at all.
+
+The modulated spiking neural network architecture is in general a powerful archi-
+tecture capable of solving tasks very efficiently (like the t-maze) by using only a
+
+few neurons for a lot of computation. We have also looked into the function of the
+network for different tasks. However, there are some problems with the network
+architecture that may hold
+The main objective is the development of a Sales Forecasting Tool (SFT) for an
+English company. This main objective is subdivided into three specific objectives
+which are:
+1. Find relationships in the data in order to create mathematical models that
+accurately predict the general sales and sales by category of a range of
+product categories.
+2. Given the relationships and the models, interpret the results and detail the
+business insights and the implications of the knowledge gathered during the
+modelling process.
+3. Given the models, implement an information tool that can be actively used by
+the company in order to optimize the stock and support supplier purchase
+decisions.
+The main requirements of the company for this task are the ease of implementation
+and the interpretability. If the use of the models is shown to be of value for the
+company the next step is the integration (and automatization) of the modelling
+process to a software package used by the company.
+The models have to consider both the internal variables (like the stock levels and the
+visits to the website) as well as the external variables (like economic indicators and
+weather data) to make forecasts. Given that the sales apparently follow seasonal
+trends special emphasis will be made to time variables and their modelling
+implications.
+3.2 Data Description
+The data consists of sales and purchase records from April 2007 to December 2013.
+Each record has the date, product details and volume sold. Although the goal is to
+forecast the sales, the purchase orders were given in order to estimate stock levels
+over time and take them into account when forecasting particular product categories.
+For the development of the models only the main product categories or “Main
+Categories” are considered, there are 38 Main Categories.
+
+36
+
+Each one of the products in these categories can then be subcategorized in 3 ways
+depending on their use, their material and their processing details.
+After building an Overall Sales Model, additional models will be built for each one of
+the Main Categories and subcategories while their business relevance is high and the
+existence of sufficient data records make it practical.
+Added to the sales and purchase data, the visits to the company’s website where
+provided for the same time period.
+For the external variables monthly weather data and monthly economic indicators in
+the UK were gathered.
+The weather data consists of 4 indicators: Mean Daily Maximum C°, Mean Daily
+Minimum C°, Total Rainfall in millimetres (mm) and Total Sunshine duration in hours.
+The data was recorded in a Station close to the company (Met Office, 2014).
+The economic data consist of 8 indicators including Consumer Confidence, Consumer
+Spending, Personal Savings, Retail Sales and other market-specific indicators.
+(Trading Economics, 2014)
+3.3 Exploratory Analysis and Modelling Approach
+For the exploratory analysis the total volume of sales for each one of the main
+categories was calculated. This was done in order to identify the categories with the
+most sales, and therefore, the most relevant when building the models. A correlation
+matrix was built comparing the yearly sales across product categories. (Appendix 1).
+Two things were found in this analysis, the first one is that most of the sales are
+generated by few of the Main Categories; 11 of the categories with the most sales
+represent over 80% of the total sales while 17 categories represent over 90% of the
+total sales.
+The second finding is that the records are highly correlated (both positively and
+negatively) to the Total Sales and across product categories. Given an accurate
+model to forecast the total sales (or one significant category) this property can be
+leveraged in order to build simpler and more accurate models for the correlated
+categories and subcategories.
+
+37
+
+Another relevant finding is that for some specific product categories and
+subcategories have few data records. This makes the analysis of such categories
+difficult since the model is likely to overfit and show erratic estimates when adding
+time-dependent variables or stock data to the analysis.
+Taking these findings into consideration, the modelling approach for the SFT is the
+following:
+• Create an Overall Sales Model:
+Given the high correlations across categories, the seasonal pattern of the sales
+and its possible dependency to external variables an accurate estimate of the
+Overall Sales is required in order to facilitate modelling specific categories.
+This model will put light on the intrinsic behaviour of the sales, like the extent
+of the dependency to the time of the year, and the optimal time windows to
+analyse and the relationship with external variables.
+• Create Main Category Models:
+Based on the Overall Sales Model and the knowledge extracted from it.
+Individual forecasting models for each Main Category will be built.
+The degree in which these more specific observations are related to: the
+Overall Sales, the stock levels of other product categories and to the external
+variables will be analysed.
+• Build subcategory-specific sales estimators:
+Given the Main Category models, simpler sale estimators will be chosen in
+order to forecast even more detailed products subcategories.
+The complexity of these estimators will vary depending on the number of
+records. Simple estimators can be generated by applying weights to the upper
+categories’ forecasts. While more complex estimators may require the
+training of independent models.
+Because of the less technical approach to the task of this final step it will not
+be detailed in this document and will be assessed directly on the
+implementation phase.
+
+38
+
+3.4 Data Modelling (Sales forecasting)
+3.4.1 Overall Sales Model
+For the design of the Overall Sales Model (OSM), 14 variables where taken into
+
+account. These variables include the month as a categorical variable (January-
+December), year, sales of the two previous periods, web visits, weather indicators
+
+and economic indicators.
+In order to determine the complexity of the relationships of the sales to the variables.
+New features where engineered (transformed) to represent interactions between
+the variables and their effect on sales.
+For example, an engineered feature captures the specific effect of a rainy March or a
+sunny December. Another feature shows to which extent the sales of May have
+effect on the sales of June.
+In order to get a good estimate of the real performance of the model a meticulous
+crossvalidation procedure was performed. A total of 47 variables where evaluated.
+A leave-one-out crossvalidation was performed for each one of the possible practical
+combinations of features (2
+
+). The lowest error was recorded for each amount of
+
+variables in the model. The results of this procedure are shown on Graph 1.
+The models were trained using a Linear Regression that minimizes square errors.
+
+39
+
+As expected, as the number or variables grow the performance on the training data
+improves, while the crossvalidation error increases. Based on this analysis it was
+found that sales can be explained in a very low dimensional space (none of the
+engineered features reduced the crossvalidation error).
+
+THE BEST FIT TO THE DATA WAS ACHIEVED BY DIRECTLY MODELLING THE MONTH,
+THE SALES OF THE PREVIOUS PERIOD AND A SPECIFIC SET OF WEATHER AND
+ECONOMIC INDICATORS.
+
+3.4.2 Overall Sales Model: Optimal Time Windows
+While it is known that the best fit to the data is achieved without using engineered
+features. The next step is to find the best time period to forecast.
+For this purpose, the 14 variables where used to build 4 models that forecast the
+Overall Sales in different time windows. These time periods are the Monthly,
+Fortnightly (15 days), 10 days and 1 week periods.
+As before, a leave-one-out cross validation was performed for each combination of
+features (2
+
+:) for all the 4 models. The forecast of each model was summed to get
+the respective monthly forecast; the results of this analysis are shown on Graph 2.
+
+IT WAS FOUND THAT THE OPTIMAL TIME WINDOW TO MAKE FORECASTS IS EVERY 15
+DAYS (MONTHLY DATA DIVIDED IN TO HALVES BEFORE AND AFTER THE 15TH DAY OF
+EACH MONTH).
+
+The best model for this time period happened to be quite simple. Virtually only four
+variables were used: the month (categorical), sales of the previous period, one
+general economic indicator and one market-specific economic indicator.
+
+3.4.3 Data Smoothing: Exponential smoothing and Fuzzy logic
+Because of the time dependent nature of the sales; the use of data smoothing
+techniques were considered in order to improve the robustness of the model.
+Based on the 15 days sales data, two smoothing factor where applied to the data:
+The first smoothing factor (alpha) was applied to the sales by using an exponential
+moving average (EMA). In theory this was done to remove of some of the variance
+before training the model.
+A second smoothing factor (beta) was applied to the input data of the months.
+Instead of representing the month categories as binary variables (either 0 or 1). They
+were represented as a continuous variable between 0 and 1 (fuzzy logic).
+In this smoothing technique, the first period of the current month’s coefficient plus
+the previous month’s coefficient have to add to 1; for the second period the sum of
+the current month’s coefficient plus the succeeding month’s coefficient have to also
+add to 1.
+For example, if the smoothing factor beta is 0.1 and the period to forecast was the
+first 15 days of February. The input coefficients would be 0.1 for January, 0.9 for
+February, while0 for the rest of the months. This allowed the model to make two
+different forecasts during the same month without increasing the number of
+variables.
+The performance of the model with different values of alpha and beta was evaluated
+using a uniform search heuristic (21x21 trials). The results of this are shown on Graph 3.
+
+Graph 3. Error surface plot of smoothing factors
+
+41
+
+THE USE OF A SMOOTHING FACTOR ALPHA (ON SALES) DOES NOT IMPROVE THE
+PERFORMANCE OR THE ROBUSTNESS OF THE MODEL; IN CONTRAST, THE SMOOTHING
+FACTOR BETA (ON MONTHS) HAS A SIGNIFICANT EFFECT ON THE MODEL.
+By adding the smoothing factor beta three things were achieved:
+1. Accuracy: the error of the model measured by the MAD is decreased by 3%
+without increasing the complexity of the model.
+2. Robustness: the forecast presents less spikes and the transition from one
+period to the next is smoother since the variance is fitted among two month
+coefficients instead of just one.
+3. Interpretability: The regression coefficients now can be interpreted directly
+for both the 15 days forecasts (by doing a weighted average using beta
+depending on the time of the month), and the monthly forecast (by
+multiplying the month coefficient times 2).
+3.4.4 Main Product Categories Models
+The analysis and modelling for the product categories was done with the same
+approach.
+From the 38 categories only 2 were analysed in this paper. These two categories are
+the Category 1 (the category with the most sales and a high positive correlation with
+Overall Sales), and the Category 8 (a category with relatively high sales but with very
+low correlation with the rest of the categories and with the Overall Sales).
+The analysis of these two distinctive categories will shed light on which variables are
+the best and to what extent using the Overall Sales as input is of help.
+
+Feature Selection for MCMs
+Added to the 4 variables used in the OSM. The Overall Sales Volume was used as
+input for both categories’ models. Now with 5 variables, the different possible
+combinations of features (2
+;
+) were crossvalidated in order to find the best set of
+
+variables to build the MCMs. The results of this are shown on Table 1.
+
+42
+
+The Overall sales are the most relevant variable to predict sales of specific product
+categories. This holds true even when the category did not show a strong correlation
+with the overall sales to begin with.
+THIS INDICATES THAT SALES, AT ALL LEVELS, ARE SIGNIFICANTLY TIME-DEPENDENT
+AND ARE SUBJECT TO THE GENERAL MARKET POSITION OF THE COMPANY. USING
+ADDITIONAL VARIABLES TO BUILD THE FORECASTS IS OF LITTLE HELP.
+After the Overall sales, the best predictor for the MCMs is the month as a “fuzzy”
+categorical variable (applying the Beta smoothing factor explained in the previous
+section).
+For the implementation of the MCMs, it is best to have a mixed approach; three very
+similar models are suggested to be implemented at once:
+1. MCM to Total: The first forecasting model is based only on the output of the
+OSM and a constant variable. This model is presumably the most accurate,
+and represents the sales of the category as a direct proportion of the Overall
+sales.
+2. MCM to Month: This model is based only on the month as a fuzzy categorical
+variable. The purpose of this model is to capture the trend of each product
+category for interpretation purposes.
+3. Mixed MCM: This model uses both the Month variable and the OSM output.
+Its purpose is to interpret to which extent a specific product category is more
+reliant than to its own seasonality or to the Overall sales’.
+The final forecast will be a weighted average of the three models putting more
+weight on the MCM to Total model. The complete analysis is on the Appendix 2
+
+43
+3.4.5 Stock levels relevance analysis
+Another analysis was to discover the relationships between the stock levels of
+product categories and the sales of a specific category. This analysis was done
+because it was suspected that when the stock level of a specific product was low, it
+pushed up the sales of other products.
+For this analysis the Category 1 and Category 8’s sales were forecasted using the
+Overall Sales and a constant as input. Added to this, the 37 stock levels of the
+remaining categories were calculated and used as input.
+The stocks were Forward-selected (added to the model one at the time) and the
+crossvalidated performance was recorded in each case. An example of the output of
+this analysis is shown on Graph 4.
+
+CONSIDERING SOME STOCKS IMPROVED THE PERFORMANCE OF THE MODEL BUT SHOWED
+LITTLE STATISTICAL SIGNIFICANCE. THE MINIMAL INCREASE IN ACCURACY AND A FURTHER
+ANALYSIS CONCLUDED THAT SUCH STOCKS ARE NOT RELEVANT FOR THE FINAL MODEL.
+A further analysis was made on the models that considered the stock level of
+another product. In the three analysed cases, the sales of the selected product
+where very low (less than 1% of total sales) and had a discontinuous pattern.
+Arguably, such models found fit to the data in the very specific cases of a restocking
+(products in the same lot were received and sold together in the same time period)
+causing a “false fit” to the data.
+Modelling using stock levels would bring high risks of overfitting (variance) and the
+forecast would be subject to Inventory Management Interventions.
+Chapter 4: Analysis and Results
+4.1 Business and Management Implications
+Model Complexity
+The best fit to the sales data was found using only the linear relationships between
+few variables. In addition to this, the modelling method (Linear Regression) is widely
+used and has already been integrated in most of the commercial spreadsheet
+applications.
+Therefore, the interpretation and model update tasks can be performed by end user
+without much trouble.
+
+Robustness and self-adjusted forecasts
+The final model is robust; the same modelling principles are applied for the Overall
+Sales Model and the Main Category Models. The only difference between modelling
+broader and narrower categories are the variables that are used for making the
+forecast.
+This robustness is leveraged in the spreadsheet implementation with the ability to
+forecast different products and categories with very few configuration changes.
+It was found that some of the models rely on the previous period’s sales; this makes
+the forecast sensitive to sudden changes in demand.
+If the demand of a specific product changes (because of consumer preference or
+marketing efforts of the company), the forecast for the consecutive months will
+adapt by reflecting the increase or decrease of demand using a fixed ratio found in
+the regression.
+Economy driven growth
+The company’s general increase and decrease of sales is not correlated to the years
+of operation but to economic indicators. This means that the growth of the company
+is more dependent on the state of the market rather than on the company’s efforts
+and strategy.
+
+Main Findings
+• The sales are highly dependent on the period of the year (measured as months)
+• The best time windows to make forecasts are 15 days periods.
+• For some specific product categories there is not enough data to build a reliable
+model
+• The growth of the company is more correlated to economic indicators than to the
+years of operations
+• Increasing the number of variables or the complexity of the model does not
+increase the real accuracy (crossvalidation performance) of the model
+• There is a weak correlation between sales and weather (rain and sunshine)
+• Adding the stock levels to the model does not improve its performance
+• The Overall Sales are a good predictor for forecasting narrower product
+categories
+4.2 Model Evaluation
+The Overfitting problem
+The sales data is prone for overfitting, adding variables, transformations or more
+complex methods to the analysis may seem to increase the accuracy of the forecast,
+but this would also increase the variance of the estimates which may result in very
+volatile forecasts when trying to predict unseen data.
+If in the future there is the need to shift from the models proposed here, special
+emphasis has to be made on the crossvalidation procedure in order to guarantee a
+real improvement over the proposed models.
+The Multicollinearity problem
+During the modelling process, Multicollinearity was found in the data, this means
+that some features where highly correlated to each other. For example, the month
+and rain variables where highly correlated and both where good predictors of sales.
+In this situation the coefficient estimates of the regression may change erratically in
+response to small changes in the model or the data.
+
+
+Further improvements
+• Use of Generalization methods:
+Since one of the main issues is the overfitting caused by the lack of sufficient data
+points, adding Generalization methods (like regularizers) may help extract more
+information from the data even if the data sets are small.
+• Alternative approaches:
+In this paper only, the use of Linear and Polynomial Regressions was explored;
+the use of alternative (simple) data mining method for regression may be
+effective for this specific task. The suggested next approach is the use of decision
+trees.
+• Question-specific models:
+Because of the Multicolinearity problem, some variables were not considered for
+the final model. However, these unused variables still have predictive power and
+its interpretation may be relevant for the business.
+The use of Question-specific models is suggested (using Linear Regression or
+Partial Regression) in order to analyse the specific effects of these variables.
+
+4.3 Implementation
+4.3.1 Forecasting Process
+For the forecasting process a spreadsheet model was developed. The model is
+divided in three parts: the modelling part, the Analysis of Variance Report and the
+Stockout Analysis Report.
+When it is required to build a model for a new product or update the coefficients of
+a current model the spreadsheet is given records with the sales data and the
+external indicators.
+The model automatically builds regression equations based on the input. For
+comparison purposes the model outputs three regression equations: a regression
+using only the month as input, a regression using both the month and the external
+variables as input and the third one is a partial regression that uses the external
+variables to explain the residuals of the month model.
+Each model is presented along with the standard error of its coefficients (range) and
+their overall performance.
+4.3.2 Analysis of Variance Report
+To complement the decision making the spreadsheet model also contains and
+Analysis of Variance (ANOVA) Report. In this report the significance of each variable
+is shown.
+This report also contains a graph of the Fit Plot of the predictions made by the model
+against the actual sales. The average error per month was calculated in order to
+estimate the range of the prediction for each month (the error is heteroscedastic).
+A screenshot of the model can be seen on the Appendix 4.
+4.3.3 Stockout Risk Analysis
+The stockout analysis section is used for the final decision on how much to order.
+Based on the given input the model outputs the respective expected error of the
+forecast and uses it to build a Probability Density Function (PDF) of the future sales.
+The PDF is then used to estimate the best order size based on a Confidence indicator
+
+Application: Neural Networks for Regression
+Problem Description
+A dataset containing different features of houses and their respective prices in the
+city of Guadalajara in México was gathered. The data consists of 113 observations
+and 9 features to be used in the model.
+The task of this model is the building of a Housing Price Predictor (HPP) that will put
+light on the features that have the most value in the market.
+The requirements of this model are interpretability and accuracy over model
+simplicity. Given only a few observations and the prejudicial consequences of
+overestimating or underestimating the prices. The model has to be able to perform
+well when predicting unseen data (must be well generalized).
+Modelling
+For this task some of the features where discretized. For example, instead of
+representing the number of bathrooms as a single continuous variable. It was
+represented with two or more binary variables, which allowed the model to capture
+the special effect of having additional bathrooms.
+An Artificial Neural Network with One hidden layer was used to fit the data, three
+crossvalidation procedures where used. For the three procedures a crossvalidation
+dataset with 25% or the records was chosen using the hold-out method.
+The ANN’s hidden layer is activated using the sigmoid function and the final forecast
+is left unaltered (no activations are applied to the output layer).
+The first crossvalidation method was used to choose how many nodes (neurons) to
+use in the hidden layer. The more nodes the more parameters the model uses.
+The second method was the truncation of the input matrix X so the propagated
+values would not overestimate in the case of an anomalous input record (all the data
+was normalized before these procedures).
+The last method was the truncation of the errors to be backpropagated at every
+iteration of the gradient descent. This was done in order to prevent the algorithm to
+try to forecast anomalous prices in the training set (overfitting).
+
+
+The final model was picked training an ANN with 2 nodes, an Input truncation of 1.5
+and an Error backpropagation truncation of 3. Even though the accuracy of the
+model could be increased using more nodes. The improvement in performance was
+not considered significant given the increase in complexity.
+The coefficients of the final model were found by running the gradient descent
+algorithm multiple times with different initializations in order to prevent getting
+stuck with low quality local optimums.
+Analysis and Findings
+A multiple linear regression was used on the training data in order to get a
+benchmark to compare the performance of the ANN. The results of the two models
+are the following:
+
+Looking at the coefficients it seems that Node2 captured the main relationships in the
+data. Node2’s coefficients share the same signs with the linear regression’s coefficients;
+this node is likely to output values close to 1 (constantly activated) and given its
+outgoing weight it is the most relevant node when build the final prediction.
+Node1’s coefficients have the opposite signs and the output is likely to be close to 0
+(constantly inactivated). The low values outputted by this node apparently correct the
+overestimations made by Node2.
+In order to analyse the model even further, 3 values were calculated. These are the
+“Unbiased node coefficients” (Incoming weight * |Outgoing weight|), the node
+“Confliction” (1- |Node1 Coefficient/Node2 Coefficient|) and “Predictive Power” (MAX
+[|Node1 Coefficient|, |Node2 Coefficient|]). The table is on Appendix 3.
+With these indicators, we can get a better understanding of the data, for example, the
+Unit size is the most relevant variable when trying to predict the prices of the houses
+(highest predictive power).While it seems that the variable Months on sale can be
+dropped out from the analysis (lowest predictive power).
+Using the Confliction indicator, we can get a higher level of knowledge from the data.
+For example, looking at the confliction (90%) and predictive power (0.27) we can
+interpret that having an additional bathroom increases the value of the property, but
+not always. Similar interpretations can be drawn from the Floors (2) and Bathrooms (3)
+variables.
+When the confliction is close to 1, the activation of a node is not followed by the
+deactivation of parallel nods. This means that the contribution of the variable to the
+final prediction is subject to the activations caused by the remaining variables.
+In contrast, when confliction is close to 0 the activation of a node for that variable is
+followed by the deactivation of parallel nodes. This makes the contribution to the
+prediction more likely to stay unaltered.
+When predicting the prices of specific houses, the levels of the activations through the
+network can be tracked in order to see which variable contributed the most to the value
+of a specific house.
+Even though the ANN has over twice the number of parameters compared to a linear
+regression (21 versus 9). A higher level of abstraction was achieved while maintaining
+better accuracy and robustness on unseen data.
+
+Application: Neural Boosting for Model Augmentation
+Problem Description
+For the case study described before; given that the accuracy of the Overall Sales
+forecast is of high importance. In order to make better forecasts across product
+categories. A further analysis was made in order to improve on the proposed
+multiple linear regression models.
+For this, the variables used to build the Overall Sales Model plus the Rain variable
+were analysed along with the proposed model to build a “stronger” predictor.
+The new model has to maintain interpretability while increasing the accuracy and
+the knowledge discovery from the data. For this task model simplicity was not
+relevant.
+Modelling
+To solve this problem, a Model Boosting approach was used. Given the errors of a
+former predictive model, a new model was trained in order to “correct” or
+“compensate” for the mistakes made by the former model.
+For this, an ANN with a slightly different architecture was used. The input layer remains
+unaltered while the first (and only) hidden layer is extended by adding the predictions
+made by the former model; this prediction is passed unaltered (weight of 1) along with
+the activations of the nodes in the hidden layer to generate the final prediction.
+
+Using the prediction of the Linear Regression or “LR Prediction” as direct input for
+the final forecast exhausters the predictive power of the linear relationships and
+forces the neural network to find non-linear dynamics between the variables in order
+to increase the accuracy of the final forecast.
+Since the former model’s coefficients are not changed, their interpretability and
+output can still be used. Neural Boosting provides additional insight from the data
+when following the activations of the nodes without necessarily using a different
+model in the implementation.
+Analysis and Findings
+The final model was trained using 2 nodes in the hidden layer and truncating the
+input variables (error truncation did not improve the performance on unseen data).
+In order to interpret the coefficients of the neural networks, the
+predictive power of each variable was tracked back. Through this,
+it was found that the month of June (the month with the most
+sales) still has predictive power that was not captured by the
+linear regression (sales during June may be higher than estimated
+by the former model).
+For the rest of the variables it seems that the second economic
+indicator and the sales in the previous period still have predictive
+power when interacting with other variables using this more
+complex modelling approach.
+As mentioned before, it seems that building question-specific
+models as partial regressions or even building models for every
+month of the year may improve the accuracy of the forecast.
+The final model performs better on unseen data than a linear regression. Using this
+approach the accuracy of the model increased very slightly. The results suggests this
+approach should only be used as insight for further (simpler) improvements.

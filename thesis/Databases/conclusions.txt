@@ -1,0 +1,141 @@
+For each measuring point, five measurements were done and the average of those
+was recorded. In Figure 5.2, the client-side metrics are displayed. First, the total page
+load time and the load time for the HTML were recorded. As the amount of asset
+listings increases, the total page load time increases with it in a linear fashion. This
+can be explained by the linearly increasing number of images (each ~262 kB, 1500x841
+JPEG) and, therefore, linearly increasing amount of transferred data (Figure 5.2(b)).
+The time to load the HTML page also increases from 250 ms @ 3 asset listings to 368 ms
+@ 644 asset listings, but looses significance as the total page load time is dominated by
+the images: The total page load time increases to 4.768 s @ 644 asset listings. In these
+measurements, there is only minimal latency and a very high download speed available
+since the servers are on the same machine as the client. If the browser is throttled to
+a 30 Mbit/s connection, the total page load time @ 644 asset listings increases to 45 s.
+Even in that more realistic scenario, 45 s can still be considered interactive since ~14 new
+asset listings are available to explore per second.
+
+In Figure 5.3, the server-side metrics are displayed. The processing time for the
+completion of the incoming GET /store/gallery request by the user-server is split up in
+three parts: the querying of the data-server, the generation of the HTML and additional
+latency caused by asynchronous code execution. Generally, the processing time required
+increases with a higher amount of asset listings. This is to be expected, since more
+asset listings equal a larger and more complex HTML page. In order to generate a
+longer and more complex HTML, the templating engine needs more processing time.
+The time needed by the data-server to access the database and return the data to the
+user-server also increases with more asset listings, as the transmitted data is larger and
+the database retrieval takes longer. The additional latency fluctuates slightly but stays
+overall constant, independent of the number of asset listings. Therefore, if the HTML
+generation on the server was eliminated and instead executed on the client, e.g. through
+a front-end framework and Asynchronous JavaScript And XML (AJAX) queries, the
+server response time and the server load could be reduced by up to 50%–75% for this
+scenario.
+
+The presented architecture was evaluated in regard to code complexity. The project,
+which was developed over three and a half months, has a total of 2900 lines of code, with
+an average 100 lines of code per file over 29 files. Despite the generally low test coverage
+of the project, around 900 of the 2900 lines of code belong to tests. In comparison, the
+popular JavaScript libary JQuery has 6882 lines of code with an average of 286 lines of
+code over 24 files. In the implementation of the presented system, the average of the
+highest nesting level per file is 2.16 with the median being 2. This relatively high value
+stems from the asynchronous nature of JavaScript. For every file and database access, a
+JavaScript Promise or a callback is required, both adding a nesting level to the following
+code. The average maintainability1 of the implementation is 72.3, a relatively high value.
+For context: A maintainability below 20 signals significant problems while 100 is the
+perfect score. JQuery has an average maintainability of 69.7. Therefore, as the results
+of our implementation are similar to the results of JQuery, a solid code quality can be
+attributed to the implementation of the proposed system.
+
+In the future, the proposed system may be extended in various ways. First, a rendering
+component could be added to the server infrastructure to allow for server-based rendering
+of example images. A web client for the modification and execution of image processing
+operations based on WebGL with a direct integration into the proposed system is also
+imaginable. The asset bundler module could be improved by letting clients submit a list
+of already downloaded dependencies and exclude those from the delivered asset bundle,
+therefore dramatically decreasing the average size of the asset bundles and embracing
+the concept as a package manager. Furthermore, the asset publisher module may be
+extended to be able to publish multiple assets at once. This would allow to reduce code
+complexity in clients even further by removing the necessity to submit changed assets
+one-by-one.
+
+Another possible improvement is to provide search and filter functionality in store
+views. In order for this to be efficiently implemented, a front-end framework like React
+[23] should be used. Such a framework allows to divide the data from the HTML
+representation by having the framework query the server for JSON data via AJAX and
+building the HTML dynamically on the client side. Right now, the server builds the
+complete HTML page and transmits it to the client. As shown in Section 5.1, eliminating
+the server-side HTML generation would also significantly decrease server load and the
+response time for the web store interface. Therefore, using such a front-end framework
+would allow for more flexibility regarding future improvements that require dynamic
+single-pages without page reloading.
+
+It is also imaginable to extend the proposed system to a web-based social community
+around the collaborative design and sharing of image processing operations with features
+such as ratings, comments and content feeds.
+
+Existing photo editing and stylization apps enable the artistic transformation of pictures
+but only allow sharing of the result images and, in some instances, the parameterization
+of the underlying image processing operations. This thesis presents a server infrastructure
+for sharing and providing image processing operations. To enable cross-platform execution
+and editing of image effects, an XML format for the description of platform-independent
+effects is proposed. Furthermore, a segmentation of effects into assets that enable lowlevel
+versioning and reuse of common resources through dependencies is introduced.
+
+Various HTML views allow users to explore the currently available image operations.
+Users can share their modified image effects via a server interface with other users and
+optionally publish their effect to the web store view with asset listings. In order to enable
+optimal horizontal scaling for potential future production use, a concept for running
+the server architecture and the database in separate virtualized containers is proposed.
+Thus, it is possible to develop clients for a multitude of platforms and build an ecosystem
+around the on-device modification of image processing operations as demonstrated by
+Dürschmid et al. [9]. The system enables collaboration and sharing of image processing
+operations for these clients. In the future, the system can be extended to build a webbased
+social community for designing, modifying and sharing image processing operations
+with features such as ratings, comments and content feeds.
+
+The conducted study resulting two small plugins where each plugin has its own function. 
+Encryption plugin will enable user to encrypt the database from normal database to encrypted one, 
+and Decryption plugin to reverse the encryption process from encrypted database to normal one
+Figure 4.2 above explains about the content of encrypted database. Compared with normal database, 
+the encrypted database content seems more unreadable. This is the effect of encryption from encryption 
+plugin. This plugin alters the content of normal database, and save it to a new file for encrypted database.
+There are slight differences between normal database and encrypted database, the file size and checksum hash 
+value. For instance: Maulana.bxds as normal database has 4.09 KB of file size (exactly 4,191 bytes) and 8.00 
+KB size on disk. For the encrypted database Maulana.exds as encrypted database has 4.09 KB of file size 
+(exactly 4,192 bytes) and 8.00 KB size on disk. Even if there is a slight difference between normal and 
+decrypted database (4,191 bytes for normal database, and 4,192 for encrypted database), there is a change
+within the file. In order to check furthermore this problem, checksum algorithm will check the difference
+furthermore.
+
+In order to check how powerful, the security level of database, there are many techniques to determine that.
+There are Brute Force Attack, and Dictionary Attack. Brute Force Attack will try all possibilities to penetrate 
+the encryption. Dictionary Attack will determine whether user is using commonly used password or dictionary-based
+password (wordlist). Figures below are the result of security penetration done by Brute Force Attack and Dictionary
+Attack (note that the tools already know the key generation process, so the cracking process will be based on how 
+long the tool will find the password.
+
+Figure 4.4 above explains that Dictionary Attack is able to retrieve the password from the database. Since the 
+password is within the wordlist (dictionary), the tool will easily found the password within a time. 
+In the figure, the database is encrypted with asdf as the password. The password itself is commonly used 
+by many users in internet. That’s why the tool can easily retrieve the password. This methodology is weak 
+against alphabetical order. If the password has smaller line number, then the password is easier to be found,
+ and vice versa. The tool above found the password within 29 trials in 11.26 seconds. By searching through two 
+dictionaries and commonly used password as wordlist.
+
+Many systems have advantages and weakness, this including the plugins as well. The plugins have many advantages
+as well as weakness. Since the plugins are written under Java programming language, the plugins are runnable
+in many platforms. Besides that, the plugin can encrypt many types of file. However, the encryption result 
+saved as exds. The plugins have weakness against existing file and folder, if the file or folder already exist,
+the plugins will overwrite the file or folder without prompting to user. There is a problem with strong key size
+in Java Virtual Machine. Generally, Java only provide 128-bit as its default key size, if an algorithm uses more
+than 128-bit of key size, IllegalKeySizeException will occur and the encryption or decryption process aborted. In
+the user interface term, there are many weaknesses in the user interface. The design for user interface is still 
+bad for disable person. Besides that, there are many missing components such as progress bar, many buttons, static
+form and design.
+
+Complex modern applications lead to poorer maintainability and extensibility for which elastic and dynamic concepts
+ can help to diminish this complexity. Despite of some limitations, Object-Oriented Databases offers superior 
+performance and various valuable features, such as, faster data access, custom data types, support for modeling
+ real-world complex data structures and much more which are missing in Relational Databases, so, it is expected
+ that the trend would move from RDBMS to OODBMS in future. This paper will prove supportive for Database 
+Administrators in performance estimation of OODBMS and RDBMS before its implementation. However, the production
+ of most dominant Database Management System is still a great challenge for researchers.
+

@@ -1,0 +1,194 @@
+Computer science is the study of the theory, experimentation, and engineering that form the basis for the design 
+and use of computers. It is the scientific and practical approach to computation and its applications and the systematic 
+study of the feasibility, structure, expression, and mechanization of the methodical procedures (or algorithms) that underlie 
+the acquisition, representation, processing, storage, communication of, and access to, information. An alternate, more succinct 
+definition of computer science is the study of automating algorithmic processes that scale. A computer scientist specializes in 
+the theory of computation and the design of computational systems.
+
+Its fields can be divided into a variety of theoretical and practical disciplines. Some fields, such as computational complexity 
+theory (which explores the fundamental properties of computational and intractable problems), are highly abstract, while fields 
+such as computer graphics emphasize real-world visual applications. Other fields still focus on challenges in implementing 
+computation. For example, programming language theory considers various approaches to the description of computation, while the 
+study of computer programming itself investigates various aspects of the use of programming language and complex systems. 
+
+Human–computer interaction considers the challenges in making computers and computations useful, usable, and universally accessible 
+to humans.
+
+Theoretical computer science, or TCS, is a subset of general computer science and mathematics that focuses on more mathematical 
+topics of computing and includes the theory of computation.
+
+It is difficult to circumscribe the theoretical areas precisely. The ACM's Special Interest Group on Algorithms and Computation 
+Theory (SIGACT) provides the following description: TCS covers a wide variety of topics including algorithms, data structures, 
+computational complexity, parallel and distributed computation, probabilistic computation, quantum computation, automata theory, 
+information theory, cryptography, program semantics and verification, machine learning, computational biology, computational 
+economics, computational geometry, and computational number theory and algebra. Work in this field is often distinguished by its 
+emphasis on mathematical technique and rigor.
+
+n this list, the ACM's journal Transactions on Computation Theory includes coding theory and computational learning theory, as 
+well as theoretical computer science aspects of areas such as databases, information retrieval, economic models, and networks.[2] 
+Despite this broad scope, the "theory people" in computer science self-identify as different from the "applied people"[citation 
+needed]. Some characterize themselves as doing the "(more fundamental) 'science(s)' underlying the field of computing."[3] Other 
+"theory-applied people" suggest that it is impossible to separate theory and application. This means that the so-called "theory 
+people" regularly use experimental science(s) done in less-theoretical areas such as software system research[citation needed]. 
+It also means that there is more cooperation than mutually exclusive competition between theory and application.
+
+In theoretical computer science and mathematics, the theory of computation is the branch that deals with how efficiently problems 
+can be solved on a model of computation, using an algorithm. The field is divided into three major branches: automata theory and 
+language, computability theory, and computational complexity theory, which are linked by the question: "What are the fundamental 
+capabilities and limitations of computers?".[1] In order to perform a rigorous study of computation, computer scientists work with 
+a mathematical abstraction of computers called a model of computation. There are several models in use, but the most commonly 
+examined is the Turing machine.[2] Computer scientists study the Turing machine because it is simple to formulate, can be analyzed 
+and used to prove results, and because it represents what many consider the most powerful possible "reasonable" model of 
+computation (see Church–Turing thesis).[3] It might seem that the potentially infinite memory capacity is an unrealizable 
+attribute, but any decidable problem[4] solved by a Turing machine will always require only a finite amount of memory. So in 
+principle, any problem that can be solved (decided) by a Turing machine can be solved by a computer that has a finite amount of 
+memory.
+
+Programming language theory (PLT) is a branch of computer science that deals with the design, implementation, analysis, 
+characterization, and classification of programming languages and their individual features. It falls within the discipline of 
+computer science, both depending on and affecting mathematics, software engineering, linguistics and even cognitive science. It 
+is a well-recognized branch of computer science, and an active research area, with results published in numerous journals dedicated 
+to PLT, as well as in general computer science and engineering publications.
+
+Computer engineering is a discipline that integrates several fields of electrical engineering and computer science required to 
+develop computer hardware and software.[1] Computer engineers usually have training in electronic engineering (or electrical 
+engineering), software design, and hardware–software integration instead of only software engineering or electronic engineering. 
+Computer engineers are involved in many hardware and software aspects of computing, from the design of individual microcontrollers, 
+microprocessors, personal computers, and supercomputers, to circuit design. This field of engineering not only focuses on how 
+computer systems themselves work, but also how they integrate into the larger picture.[2]
+
+Usual tasks involving computer engineers include writing software and firmware for embedded microcontrollers, designing VLSI chips, 
+designing analog sensors, designing mixed signal circuit boards, and designing operating systems. Computer engineers are also 
+suited for robotics research, which relies heavily on using digital systems to control and monitor electrical systems like motors, 
+communications, and sensors.
+
+In many institutions, computer engineering students are allowed to choose areas of in-depth study in their junior and senior year, 
+because the full breadth of knowledge used in the design and application of computers is beyond the scope of an undergraduate 
+degree. Other institutions may require engineering students to complete one or two years of General Engineering before declaring 
+computer engineering as their primary focus.
+
+A database is an organized collection of data.[1] A relational database, more restrictively, is a collection of schemas, tables, 
+queries, reports, views, and other elements. Database designers typically organize the data to model aspects of reality in a way 
+that supports processes requiring information, such as (for example) modelling the availability of rooms in hotels in a way that 
+supports finding a hotel with vacancies. A database-management system (DBMS) is a computer-software application that interacts with 
+end-users, other applications, and the database itself to capture and analyze data. A general-purpose DBMS allows the definition, 
+creation, querying, update, and administration of databases. A database is not generally portable across different DBMSs, but 
+different DBMSs can interoperate by using standards such as SQL and ODBC or JDBC to allow a single application to work with more 
+than one DBMS. Computer scientists may classify database-management systems according to the database models that they support; 
+the most popular database systems since the 1980s have all supported the relational model - generally associated with the SQL 
+language.[disputed – discuss] Sometimes a DBMS is loosely referred to as a "database".
+
+Following the technology progress in the areas of processors, computer memory, computer storage, and computer networks, the sizes, 
+capabilities, and performance of databases and their respective DBMSs have grown in orders of magnitude. The development of database
+technology can be divided into three eras based on data model or structure: navigational,[9] SQL/relational, and post-relational.
+
+Artificial intelligence (AI, also machine intelligence, MI) is intelligence demonstrated by machines, in contrast to the natural 
+intelligence (NI) displayed by humans and other animals. In computer science AI research is defined as the study of "intelligent 
+agents": any device that perceives its environment and takes actions that maximize its chance of successfully achieving its goals.
+[1] Colloquially, the term "artificial intelligence" is applied when a machine mimics "cognitive" functions that humans associate 
+with other human minds, such as "learning" and "problem solving".[2] See glossary of artificial intelligence.
+
+The scope of AI is disputed: as machines become increasingly capable, tasks considered as requiring "intelligence" are often 
+removed from the definition, a phenomenon known as the AI effect, leading to the quip "AI is whatever hasn't been done yet."[3] For 
+instance, optical character recognition is frequently excluded from "artificial intelligence", having become a routine technology.
+[4] Capabilities generally classified as AI as of 2017 include successfully understanding human speech,[5] competing at the highest 
+level in strategic game systems (such as chess and Go[6]), autonomous cars, intelligent routing in content delivery network and 
+military simulations.
+
+Artificial intelligence was founded as an academic discipline in 1956, and in the years since has experienced several waves of 
+optimism,[7][8] followed by disappointment and the loss of funding (known as an "AI winter"),[9][10] followed by new approaches, 
+success and renewed funding.[8][11] For most of its history, AI research has been divided into subfields that often fail to 
+communicate with each other.[12] These sub-fields are based on technical considerations, such as particular goals (e.g. "robotics" 
+or "machine learning"),[13] the use of particular tools ("logic" or "neural networks"), or deep philosophical differences.[14][15]
+[16] Subfields have also been based on social factors (particular institutions or the work of particular researchers).[12]
+
+The traditional problems (or goals) of AI research include reasoning, knowledge representation, planning, learning, natural 
+language processing, perception and the ability to move and manipulate objects.[13] General intelligence is among the field's 
+long-term goals.[17] Approaches include statistical methods, computational intelligence, and traditional symbolic AI. Many tools 
+are used in AI, including versions of search and mathematical optimization, neural networks and methods based on statistics, 
+probability and economics. The AI field draws upon computer science, mathematics, psychology, linguistics, philosophy and many 
+others.
+
+The field was founded on the claim that human intelligence "can be so precisely described that a machine can be made to simulate 
+it".[18] This raises philosophical arguments about the nature of the mind and the ethics of creating artificial beings endowed 
+with human-like intelligence, issues which have been explored by myth, fiction and philosophy since antiquity.[19] Some people also 
+consider AI to be a danger to humanity if it progresses unabatedly.[20] Others believe that AI, unlike previous technological 
+revolutions, will create a risk of mass unemployment.[21]
+
+In the twenty-first century, AI techniques have experienced a resurgence following concurrent advances in computer power, large 
+amounts of data, and theoretical understanding; and AI techniques have become an essential part of the technology industry, helping 
+to solve many challenging problems in computer science.
+
+Object-oriented programming (OOP) is a programming paradigm based on the concept of "objects", which may contain data, in the form 
+of fields, often known as attributes; and code, in the form of procedures, often known as methods. A feature of objects is that an 
+object's procedures can access and often modify the data fields of the object with which they are associated (objects have a notion 
+of "this" or "self"). In OOP, computer programs are designed by making them out of objects that interact with one another.[1][2] 
+There is significant diversity of OOP languages, but the most popular ones are class-based, meaning that objects are instances of 
+classes, which typically also determine their type.
+
+Many of the most widely used programming languages (such as C++, Object Pascal, Java, Python etc.) are multi-paradigm programming 
+languages that support object-oriented programming to a greater or lesser degree, typically in combination with imperative, 
+procedural programming. Significant object-oriented languages include Java, C++, C#, Python, PHP, Ruby, Perl, Object Pascal, 
+Objective-C, Dart, Swift, Scala, Common Lisp, and Smalltalk.
+
+In programming languages and type theory, polymorphism is the provision of a single interface to entities of different types.
+[1] A polymorphic type is one whose operations can also be applied to values of some other type, or types.[2] 
+
+Ad hoc polymorphism: when a function has different implementations depending on a limited range of individually specified types and 
+combinations. Ad hoc polymorphism is supported in many languages using function overloading.
+Parametric polymorphism: when code is written without mention of any specific type and thus can be used transparently with any 
+number of new types. In the object-oriented programming community, this is often known as generics or generic programming. In the 
+functional programming community, this is often shortened to polymorphism.
+Subtyping (also called subtype polymorphism or inclusion polymorphism): when a name denotes instances of many different classes 
+related by some common superclass.[3]
+The interaction between parametric polymorphism and subtyping leads to the concepts of variance and bounded quantification
+
+In computer science, functional programming is a programming paradigm—a style of building the structure and elements of computer 
+programs—that treats computation as the evaluation of mathematical functions and avoids changing-state and mutable data. It is a 
+declarative programming paradigm, which means programming is done with expressions[1] or declarations[2] instead of statements. In 
+functional code, the output value of a function depends only on the arguments that are passed to the function, so calling a 
+function f twice with the same value for an argument x produces the same result f(x) each time; this is in contrast to procedures 
+depending on a local or global state, which may produce different results at different times when called with the same arguments 
+but a different program state. Eliminating side effects, i.e., changes in state that do not depend on the function inputs, can make 
+it much easier to understand and predict the behavior of a program, which is one of the key motivations for the development of 
+functional programming.
+
+Functional programming has its origins in lambda calculus, a formal system developed in the 1930s to investigate computability, the 
+Entscheidungsproblem, function definition, function application, and recursion. Many functional programming languages can be viewed 
+as elaborations on the lambda calculus. Another well-known declarative programming paradigm, logic programming, is based on 
+relations.[3]
+
+In contrast, imperative programming changes state with commands in the source code, the simplest example being assignment. 
+Imperative programming does have subroutine functions, but these are not functions in the mathematical sense. They can have side 
+effects that may change the value of program state. Functions without return values therefore make sense. Because of this, they 
+lack referential transparency, i.e., the same language expression can result in different values at different times depending on 
+the state of the executing program.[3]
+
+Functional programming languages have largely been emphasized in academia rather than in commercial software development. However, 
+prominent programming languages that support functional programming such as Common Lisp, Scheme,[4][5][6][7] Clojure,[8][9] Wolfram 
+Language[10] (also known as Mathematica), Racket,[11] Erlang,[12][13][14] OCaml,[15][16] Haskell,[17][18] and F#[19][20] have been 
+used in industrial and commercial applications by a wide variety of organizations. JavaScript, one of the world's most widely 
+distributed languages,[21][22] has the properties of an untyped functional language,[23] in addition to imperative and 
+object-oriented paradigms. Functional programming is also supported in some domain-specific programming languages like R 
+(statistics),[24] J, K and Q from Kx Systems (financial analysis), XQuery/XSLT (XML),[25][26] and Opal.[27] Widespread 
+domain-specific declarative languages like SQL and Lex/Yacc use some elements of functional programming, especially in eschewing 
+mutable values.[28]
+
+Programming in a functional style can also be accomplished in languages that are not specifically designed for functional 
+programming. For example, the imperative Perl programming language has been the subject of a book describing how to apply 
+functional programming concepts.[29] This is also true of the PHP programming language.[30] C++11, Java 8, and C# 3.0 all added
+constructs to facilitate the functional style. The Julia language also offers functional programming abilities. An interesting case 
+is that of Scala[31] – it is frequently written in a functional style, but the presence of side effects and mutable state place it 
+in a grey area between imperative and functional languages.
+
+Procedural programming is a programming paradigm, derived from structured programming, based upon the concept of the procedure 
+call. Procedures, also known as routines, subroutines, or functions (not to be confused with mathematical functions, but similar to 
+those used in functional programming), simply contain a series of computational steps to be carried out. Any given procedure might 
+be called at any point during a program's execution, including by other procedures or itself. The first major procedural 
+programming languages first appeared circa 1960, including Fortran, ALGOL, COBOL and BASIC.[1] Pascal and C were published closer 
+to the 1970s, while Ada was released in 1980.[1] Go is an example of a more modern procedural language, first published in 2009.
+
+Computer processors provide hardware support for procedural programming through a stack register and instructions for calling 
+procedures and returning from them. Hardware support for other types of programming is possible, but no attempt was commercially 
+successful.
+

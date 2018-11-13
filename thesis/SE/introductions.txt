@@ -1,0 +1,1490 @@
+﻿This chapter presents the organisation adopted for running the Maisqual project, introducing
+the people and organisations involved in the project, and stating the objectives and
+outputs of the work. It also gives valuable information to better understand the structure
+and contents of this report, to enable one to capitalise on the knowledge and conclusions
+delivered in this project.
+
+The first section gives insights in the genesis of Maisqual, how it came to life and who
+was involved in its setup. The project timeline in section 1.2 depicts the high-level phases
+the project ran across, and expected outputs and requirements are documented in section
+1.3. Typographic and redaction conventions used in the document are explained in section
+1.4. A short summary outlines the forthcoming structure of the document in section 1.5.
+
+The Maisqual project had its inception back in 2007 when I met Christophe Peron1 and we
+started sharing our experiences and beliefs about software engineering. Through various
+talks, seminars and industrial projects we had in common, the idea of a research work on
+empirical software engineering steadily evolved.
+
+The project would eventually become a reality in 2011 with the foundation of Squoring
+Technologies, a start-up initiated by major actors of the world of software quality and
+publisher of the Squore product. Patrick Artola, co-founder and CEO of Squoring
+Technologies, had contacted the INRIA Lille SequeL team for a research project on data
+mining and automatic learning. The new company needed work power for its beginning,
+and since the project was considered as being somewhat important and time-consuming,
+a compromise was found to mix product-oriented development, industrial consultancy and
+research studies. A deal was signed in April 2011, with 2 days per week for the thesis
+work and 3 days per week for Squoring Technologies. This was accepted by all parts
+and would run for the next three years.
+
+SequeL2 is an acronym for Sequential Learning; it is a joint research project of the LIFL
+(Laboratoire d’Informatique Fondamentale de Lille, Université de Lille 3), the CNRS
+(Centre National de Recherche Scientifique) and the INRIA (Institut National de Recherche
+en Informatique Appliquée) located in the Lille-Nord Europe research center.
+The aim of SequeL is to study the resolution of sequential decision problems. For that
+purpose, they study sequential learning algorithms with focus on reinforcement and bandit
+learning and put an emphasis on the use of concepts and tools drawn from statistical
+learning. Work ranges from the theory of learnability, to the design of efficient algorithms,
+to applications; it is important to note that the team has interests and activities in both
+fundamental aspects and real applications. SequeL has an important specificity that its
+members originate from 3 different fields: computer science, applied mathematics, and
+signal processing. Usually researchers of these fields work independently; in SequeL they
+work together, and cross-fertilize.
+
+Philippe Preux is the leader of the SequeL team working in the fields of sequential
+learning and data mining3. He teaches at Université de Lille 3 and takes part in various
+conferences, committees and scientific events.
+
+Squoring Technologies4 was founded in late 2010 by a group of Software Engineering
+experts, united by the same vision to provide a de facto standard platform for software
+development projects in the embedded market. The company is located in Toulouse,
+France, with offices in Paris and Grenoble. As for its international presence, Squoring
+Technologies GmbH was founded in 2011 in Bavaria, Germany to target the German
+market of embedded automotive and space software. Several distributors propose the
+product on the Asian, European, and US markets.
+
+Squoring Technologies offers product licensing, consultancy, services and training to
+help organizations in deploying SQUORE into their operational environment and filling
+the gap from a hard-to-implement metric-based process to team awareness and successful
+decision making. Based on the strong operational background and deep knowledge
+in software-related standards of its staff members, Squoring Technologies’ mission is
+to improve capability, maturity and performance for its customers in their acquisition,
+development and maintainance of software products.
+
+Its customers range from medium to large companies in different domains of activities:
+aeronautics (Airbus, Rockwell-Collins, Thalès), defense (DCNS), healthcare (McKesson),
+transport and automotive (Valéo, Continental, Delphi, Alstom, IEE, Magneti-Marelli),
+energy (Schneider Electric), computing and contents (Bull, Sysfera, Technicolor, Infotel).
+
+Squore Labs are projects that target practical concerns like new features for the Squore
+product. They have been setup as pragmatic implementations of the primary goals of
+the project, and secure the transfer of academic and research knowledge into Squoring
+Technologies assets. They are time-boxed and have well-identified requirements and
+deliverables.
+
+Squore Labs address a specific software engineering concern and are usually defined
+as an extension of a promising intuition unveiled by state of the art studies or experts’
+observations. The following Squore Labs have been defined as the thesis’ goals:
+  
+The Polarsys quality assessment working group, initiated by the Eclipse
+foundation to address maturity concerns for industries of the critical embedded
+systems market. We participated in the definition and prototyping of the solution
+with the group to establish process-related measures and define a sound, literaturebacked
+quality model.
+
+ Outliers detection has been introduced in Squore to highlight specific types of
+artefacts like untestable files or obfuscated code. The advantage of using outliers
+detection techniques is that thresholds are dynamic and do not depend on fixed
+values. This makes the highlights work for many different types of software by
+adapting the acceptable values according to the majority of data instead of relying
+on generic conventions.
+
+Clustering brings automatic scales to Squore, by proposing ranges adapted to the
+characteristics of projects. It enhances the capitalisation base feat
+ure of Squore
+and facilitates the manual process of model calibration.
+ 
+Regression analysis of data allows to establish relationships among the metrics
+and to find correlations between practices, as defined by violations to coding or
+naming standards, and attributes of software. The intent is to build a body of
+knowledge to validate or invalidate common beliefs about software engineering.
+Squore Labs have been put in a separate part of this report to highlight the outputs
+of the project.
+
+The Maisqual website, which was started at the beginning of the project, contains a
+comprehensive glossary of software engineering terms (422 definitions and references),
+lists standards and quality models (94 entries) related to software along with links and
+information, references papers and books, and publicises the outputs of the Maisqual
+project: data sets, publications, analyses. Its home page is depicted on figure 1.2.
+
+Another requirement of Squoring Technologies is to have papers published in the
+company’s area of knowledge so as to contribute to the global understanding and handling
+of quality-related questions.
+
+This has been done through speeches in conferences both in academic and industry
+worlds, involvement in the Polarsys Eclipse Industry Working Group, and participation in
+various meetings.
+
+Papers published during the Maisqual project are listed hereafter: SQuORE: a new approach 
+to software project quality measurement [11] is a presentation of Squore principles, and
+how they can be used to assess software products and projects. 
+It was presented at the 24th International Conference on Software &
+Systems Engineering and their Applications held in Paris in 2012. See full article in
+appendix page 199.
+
+Understanding Software Evolution: the Apache Ant data set [16] describes the data
+set generated for the Apache Ant open source project, with a thorough description
+of the retrieval process setup and metrics gathered. It has been submitted to the
+2014 Mining Software Repositories data track, held in Hyderabad, India, in 2014.
+See full article in appendix, page 251.
+
+Global Software Engineering (GSE) [149] has become a prominent operational
+model for the development of software systems. Year after year
+more companies employ GSE in search of increasing profits and decreasing
+project cycle-times [114, 29, 18, 58]. However, developing software in
+a globally distributed manner also implies in challenges [58]. Geographical,
+temporal and socio-cultural distances impact the communication and
+coordination between the stakeholders, which can lead to longer times to
+carry out software development related tasks [59] and higher number of
+software defects [41]. Another problem is the fact that GSE projects are
+frequently delayed [57, 145]; the actual effort to conduct a GSE project is
+often bigger than the effort estimated in the beginning of the project. 
+
+The considerable number of delayed projects reported in the literature
+indicates that practitioners have fallen short of providing accurate and reliable
+effort estimates in both collocated and globally distributed projects.
+In addition, effort estimation1 seems to be more challenging in globally
+distributed projects [113], since uncertainty is exacerbated in GSE projects
+by the aforementioned issues.
+
+The main goal of this thesis is to support effort estimation in GSE projects
+through knowledge classification. This thesis summarizes about 2 years of
+research and shows the progression from identifying and analyzing the
+states of the art and practice to designing a classification scheme and terminology
+for classifying GSE projects, with focus on effort estimation.
+
+The remainder of this chapter is organized as follows: Section 3 presents
+some background on GSE and effort estimation. Section 4 presents the
+research gaps identified and addressed herein. Section 5 presents the research
+design and methodology employed in this thesis. Section 6 presents
+a summary for each study included herein. Section 7 outlines the main
+contributions of this thesis. Section 8 presents some limitations associated
+with the research reported herein. Finally, Section 9 presents conclusions
+and future directions.
+
+The main motivation of organizations for employing GSE is to gain or
+maintain a competitive advantage in terms of cost, quality, flexibility, productivity
+and risk dilution in software development [124].
+
+Temporal distance measures the time difference between the actors of
+two different organizational units. Temporal distance is specially caused
+by time zone differences.
+
+Geographical distance measures the effort to enable the actors of two
+different organizational units to interact personally (on site). It is better
+measured by considering the effort to travel between organizational units
+than by considering the distance in kilometers that separates the organizational
+units.
+
+Socio-cultural distance measures the effort to enable the actors of two
+different organizational units to gain mutual understanding regarding
+their respective values and practices. It encompasses organizational and
+national culture, as well as language, politics, individual motivations and
+work ethics.
+
+It was identified that such aspects, also known as global distances, have
+a negative impact on GSE projects’ performance [59, 112] and quality [41,
+112]. Ågerfalk et al. [4] have identified that temporal, geographical and
+socio-cultural distances challenge the coordination, control and communication
+processes in the GSE context in many different ways, as displayed
+in Table 1.1.
+
+The aforementioned challenges are intrinsically related to the way organizations
+source the software development work. Recently, Smite et al. have
+proposed a taxonomy of sourcing strategies [149] (see Figure 1.2). Their taxonomy
+provides a common terminology and allows for the classification
+of GSE projects with focus on the sourcing strategy aspects.
+
+intelligence based effort estimation [20]. The sequence in which the aforementioned
+effort estimation process activities are executed depends on the
+type of the effort estimation technique. For example, the effort estimation
+process employed in expert-based effort estimation is different from the
+one employed in algorithmic-based effort estimation.
+Expert-based effort estimation techniques, such as planning poker [28],
+yield subjective effort estimates, which are based on historical data or expert
+knowledge from similar past projects. The effort estimates’ accuracy
+depends on the experience of the people involved [98, 91].
+An expert-based effort estimation process is described in Figure 1.3. First,
+an expert (or group of experts) looks at the estimated size and cost drivers
+of the new project (equivalent to activity 3 of the aforementioned generic
+process). Second, they recall or retrieve historical data or knowledge from
+similar finished projects (equivalent to activity 1 of the aforementioned
+generic process). Finally, an effort estimate is “calculated” (equivalent to
+activity 4 of the aforementioned generic process). Note that activity 2 of the
+aforementioned generic process is not explicitly executed by expert-based
+effort estimation techniques, i.e. it produces subjective effort estimates [28,
+91].
+
+Algorithmic-based effort estimation techniques, such as COCOMO [17],
+rely on models that are built based on historical data or expert knowledge
+from similar finished projects. These models represent, in a precise fashion,
+the relationship between predictors (size metrics and cost drivers) and the
+effort required to perform a given project [91].
+
+The effort estimation process based on this category of techniques can be
+described by the diagram in Figure 1.4. First, historical data from similar
+finished projects that have real effort documented are retrieved (equivalent
+to activity 1 of the aforementioned generic process). Second, an algorithmic
+model is built using the retrieved historical data (equivalent to activity 2
+of the aforementioned generic process). Third, values for the estimated
+size and cost drivers related to the new project are obtained (equivalent to
+activity 3 of the aforementioned generic process). Finally, an effort estimate
+is calculated by using the values obtained in the previous step as inputs
+to the algorithmic model (equivalent to activity 4 of the aforementioned
+generic process).
+
+Many practices have been employed over the years by organizations to
+deal with the GSE challenges [48, 36, 125, 121, 32]. However, Schneider
+et al. [121] identified that the research in GSE is unbalanced, i.e. there is
+a lot of literature (solutions) related to some topics (e.g. communication,
+coordination and distributed project management), while other topics are
+poorly covered by existing literature, such as effort estimation. In the case
+of effort estimation studies, their findings are also reported in an ad-hoc
+way, which hinders the comparison and aggregation of existing knowledge
+in the field. Smite et al.’s taxonomy has many dimensions that can help
+researchers and practitioners to report GSE-related research. However, it
+lacks some dimensions related to the effort estimation process, e.g. how
+the effort estimation process is divided between sites.
+Furthermore, despite the fact that effort estimation is not one of the most
+frequent topics in the GSE researchers’ agenda, the remarkable number of
+delayed GSE projects [57, 145] indicates that there is need to investigate
+further how GSE specific aspects impact the reliability and accuracy of the
+effort estimates [113].
+
+Thus, to provide a better understanding about effort estimation in the
+GSE context, the following research gaps are addressed in this thesis:
+
+Survey is a retrospective form of investigation that gathers data from
+a wide population [44]. To apply such research method, it is mandatory
+to define its purpose, the analysis and sample units to be used, along
+with a representative sample of the aimed population and the questions
+to guide the investigation; all these aspects were defined herein based on
+the findings of S1. It is critical to define questions that are unambiguous
+and enable for the collection of accurate and consistent information [44].
+The data collection is often conducted using questionnaires or interviews.
+In S3, we decided to identify and analyze how Software Engineering
+knowledge is classified. Hence, a SMS was selected as method to conduct
+S3, because this is the most adequate method to get an overview about the
+literature in a field when the scope is very wide and it is not possible to
+perform a more complex data analysis [74] (which was the case of S3). This
+study was based on the guidelines by Kitchenham and Charters [74] and
+partly employed the mapping process proposed by Petersen et al. [106].
+SMS is a research method that enables the identification and quantification
+of the evidence of wide and poorly defined research fields [74]. The
+outcomes of mapping studies can be used as input to other research methods,
+e.g. SLR.
+
+The SMS method encompasses the same phases of the SLR method.
+However, the main difference lies on the fact that the scope of mapping
+studies is broader, which leads to broader research questions and less focused
+search strings.
+In S4 the findings of studies S1, S2 and S3 were combined in the following
+way:
+
+S1 [21] presents the results of a SLR on effort estimation in the context of
+GSE, which aimed at helping both researchers and practitioners to gain a
+holistic view over the current state of the art regarding effort estimation in
+the context of GSE.
+
+Only few studies (5) were found with empirical evidence on effort estimation
+in the GSE context. These 5 studies report the usage of effort estimation
+techniques that are well-known in the context of collocated projects.
+In addition, a wide range of cost drivers were identified, e.g. socio-cultural,
+geographical and time distances. Nothing was identified about the impact
+of sourcing strategies on the effort estimates’ accuracy. None of the included
+primary studies provided information about the way the effort estimation
+process is performed in the GSE context
+
+S2 [23] aimed to complement the evidence of S1 with the state of the practice
+of effort estimation in the agile GSE context. To do so, a survey was
+carried out using as instrument an on-line questionnaire. The population
+analyzed in S2 was composed by software practitioners experienced in effort
+estimation within agile GSE projects.
+
+Results show that the effort estimation techniques used within the agile
+GSE and collocated are the same, with planning poker being the one
+employed the most. Sourcing strategies were found to have no or a small
+influence upon the choice of estimation techniques.
+With regard to effort predictors, aspects that affect negatively communication,
+coordination and control processes in GSE projects, e.g. sociocultural
+and time distances, were reported. In addition, factors that equally
+impact effort in collocated projects, e.g. team experience, were identified.
+Many challenges that impact the accuracy of the effort estimates were
+also reported by the respondents, such as problems with software requirements
+and the fact that the communication overhead between sites is not
+properly accounted for.
+
+The findings of this study indicate that the effort estimation process
+in both collocated and globally distributed agile projects is very similar,
+although the cost drivers depend on the operational model (collocated or
+distributed).
+
+6.3 S3 - Taxonomies in Software Engineering: A Systematic Mapping Study
+S3 [140] presents the results of a SMS that aimed at identify and analyze
+the state of the art of Software Engineering taxonomies.
+We identified 244 relevant primary studies reporting SE taxonomies. Results
+show that a remarkable number of different subjects (240) have been
+classified in all SE knowledge areas. We also observed that many taxonomies
+are cited many times by other studies, which suggests that the
+SE taxonomies are considered relevant.
+
+Results also show that most Software Engineering taxonomies are designed
+in an ad-hoc way, which negatively affects the clarity and usefulness
+of these taxonomies. To address this gap, we revised an existing taxonomy
+design method. To do so, we used the results of S3 and additional literature
+on taxonomy design from Psychology, which is a knowledge field that
+is more mature than Software Engineering.
+
+GSE taxonomy was recently proposed by Smite et al. [149] to address
+the need for knowledge classification and definition of a common terminology
+in the context of GSE. However, their taxonomy does not include
+dimensions related to the effort estimation process, which reduces the taxonomy’s
+usefulness to report effort estimation studies in the GSE context.
+Therefore, the main goal of S4 [24] was to present a specialized taxonomy
+to classify GSE projects, which can help researchers and practitioners
+to report GSE effort estimation studies in a standardized way. 
+
+Since the validity threats associated with this thesis (along with the respective
+applied mitigation actions) are minutely discussed in Chapters 2,
+3, 4 and 5, in this section we present only additional limitations that affect
+the overall thesis. Note that it was not possible to apply mitigation actions
+regarding the limitations listed below.
+
+In S1 we identified just few studies on effort estimation in the GSE context
+[21]. It means that the existing evidence on effort estimation in GSE,
+which was used as one of the bases of the specialized taxonomy presented
+in S4 (Chapter 5), is not very strong (external validity threat).
+S2 (Chapter 3) was conducted only in the context of companies that
+employ agile GSE. Therefore, it cannot be argued that this thesis covers
+the entire state of the practice on effort estimation in GSE, since companies
+that only rely on prescriptive software development approaches did not
+participated in the conducted survey (external validity threat).
+
+In S4 (Chapter 5), the dimensions added to Smite et al.’s GSE taxonomy
+were deemed as necessary to classify GSE scenarios focusing on effort estimation,
+but they do not represent an exhaustive list. Therefore, it is very
+likely that different SE perspectives can demand additional dimensions
+(external validity threat).
+
+Although experts on effort estimation and GSE have contributed to S4,
+we believe that more feedback from other experts can contribute further to
+the correctness and usefulness of the specialized taxonomy presented in
+this thesis (external validity threat).
+
+In S4, it was not possible to illustrate a class of the specialized dimension
+“effort estimation process architectural model”, because the available data
+used to illustrate the usage of the extended and specialized taxonomy did
+not cover such a class (external validity threat).
+
+The results of this thesis show that effort estimation in GSE is poorly covered
+by existing literature.We believe that the following reasons contribute
+to such a situation:
+
+The specialized taxonomy presented in this thesis can foster further
+research related to effort of GSE projects and effort estimation in GSE
+projects. The classification scheme and terminology presented herein can
+be used by researchers and practitioners to report new effort-related studies
+in the GSE context, facilitating the analysis, comparison and aggregation
+of results.
+
+Frequent subgraph analysis (FSA) is a family of techniques to discover recurring subgraphs
+in graph databases. The databases can either be composed of many individual graphs or
+a single large connected graph. This dissertation discusses my contributions to frequent
+subgraph analysis and applies the technique to address two pressing problems in software
+engineering: code clone detection and automatic fault localization.
+
+The work on frequent subgraph analysis was motivated by the software engineering problems.
+Large programs are composed of repeated patterns arising organically through the
+process of program construction. Some regions of programs are duplicated (intentionally
+or unintentionally). The duplicated regions are referred to as code clones (or just clones).
+Other regions are similar to each other because they perform similar tasks or share development
+histories.
+
+One type of duplication which is particularly dicult to detect is so called Type-4 clones
+or semantic clones. Semantic clones are semantically equivalent regions of code which may
+or may not be textually similar. Dierences could be small changes such as dierent variable
+names or large changes such as a dierent algorithms which perform the same function. In
+general identifying semantically equivalent regions is undecidable as a reduction from the
+halting problem.
+
+REGRAX contains low level optimizations to the process of identifying frequent subgraphs.
+Chapter 2 provides the necessary background on frequent subgraph mining for understanding
+these optimizations. An extensive empirical study was conducted on REGRAX
+to quantify the eect of each of the new optimizations on databases from the SUBDUE
+corpus [27], on program dependence graphs, and on random graphs.
+
+GRAPLE is a new algorithm to sample a representative set of frequent subgraphs and estimate
+statistics characterizing properties of the set of all frequent subgraphs. The sampling
+algorithm uses the theory of absorbing Markov chains to model the process of extracting
+recurring subgraphs from a large connected graph. By sampling a representative set of recurring
+subgraphs GRAPLE is able to conduct frequent subgraph analysis on large programs
+which normally would not be amenable to such analysis.
+
+One of the questions in code clone detection is: are code clones detected from program
+dependence graphs understandable to programmers?" GRAPLE was used to answer this
+question, as it not only collects a sample of frequent subgraphs but allows researchers to estimate
+the prevalence of features across the entire population of frequent subgraphs (including
+those which were not sampled). Chapter 4 details a case study which was conducted at a
+software company to determine whether their programmers could make use of code clones
+detected from program dependence graphs. The study would not have been possible without
+the estimation framework in GRAPLE, as the software contained too many code clones to
+be reviewed in the allocated budget.
+
+Research on Continuous Software Engineering (CSE) (Tichy, Bosch, Goedicke,
+& Fitzgerald, 2015) aims to accumulate software engineering knowledge and
+solutions for rapid and continuous product development. Closely related to the lean
+startup and lean enterprise concepts (Humble, Molesky, & O’Reilly, 2015), the key
+research themes for CSE can be characterised by “deep customer insight”, “realtime
+value delivery”, and “mercury business” (Järvinen, Huomo, Mikkonen, &
+Tyrväinen, 2014).
+
+CSE practices (e.g. continuous delivery and continuous experimentation) have
+largely originated from the Web 2.0 and software-as-a-service (SaaS) development
+domains. However, it is still unclear how widely these practices can be applied in
+different software development contexts. Moreover, it is not clear how the
+transition from conventional development practices to CSE can be done.
+Consequently, the goal of this dissertation, as part of the Cloud SW (CLOUD)1 and
+Need for Speed (N4S) 2 research programs, is to investigate the models for
+evaluation of the organisational change and practices towards CSE. The industry
+partners of CLOUD and N4S programs have expressed the need to evaluate their
+CSE capability and to provide empirical data for supporting the planning and
+decision-making processes in the transition towards CSE.
+
+Various previous studies on CSE (Claps, Berntsson Svensson, & Aurum, 2015;
+Leppänen et al., 2015; Lindgren & Münch, 2015; Olsson, Alahyari, & Bosch, 2012;
+Rissanen & Münch, 2015) have indicated many challenges in the adoption and use
+of CSE, especially in the context of business-to-business and product-oriented,
+embedded systems development. For example, Leppänen et al.
+
+Some domains may have constraints related to business and safetycritical
+aspects of the system. Some managers and developers may not currently
+have proper tools and confidence in the use of automated testing for continuous
+deployments. Moreover, these identified challenges in companies often cross over
+many organisational functions and research disciplines (e.g. technology, business,
+and social aspects). These identified challenges, just to mention few, clearly address
+the need for further investigations and development of solutions for mitigating the
+challenges related to the use of CSE.
+
+Software engineering research addresses the design of theories and models for
+analysing and solving problems related especially to software development and
+management of software intensive projects. Models can be used for analysing of
+different aspects, such as processes, practices, and organisational capabilities. In
+addition, models can be used for analysing changes of development practices, such
+as the change from traditional software development towards CSE. This cumulated
+knowledge, via extensive use of common models, can be further used by
+researchers and practitioners for more systematic mitigation of problems related to
+software development.
+
+This dissertation explores the CSE capabilities of the software-intensive
+industry. Continuous delivery and experimentation (Jan Bosch, 2012a) are in the
+main scope of the research. Hence, practices for iterative SW project management
+(Pressman, 2009) and modern release engineering (Adams & Mcintosh, 2016) in
+particular are investigated. The dissertation contributes to the emerging Rapid
+Continuous Software Engineering (RCoSE) theme (Fitzgerald & Stol, 2017; Tichy
+et al., 2015) in software engineering (SE). This study comprises three main
+elements: (1) the design and evaluation of theoretical constructs and models on
+CSE (Papers I–III); (2) empirical studies in information and communication
+technology (ICT) companies, aiming for an understanding of how CSE manifests
+itself in contemporary software development contexts (Papers I–III); and (3) a
+systematic literature review (SLR) and synthesis of the existing research in the field
+of modern release engineering practices (Paper IV).
+
+The empirical case studies in this dissertation are conducted mostly in the
+product-intensive software development context in large or very large ICT
+companies. A systematic literature review also provides an exhaustive analysis of
+the CSE state of the practice and prevalence in the field, as well as a comprehensive
+answer on the state of the research and impacts of CSE in the software development
+domain.
+
+CSE builds on the principles of agile software development (Dybå & Dingsøyr,
+2008). The CSE research theme relevance has lately been acknowledged widely in
+the SE research community. However, the state of the art of CSE is considered to
+be driven by the industry and consultants, and research is currently lagging behind
+(Dingsøyr & Lassenius, 2016). Consequently, although agile topics have been
+investigated for over a decade, explicit theories and models for CSE are still
+relatively scarce, and the existing knowledge on CSE is often ill-structured and
+fragmented under the agile research agenda. As a concrete action to increase SE
+domain awareness of the CSE topics, the RCoSE workshop has been organised
+annually in conjunction with the International Conference on Software Engineering
+(ICSE) (International Conference on Software Engineering, 2017). There has also
+been a special issue on RCoSE in a top-level SE journal (Tichy, Bosch, & Goedicke,
+2017) (the Journal of Systems and Software). CSE addresses continuous activities
+within and between business, strategic planning, development, and system
+operations functions. Hence, this study also touches upon many aspects of business
+management and information systems disciplines.
+
+This dissertation summarises findings from four original publications (referred
+to as Papers I–IV). Twenty-seven (27) practitioners were interviewed in five case
+companies to analyse their organisational capabilities and the prerequisites for and
+impacts of the use of CSE. The empirical findings were synthesised with those of
+other primary studies on CSE identified by conducting an SLR.
+The research applied a helical (spiral), iterative approach (Figure 1) typical of
+design science research (DSR) (Hevner & Chatterjee, 2010a). The research
+involves cycles where knowledge is incrementally increased via the creation and
+evaluation of research artifacts (Hevner & Chatterjee, 2010a). Case studies were
+applied for further evaluation of three designed artifacts: LESAT for SW (Paper I),
+STH+ (Paper II), and CRUSOE (Paper III)
+Table 1 summarises the investigated topics, highlights, and related key theories
+and methods. Table 2 outlines the authors’ contributions to the four original
+publications (Papers I–IV).
+
+This section aims to clarify the main concepts frequently used in the original
+publications (Papers I–IV) and in sections 1–5 of this article-based dissertation.
+Section 2.1 elaborates further on the main concept of this thesis, “continuous
+software engineering” and closely related concepts to CSE: “lean software
+development”, “agile release engineering”, and “innovation experiment systems”.
+They are referred also as “lenses” as they are used in this dissertation for analysing
+different aspects (dimensions) of the CSE. These lenses are elaborated in subsections
+2.1.1–2.1.3. Other frequently-used concepts in this dissertation are:
+– “Prerequisite” concept refers generally to capabilities, technologies,
+activities, and practices that are considered to be needed for the successful
+use of CSE. This concept has been introduced in Paper III to outline the
+case company’s situation and the changes from traditional development to
+CSE. It should be noted that the prerequisite concept also incorporates
+aspects that organisations may not have power to change (e.g. legislation,
+
+The research objective of this dissertation is twofold. This dissertation seeks to
+accumulate knowledge on contemporary interpretations and manifestations of CSE.
+It also aims to design artifacts, i.e. instantiations of different viewpoints on a CSE
+reference model. The artifacts aim for a comprehensive representation of the key
+constructs and their relationships in dimensions of CSE. Models are applied to
+evaluate the organisational capabilities and prerequisites of CSE. Overall, the
+dissertation aims to contribute to the emergence of a scientific baseline facilitating
+future investigations and clarification of different aspects related to CSE.
+The research is motivated by: a) the contemporary nature of the CSE topic, b)
+the challenges identified in the use of CSE, and c) the scarcity of empirical studies
+and models for evaluating CSE in companies. Moreover, a CSE reference model,
+when properly tested and validated, could significantly help in defining a
+standardised way of conducting CSE evaluations. The dissertation also aims for
+broader societal impact by accumulating knowledge about CSE practices and reallife
+case examples of the adoption and consequences of the use of the CSE in
+software-intensive product development. The dissertation could also significantly
+contribute to the evaluation of the CSE utility in software-intensive product
+development.
+
+The dissertation objectives are closely related to the objectives of the N4S
+program (Järvinen et al., 2014) theme, “real-time value delivery”. The “real-time
+value delivery” research theme, as defined by Järvinen et al. (Järvinen et al., 2014),
+refers to the investigation of organisational capabilities for change from traditional
+product-based software business to service-based business, where value can be
+delivered to the customer at a near real time. The research was initiated in the
+CLOUD program’s work package (sub-project) for investigating the “lean software
+enterprise” concept. When CLOUD came to closure at the end of 2013, many of
+the participating organisations moved to the N4S program. Consequently, research
+themes in the N4S program are closely related to the lean software development
+and lean start-up framework (Järvinen et al., 2014). Hence, researchers in the N4S
+program could use existing empirical findings and research models and tools that
+were constructed in the CLOUD program.
+
+The research objective is subdivided into four main research questions that can be
+elaborated with related sub-questions.
+
+The first research question (RQ1) aims to investigate the different aspects related
+to modelling of CSE in the software-intensive product development context.
+Existing SE models and empirical data are applied in the design and evaluation
+cycles for modelling CSE.
+
+RQ1: What are the key aspects of CSE that a reference model must encompass?
+For example, what are the requirements for modelling CSE?
+The second research question (RQ2) addresses explorative research of CSE usage
+in companies and empirical confirmation of the challenges and benefits claimed by
+earlier studies (Claps et al., 2015; Leppänen et al., 2015; Lindgren & Münch, 2015;
+Olsson et al., 2012; Rissanen & Münch, 2015). The questions are answered by
+conducting case studies in companies (Papers I–III).
+
+RQ2: How does CSE manifest itself in contemporary software-intensive
+product development?
+
+For example, how do practitioners view CSE? What is the prevalence of CSE?
+The third research question (RQ3) addresses an analysis of the impacts of using
+CSE. The research question on CSE impacts aim for critical evaluation and
+synthesis of the empirical knowledge of the benefits and challenges associated with
+CSE. This question is answered by conducting an SLR (Paper IV) and also with
+empirical case studies in companies (Papers I–III).
+RQ3: What are the impacts of using CSE?
+
+For example, what are the impacts on software project success? What company
+functions and software development practices are affected by the CSE? Which
+stakeholders are involved in and affected by the CSE? What are the key
+prerequisites in the successful use of CSE in software-intensive projects?
+Finally, the fourth research question (RQ4) addresses a systematic analysis of a
+body of knowledge (academic data bases) on CSE. Moreover, this research
+question aims at understanding the state of CSE research, trends, and patterns, and
+at identification of possible gaps in the CSE research. This question is answered by
+conducting an SLR (Paper IV).
+
+RQ4: How is CSE investigated in SE literature?
+
+For example, what research methods are applied in the investigation of CSE?
+What trends and patterns can be identified in publications related to CSE?
+The structure of this dissertation is as follows. Section 2 provides an introduction
+of the key concepts of CSE and the theoretical background applied in the original
+publications. Section 3 outlines the applied research methods and highlights
+dissertation-related research activities and key milestones. Section 4 summarises
+the findings of the research, which includes a systematic literature review, a
+presentation of the constructed models (i.e. LESAT for SW, STH+, and CRUSOE)
+and the empirical findings from the case studies. Section 5 summarises the results
+and discusses possible future implications of the research. Threats to the research
+validity and limitations of the study are also discussed in section 5.
+
+Agile methodologies in software engineering and development are getting popular because
+it is cost effective and the customers get to see the progress of their product as early as in
+the initial stages of development or right after or during their initial proposal. They have
+the flexibility to track the progress daily, weekly or bi-weekly based on the duration of
+their sprints and can decide to manage requirements based on these sprints.
+Rising environmental and social challenges that put in danger the future generations to
+survive, the world is asking the producers or manufactures to incorporate sustainable
+features into their products to reduce their impact on the environment and have minimal
+impact.
+
+Past few years even in the field of ICT, “sustainable” or “green” software and its process
+put on a lot of importance. The software itself (and its engineering process) as the primary
+cause rather than hardware requirements, the method used to calculate the complete
+environmental impacts (carbon footprints) are complex. To eradicate these problems, the
+sustainability factors be plugged into the process as early as possible because changes to
+design and process in the later stages incur higher costs.
+Looking at these challenges, our paper reviews models such as GREENSOFT Model,
+Process enhancement for green and sustainable software engineering, integrating it with
+scrum and Quality Model that produce sustainable software through a sustainable software
+engineering process.
+
+Since the advent of the so-called digital revolution [Soc14], i.e., the transition from
+analog to digital technology, our lives have become more and more dependent on
+devices that are operated by soware. While car drivers in the early 1970s were
+barely aware of any digital equipment in their vehicles, nowadays they are surrounded
+by a myriad of digital assistance tools to the extent that autonomously
+driving cars have become reality. In fact, every aspect of life has become more
+and more digitalized. Whereas in the 1980s only a small proportion of children
+had a games console let alone a computer, today they not only have their own
+personal computer at home, but also may possess pocket-size computers in
+the form of mobile phones or tablet PCs. Another big change occurred when
+the soware industry started to move more and more functionality that was
+previously implemented in hardware to the driver soware, as exemplified by
+so-called somodems. Today, soware is more important than ever and modern
+life is unimaginable without functioning, trustworthy soware applications.
+The more dependent we become on soware, the more shaken we are when it
+fails and does not behave as expected. Only recently, Apple’s ominous goto fail1
+disaster and the even more severe heartbleed2 bug demonstrated how vulnerable
+we have become and that even very small defects in a program can have significant
+impact. Hence, the creation of reliable and high quality soware systems
+is a key goal and major challenge for soware engineers. Although soware
+testing has gained a lot of aention in soware process theory over the last five
+decades [Roy70; Boe88; Jac+99] it is still a rather labor-intensive and tedious
+process. Developers are therefore oen reluctant to sacrifice development time
+to test their system. Moreover, in addition to its time demands, soware testing
+also requires a high degree of domain and expert knowledge, concentration and
+problem awareness from the testing state.
+
+Since the early days of soware engineering, researchers have been struggling
+to find eective and eicient strategies to automate bug detection and reduce
+the manual eort involved in testing soware [OB88; Vou90; EKR03; GO06;
+LT12]. In their introductory book on soware testing, for instance, Ammann and
+Ou address the need for more research in test automation and stress that
+one of the outstanding problems in this area is the automated generation of
+test data. However, they mainly consider the idea of using genetic algorithms,
+while arguing that these are more applicable at the system level than at the unit
+level [AO08, pp. 288].
+
+Although numerous other techniques for acquiring test data have been proposed,
+such as dynamic symbolic execution [KS98], concolic testing [SA06] or directed
+automated random testing [GKS05], research in the area of automated test data
+generation has largely focused on algorithms that analyze program structure
+and utilize coverage criteria, program path inspection, etc.
+With the emergence of dedicated soware search engines in the 2000s, driven
+by the newly available open source soware repositories [HA06], this situation
+changed. These search engines supported a new generation of recommendation
+tools, especially reuse-oriented code recommendation systems, aimed at accelerating
+the soware development process by obviating the continual need to
+“reinvent the wheel”. Prominent tools that emerged at that time are, for instance,
+Strathcona [HM05], Code Conjurer [HJA08] or the Eclipse Code Recommenders
+project [BMM09]. They share the common goal of improving the productivity of
+developers by automatically recommending generated or reusable code artifacts
+of dierent sizes (i.e., from method call statements to full sized Java classes) in
+soware development projects. Essentially they reuse the historical knowledge
+wrapped up in existing repositories to accelerate the development of new applications.
+A typical example is to suggest previously wrien code for reuse or to
+indicate how classes from a class library should be used based on the way they
+were used in existing code.
+
+Although intensive research has been conducted independently in the fields
+of automated soware testing and soware reuse, to date there has been no
+recognized aempt to bring both areas together and exploit their potential
+synergies. More specifically, no existing recommendation tool has aempted to
+use the information locked up in the vast number of tests stored in the many
+public and private corporate repositories to support the writing of new tests.
+Therefore, the goal of this thesis is to address that challenge and to present novel
+ideas that should help to leverage the reuse of previously created tests in future
+soware projects.
+
+The previously conducted research in the area of automation in soware testing
+has created an impressive array of sophisticated algorithms and techniques
+to automatically generate test case values and to obtain appropriate expected
+results. These expected results can be compared to the outputs actually produced
+by programs under test when invoked using the same test case values. In the
+literature, a mechanism that inspects the output of the system under test and
+determines its correctness is usually called test oracle [Wey82]. However, the
+biggest problem is obviously how to determine the correct output of a program.
+While the literature in earlier years expected the human tester to act as the
+test oracle, the automation of soware testing shis this burden to computer
+programs, which have to determine the expected behavior of the particular
+system under test.
+
+One idea that represents a kind of intermediate approach between zero and
+full automation is the so-called approach of back-to-back testing [Vou90]. This
+technique utilizes a set of (manually created) functionally equivalent programs
+as oracles to help determine the correct output produced by a program for a set
+of test input data. Using this technique it is possible to automatically create
+lists of potentially interesting tests which need further inspection by human
+testers, but avoid the manual creation of tests for uncritical inputs. The backto-
+back testing technique, however, requires the manual creation of several
+dierent implementations of the same functionality and therefore is itself labor
+intensive. Additionally, there is also the question of testing the set of independent
+implementations.
+
+In this dissertation, we present a new approach of reuse-oriented soware testing
+which aims to support (automated) soware testing through the application of
+well-known soware reuse techniques. By combining these two research areas,
+we aim to automatically acquire test data and expected outputs for components
+under test. In other words, we aim to extract the knowledge bound up in
+previously created soware tests and make this information eiciently searchable
+in order to accelerate the creation of new tests. Although a dedicated search
+engine for soware tests presents this information to the user, it actually does
+not create it. Usually the original source of the test data and expected results is
+still a human (i.e., a human oracle).
+
+Despite a lot of work has been conducted on tools that support quality assurance
+in soware testing, the current generation of IDE tools for testing generally
+focuses on increasing the quality of tests by analyzing them ex post using various
+criteria. Tools like Cobertura3 and JaCoCo4, for instance, help developers to
+identify parts of the system under development that are not yet reached and
+inspected by existing tests.
+
+However, they still leave most of the labor intensive and time consuming work
+of fixing the identified weaknesses to the engineer. It is therefore necessary to
+run these tools over and over again and wait for their reports. On the other
+hand, approaches that try to generate tests based on formal specifications do not
+seem practical for mainstream development projects [San96] because developers
+usually do not want to learn another language or coding standard. More recently,
+there has been interesting work conducted on the tool-based, mutation-driven
+generation of test data [FZ12], but the problem of equivalent mutants still creates
+a significant amount of manual eort when using this technique.
+
+With the novel ex ante approach for tool-supported soware testing, which is
+presented in this dissertation, we provide the foundation for a new generation
+of tools that try to predict which tests developers are likely to write next, based
+on the information acquired from previously wrien tests. Leveraging the ideas
+of code search engines, we define the characteristics of reuse-assisted soware
+testing tools and provide a prototypical implementation that fulfills the vision
+of “a powerful integrated test environment which by itself, as a piece of soware is
+[...] generating the most suitable test cases, executing them and finally issuing a
+test report” [Ber07]. Using novel techniques like speculative analysis [Bru+10],
+we will show that it is possible to recommend reusable tests that have been
+evaluated even before they are considered for reuse, enabling test reuse tools to
+rank recommendations before they are presented to the user.
+
+Since we are bringing together two dierent research areas – namely, the area
+of soware testing and the area of soware search and reuse – our work could
+be regarded as a new application for reuse, as well as a new soware testing
+technique. Nevertheless, given that we have chosen to view the problem from
+the search and reuse perspective, our work does not go deeper into the area of
+soware testing than necessary. Although automated test generation represents
+a broad field in which a lot of work is being conducted, all of the currently
+proposed approaches are dierent to the ideas developed in this thesis. Our
+technology does not try to understand what the developer wants to test and does
+not assume that it is smart enough to read the developer’s mind, but rather relies
+on the human knowledge already embodied within previously hand-craed
+soware tests that are available for reuse.
+
+As a community work, Science is highly dependent on methodological and technological 
+instruments to objectively describe and effectively disseminate its knowledge, so that
+researchers have the opportunity to interpret and exploit it to advance the understanding
+on different matters. Scientific contributions are usually built incrementally, involving
+some transformation, expansion or refutation of existing conceptual and propositional networks.
+
+As the body of knowledge increases, scientists concentrate more effort on ensuring that new 
+hypotheses and observations are needed and consistent with previous findings. The knowledge 
+accumulation is mainly grounded on the organization and systematization of facts that have 
+some relation with others, aiming at identifying and characterizing patterns of relationships
+amongst phenomena and processes of the observed world (Overton, 1991).
+
+To practitioners, on the other hand, what forms the body of knowledge is the understanding 
+obtained from observing practical consequences of ordinary daily activities. In their worldview,
+there is not a genuine interest in obtaining ‘the best explanation’ to a phenomenon. And, similarly
+to a pragmatic view, in cases that two explanations lead to the same practical consequences, then 
+they are considered equivalent in some extent (James, 1907). This practical disposition is inherent
+to most engineering disciplines as ‘engineering design is always a contingent process, subject to 
+unforeseen complications and influences as the design develops’ (Ferguson, 1994). 
+
+Thus, in Software Engineering (SE) as the engineering can not be formalized as a sequential process 
+that can be summarized in a block diagram, the pragmatic knowledge organization could be reduced to 
+make explicit the expected effects of specific action in a well-defined context.
+
+The apparent paradox between scientific and practical perspectives are in fact complementary and 
+essential to SE – and engineering in general. Although scientists would like that all formal 
+engineering knowledge could be derived from science, it seems intuition use in SE is inevitable
+(Glass, 2008) granted this subjectivity is carefully used (Strigini, 1996).
+
+The capacity to have knowledge about a subject is directly proportional to the capacity this knowledge
+can be described in terms of a set of (objective) rules (Cilliers, 2005). Such rules include, for 
+instance, formal mathematical-based models, taxonomies to classify and characterize nature elements,
+or even diagrammatic schemes to make relations between concepts explicit. This set of rules is usually
+defined within a representation format, which is an essential knowledge property since it is the means
+that must be understood in order to correctly inform anyone who is interested in a piece of knowledge.
+
+In science, the representation format has major influence for the progress of any discipline as it helps
+dealing with or even abstracting away the content complexity of the body of knowledge. There are several
+examples where scientists were able to address or even to discover new problems as a result from insights 
+produced by new understanding revealed by new ways of expressing knowledge. For instance, the intimacy 
+between Mathematics and Physics is well known. The creation and development of modern calculus was mostly 
+motivated by the need of computing areas, volumes or lengths of arcs (Rosenthal, 1951).
+
+Apart from having a representation format, a body of knowledge have to be maintained by activities that are 
+more or less well defined depending if they are related to maintenance of scientific or practical knowledge. 
+
+These activities range from actions related to the building and development of knowledge itself 
+(e.g., primary studies and experience reports) to efforts directed to its synthesis (e.g., secondary studies) 
+which usually results in guidelines and recommendations.
+
+Arguably, most recent progression in SE empirical research may be rather concerned with activities on building 
+than representing scientific knowledge. This can be noticed by the explicit focus in the field on introducing 
+and offering guidance for alternative research methods such as case study, survey, ethnography, action research 
+and simulation (Harrison et al., 1999, Wohlin et al., 2003, Zelkowitz, 2007, Easterbrook et al., 2008, Runeson 
+and Höst, 2009, Santos and Travassos, 2011, Mello et al., 2014, França and Travassos, 2015). In fact, this 
+usually happens in most scientific disciplines that concentrate efforts towards the proposition or adaptation 
+of existing research methods, without giving enough attention for the scientific knowledge structure (Rosen, 1996). 
+
+Nevertheless, although the formalization of scientific knowledge can be sometimes impractical, alternatives to 
+improve its representation should be sought (Suppes, 2001) and may even be associated to the building activities. 
+
+For instance, the determination of controlled experiments and meta-analysis as the ‘gold standard’ in 
+Medicine (Sackett et al., 1996) seems to have represented an important factor in bringing a common 
+understanding on how statistical methods and techniques can support the building of the discipline’s 
+body of knowledge (Booth, 2011). This common understanding was beneficial for both researchers and 
+practitioners due to the sharing of a common jargon to disseminate knowledge in the area.
+
+As a result of the increasing heterogeneity of primary studies methods in SE and, thus, the difficulty 
+in applying statistical meta-analytical techniques (Dybå et al., 2007), secondary studies also undergo 
+over this expansion. The technical literature already has some examples of the application of research 
+synthesis methods other than meta-analysis, such as comparative analysis (Dieste and Juristo, 2011) and 
+meta-ethnography (Silva et al., 2013). Thus, the investigation of alternative research syntheses methods 
+for SE combined with better means for representing evidence in the area, constitutes an important challenge 
+for the long-term evidence-based SE success.
+
+The main problem addressed in this thesis is in the topic of knowledge translation. The problem of knowledge 
+translation was recently discussed in SE (Budgen et al., 2013). The authors highlight the importance of the 
+knowledge translation in evidence-based practice and indicate that it still an open research problem in SE. 
+
+By adapting the description of knowledge translation of Davis et al. (2003), who characterize the problem 
+in Medicine, Budgen et al. (2013) define knowledge translation in SE as being ‘the exchange, synthesis and 
+ethically sound application of knowledge – within a complex system of interactions between researchers and 
+users – to accelerate the capture of the benefits of research through better quality software and software 
+development processes’1. Still according to the authors, its three key elements are: the outcomes of a 
+systematic literature review; interpretations of what these mean in particular contexts; and appropriate 
+forms for communicating them.
+
+There are different dimensions in knowledge translation each of which with its own activities and concerns. The 
+two most important are knowledge creation and knowledge application. Knowledge creation is related to evidence 
+production, which commonly originate from primary and secondary studies (including research synthesis studies). 
+
+Domain interpretation is relevant to knowledge creation as well since it is what can lower the barrier for 
+knowledge use. Knowledge application, on the other hand, is associated with activities and definitions that 
+are regarded necessary to put ‘knowledge to action’ for its users (Graham et al., 2006, apud Budgen et al., 2013), 
+such as creation of guidelines, presentation of knowledge in appropriate forms, and monitoring of knowledge use.
+
+The interest in knowledge translation is grounded on a clear vision that ‘knowledge creation 
+(first generation research), distillation (creation of systematic reviews or second-generation research), 
+and dissemination (appearance in journals) are not usually sufficient on their own to ensure appropriate 
+knowledge use’ (Straus et al., 2013). Thus, its focus, as a research program, is to identify the supplementary 
+requirements for knowledge translation and develop activities, directives or even services, including specialized 
+institutions or tools, to support knowledge use.
+
+Still, it is undeniable that the adoption of evidence-based practice is conditioned to the involvement of 
+both academics and practitioners. Thus, knowledge translation within evidence-base practice is commonly 
+addressed with the development of knowledge translation guidelines showing how to systematically derive 
+recommendations for practice and the provision of guidance for organizations on how to deploy the recommendations 
+(Budgen et al., 2013). As a result, this approach focuses on the steps necessary to report recommendations 
+and how they can be used to inform decisions, which again indicates that attention is more concentrated on 
+activities related to knowledge translation than on representation formats for it.
+
+In this thesis, we will focus on the later: a representation format for evidence, whichwe will try to argue
+that it is an important aspect for knowledge translation. As knowledge translation has many organizational 
+and policy aspects, the scope of this research is related to three more technical aspects of knowledge 
+translation: synthesis of knowledge, appropriate form for communicating the body of knowledge, and support 
+for interaction between researchers and users (professionals and other researchers). It should be noted here, 
+however, that the last aspect – support for interaction – is not entirely addressed in this work as only the 
+researcher-to-researcher cycle is covered. The idea is that knowledge is translated not only for practitioners, 
+but also for researchers themselves in order to, for instance, investigate the state of the art or consider new 
+hypotheses. This is why we put both practitioners and scientists among ‘knowledge users’. Moreover, another 
+aspect that forms the problem defined here, and is usually neglected in the knowledge translation discussions, 
+is that knowledge translation exclusively based on reporting recommendations by specialized organizations can 
+be hindered by the huge amount of publications and evidence that are made available every day. In other words, 
+systematic reviews, which usually are used as basis for knowledge translation, tend to get outdated in a 
+relatively short time imposing the constant incorporation of new primary studies’ results to the corresponding 
+existing synthesized results. This will be associated with the representation for evidence that we will introduce 
+later.
+
+Based on the knowledge translation research topic described in this section and the context of evidence-based 
+practice in SE, the problem addressed in this thesis is defined as follows. To investigate formal representation 
+for evidence in SE that both researchers and practitioners can use and that can support the body of knowledge to 
+be accumulated and synthesized in such a way that new research hypotheses can be identified and evidence-informed 
+decisions for software improvement can be made in practice.
+
+Determine an uncertainty formalism to be used in evidence aggregation that can be applied to estimate the 
+confidence in each piece of evidence and obtain their combined confidence given the findings’ conflict and 
+agreement level;
+
+Explore research synthesis methods’ shared characteristics and activities, particularly regarding aggregating 
+both qualitative and quantitative evidence;
+
+Define a research synthesis method using the proposed formal diagrammatic representation and the selected 
+uncertainty formalism;
+
+Design and construct a computational infrastructure that supports the defined research synthesis method, 
+facilitates the manipulation of the proposed diagrammatic representation, and automates the uncertainty 
+formalism computations;
+
+Explore methodologies focused on designing knowledge-based systems and investigate what is the state of the 
+art for this kind of systems in the scientific domain;
+
+Furthermore, in the absence of consensus about what constitutes an evidence, we adopt a definition taken from 
+dictionary3: “something which shows that something else exists or is true”. Guyatt et al., 2008 also give a 
+similar general definition: “any observation about an apparent relation between two events constitutes a 
+potential evidence”, although it manifest more explicitly the concern with (empirical or experimental) observation. 
+
+It should also be noticed that these definitions are aligned with the empiricist view adopted as theory of 
+knowledge.
+
+We describe this thesis research methodology through the Stol and Fitzgerald (2013)4 Research Path Schema, 
+which indicates the possible emphasis and order given to the main elements present on any research methodology. 
+
+The Research Path Schema is based on the Validity Path Schema from Brinberg and McGrath (1985) who argue that 
+any research design involves at least three elements: (a) some content of interest, (b) some ideas that give 
+meaning to that content, and (c) some techniques or procedures by means of which those ideas and content can 
+be studied.
+
+In Research Path Schema, these three elements are classified in substantive, conceptual and methodological domains, 
+respectively. Depending on how these domains are combined different paths are established. In this thesis, 
+we follow the method-driven study design path. In the study design path, the goal is to build a study design 
+based on the conceptual and methodological domains, and use it on one or more elements of the substantive 
+domain (Stol and Fitzgerald, 2015). If the primary interest is on the methodological domain, then the 
+study design path is called method-driven study design path. Still according to Stol and Fitzgerald (2015), 
+a common scenario found in SE research that follows the method-driven study design path is when a conceptual 
+model or framework is taken as basis to develop a method, technique or tool, which is the primary research 
+interest.
+
+In this scenario, the conceptual domain works as a lens through which the methodological domain is developed 
+and addressed. As a result, the substantive domain is relatively less important since the implementation is the 
+result, which serves as an initial validation of the researcher’s proposed idea.
+
+Although the methodological domain is the primary domain of this thesis, the first research step begun in the 
+conceptual domain. At the initial phase of the research, it was necessary to delimit the conceptual domain scope 
+from which the methodological aim could be developed. Three conceptual domain topics were explored in order to 
+define the research synthesis method proposed in this Thesis (denominated the Structured Synthesis Method) and 
+design the computational infrastructure to support it (denominated Evidence Factory). Scientific theories form 
+the basis for the elaboration of the diagrammatic representation for theories in SE (Sjøberg et al., 2008), 
+which we formalize in this work as a representation for evidence. The Mathematical Theory of Evidence, also 
+known as belief functions, was selected for evidence aggregation since it does not distinguish qualitative and 
+quantitative evidence and can combine evidence in any order (i.e., accumulate incrementally) (Shafer, 1976). 
+
+Knowledge Engineering topic (Studer et al., 1998) was also an important foundation upon which we could guide 
+the representation formalization and the computational infrastructure design. Some definitions were also taken 
+from the methodological domain itself, as is the case of research synthesis methods (Dixon-Woods et al., 2005) 
+used to compose Structured Synthesis Method.
+
+Apart from the two main contributions of this thesis in the methodological domain, we also have concentrated 
+efforts on better delineating in what consists Knowledge Engineering in the case of scientific knowledge. 
+
+We have conducted a literature review on Knowledge Engineering works focusing on scientific knowledge. 
+
+The idea was also to have a comparison baseline with which the Structured Synthesis Method and the
+computational infrastructure could be contrasted. Clearly, many other research gaps could be addressed 
+in the conceptual domain such as a comprehensive investigation of other diagrammatic representations for 
+evidence than the used in this research or a thorough analysis of uncertainty formalisms to be used for 
+evidence aggregation. However, we tried to keep attention to the aim of this research in the methodological 
+domain, which is to contribute to identify and justify the necessary building blocks of an alternative view 
+for knowledge translation.
+
+As expected by following the chosen research path, the remaining contributions are empirical investigations 
+to demonstrate the usefulness of the proposal in the substantive domain. The first is an experimental study 
+where subjects were asked to use the Structured Synthesis Method to aggregate evidence from four papers in 
+the Test-Driven Development topic. This experimental evaluation was followed by two worked examples. 
+
+One related to Usage-Based Reading inspection and the other about Software Reference Architecture. The worked
+examples were also basis for a preliminary evaluation of the Evidence Factory tool.
+
+The thesis is organized following the research methodology described in the previous section. 
+
+The first three chapters introduces de conceptual domain. Then, chapters four, five and seven are 
+related to the methodological domain. The substantive domain is detailed on chapters six and eight.
+
+It is possible to notice the intersection between chapters related to the methodological and substantive domains. 
+This is because we decided to describe the experimental study immediately after describing the method, then 
+present the Evidence Factory tool which support the method, and only later detail the working examples.
+
+Thus, if readers want to focus on a specific subject, we suggest two reading paths according to the 
+main topics addressed in this work. For the ‘research synthesis path’, An economy is a complex adaptive 
+system. In order to understand the economy and make predictions, economists build models using different methods. 
+
+So, what is ABMS? In ABMS, a system is modelled as a collection of agents, which are
+autonomous decision-making units with diverse characteristics (Macal and North, 2010). The
+individual agents interact with each other and their environment at the micro level to produce
+complex collective behaviour patterns at the macro level, often referred to as system level
+emergence. In Social Science, ABMS allows for the representation, experimentation and
+analysis of complex social phenomena to gain the understanding of the dynamics behind them
+(Elsenbroich and Gilbert, 2014).
+
+Also ABMS is a suitable approach for Economics, because a system in ABMS is a dynamic
+complex system comprised of many agents, which is similar to a system of an economy.
+Economies are complex dynamic systems, in which large numbers of decision makers interacting
+at micro level create global regularities (Tesfatsion, 2006). Economists have modelled
+economies for hundreds of years. During the last quarter of the twentieth century, the dominant
+paradigm in Economics is the rational expectation approach, which assumes people have perfect
+information, adapt instantly and rationally, and maximize their personal advantage (Farmer
+and Foley, 2009). However, decision-making of real people is also based on peer pressure,
+fear, or overconfidence (Farmer and Foley, 2009). In addition, there is a trade-off between
+capturing social systems with a high level of fidelity and analytical tractability (Macal, 2016).
+For simplification, common assumptions of single representative agents with homogeneous
+behaviours are made. These assumptions create models with significant differences compared
+to the real-world system that they are intended to represent. In order to improve the realism of
+economic models, several economists started to use other methodologies such as laboratory
+experiment and ABMS to study the additional aspects of human behaviours (peer pressure,
+emotions, etc.) in economic settings (Tesfatsion, 2006). Research findings from laboratory
+experiments of human subject behaviour have inspired studies using computational agents in
+ABMS and vice versa (Duffy, 2006). To explain the interaction between laboratory experiment
+and ABMS, we focus on and discuss in detail Public Goods Game (PGG), a popular game used
+in laboratory experiments and agent-based models.
+
+The PGGs have been investigated thoroughly in Economics. It is a standard experimental
+economics approach to study human cooperation. In Experimental Economics, a laboratory
+public goods experiment consists of many participants, who are matched into groups (usually
+of four people). They are given an endowment of Money Unit (MU) which they can keep for
+themselves or invest into a public account. The invested money is multiplied and distributed
+equally to all group members. In this game each player faces a dilemma: to invest into public
+good and potentially get a higher return through cooperation in the future; or to free ride on
+other people’s contributions. Classical Economics predicts that no one will contribute assuming
+the rational agents want to maximize their payoff. However, in real life, people do collaborate.
+Therefore, in Experimental Economics, many laboratory experiments with different settings
+have been conducted to investigate the reasons people cooperate.
+
+However, laboratory experiments of the PGG have some limitations on small numbers of
+participants, games, or different experimental settings. ABMS offers ways of addressing these
+limitations because a computational model is more flexible than the laboratory experiment.
+Nonetheless, the modeller needs to carefully design, calibrate, and validate the agent-based
+models before experimentation. Currently in Economics, the agent-based models have the
+agents play the PGG in the manner similar to the laboratory. The experiment in the model
+consists of a series of games. In each round, all agents make decisions how much they want to
+contribute, then receive payoff, and if applicable receive information on the average investment
+of the group. The agents’ behaviours are designed, and then the model is calibrated based on
+the data collected from the laboratory. After that, the model can be experimented with more
+agents, different settings of games, etc. While these agent-based models can be used to validate
+the results from the laboratory experiments, they have also enabled a deeper understanding of
+participants’ behaviours in the lab (Dinther, 2008). However, in many of these models, the
+design of agent decision-making is based on utility functions of microeconomic models. A
+utility function is derived from theory and the modeller’s perception of the system, then agents
+make their contribution decision by choosing the best (maximum or minimum) value from
+the function. The problems with this approach are that the human decision-making process is
+much more complex, and in real life, people have to make decisions in continuous time and
+constantly changing environment. In the end, it can be said that even though ABMS shows
+great potential, the design of the agent-based models in Economics and other social sciences
+needs to be improved to allow a better capture of the realism of human behaviour in these
+experiments.
+
+A potential option to improve the design of agents-based models in Economics is applying
+Software Engineering (SE) techniques from Computer Science. Agent technology originated
+from Computer Science and has developed a well-established field named Multi Agent System
+(MAS). There is an “unwarranted gap” between MAS used in Computer Science and ABMS
+used in Social Science (Conte et al., 1998). For example, agent-based models are used for
+different purposes in Computer Science and Economics. While computer scientists design
+agents for controlling complex systems or for instilling objects with autonomy and intelligence,
+economists use agents for gaining a better understanding of the dynamics within economic
+systems. For the modelling task both communities use their specialised modelling approaches
+which are very different from each other. We believe that ABMS of the PGG has not been used
+to its full potential and that the tools used for designing software agents in MAS could help
+unleash this potential.
+
+Therefore, in this thesis, we want to leverage the potential of ABMS of the PGG, focusing
+on development methodology and agent behaviour modelling. We chose to focus on the PGG
+because it is a popular game and there have been many studies on many variations of the game
+in Economics. In order that the design process and techniques can later be used by social
+scientists, we developed a framework, in which SE techniques are applied for identifying,
+designing and implementing agents in the PGG. This framework focuses on development
+lifecycle and the modelling of agent behaviour, and provides a guideline for agent specification
+at many levels of abstraction using visual modelling formalisms. This research can serve as a
+bridge between two disciplines: the framework provides a structured approach for economists
+to develop and document a simulation; while computer scientists can have access to theories
+and models of human behaviour in social science using the framework as a communication
+medium.
+
+As the main contribution to knowledge, the thesis makes to the body of knowledge is a
+methodology of developing agent-based models of PGGs using well established tools from
+SE. The methodology is manifested in form of a framework and its effectiveness is tested with
+three case studies. These case studies demonstrate flexibility in development with two different
+modelling principles (Keep-It-Simple-Stupid vs. Keep-It-Descriptive-Stupid), capability in
+supporting complex psychological mechanisms, and ability to model dynamic behaviours in
+both discrete and continuous time. Also, for the first time, this thesis presents an agent-based
+model of the PGG in a continuous-time setting that is rarely considered in Economics, and our
+simulation incorporates different modes of strategic reasoning being triggered by continuous
+time compared to discrete time.
+
+This thesis is structured in the following manner. Chapter 2 presents relevant background
+information and is divided into four sections: the first introduces Game Theory, Experimental
+and Behavioural Economics; the second reviews the landscape and development of ABMS;
+thirdly, PGG and relevant research approaches are reviewed; lastly, the research gap found in
+the literature along with motivation for the research is outlined. Chapter 3 presents the research
+methodology of case studies, describes research activities, and explains the design of the initial
+framework. Chapters 4, 5, and 6 report on the case studies 1, 2, and 3 respectively. Chapter 7
+concludes the thesis, revisits the aim and objectives, presents contribution to knowledge, and
+discusses limitations and future directions for this research.
+
+While the two disciplines that our contributions belong to are quite different,
+the contributions are, nonetheless, reciprocally related to each other. The
+engineering of the implementation of the Sprat Marine Ecosystem Model is
+used for evaluating the Sprat Approach, from which valuable lessons for
+software engineering in computational science can be learned. Conversely,
+from the perspective of ecological modeling, the Sprat Approach lays the
+foundation for a well-engineered technical implementation of the Sprat
+Marine Ecosystem Model that is easily accessible also to scientists who have
+little programming experience.
+
+In this introductory chapter, Section 1.1 motivates our research and
+points out the key challenges to be overcome. After summarizing our
+approach and our core contributions in Section 1.2, we outline the structure
+of the thesis in Section 1.3.
+
+Computation has established itself as a third paradigm (Bell et al. 2009) for
+scientific discovery, next to theory and experimentation. Via computational
+models and simulation, it allows to investigate domains that have been
+largely inaccessible to traditional approaches, such as the evolution of the
+universe or the prediction of climate change. The discipline that studies the
+application of computation to problems from science and engineering is
+called computational science or, synonymously, scientific computing. The large
+number of application domains for computational science makes it a very
+diverse field that runs orthogonal to traditional discipline boundaries: it
+ranges from biologists implementing small-scale data analysis procedures
+in scripting languages to numerical mathematicians prototyping their algorithms
+to interdisciplinary groups of scientists developing large-scale
+climate simulations for high-end computing hardware.
+
+Today, with the advent of heterogeneous computer architectures with
+many cores and low-latency, high-bandwidth interconnects, the performance
+challenge seems to be mostly met (Kogge and Shalf 2013). Additionally,
+cloud computing—although not yet fully mature for this purpose—
+promises to make vast compute resources available to the average researcher
+(Galante et al. 2014; Iosup et al. 2011).
+
+Concerning the prediction challenge, there still remain open questions
+regarding how to integrate processes on different spatial and temporal
+scales, especially for the prediction of climate change. These questions are
+through which mechanism), since statistical explanations do not provide information on 
+how the outputs are generated.
+
+As a wide-range tool, the term simulation varies in meaning from one research community to another. 
+
+
+Although it may be an interesting approach to evolve the SE research, there are limitations that SBS are 
+imposed to consider due their inherent characteristics. Simula-tion models require not only knowledge, 
+but require data for calibration, validation and experimentation. Such data come from observations 
+(as mentioned before, through in vivo or in vitro studies) and are constrained to their observational context. 
+
+Therefore, simulation is feasible when the research goals cannot be achieved by other empirical or experimental strategies, however it must exist enough knowledge and data to support it. Furthermore, simulations are recommended for characterization studies involving the combination of many factors and levels, with possible interactions among factors, long-term observations of software development and maintenance projects, and when risks regarding the real phenomenon are unacceptable in the field.
+The Software Engineering (SE) community has presented interesting initiatives on simulation models and studies. 
+
+The abstractions over SE phenomena involve differ-ent domains and perspectives. Such advances concentrate more 
+on software process and project issues, aiming at understanding or improving them in different contexts 
+(DE FRANÇA and TRAVASSOS, 2013b). In addition, it is possible to observe simulation studies concerned
+ with software products, e.g., software architecture decisions regard-ing quality attributes. However, 
+it is still possible to observe issues in the technical liter-ature, as it will be discussed in the next 
+section.
+
+A simulation-based study makes use of a simulation model as the instrument to observe the phenomenon under 
+investigation. It allows understanding, and even opti-mizing, processes and systems (in the broader sense) 
+with certain control of input pa-rameters, anticipating possible scenarios and configurations representing 
+the system’s variants. Moreover, simulation experiments can be performed faster and less costly than in vivo 
+or in vitro studies (TRAVASSOS and BARROS, 2003).
+
+Besides the advances already achieved by the SE community, it is still likely to observe lack of methodological 
+support to conduct simulation experiments in the context of SE. Such problem includes issues on simulation model 
+validity, inappropriate experi-mental design for simulation experiments, lack of concerns regarding validity 
+threats and relevant information on the simulation studies report.
+
+Both model validity and experimental design may impose threats to SBS validity when not properly performed. 
+
+Lack of validation experiments, models not being capable of reproducing reference or empirical behaviors, 
+and unbalanced designs not capable of performing fair comparisons among simulation scenarios are examples 
+of such threats. Furthermore, experimenters are not aware of common threats to simulation study validity 
+and lack relevant information such as research questions, experimental design or evi-dence regarding the 
+model validity when reporting this sort of study. Therefore, these issues affect the credibility and 
+confidence of studies' results, contributing to reduce the use of SBS as supporting tool for SE research 
+and development. Additionally, they ham-per the full understanding of simulation studies, as well as the 
+possibility of replicating their results.
+
+Mostly, methodological support on simulation in the context of SE rely on pro-cesses for model development, 
+and particularly on software process simulation (PFAHL and RUHE, 2002) (ALI and PETERSEN, 2012). However, 
+the use of simulation models to perform experiments intends to be generic in such approaches, needing further 
+orien-tation on how to design, execute and analyze simulation experiments.
+
+The Empirical Software Engineering (ESE) community has already proposed, evaluated and applied guidelines 
+for different research strategies, such as systematic literature reviews (SLR) (KITCHENHAM, 2004), 
+controlled experiments (JEDLITSCHKA CIOLKOWSKI and PFAHL, 2008), case studies (RUNESON and HÖST, 2009), 
+and replications (CARVER, 2010). Current significant usage of existing guidelines includes not only the 
+methodological support to conduct primary and secondary studies (BORGES et al., 2014), but also to distinguish 
+and assess rigor in research, referring to the precision or exactness of the research method use for its intended 
+purpose, as proposed by (IVARSSON and GORSCHEK, 2011) and adopted in (PETERSEN, 2011), (BARNEY et al., 2012) and 
+(ALI, PETERSEN and WÖHLIN, 2014).These guidelines intend to be driv-ers to research actions, rather than mandatory
+ recommendations. As they become ma-ture, by identifying advantages on their use and influence on the quality of 
+research pro-tocols, their adoption tends to be natural.
+
+The main goal of the review is to characterize how different simulation approaches have been applied in SE studies.
+
+Such characterization involves identifying the adopted simulation approaches, SE domains, model validation issues,
+simulation procedures and experimental design, and output analysis. For that, three digital libraries were 
+selected as source of information. Pre-de-fined selection and extraction procedures were defined and executed, 
+followed by the quality assessment and the analysis of findings. See Chapter 2 for details regarding the qSLR.
+
+From the qSLR, we observed common issues across different reports: lack of simulation model description and 
+validation information, no description of how simulation experiments have been performed, no discussions 
+regarding the output analysis and threats to validity. Moreover, this lack of information hampers the full 
+understanding of the simulation study results and the ability to reproduce them as well. This way, we searched
+for guidelines concerning with what should be a reasonable set of information to be reported on simulation studies.
+
+We could not identify such information contextual-ized for SE Research. However, we did find some related 
+discussions regarding other research areas.
+
+Using the findings from the review and additional reporting guidelines concerning with other types of 
+study (empirical studies, controlled experiments and case studies) and from other research areas 
+(medicine and statistics), we organized a preliminary set of reporting guidelines (DE FRANÇA and TRAVASSOS, 2012). 
+
+This set was evolved through sequential evaluation initiatives, including a checklist-based review, using the 
+instruments proposed by KITCHENHAM et al (2008); a collaborative review, which was structured as an online survey; 
+and, finally analyzed against technical literature reports, obtained from the qSLR update.
+
+The checklist-based review (details in Section 4.2) was originally published as a method inspired on the 
+perspective-based reading using checklists to guide the review-ers. Each checklist represents a particular 
+perspective. The aim of this approach is to evaluate the reporting guidelines using different reviewers and 
+reaching consensus. Our main goal in this assessment is to align our perspectives to the existing guidelines 
+on Empirical Software Engineering.
+
+After the checklist-based review, we still needed external evaluation of these re-porting guidelines, based 
+on the opinion of knowledgeable people in both Simulation and Software Engineering. Thus, we structured a 
+collaborative review (details in Section 4.3), very similar to conference reviews, using an online survey 
+platform. Our intention with this study is to get feedback regarding the completeness and correctness of 
+the guide-lines set.
+
+Finally, after the two former assessments, we analyzed the reporting guidelines against the technical 
+literature (details in Section 4.4). For that, we updated the qSLR, essentially using the same research 
+protocol, to verify whether new study reports some-how comply with the proposed guidelines.
+
+All these initiatives enabled us to get feedback regarding the completeness and correctness of the reporting 
+guidelines. Thus, the current version (reporting only) was made fully available in (DE FRANÇA and TRAVASSOS, 2014a).
+
+Considering we have established a set of relevant information to be reported, it is essential to 
+understand the stage in the SBS lifecycle and how such information should be produced. Additionally, 
+we understood that, if not planned for the simulation study, the researchers are not likely to produce 
+them, since most of them cannot be produced in retrospect.
+
+The next step in our research methodology concerns with evolving the set of re-porting guidelines in order 
+to support planning activities in simulation experiments. The additional guidelines do not mean to embrace 
+the simulation model development, but only the simulation model use, also called model experimentation. 
+
+This is justified by the existence of methodological support for simulation modeling in the context of SE. 
+
+Aiming at supporting the elaboration of complete, coherent and effective simula-tion plans, the planning 
+guidelines were developed based on the results of a secondary analysis of the outcomes identified through 
+the qSLR and additional resources. Such analysis followed a qualitative approach, aiming at identifying 
+potential threats to SBS validity in the context of SE, as well as possible mitigation actions.
+
+In this context, the versatility of the survey method on supporting basic and
+applied researches can be observed. The survey method is an observation strategy
+useful to collect information regarding events and/or phenomena, identifying trends and
+consensus in a specific research context (LEVIN, FOX and FORDE, 2012).
+PINSONNEAULT and KRAEMER (1993) classify as survey research those conducted
+to advance scientific knowledge, aiming at producing quantitative descriptions of some
+aspects of the studied population by asking people structured and predefined questions.
+When properly conducted, opinion surveys1 (hereinafter simply called as
+surveys) allow researchers to perform descriptive and large scale investigations without
+the rigorous level of control required by controlled experiments, supporting the
+characterization of knowledge, attitudes and/or behaviors from different groups of
+individuals (KASUNIC, 2005) through the generalization of findings from a fraction of
+the population to the whole population. In SE research, surveys have been commonly
+adopted for different research goals, such as mapping the state of practice
+(CIOLKOWSKI et al., 2003; STAVRU, 2014), establishing baselines for investigating
+new fields (STETTINA and HEIJSTEK, 2011), gathering of opinion regarding SE
+technologies and practices (FERNÁNDEZ-SÁEZ et al., 2013), among others.
+
+BACKSTROM and HURSH-CÉSAR (1981) presents the following important
+characteristics of a survey: it should be systematic, impartial, representative, theorybased,
+quantitative and replicable2. It means that researchers should select elements of
+the population that together are representative of the problem under study without
+prejudice or preference (impartial), being guided by relevant principles of human
+behavior and mathematical laws (theory-based), assigning numerical characteristics of
+human behavior in ways that allows uniform interpretation of these characteristics
+(quantitative). Finally, a survey should follow a specific and formal set of steps
+(systematic) so that different researchers following the same methods in the same
+conditions can get essentially the same results (replicable). Although the survey method
+is one of the most frequent research methods applied to Empirical Software Engineering
+(ESE), the external validity of SE surveys are often impacted by the use of convenience
+for sampling (DE MELLO et al., 2015). The previous experience of the Experimental
+Software Engineering Group on investigating and conducting surveys indicated that even
+after exhaustive effort on sampling and recruitment activities, SE survey executions
+frequently fail to be impartial and representative. Moreover, since such effort is typically
+grounded in ad-hoc activities, SE surveys also fail to be completely systematic and,
+consequently, replicable. For instance, CONRADI et al. (2005) evaluated a set of surveys
+on component based SE and concluded that most of them do not let clear how their
+samples were established. A similar conclusion was obtained by STAVRU (2014) when
+evaluating surveys conducted in academy and industry to investigate the using of agile
+methods in software organizations. The author states that it is not possible to assure to
+which extent the results obtained by most of the analyzed surveys could be considered
+valid.
+
+More recently, we identified through a structured review3 (DE MELLO and
+TRAVASSOS, 2015) that most of the surveys published in the International Conference
+on Evaluation and Assessment in Software Engineering (EASE) and the International
+Symposium on Empirical Software Engineering and Measurement (ESEM) conferences
+since 2005 were supported by non-representative samples established by convenience,
+including business partners, local students and researchers’ personal networks.
+One can see that not only challenges on characterizing the diverse SE research
+contexts contribute to the observed scenario (DYBÅ, SJØBERG and CRUZES, 2012),
+the business nature of SE also do, typically restricting the access to large data sets in
+the field, such as information about organizations’ professionals and projects. As a
+comparison, surveys from other fields such as social sciences, education and nursing
+are commonly supported by country-wide sampling frames composed of large sets of
+citizens/households, students/classes/schools and patients/hospitals, respectively.
+Thus, one key issue on establishing representative samples to support SE surveys relies
+on identifying relevant and accessible sources from which adequate sampling frames
+can be organized. In this sense, technical literature reveals a few examples of the use of
+alternative sources available in the Web, such as professional social networks (KANIJ,
+MERKEL and GRUNDY, 2011; JOORABCHI, MESBA and KRUCHTEN, 2013) and
+discussion groups (NUGROHO and CHAUDRON, 2008) but such use is typically
+addressed to enlarge the number of respondents rather than to provide samples’
+representativeness.
+
+In the context of our research, a representative sample consists of a subset of
+units, randomly retrieved from a heterogeneous population from the point of view of the
+survey target audience attributes (DE MELLO et al., 2015). Such definition addresses
+three representative samples’ quality properties out of the nine described by KRUSKAL
+and MOSTEELER (1979): (1) specific sampling method (probabilistic sampling), (2)
+populations’ heterogeneity coverage and (3) representative as typical, with respect to
+certain known population attributes, such as gender, age and income. Thus, the survey
+population heterogeneity and the sampling method adopted should determinate the
+survey sample size, not vice versa.
+
+In this sense, it is important to point out different target audiences and research
+objectives will demand more/less effort on sampling, which is not necessarily related with
+the population size. For instance, a survey specifically designed to a local organization
+may need stratifying its population by different departments and roles; while an
+international large-scale survey with SE professionals may not demand stratification
+efforts.
+
+In addition, establishing representative samples may not be sufficient to assure
+results representativeness since the participation in surveys is commonly voluntary.
+Hence, a survey plan should also establish how to systematically encourage responses
+and prevent non-responses (STAVRU, 2014). In this context, the investigation of 52
+surveys published from 2005 to 2014 at ESEM and EASE proceedings allowed us to
+observe that surveys’ subjects are often invited using different methods and instruments
+to the same study, whereas persuasive factors (SMITH et al., 2013) are eventually
+applied to encourage their participation.
+
+The research objective of this thesis is to establish a conceptual framework to
+support researchers to conduct their survey planning activities by guiding the systematic
+identification of representative samples for surveys in SE.
+
+In this sense, it is important to emphasize that the scope of the technology
+proposed in this thesis does not include the whole survey process and does not even
+include all survey planning activities, focusing on providing guidance to mitigate the
+external threats to validity often observed in SE surveys regarding samples’
+representativeness.
+
+Providing guidelines for characterizing the context of surveys in SE.
+Regarding the last item, JOHNS (1991) distinguishes between two types of
+research context: substantive and methodological. The methodological context refers to
+detailed information about the research study while the substantive context stands for
+the context individuals or groups face. The substantive context can be characterized
+through omnibus (broad) and discrete perspectives. GRIFFIN et al. (2007) observe that
+the omnibus perspective can be considered the lens from which the variables of the
+discrete perspective can be observed. Thus, taking into account the large variability of
+context in SE research, DYBÅ, SJØBERG and CRUZES (2012) encourage SE
+researchers to take an omnibus perspective to characterize the substantive context of
+their studies through answering the following five questions: Who?, What?, Why?,
+When? and Where?
+
+Figure 1-1 highlights the potential contributions of the presented research to the
+context characterization of surveys in SE. Besides the expected contribution of our
+research to survey planning (methodological context), we also expect contributions to
+the characterization of surveys’ substantive context, especially from an omnibus
+perspective. Based on a given phenomenon to be investigated (What?), the conceptual
+framework guides the identification of a representative sample (Who?) and how to recruit
+such sample by stimulating subjects participation (Why?). Moreover, the systematization
+provided by the conceptual framework may also contribute to reflecting on when and
+where the survey should be executed. Finally, since the conceptual framework provides
+some guidance to characterize subjects, we also expect that it can be useful for
+characterizing the social dimension of SE surveys.
+
+The presented (meta) research is inserted in the context of the ESE group
+supervised by Professor Guilherme Travassos since 2001, devoted to promote empirical
+research in the field by “studying and researching new models to support the planning,
+execution and packaging of SE empirical studies” (ESE, 2015). The presented research
+is also inserted in the context of a broader investigation conducted by the ESE group in
+partnership with the Software Engineering Research Group (SERG) at Lund University
+(Sweden) to study the guidelines to conduct surveys in SE. Co-supervised by Professor
+Per Runeson, the author of the presented thesis had participated in an internship
+program, partially conducting his doctoral activities located at SERG. Among the
+research activities performed at SERG, the author participated in a survey course where
+guidelines to conduct surveys in SE were investigated (LINÅKER et al., 2015). Also, we
+designed and started a Systematic Literature Review (SLR) to investigate additional
+guidelines with the SERG.
+
+The opportunity of re-executing surveys from different research topics
+investigated by the ESE Groups allowed us to strengthen evidence regarding the findings
+obtained in the original executions. Such topics include the introduction of agility in
+software processes (ABRANTES and TRAVASSOS, 2013); requirements effort
+influence factors (VAZ, 2013) and guidelines for conducting simulation based studies in
+SE (FRANÇA and TRAVASSOS, 2015). We have also been collaborating with Professor
+Kathryn Stolee (North Carolina University) in the replication of online experiments (DE
+MELLO, STOLEE and TRAVASSOS, 2015) and providing the conceptual framework to
+be applied in the planning of new surveys conducted by other research groups. Such
+experiences allowed us to teach survey research classes from the Experimental
+Software Engineering course offered at COPPE/UFRJ (2014, 2015).
+
+Finally, it is important to point out the receptivity of the Empirical Software
+Engineering community to our research ideas and concerns, which we could observe
+through participation in different venues in which research papers related with the
+presented thesis were presented (EASE 2013; ESEM 2013, 2014, 2015; ESELAW 2014,
+2015; ELA-ES 2015).
+
+We originally have planned SE quantitative studies (experiments and quantitative
+surveys) as the scope of this thesis. Inspired by crowdsourcing classes at COPPE/UFRJ
+(2012, Professor Jano Moreira de Souza), we started investigating the potential
+contributions of crowdsourcing technologies to support the enlargement of samples in
+SE quantitative studies (DE MELLO and TRAVASSOS, 2012). Then, we investigated the
+lack of external validity of such studies and the limitations to replicate them. Through the
+adaptation of concepts from food chains (Ecology) we structured the concept of
+experimental chains to characterize the current scenario of quantitative studies’
+replication in SE and to discuss alternatives to evolve such scenario (DE MELLO and
+TRAVASSOS, 2013). In this sense, we argued that most of the effort to conduct and
+replicate quantitative studies in SE is wasted due to the frequent use of convenience
+samples, restricting significantly the renewal of energy (evidence) in the field.
+Then, taking into account the current and potential benefits of survey research to
+SE and the issues introduced in Section 1.2, we decided to change the scope of the
+research to surveys, following the research activities presented in Figure 1-2. The figure
+identifies the subset of research activities conducted until the qualification exam
+(presented in July, 2014) and the main research activities conducted during the
+internship at Lund University.Based on the lessons learned when conducting those studies, a first version of
+the conceptual framework was designed (3), available at (DE MELLO et al., 2014c)5. As
+mentioned before, sampling issues involved in the presented investigation scope are not
+only observed in SE surveys but also in SE large-scale experiments. Consequently, the
+first version of the conceptual framework was used in the context of replicating an online
+experiment regarding Java code search (STOLEE, ELBAUM and DWYER, 2015). As a
+result, we observed that the effective sample obtained by instantiating the framework
+(composed by LinkedIn members from its most populous Java programmers group) was
+significantly more heterogeneous and more experienced in the research topic than the
+effective sample obtained in the original execution (Amazon’s Mechanical Turk workers).
+The description of this study can be found in (DE MELLO, STOLEE and TRAVASSOS,
+2015).
+This thesis is organized in six more chapters. Chapter 2 introduces the survey
+process and discusses related works. Chapter 3 summarizes the research steps
+conducted before the establishment of the second version of the conceptual framework.
+Section 4 presents the conceptual framework v2.2, empirically evaluated through the
+studies presented in Section 5. Section 6 introduces the third version of the conceptual
+framework. Conclusions and future work are presented in Section 7.
+
+
+

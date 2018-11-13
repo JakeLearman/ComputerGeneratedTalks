@@ -1,0 +1,2698 @@
+This chapter introduces a server concept that enables the web-based provisioning, exploration
+and uploading of image processing operations. In Section 3.1, a conceptual
+overview is given over the use cases and the server architecture. Then, in Section 3.2,
+a platform-independent XML schema for describing image operations is introduced.
+Afterwards, in Sections 3.3 and 3.4, the asset bundling process and the web interface are
+presented.
+
+The proposed system should provide image operations for multiple clients and fulfill the
+use cases that are outlined in the following.
+
+In order to get an overview, users need to be able to explore all currently available image
+effects. The overview should demonstrate each image effect with an example image and
+offer a textual effect description, similar to a web shop. During exploration, users should
+have the option to download an image effect.
+
+If users decide to download an image effect during the exploration, the image effect needs
+to be prepared for the download and then transmitted. The client will then need to be
+able to parse the downloaded files and display the requested image effect.
+
+Once users have modified an image effect locally, they might consider sharing their
+creation with the community. In this case, users need to be able to upload their image
+effect and share it privately, e.g., with their friends. Furthermore, users should also be
+able to publish their image effect to the public web interface.
+
+In order to fulfill all desired use cases and achieve clear responsibilities for each server, a
+distribution of responsibilities on two different servers was deemed appropriate during
+the design stage (Figure 3.1). A discussion regarding different architectural styles can be
+found in Section 4.1.2.
+
+The first server, the data-server, provides a REST [11] (Representational State
+Transfer) API which allows for creation and retrieval of asset meta data, asset files and
+user accounts. Authentication with a user account is required for creation and deletion
+of assets. The data server REST API is designed for developers, as all responses are
+delivered as machine-readable JSON objects. The data-server contains minimal domain
+knowledge as it knows of the properties of the assets (package, category, author, name,
+version) but does not know any semantic meaning for any of those fields.
+
+The second server, the user-server, allows for a more user-friendly interaction with
+the data provided by the data-server. First, the user-server offers rendered HTML pages
+which allow for easy asset exploration through a web shop-like interface (Section 3.4).
+Furthermore, the server allows users to request asset bundles (Section 3.3), which are
+executable sets of assets put into one single archive.
+
+In order to develop platform-independent image operations, the existing XML-based
+effect scheme of this framework [8] was extended and adjusted to fit the new use cases. An
+image operation is defined through a multitude of different assets that depend and build
+on each other (Figure 3.2). Assets are divided into five categories, which are explained in
+the following:
+Effect Definition An effect definition consists of a single XML file which describes
+all parameters and presets for a given image operation that are used by the client to
+provide a user-interface to use and modify an effect. Apart from these variables, an effect
+definition does not know about any implementation details, but rather references one
+implementation set.
+
+Implementation Set An implementation set is a single XML file which references
+multiple implementations, representing the same image operation for a set of different
+platforms. The implementations of an implementation set may run on different graphics
+APIs, API extensions, operating systems or devices.
+Implementation An implementation consists of a single XML file which defines a render
+sequence using one or multiple passes. Each pass is implemented by API-specific shaders
+that are usually placed in common assets.
+
+Pipeline Definition A pipeline definition consists of a single XML file which describes a
+sequence of effects, referencing their respective effect definition, and their corresponding
+parameters and presets. In addition to the order of used effects, it also enables saving
+global pipeline presets which are sets of effect presets [8].
+
+Common Assets All other assets fall into the category of common assets. These assets
+can contain any content, e.g. textures, shaders, icons and trained neural style transfer
+models [19]. They can be referenced from any other asset.
+
+Since one image operation is split into effect definition, implementation set, implementations
+and common assets, it is necessary to define dependencies between assets (Figure
+3.2). These get resolved during asset bundling (Section 3.3). This dependency structure
+enables reusable assets, e.g., a common asset with noise and kernel textures or an extended
+Difference-of-Gaussian [38] that can be used by a multitude of effects. It also
+allows for easy modification and versioning of specific parts of image operations. For
+instance, a large majority of users will only modify effect parameters and never adjust the
+implementations. In that case, the client will only need to update the effect definition,
+keeping the number of changed files and, in case the user decides to upload the effect,
+the transmitted bandwidth to a minimum.
+
+Since the aim of this work is to provide a platform for collaborative creation and iterative
+modification of image operations, versioning is integrated in the design of asset storage
+and the architecture. If an asset author decides to update or improve an already published
+asset of any category, it is possible to publish it with an incremented version number and
+submit a new set of all asset files belonging to this asset. Older versions of the asset than
+the latest version are still accessible through XML-defined dependencies and through the
+data-server API, but are not visible on the web store. This way, references to previous
+versions of the asset are still valid and will not break.
+
+When users want to publish their assets to a public audience, they can create an asset
+listing. For that, the user needs to provide a set of meta data consisting of a short
+description of the effect and an example image illustrating the effect. Furthermore, the
+server can also collect metrics about the asset listing while it is available in the web
+store, e.g., the amount of downloads or views. Once the asset listing is created, it will be
+visible in the web interface (Section 3.4).
+
+In order to clearly reference published assets, a unique identifier for every asset is required.
+Multiple approaches to uniquely naming assets have been evaluated.
+
+for every asset. For every effect definition, pipeline definition, implementation set,
+implementation and common asset, the user would be prompted for a name that has to
+be unique within all assets. This approach is rather unviable once a certain amount of
+assets is reached since there is only a limited number of descriptive names. In addition,
+giving the users the freedom to choose their own names may lead to not being able to
+discern assets and their contents solely based on their names. Furthermore, prompting
+the user for multiple unique names can be tiring and demotivate users from publishing
+their assets. It may also lead users to use meaningless names that are quickly typed and
+likely to be unique such as asdfasdf.
+
+Augmented user-chosen identifer In order to cope with a few of the aforementioned
+problems, it is possible to enforce basic naming rules and automatically apply pre- or postfixes
+to the user-chosen name. For instance, the category of the asset could be prepended
+to make the asset names more descriptive: Instead of toon, toony and toon-gl, these assets
+would be named effect-toon, pipeline-toony and implementation-toon-gl. Still,
+it is impossible to have two effect definitions of the same name. This is especially
+problematic because novice users are very likely to adapt an already existing effect and
+would be forced to come up with a new name if they decide to publish their modified
+effect. Also, it is unclear which assets depend on each other and build a common image
+operation.
+
+Composite identifier Each asset has five attributes that are part of the identifier:
+The name of the asset author.
+
+The package containing the asset. Packages are logical containers for similar assets
+and image operations, grouping closely-related assets.
+
+Having such a composite key solves most of the previously identified problems. It allows
+novice users to re-upload an existing but modified asset under the same name since the
+asset then belongs to a different user. Furthermore, having the category and the package
+as part of the key implicitly describes the content of the asset and which assets are
+related to each other. In addition, since the user-chosen name only needs to be unique
+within assets of the same author, the same category and the same package, a collision of
+names and the following prompt for a new name is much more unlikely.
+
+The server stores all uploaded assets in a hierarchic folder structure based on this
+composite key (Section 4.2.1). When the client downloads assets from the database, it
+receives all requested assets in the same folder structure within the asset bundles (Section
+3.3). After downloading the asset bundle, it is extracted into the local asset storage,
+essentially building up a subset of the server-side asset storage.
+
+When requesting an asset from the user-server, the user will receive an asset bundle.
+The goal of asset bundling is to deliver an archive containing 1) the asset files of the
+requested and all depended assets 2) in a folder structure that can be extracted into the
+client asset storage without further transformation and 3) an entrypoint file pointing to
+the first XML file, either an effect definition or a pipeline definition, to be loaded by the
+client. Asset bundling moves code complexity away from the client to the server, enabling
+faster client development.
+
+Because one Hypertext Transfer Protocol (HTTP) request for each single asset
+would be inefficient with, e.g. 10 assets for a water color filter resulting in 10 HTTP
+requests in a naïve implementation, bundling all depended assets into one archive before
+delivering it to the client is appropriate to reduce the amount of HTTP requests and thus,
+user-perceived latency. Furthermore, the server also needs to communicate to the client
+which XML file should be loaded initially. This is done through a file called entrypoint
+which contains the path of the first XML file to be loaded by the client. The entrypoint
+file is generated and placed in the archive root during asset bundling.
+Clients can submit their device information with their asset bundle request and will
+receive an asset bundle containing only implementations which are executable by the
+device. This reduces the size of the transmitted asset bundle and the required storage
+space on the clients’ side while retaining full functionality.
+
+In order to have users explore the available image operations that are currently stored
+in the database, various rendered HTML pages are offered. These views are different
+representations of the currently available assets. Some views are designed for user-friendly
+exploration of image effects while other views are designed for development purposes.
+There are currently four different web store views available: list, list-detailed,
+carousel and gallery (Figure 3.3). The views carousel and gallery display the currently
+available asset listings, including the uploaded example image and the descriptions.
+These views represent the main use case: having users explore high-quality, published
+assets in a community setting, allowing users to download and adapt assets as well as -
+in the future - rate and comment on them. When a user decides to publish their work to
+a public audience, they can create an asset listing (Section 3.2.4) and, therefore, have
+their asset displayed in the aforementioned views. An asset listing consists of a reference
+to an existing asset, a short description and an example image. Creating an asset listing
+requires user authentication and ownership of the referenced asset. Once an asset listing
+is created, it is displayed in all views based on asset listings (carousel and gallery).
+On the other hand, the views list and list-detailed display all assets, i.e., even
+non-executable assets like common assets and implementations. These views were
+implemented solely for development purposes to get a quick and visual overview over all
+uploaded assets as well as offer a convenient way to delete them.
+
+In this chapter, the concrete implementation of the proposed server system will be
+discussed. First, the design decisions in regards to the realization of the use cases, the
+server architecture and the used technologies are presented and discussed in Section 4.1.
+In Sections 4.2 and 4.3, selected implementation details of the two servers are highlighted
+and evaluated. Afterwards, the virtualization techniques used in this architecture will be
+discussed in Section 4.4.
+
+In order to explore the available image operations, users can visit a defined store URL
+and will be presented with a HTML view of all publicly available image effects (Section
+3.4), generated by the view renderer module in the user-server. This web page can be
+embedded into a client-side web browser component as demonstrated by Riese [33]. The
+appearance and branding of the delivered HTML page can be customized on the server
+side for every client, e.g., depending on the operating system of the requesting device.
+Through that, it is possible to offer an adjusted user experience for every client platform.
+
+If the user decides to download an image effect through the web store interface, it will
+trigger the asset bundler module in the user-server to build an asset bundle (Section
+3.3) for the requested image effect or deliver a cached version of the asset bundle. Once
+downloaded, the client can extract the asset bundle into their client-side asset storage
+and load the effect.
+
+Once users have edited or modified an effect, they might consider sharing their creation
+with friends or a public audience. In this case, it is possible to send all new or changed
+assets to the asset publisher in the user-server, which will upload them to the data-server.
+The data-server will then submit the changes into the database and the server-side asset
+storage. At this point, it is possible to share the created image effects with friends by
+sending them a link. If the user wants to publish their assets into the web store, i.e.,
+making it public for every user who visits the store, they can submit an asset listing
+(Section 3.2.4) consisting of an example image and a short description of the asset.
+
+Whenever the client wants to upload or download asset files or explore available assets,
+it sends a HTTP request [10] to the user-server. This request will either be handled by
+the asset publisher, the asset bundler or the view renderer respectively (Figure 4.1). The
+data-server offers a REST [11] API (Appendix A) which can be queried for meta data
+of assets, users and asset listings via GET HTTP requests. Furthermore, it enables the
+user-server to retrieve asset files of published assets and submit new or changed asset
+files. The data-server stores the asset meta data in a relational database and saves the
+asset files in the server file system.
+
+There are several ways to design a server infrastructure that fulfills the presented use
+cases. The most obvious and naïve solution is to use a single, monolithic server that
+takes care of all requests. The opposite solution would be to split up all modules into
+micro services [29], small processes with highly specific responsibilities that communicate
+with each other to fulfill a larger use case. A balanced solution, representing the middle
+way between micro services and a monolithic server, is the two-tier servers architecture.
+In this approach, the use cases are distributed on two servers, with one representing a
+raw REST API without any domain knowledge (the data-server) and one acting as an
+adapter to the data-server, offering a convenient, client-friendly API (the user-server).
+
+Monolithic server The monolithic approach can be simple and effective: Because of the
+lack of modularization and division of responsibilities, there is no added communication
+latency or added code complexity due to the fact that all the computation happens
+in one single server, requiring no inter-server communication. However, a monolithic
+server is very rigid when it comes to deployment because it is just one piece of software,
+resulting in two states for the remote server system, ’running’ and ’not running’. For
+instance, if the deployment fails or a hotfix needs to be pushed into the live system,
+the whole infrastructure needs to be stopped, re-deployed and then restarted, resulting
+in a complete unavailability of the service during the process. Furthermore, scaling a
+monolithic server horizontally, i.e., across more server machines, is practically infeasible.
+Scaling single use cases or services is impossible. In addition, adding new features and
+enabling new use cases is relatively tedious once a certain level of complexity is reached
+unless the modularization and division of responsibilities within the monolithic server is
+very elaborate.
+
+Microservices The micro services architecture profits from its distributed nature as it
+enables excellent extensibility. New services and use cases can be added to the system by
+simply registering them in the routing modules. The architecture also allows for very
+flexible deployments since every deployed service is relatively small, resulting in only short
+unavailability periods for a subset of all services. Horizontal scaling and scaling single
+services is very straightforward since it is implicit to the nature of the architecture. On
+the downside, the required inter-server communication results in added communication
+latency and added code complexity.
+
+Two-tier servers The two-tier server architecture strikes a middle way between the
+monolithic and the micro services approach. It offers a fair extensibility and deployment
+flexibility while only adding a bit of communication latency and code complexity. This
+approach only scales slightly better than the monolithic approach when it comes to
+scaling specific use cases.
+
+If the amount of use cases would increase dramatically, a micro services architecture
+would be more feasible for the presented system. This would have the advantage of
+implicit load balancing and a generally lower latency. But, since the amount of use cases
+is still moderate, the two-tier servers architecture was deemed the most appropriate for
+the presented system.
+
+The data-server and the user-server are built using Node.js [14], a server-side JavaScript
+runtime which is built to receive and answer HTTP requests. To reduce code complexity,
+the Node.js framework Express [13] was integrated and extensively used. Express allows
+to set up HTTP routes and send responses with very little code. The diverse landscape of
+Node.js modules enables to integrate modules for all of the different use cases: database
+access (Sequelize [7]), dynamic HTML pages with templates (Pug [30] with Pug-Bootstrap
+[15]), advanced file access (fs-extra [32]) and HTTP request management (Request [34]).
+
+With these five attributes, it is possible to create a hierarchic folder structure that has a
+unique path for each asset. Each attribute represents one subfolder in the order they
+are listed above. Example: An effect definition asset with the name toon placed in the
+package toon created by max with the version 1 would therefore result in the files of
+the asset being stored in the folder assets/max/toon/definition/toon/1/. A complete
+asset storage example can be found in Appendix B.
+
+Storing assets in this folder structure has multiple advantages. Since each asset folder
+is associated with exactly one published asset, the asset files in that folder will always
+be the same. Effect developers can always assume the precise content of those folders.
+Furthermore, all asset files can be explored at any time by an advanced user or a developer
+without any extra tools. This allowed convenient debugging during development.
+
+Alternatively, the assets could be saved as Binary Large Objects (BLOBs) in the
+relational database. This has the advantage of guaranteeing synchronization between
+asset files and asset meta data, as changes to this data could be bundled into one atomic
+Structured Query Language (SQL) transaction. However, on a database failure, the
+asset file data may loose its semantic meaning and may not be as easily recoverable as
+assets stored on the file system. Furthermore, most databases tend to perform poorly
+when interacting with BLOBs: Since BLOBs are of variable size, the database cannot
+optimize the HDD access to retrieve the data. Therefore, the file system asset storage
+was implemented for the presented system.
+
+In the previous format, the effect was fully specified with one XML file (Figure
+4.2). This XML file contained implementation details and the high-level effect definition
+(parameters, presets). In the proposed effect format, the implementation details and the
+effect definition are separated into implementations, implementation sets, effect definitions
+and pipeline definitions (Figure 4.3). In order to transform effects from the old format
+into the new format, Java [5] scripts were used to move the different XML tags to the
+appropriate files and to create the necessary folder structure. Once migrated, the assets
+were imported into the data-server using an import script. Then, all previously created
+legacy assets were readily available to download in the web interface, supporting new
+features such as dependencies and implementation sets.
+
+In order to store meta data in the database, a database schema needs to be designed
+first. Multiple schemas were developed and evaluated during the project. Two of them
+will be presented in the following
+
+After drafting the separation of the proposed asset format, i.e., the separation into
+implementations, implementation sets, effect definitions and pipeline definitions, this first
+database schema was developed (Figure 4.4). In this schema, each different asset type
+translates into a separate entity. Domain-based connections between effect definitions,
+implementation sets and effect implementations are modeled via foreign keys. Implementation
+sets act as simple n:m indirections between definitions and implementations and
+therefore do not have a version number. All assets have a foreign key pointing to their
+owner. A possible addition to this schema would be the saving of asset files directly as
+BLOBs (Section 4.2.1). With this approach, linking effect definitions and implementations 
+was intended to be done via HTTP requests, i.e., there was no file representation
+of implementation sets. The redirection from effect definition to effect implementation
+would have to be explicitly communicated to the client during the download. This is a
+downside of the schema as it needs to transform the asset relationships to be reasonably
+used offline. The advantage of this approach is the ease of use: Because the relations
+among the assets are integrated into the schema, the schema fully represents the data
+and allows efficient queries that take relationships into account.
+
+The database scheme which was ultimately used in the proposed system, contains less
+domain knowledge (Figure 4.5). In this schema, every asset, no matter the category, is
+the same entity type. Instead, the category of the asset is now an attribute. This enables
+extensibility for future asset categories as there is no restriction on the attribute value.
+Also, instead of creating a new entity for every version of the same asset, those assets
+are now grouped in one entity and given the attribute latest version. This implicitly
+assumes that all versions between 1 and latest version of each asset are published.
+In addition, asset listings are introduced that allow for customization of the web store
+presence of the assets. Asset listings are separate, optional entities and serve as a possible
+extension of assets if the author decides to publish them. The advantage of this approach
+is the lightweight nature of the schema. Because it contains little domain knowledge,
+the role of the database as a simple metadata storage is enforced. The domain-based
+relations between assets are manifested in their files, meaning that they can be used
+offline without transformation. Because of these advantages, this database schema was
+implemented in the proposed system.
+
+In order to serve the client with asset bundles that contain all dependencies and the best
+compatible implementation, the Algorithm 4.1 was implemented. The algorithm takes
+an asset A and a device target D as inputs and outputs a set of asset files B, i.e., an
+asset bundle. First, all files of the original asset are downloaded and iterated over. If any
+XML documents are found, the server will scan the document for dependencies on other
+assets. Such dependencies will appear either in the form of top-level <requirements>
+tags (Listing 4.6 - lines 6-9) or as an implicit dependency, e.g., the reference to an
+implementation set from an effect definition (Listing 4.6 - line 3). If an implementation
+set is found, the device target, i.e., the client-generated specification of its graphics
+hardware and its supported graphics APIs, is considered to find the best compatible
+implementation for the requesting client. If any dependencies are found, the algorithm is
+recursively called on every dependency. After all recursively called functions are finished,
+the initial algorithm will finish and output all asset files of the original and all depended
+assets in the form of an asset bundle.
+
+technologies was used. First and foremost, Docker [20] was used to execute the userserver,
+the data-server and the Postgres database in separate virtualized containers.
+Docker allows to put applications into Docker containers, isolating them in a separate
+execution environment. Containers are created from Docker images, which are built
+using a Dockerfile (Listing 4.7). The Dockerfile defines a step-by-step build process.
+Each command in the Dockerfile will add a file system layer to the image, effectively
+creating a new image. The file system layers allow to share identical resources between
+multiple containers but isolates resources that were modified during the container life
+time, emulating the behavior of a Virtual Machine (VM). This layered file system is one
+of the advantages when using Docker over regular VMs:
+
+Docker containers are ideal for deploying complex applications since containers created
+from the same image will always behave in the same way. Deploying a container to
+a commercial service such as Amazon EC22 is therefore highly predictable. For the
+development of this project, the containers were deployed to an internally hosted Ubuntu
+VM using Docker Machine [22]. Docker Machine allows to set up and control remote
+docker environments. It enables very quick iterations as deployments of the presented
+server system take only between a few seconds to a minute.
+
+In the script, a Postgres container and a data-server container are being built. In
+the initialization of the data-server container, the container ID of the Postgres server is
+entered as an environment variable. This allows the data-server to connect to the Postgres
+database inside the Postgres container. However, there are multiple disadvantages of this
+method. First, the referenced container image emberflare/assetdb-data-server needs
+to be built by hand before running this script and - if not rebuilt - might be outdated.
+Furthermore, the script ignores any currently running containers and recreates containers
+even if they did not change since the last deployment. This will lead to network conflicts
+since both containers try to bind the same port. Therefore, the Bash script would need
+to be extended to check whether the containers are already running and terminate them
+in that case.
+
+A cleaner and easier way to deploy multi-container environments is to use Docker
+Compose [21]. It allows to define a multi-container environment in a similiar fashion
+using a YML configuration file that offers more elaborate deployment routines (Listing
+4.9). Docker Compose allows to reference different containers via their aliases, e.g. db
+and data-server. Furthermore, Docker network handling is abstracted away from the
+developer and handled by Docker Compose, making it easier to connect multiple docker
+containers. In addition, Docker Compose allows to define restart policies (Listing 4.9 -
+line 11) which can be never, on-failure (exit code != 0) and always, therefore adding
+basic robustness to the server application. Docker Compose also allows to build docker
+images itself, removing the need to manually build the image before deployment (Listing
+4.9 - line 4). Because of these advantages, the presented server infrastructure of this work
+was deployed using Docker Compose.
+
+Advanced Encryption Standard
+Cryptography algorithm which use symmetric key system for its algorithm. Advanced Encryption 
+Standard algorithm (or AES) has variation of key size, starting from 128-bit and 256-bit 
+(128-bit key size is pretty strong) [8]. In this algorithm there many process when encrypting
+and decrypting. When encrypting a plaintext, there are many phase to be passed. The first phase
+is known with Initial Round. In this round, the secret key will expand before passing AddRound key.
+The next phase is Loop Round with the process will repeat depend on the key size. The process starts
+from SubBytes, ShiftRows, MixColumns, and AddRound key, and the process will repeat many times depend
+on the key size. The final phase is Final Round, in this phase all process in Loop Round repeated once
+without MixColumn. Decryption process has three phases as well. Starting from Initial Round with KeyExpansion
+and Inverse AddRound key (reverse process of AddRound key). Loop Round as well with Inverse SubByte, Inverse
+ShiftRows, Inverse MixColumn, and Inverse AddRoundkey. The process will repeat many times depend on the key
+size as well. The final phase is Final Round, the process itself is same with Loop Round, however the Inverse
+MixColumn is not included in this process.
+
+In this chapter,we lay the foundations of ourwork: First,we introduce
+the problem of Aggregation and present how it is used in real-world
+applications. Second, we review relational database management systems,
+the abstraction layer that most applications use for storing data
+and computing Aggregation and other operations. Then we summarize
+the most important features of modern hardware that database
+systems use to carry out application requests. Finally, we review the
+scientific method of algorithm engineering, which allows us to build
+an Aggregation operator that efficiently uses modern hardware and
+guides all other chapters of this thesis. Readers familiar with some or
+all of these topics may skip the respective sections.
+
+Aggregation is a common means to summarize a large collection of
+data records such that a particular characteristic of the collection can
+be understood easily by a human. It consists in assigning each record
+to a group and to aggregate each group to a single record. Sometimes
+it is therefore called GroupingWithAggregation, which may
+be shortened to Grouping or Aggregation. Except where a distinction
+is needed, we use the latter abbreviation in this thesis.
+Figure 1 shows a simple example of Aggregation in the context
+of a European office supply chain. It answers the question: “What is
+the sum of the prices of all sold items per store?”. In this example,
+the entries of sold items are grouped into one group per store and
+the prices of the rows of each group are aggregated to their sum. This
+allows understanding which articles generated the highest revenue
+according to the books of the company.
+
+This concept can be formalized [99, 37] as part of the relational algebra.
+The relational algebra is an algebra of operators on sets of tuples
+called relations.
+
+Applications typically express their requests to the database systems
+with the Structured Query Language (SQL) which is based on the
+relational algebra. However, while strict relational algebra is defined
+on sets, SQL’s default is to work on multisets, i.e., duplicate rows are
+not eliminated. We interpret Equation 2 in this way and adopt this interpretation
+throughout the thesis. In SQL Aggregation is expressed
+with a Group By clause. With accordingly defined tables, the above
+example query would be expressed in SQL like shown in Algorithm 1.
+The most common aggregate functions in SQL are Count, Sum (as
+in the example in Figure 1), Avg (average), Min, and Max. The SQL
+standard [86, Section 4.16.4] also defines a range of other, less common
+aggregate functions and different vendors have added others as
+proprietary extensions.
+
+There are two problems that are considered to be similar to Aggregation:
+Join and DuplicateRemoval. In a Join, tuples of two (potentially
+different) relations have to be brought together, i.e., “joined”,
+if they have the same (join) key. Aggregation can be seen as a Join
+with only one relation. In DuplicateRemoval we are asked to keep
+exactly one tuple of each group of tuples where all attributes are the
+same. This is equivalent to an Aggregation where all attributes are
+grouping attributes and no aggregates are computed. We discuss aspects
+of Join and DuplicateRemoval throughout the thesis where
+insights can be transferred to Aggregation.
+
+Aggregation plays an important role in analytical workloads. In this
+section, we present a workload study of a real-world business application,
+which initially motivated the project of this thesis. While it
+confirms many well known usage patterns of the Aggregation operator,
+our study also reveals some insights that contrast the textbook
+descriptions of typical workloads.
+
+The workload of the study consists of two sizes of a pre-sales benchmark
+of business analytics on ERP data of a customer of SAP. The
+queries are particularly long running and difficult queries of an existing
+system of the customer for performance comparison with the SAP
+HANA Database. For reference we include the queries of the TPC-H
+benchmark [172] with scale factor 100. We run the queries on the SAP
+HANA Database [61] and trace the statistics of the Aggregation operator.
+Our first observation is illustrated in Figure 2a, suggesting that the
+queries are complicated enough so that the execution plan contains
+more than one Aggregation operator. While the TPC-H query set
+consists mostly of rather simple queries with one or two Aggregations,
+our business use case is more complex and has queries with
+up to 16 instances of Aggregation operators.
+
+Particularly interesting are queries with a large number of groups K, which has 
+not been in the focus of optimization in most prior work. 
+
+As Figure 2b shows, output
+sizes of several million groups are not uncommon. We observed
+that this often happens in legacy applications that “misuse” Aggregation
+to ensure uniqueness properties not ensured by constraints
+in the schema. This is something that a general purpose database system
+needs to support efficiently, but literature does not offer good
+solutions for.
+
+Our final observation is illustrated in Figure 2c. It shows that the
+number of aggregation columns is high in analytical workload. The
+TPC-H queries consist mostly of less than five columns with a maximum
+of ten. Again, our business query set is more complex, with
+many queries having more than 20 aggregates and some up to more
+than 50. We conclude that benchmarks with a small number of columns
+are not realistic and that it is important to test Aggregation
+algorithms with a large number of columns.
+
+We now review the relevant aspects of a typical database management
+system (DBMS) in order to understand what role the Aggregation
+operator has. Most if not all of this section is taught in every introductory
+course on database systems, so we refer to accompanying
+textbooks such as [95, 166] for more details.
+
+A database management system provides a clear, abstract, and simple
+interface for storage, manipulation, and access of data, thus relieving
+application developers from these common tasks. By separating
+the logical representation of the data from the physical representation, applications
+only need to care about the former and the latter can be
+changed—manually or automatically—independently from the application.
+
+In this work we concentrate on the relational data model [45],
+where all data is stored in relations (or tables). A DBMS manages databases
+or—more accurately— database instances, which are collections
+of relations. Each relation is an instance of a precisely defined schema,
+a set of named attributes, possibly with a constrained domain. Applications
+store, manipulate, and query data through a data manipulation
+language (DML). For relational database systems, the declarative Structured
+Query Language (SQL) [86] is by far the most common one. It is
+theoretically backed up by the relational algebra, an algebra of operators
+on sets of tuples called relations, although it does not strictly adhere
+to it for efficiency reasons.
+
+The physical representation of the relations is handled by a storage
+manager. The storage manager stores at least one copy of each
+relation on some durable storage medium, traditionally on disk. In
+these disk-based systems, often-used parts of the data is kept in faster
+main memory in a buffer pool. Query processing may write large intermediate
+results to disk, which has virtually unlimited capacity. In
+contrast, in in-memory database systems, the disk is only used for backups.
+All working data is stored instead in the faster, but smaller main
+memory, thus making RAM the “slow” storage medium vis-a-vis the
+CPU caches and limiting the capacity available for intermediate results.
+There are two main physical storage layouts: row-major order
+or row-wise storage and column-major order or column-wise storage,
+which are chosen depending on the dominant access pattern to the
+data. Transactional workload rather consists of queries that only touch
+a few rows, but most attributes of them, so the row-wise format is
+used for this workload. Analytical workload often consists of queries
+that only involve a few attributes, but many rows of a relation, so the
+column-wise format is used instead. By increasing locality for typical
+access patterns, choosing the right storage format increases efficiency
+of access to storage media. For details about the storage layer,we refer
+to [166, Chapter 10] or [95, Chapter 7].
+
+Queries of the data manipulation language are first parsed into a
+logical query plan by a DML compiler. This plan consists of logical operators
+similar to the relational operators, such as Selection, Projection,
+Join, or Aggregation. An optimizer then transforms the logical
+plan into a physical query plan. This allows choosing among several alternatives
+the execution plan that is best suited for a particular query
+on a particular relation. Typical transformations are changing the order
+of operators, using a series of physical operators for a relational
+operator, using a physical operator that computes the combination of
+several relational operators, adding operators that reduce the amount
+of work for later operators, and selecting one among several physical
+operators, some of them possibly using indices. For example Selection
+could be translated into IndexScan or LinearSearch or Join
+could be translated to HashJoin or SortMergeJoin.
+
+In order to select the best possible execution plan, many query optimization
+techniques have been developed. Most optimizers have a
+set of equivalence rules in order to generate equivalent plans for the
+same query. They use a combination of heuristics, pruning, and dynamic
+programming to efficiently select the best of them. A cost models
+of the operators, for example modelling the number of I/Os or
+cache misses caused by a plan, then allows selecting the cheaper of
+the two. A simple rule is selection push-down, where Selection operators
+are pushed down to the leaves, filtering out data early on in the query
+thus reducing the amount of work for later queries. Plans may also
+be transformed to contain interesting orderings: For example, a Sort-
+MergeJoin followed by a special Aggregation optimized for sorted
+inputs could be faster than a HashJoin followed by HashAggregation.
+The costs of a plan depend to a large degree on the number of tuples, 
+so it is important to have size estimates of intermediate results.
+
+Depending on the operators, sizes can be predicted based on
+selectivity estimates or distinct value estimates, which in turn can be produced
+using sampling, histograms, and other techniques. More details
+about query processing and query optimization can be found in [166,
+Chapters 12 and 13] and [95, Chapter 8].
+
+Once the physical plan is created, it is executed by the query execution
+engine. The execution engine follows one of several processing models,
+i.e., physical ways to pass data between the operators of a query
+plan. For one, intermediate results may be represented row-wise or
+column-wise, which may or may not be the same representation as
+for the original relations. Furthermore, traditional systems often follow
+a pull model, where operators recursively ask their children to
+produce the next row (or batch of rows). Several operators are thus
+connected to pipelines, eliminated the need to materialize many intermediate
+results, separated by pipeline breakers, such as most Join or
+Aggregation operators. In contrast to that, particularly in systems
+with column-wise processing, sometimes a push model is used, which
+means that operators produce their complete result and give it to their
+parent(s) at once. Both models are implemented with an abstract interface,
+where operators call each other with virtual function calls. Because
+this can be prohibitively slow, a trend to overcome this problem
+has emerged recently: just-in-time compilation of the query plan of each
+query into machine code [140, 67, 138].
+
+Many of these aspects have an influence on the design choices or at
+least the implementation of an Aggregation operator. We will come
+back to them in more detail when we discuss prior work in Chapter 3
+and our operator in Chapter 5.
+
+One main task of database management systems is to ensure that
+computations carried out for applications fully utilize the potential of
+modern hardware in order to achieve the best possible performance.
+For that purpose, database systems in general and their implementation
+of operators in particular need to be designed with the hardware
+architecture in mind. In this section we review the most important
+aspects of modern hardware relevant for this process.
+
+Today’s computer hardware architecture is characterized by a complex
+hierarchy of specialized components, each designed to maximize
+performance of the software running on it, while keeping the interface
+to software as simple as possible. However, in the last decades,
+software has had to become more and more conscious of the inner
+workings of hardware in order to fully utilize it and database systems
+are no exception to this trend [41, 1, 20, 204, 124]. In this section
+we briefly review the most important features of modern hardware
+relevant for today’s in-memory database systems. This review is necessarily
+simplified. Furthermore,we concentrate on large servers with
+Intel processors, which are dominant in our industry context. For a
+more in-depth coverage of the topic and other architectures, we recommend
+more specialized literature [145, 58, 49].
+
+The shift in hardware architecture was mainly caused by the fact
+that three physical limitations were reached, which made performance
+improvements less automatic than previously [145, 147]. First, the
+so-called “power wall” prevents a further increase of processor frequency;
+second, the “ILP wall” (instruction level parallelism, see below)
+limits performance improvements of deeper pipelines; and third,
+the “memory wall”, caused by the fact that processing speed increases
+at a faster pace than memory bandwidth, turns data access more and
+more into a bottleneck.
+
+Modern hardware overcomes these limits through a hierarchy of
+compute resources and memory, illustrated by Figure 3. In short, a
+node has one or several CPUs (central processing units, usually one
+per socket), a certain amount of main memory or RAM (random access
+memory), and possibly one or several hard disks. Each CPU consists
+of several cores each of which has one or two levels of cache, which may
+make the distinction between instructions and data (like the first level
+in Figure 3 (a)) or be used for both (like the second level in the figure).
+
+Often the cores of one CPU share another level of cache. Furthermore,
+one core can often execute several threads at the same time, i.e., the
+hardware supports simultaneous multithreading. Making a single node
+larger is called “scale-up”. It is also possible to connect several nodes
+to a cluster using high-speed networks, thus doing “scale-out”.
+
+The memory hierarchy within a node (usually excluding disks) is
+functionally transparent for software in the sense that programs use
+memory through a single virtual address space and the hardware
+moves the data through the different levels as needed. The closer
+the memory is to a compute resource, the faster it is, but also the
+smaller its capacity is. This allows hiding, at least in parts, the access
+costs of the next slower, but larger memory level. Different levels of
+the memory hierarchy are organized in blocks of different sizes and
+only entire blocks can be transferred between levels (cache lines in
+case of cache/RAM transfer and pages in case of RAM/disk transfer).
+
+The hardware decides which cache lines to place into which level of
+the cache based on the access pattern of the software using different
+cache replacement policies. Furthermore, a sequential access pattern is
+usually faster than random access thanks to a prefetching unit in the
+hardware. The hardware also keeps copies of the same cache line
+in different caches coherent through clever cache coherency protocols
+between the caches. In a multi-socket environment, each part of the
+main memory is only directly connected to one socket and accesses
+from one socket to memory of a different socket (remote accesses)
+are slower than memory access within a socket (local accesses). 
+
+We speak of Non-Uniform Memory Access (NUMA). Disks and memory
+of different nodes in a cluster are usually addressed through file or
+message passing APIs respectively, although the operating system can
+also map them into the program’s virtual address space.
+
+The compute hierarchy of modern hardware is more explicit to the
+software than the memory hierarchy. Software can only run on different
+nodes, CPUs, or cores if it expresses coarse-grained parallelism (or
+thread level parallelism) through independent threads of control flow.
+Many modern CPUs also offer more fine-grained levels of parallelism:
+data parallelism (or vectorization) and instruction level parallelism. Vectorization
+consists of special instructions executing the same logical
+operation on multiple adjacent values stored in vector registers, similar
+to operations on vectors. Compilers can generate code using these
+instructions only in some situations; in general vector instructions
+need to be used explicitly for best performance. Instruction level parallelism
+consists in executing several instructions of the same thread
+at the same time, thus doing super-scalar execution. This is possible
+by breaking instructions up into many small stages, each executed by
+a dedicated unit inside the core arranged in a pipeline. Slow units,
+such as arithmetic logic units (ALUs), may be duplicated and the core
+may rearrange instructions without dependencies for better resource
+usage (we speak of out-of-order execution). Branches in the control flow
+can only be executed in the pipeline if a branch prediction unit correctly
+predicts them. If a CPU executes several threads simultaneously, instructions
+of different threads are executed in an interleaved fashion,
+thus allowing to use the resources inside the core to a fuller extent.
+
+This hierarchy poses fundamental challenges to software architecture.
+A software system can only use all compute resources if it explicitly
+expresses coarse-grained parallelism as independent threads
+of control flow. This in turn makes synchronization [49] and work
+balancing necessary. Software also needs to be aware of the memory
+hierarchy, e.g., by favoring access patterns with locality. Finally, the
+performance critical paths of software have to be written in a “CPUfriendly”
+way, e.g., by avoiding control flow and data dependencies
+and by using vectorized instructions. One main theme of this thesis
+is to propose solutions for these challenges faced during the design
+and implementation of a relational Aggregation operator.
+
+In order to leverage the power of modern hardware to the fullest,
+we follow the philosophy of algorithm engineering in this thesis. Algorithm
+engineering is a methodology for designing and implementing
+usable algorithms with provable properties on real-world computer
+hardware. It has emerged from the community of algorithm theory in
+order to improve applicability of theoretical results and forms now a
+field of research of its own. Because many aspects of database systems
+research, in particular in query processing, concern the performance
+of algorithms and data structures on real systems, we think that it is
+interesting to see our work as an algorithm engineering show case.
+
+In short, algorithm engineering can be explained as illustrated by
+Figure 4 (for details we refer to literature dedicated to the topic [158,
+135]). The main idea is to see the engineering of algorithms as an
+inductive, iterative cycle of design, analysis, implementation, and experiments
+(the blue boxes in Figure 4): The design yields a concise, abstract
+description of the algorithm in question, possibly written in
+pseudo-code, and is usually based on realistic models of the machine
+and the problem. This algorithm can be formally analyzed to deduce
+performance guarantees in the given models. Traditional algorithm
+theory often ends at this point. In algorithm engineering however,
+falsifiable hypotheses about the algorithm behavior are formulated,
+and tested with a careful implementation and extensive experiments.
+
+Possible discrepancies between the expected and actual behavior are
+reduced in subsequent iterations of the whole cycle. Since the implementation
+ of the algorithm is not seen as a detail, but as a firstclass
+outcome of the engineering process, it is often materialized in
+a library, where it can be used by other algorithms, as well as applications.
+Applications also drive other aspects of the process: Experiments
+and their inputs are defined by the application, and the machine
+model and the algorithm design should be compatible with the
+requirements of the application as well, in order to ensure that the
+resulting algorithm can actually be used.
+
+This methodology applies very naturally to query processing: As
+a very practical field, the database systems community has a strong
+tradition in implementing and conducting experiments with real inputs
+derived from real applications or realistic benchmarks—a tradition
+that we also apply in this work. In a way, a database system can
+even be seen as a library that makes storage and processing technology
+reusable for applications.2 Furthermore, in query optimization,
+the performance of algorithms is often quantified by a cost model
+in order to let the system choose the most efficient way to execute a
+given query. In algorithm engineering, models play a slightly different
+role: they are used by a human—not a machine. They enable the
+algorithm engineer to drive the engineering process by explaining the
+interaction of the algorithm, the underlying hardware, and the application.
+In this work for example, we use the external memory model
+to understand the cache behavior of Aggregation algorithms (see
+next section and Chapter 4).
+
+cpu friendliness. While data movement between main memory
+and caches is expensive, the amount of computations that can
+be completely overlapped with memory access (thus being de facto
+free) is very small on modern CPUs. This may make I/O-efficient solutions
+proposed for disk-based systems unsuited for the in-memory
+setup, if they are too intricate and complex. Our review of processors
+in the previous chapter rather shows that modern CPUs consist of
+sophisticated components such as deep instruction pipelines, vector
+instruction units, and branch predictors. To reduce the costs of computations,
+Aggregation algorithms thus need to be conscious about
+these inner workings of the hardware, i.e., be CPU-friendly.
+
+parallel execution. As discussed in Section 2.3, parallelism at
+several levels is fundamental for increasing performance on modern
+hardware. Because analytical queries such as those from our workload
+study in Section 2.1.2 have a large fraction of long-running Aggregations,
+parallelization of this operator is important. Within a
+CPU, the challenge consists in splitting up the work among multiple
+cores while keeping synchronization costs low.
+communication efficiency. Another challenge arises as parallelization
+is scaled up to scenarios with several CPUs and nonuniform
+memory access or—to an even more extreme degree—as
+it is scaled out to scenarios with slow access to remote memory. In
+these cases horizontal communication, i.e., communication among the
+compute units, becomes the bottleneck. Aggregation operators that
+should scale to large nodes or even clusters thus have to be designed
+such that they minimize communication across compute units. In
+other words, they should be NUMA-aware and communication efficient.
+skew resistance. Another challenge for Aggregation operators
+to handle of skew. Skew refers to a non-uniform distribution of
+grouping attributes and may have negative effects on the performance
+of some algorithms, for example due to contention during concurrent
+access to frequent groups or uneven distribution of work among
+threads. Aggregation operators should preserve robust performance
+independently of the distribution of the input.
+
+adaptivity. As we discuss in Section 2.2, the traditional approach
+to achieve cache efficiency for all numbers of groups is to implement
+two algorithms and let an optimizer decide which one to choose. Similarly,
+some algorithms depend on a tuning parameter from the optimizer.
+However, we also discuss the consequent problem of bad optimizer
+decisions. An Aggregation operator can remove this decision
+by automatically adapting its behavior to the query and data in order
+to provide optimal performance in all situations and without intervention
+of an optimizer.
+constrained memory usage. While the previous challenges
+aim at reducing execution time, it is also important that Aggregation
+operators do not use excessive amounts of memory for intermediate
+results. This aspect is often ignored when designing algorithms for
+performance benchmarks, but is fundamental for productive use in
+commercial systems. The challenge is of particular importance for inmemory
+database systems, where all intermediate results have to be
+kept in the limited main memory. It is therefore important that Aggregation
+operators continue to work at a high performance if their
+available memory is constrained in size.
+
+system integratability. Finally, an Aggregation operator is
+always part of a system and has to integrate with specificities of the
+system’s architecture. Relevant aspects include the storage format of
+relations and intermediate results or the functional interface between
+operators. Not all algorithms lent themselves equally well for all architectures.
+As the dominating processing models for business analytics
+are column-wise processing and Just-in-Time compiled query plans,
+we focus on integration with these two models.
+
+After seeing a sketch of each challenge, we now present prior work
+for solving each of them. We concentrate on solutions that solve the
+challenges inside the Aggregation operator, but also review alternatives
+of this approach along with their advantages and disadvantages.
+Some proposed solutions appear several times, as they make major
+contributions to solving several of above challenges. In the end of
+this chapter, we summarize the most complete solutions and which
+of them solves which of the challenges.
+
+The main driver of system and algorithm design in the disk-based
+world is the reduction and hiding of I/O costs, which dominate almost
+all other costs. While storage space of disk is virtually unlimited,
+fast main-memory is rather small, so algorithms may be forced
+to write and read intermediate results to and from disk, possibly repeatedly,
+if they do not fit into main-memory. To what extend this is
+necessary primarily depends on the number of groups.
+
+On the one hand side, several variants of SortAggregation were
+suggested. Epstein [60] was the first to use I/O-efficient sort algorithms
+to preprocess the input relation. This made it possible to benefit
+from the many known optimizations of Sorting. Maybe the most
+prominent example is ReplacementSelection [101, 76]. Depending
+of the data distribution, this technique improves the initial run production
+of MergeSort and reduces thus the number of required
+merge levels.
+
+On the other hand side, Kitsuregawa et al. [98] proposed what is
+now known as GraceJoin (named after the system it was built in),
+which consists in recursively partitioning the input relation(s) until
+each partition can be processed in memory using a hash-based algorithm.
+DeWitt et al. [54] further improved this approach with their
+HybridJoin: By producing fewer partitions—just enough to enable
+in-memory processing of each of them—, they make space for a hash
+table where a certain fraction of the tuples can be processed immediately,
+thus smoothing the transition to additional levels of recursion.
+Both approaches also work for Aggregation and make HashAggregation
+usable for large output sizes.
+
+Another important insight, specific to Aggregation, is the benefit
+of “early aggregation”, first introduced by Bitton and DeWitt [27].
+They modified the comparison operator of MergeSort such that it
+collapses (aggregates) the two compared tuples if they compare equal.
+Later Larson [111] extended this idea to other algorithms. Depending
+on the distribution, early aggregation reduces the amount of data
+written to disk for later merging considerably. If the output is small
+enough to fit into memory, only a single run is produced, so the input
+only needs to be read once. This makes SortAggregation usable for
+small output sizes.
+
+Larson [112] also suggested a form of early aggregation on a query
+plan level (which he calls “partial pre-aggregation”): If Aggregation
+is preceded by a Join, some tuples may already be aggregated before or
+during the Join at almost no additional cost, thus reducing the input
+size of the subsequent Join and final Aggregation.
+
+We now turn our attention to prior work about the equivalent of I/O
+efficiency for Aggregation operators in in-memory database systems.
+As discussed before, in this type of systems, envisioned as early as in
+1984 by DeWitt et al. [54], main memory is the primary storage and
+disks are only used for recovery. The first popular system was MonetDB
+[31], later extended to MonetDB/X100 [32], but many systems
+followed from both research [140] and industry [61, 57, 108, 154] and
+extend to many other approaches for in-memory data management
+and processing than traditional relational database systems.
+From the point of view of early disk-based systems, doing pure
+in-memory processing looks like the “easy case”. However, several
+authors have noted [163, 4, 39] that even in disk-based systems, memory
+access can account for a major part of the processing time besides
+I/O and have developed cache-conscious algorithms and data
+structures. In in-memory database systems, this effect is even more
+extreme: main memory is considered to be the new bottleneck and
+many architectural aspects are designed to work around this bottleneck
+[123, 32]. This means that, to a certain extent, the problem of
+efficient data access has not changed fundamentally, but only shifted
+up one level in the memory hierarchy.
+
+While the main memory / disk bottleneck and the cache / main memory
+bottleneck have certain things in common, there are also a few
+differences. One difference is the amount of computation that can be
+done per access to the slower level of the memory hierarchy, i.e., per
+I/O and per cache-line transfer respectively, which is much smaller
+in the in-memory setup. Many authors have thus studied ways to reduce
+computation for in-memory algorithms and data structures, and
+to make them more “CPU-friendly”, which is the focus of this section.
+In Section 3.9, we also discuss how processing models evolved to become
+more CPU-friendly.
+
+To the best of our knowledge, Zhou and Ross [205] were the first to
+suggest to use vector instructions for the implementation of database
+operators. This allowed them to increase data parallelism and eliminate
+branches in Scan, ScalarAggregation, NestedLoopJoin, and
+several types of indices. Follow-up work on the theme of vectorized
+operators is plentiful and includes the work of Willhalm et al. [196,
+195], Lemire and Boytsov [114], and Li and Patel [117] for Scan, the
+work of Feng and Lo [64] on ScalarAggregation, the work of Kim
+et al. [96] and Balkesen et al. [20, 19, 21] on Join, as well as the work of
+Polychroniou et al. [148] on Scan, Hashing, Partitioning, Sorting,
+and Join. But also the importance of branch elimination for optimal
+use of super-scalar CPUs was confirmed by others: For example [206]
+study various compression schemes and their ability to keep the CPU
+pipeline busy.
+
+The process of making algorithms CPU-friendly is difficult to the
+point that what could be seen as “implementation details” may invert
+the outcome of experiments: Blanas et al. [28] compared different Join
+algorithms and came to the conclusion that the simplest approach, a
+single hash table without partitioning, had a superior performance
+to sophisticated partitioning techniques. However, Balkesen et al. [20]
+were later able to improve the implementation of the latter algorithms
+by factor three “just” by making the inner loops more CPU-friendly.
+They thus arrived to the opposite conclusion, namely that partitioning
+with its increased cache efficiency is superior.
+
+All these techniques aim at reducing CPU costs by implementing
+algorithms and data structures in a way that modern CPUs can handle
+them efficiently. The trend of ever increasing vector width and
+other specialized CPU features will probably make this statement
+even more true in the future.
+
+Substantial lines of work have studied the implementation of database
+systems, algorithms, and data structures on even more specialized
+hardware, such as GPUs (Graphic Processing Units, for example
+by Govindaraju et al. [72]) and FPGAs (Field-Programmable Gate Array,
+for example by Mueller et al. [131]). While these research directions
+are somewhat related to our work, we consider them as out of scope,
+and concentrate on current mainstream server hardware instead.
+
+Database systems were one of the main users of parallel computers
+since the early days: In order to overcome the slow disks, more disks
+were used in parallel (along with compute resources to control them)
+in order to increase their aggregated bandwidth. Although this made
+systems more complex, parallel database systems became widespread
+in academia and industry, with early systems such as Gamma [56],
+Bubba [33], Grace [98], Volcano [73], and others. We briefly summarize
+the insights of that time and refer to surveys and books on the
+topic [55, 76, 143] for more details.
+
+Parallelism can be achieved in different ways for query processing:
+different queries can be executed at the same time (inter-query parallelism),
+which is easy to achieve in a multi-user system and mainly
+helps to hide waiting time for I/O; different operators can be executed
+at the same time, either in a pipelined fashion (vertical intraquery
+parallelism) or among different branches of the query plan (horizontal
+intra-query parallelism); and several instances of the same operator
+may be run on partitions of the input (intra-operator parallelism).
+A popular means of achieving intra-operator parallelism in early systems
+was the use of a meta-operator that encapsulated the parallelism
+such as the Exchange operator in Volcano [73]. This allows using 
+unmodified relational operators, which are instantiated multiple times
+and connected via Exchange operators, which take care of scheduling
+and partitioning. The various forms of parallelism are mostly orthogonal
+and most systems support several or even all of them at the
+same time, however it is non-trivial to balance the different forms (for
+example Mehta and DeWitt [129] discuss this challenge). In this work
+we concentrate on intra-operator parallelism because it is the only
+form that achieves scalable response time.
+
+Different parallel computer architectures are conceivable, which
+come with different advantages and disadvantages. Stonebraker [170]
+compared the most prevalent ones and concluded that shared memory
+(or shared everything) had a limited scalability, shared disk had difficulty
+with interference of nodes, and shared nothing, though depending on
+good load balancing, was the overall most cost-effective. For a long
+time, shared nothing was the prevailing architecture, but as we discuss
+below, the distinction between them become blurry on modern
+hardware.
+
+Several parallel Aggregation algorithms were proposed for the
+shared nothing architecture. DeWitt et al. [56] introduced TwoPhase-
+Aggregation, where every node computes Aggregation of the local
+data using a sequential algorithm. All intermediate results are
+then sent to a central node, which aggregates them to the final output.
+Graefe [76] later improved upon this algorithm by partitioning
+the intermediate results among the nodes based on the groups, such
+that the final aggregation could be computed in parallel by all nodes.
+Both algorithms work well if the number of groups is rather small.
+Graefe [76] also proposed to Repartition the input by groups among
+the nodes without local aggregation, which saves overhead in case the
+number of groups is very large. This complementary behavior is similar
+to the one of I/O-efficient algorithms discussed above, where different
+strategies are preferable depending on the number of groups.
+
+As we discuss in Section 2.3, parallelizing systems and algorithms
+beyond the scale of a single processor has the additional challenge
+of slow communication across the involved compute units. In this
+section, we study prior work addressing this issue on two levels in
+the hierarchy of the hardware: Section 3.5.1 presents work on NUMA
+awareness, while Section 3.5.2 reviews work on parallel database systems
+in clusters and high-speed-networks.
+
+At an even larger scale, distributed database systems were built: Probably,
+the most popular distributed, disk-based processing system is
+MapReduce by Dean and Ghemawat [50], which is built for hundreds
+or even thousands of nodes. It inspired a series of other systems such
+as an open source implementation called Apache Hadoop [165] and
+systems with more expressive programming models such as Apache
+Spark [202]. MapReduce was also used for SQL-like workload: for example
+Blanas et al. [30] compared different Join algorithms on Map-
+Reduce. Other systems combining MapReduce and relational query
+processing include the Greenplum Database [179] and Cloudera’s Impala
+[102].
+
+More traditional distributed database systems are usually built for
+a slightly smaller scale, typically not more than ten or twenty nodes,
+which are connected with a high-speed network only slightly slower
+than NUMA interconnects. Distributed in-memory database systems
+include VectorWise Vortex [47] and HyPer [155].
+
+Query processing algorithms thus aim at reducing network traffic
+while balancing it with other costs such as main memory access and
+CPU costs [24]. Polychroniou et al. [150] propose TrackJoin, which,
+in a first phase, tracks where the different joining tuples reside, in order
+to decide heuristically, for the second phase, which side of each
+match to transfer over the network in order to reduce the total amount
+of transferred data. NeoJoin by Rödiger et al. [156] has a similar approach,
+but with a larger granularity: the algorithm first partition both
+relations on each node and then formulate a mixed integer linear program
+that finds the partition-to-node assignment with minimal transfer
+cost. Frey et al. [69, 68] on the other hand built CycloJoin, which
+rotates partitions of the smaller relation over a ring of nodes in order
+to join each partition with stationary partitions of the other relation.
+They observe that, against intuition, the network is not the bottleneck
+of their algorithm, but the memory bandwidth.
+
+As with NUMA-aware algorithms, the above work on Join only applies
+to Aggregation if the output is very large and misses the potential
+of pre-aggregation otherwise. Some systems such as HyPer [155]
+and Impala [102] solve this problem on a query plan level by adding
+PreAggregation operators. However, as discussed before, the way it
+is done either misses potential for output sizes just larger than the
+cache (in case of HyPer) or adds overhead without benefit if no preaggregation
+happens (in case of Impala).
+
+Finally, as Rödiger et al. [155] point out, high-speed networks and
+multiple NUMA sockets constitute a network hierarchy, and algorithms
+have to take both of them into account for optimal performance.
+
+Until here we have only seen different strategies to deal with different
+numbers of groups, i.e., with different output sizes. However, also the
+distribution of the groups may affect runtime and techniques have
+been developed to handle negative effects or even benefit from certain
+distributions.
+
+We start again with work in early disk-baded systems. In these systems
+the so-called placement skew, the fact that the order of the tuples
+is in some way non-uniform, may be problematic. For example standard
+ReplacementSelection presented above has no benefit at all if
+the input is in reverse order, although it is able to produce runs twice
+the size of main memory if the groups are distributed uniformly at
+random. Follow-up work has fixed this problem in several ways: One
+possibility suggested by Graefe [74] is to use “poor man’s normalized
+keys”, i.e., to sort by hash values instead of by the grouping attributes.
+The hash values then behave like uniformly distributed random values,
+so runs are again double the size of main memory. Martinez-
+Palau et al. [126] recently proposed TwoWayReplacementSelection,
+which is able to benefit from both ascending and descending trends
+in key values and therefore handles placement skew in a more robust
+way as well.
+
+Value skew, the fact that some groups occur more frequently than
+others, in particular if it is combined with placement skew, can be exploited
+by early aggregation techniques presented above. This is true
+for SortAggregation style algorithms such as the modified merge
+sort of Bitton and DeWitt [27], as well as for HashAggregation style
+algorithms such as HybridAggregation [54]. The more tuples of the
+same group occur close to each other in the input, the more tuples
+can be aggregated early on to save work for later processing. Recently
+Helmer et al. [82] went a step further and designed an algorithm similar
+to HybridAggregation specifically to benefit from skew: They
+maintain a hash table with an LRU replacement strategy in order to
+keep “hot” groups available for early aggregation and partition the
+other groups for recursive processing.
+
+Skew was also discussed for parallel database systems starting
+from early work (see Walton et al. [181] for a taxonomy of types of
+skew for parallel join algorithms). DeWitt et al. [53] compared different
+Join algorithms for different skew types and degrees. One of
+the proposed techniques consist in sampling the inner relation to
+find “splitters” that split the relation into equal pieces. The winner
+for the high-skew case however was virtual processor partitioning. In
+this technique, much more tasks than processors are created and a
+heuristic called “Largest Processing Time First” is used for distributing
+partitions of virtual processors to physical ones. Similarly,Wolf et
+al. present a parallel SortMergeJoin [197] that subdivides too large
+tasks until they can be evenly distributed (using the same heuristic
+as Dewitt et al.), as well as a parallel HashJoin [198], approximates
+equal work distribution based on partition size estimates. Interestingly,
+similar techniques were revived in modern disk-based parallel
+systems such as MapReduce [153, 106, 107]. In short, the main
+challenge for shared-nothing disk-based algorithms posed by skew
+is work balancing and the proposed solutions are different ways of
+clever work distribution.
+
+Since most algorithms proposed for the multi-core setup in the last
+years adopted a shared nothing design (see discussion above), they
+also include solutions to the work balancing challenge similar to the
+ones of parallel disk-based algorithms. First, there are solutions based
+on splitters: Polychroniou and Ross [149] determine splitters for the
+first pass of a parallel sorting pass and use sequential RadixSort for
+the subsequent passes on each resulting partition. Similarly, Albutiu
+et al. [6, 5] create histograms of both sides of a Join in order to find
+splitters that balances the subsequent partitioning and join costs.
+In the main-memory setup, algorithms based on task queuing or
+work stealing become possible: The parallel RadixJoin of Kim et al. [96]
+creates more partitions than there are threads in the partitioning
+phase, such that in subsequent phases, threads can take tasks from
+a queue of partitions until the work is done, which balances the work
+dynamically. Polychroniou and Ross [149] use a similar mechanism
+for their RadixSort. The scheme was later improved by Balkesen at
+al. [20], who add the possibility of task decomposition in order to split
+tasks that would otherwise be too large and thus dominant. Note
+that task queuing and work stealing benefit from the fact that moving
+a task from one core to the other has virtually no costs since no
+data needs to be moved, and its application to NUMA or distributed
+systems may be limited.
+
+Let us turn our attention to algorithms for Aggregation specifically.
+The Atomic algorithm of Cieslewicz and Ross [42] is also vulnerable
+to contention on frequently accessed groups. The authors propose
+two remedies: one is detecting contended groups and duplicating
+them [44]. The other one is a Hybrid algorithm, where each thread
+has a private, cache-sized hash table and only overflowing elements
+are spilled to a globally shared hash table. Since only infrequently
+occurring elements are spilled out of the private tables, accesses to
+the global table do not contend. Since the private hash tables enable
+early aggregation, the Hybrid algorithm actually benefits from skew
+as discussed above. The other algorithms of Cieslewicz and Ross [42]
+and Ye et al. [199] may experience unbalanced work depending on
+how well they aggregate in the first pass: Independent produces
+perfectly aggregated intermediate results, which is trivial to split up
+equally; Plat may aggregate frequent groups in the local hash tables,
+but this mechanism may not work in “unlucky” distributions, so in
+corner cases work may not be split up equally; and PartitionAnd-
+Aggregate does no aggregation in the first pass and is therefore very
+exposed to skew.
+
+The work reviewed above suggests that the question of which algorithm
+performs the best often depends on various factors, including
+characteristics of the input data. The traditional approach to build a
+static execution plan based on estimates of these characteristics has
+limitations that are known since a long time [119], and which are still
+not solved today [118]: for a variety of reasons, cost models and estimates
+may be wrong and thus lead to query plans orders of magnitude
+worse than the optimum. An important negative result is due to Ioannidis and 
+Christodoulakis [87], who established that estimation
+errors propagate exponentially with the number of joins. To alleviate
+this and other problems, several forms of adaptive query processing
+were proposed. We now present the major results related in this field
+and refer to surveys of Babu et al. [18] and Deshpande et al. [52] for
+a more detailed discussion of motivations for and forms of adaptive
+query processing.
+
+One major line of work studied ways to adapt the query plan during
+execution. For example Kabra and DeWitt [94], Markl et al. [125],
+and Babu et al. [17] propose different variations of dynamic query reoptimization.
+The basic common idea is to collect statistics during execution
+and to compare them with previously made estimates, such
+that plans can be re-optimized if the difference becomes too large.
+Similarly, the learning optimizer LEO of Stillger et al. [169] uses statistics
+of previously executed queries to improve estimates. A different
+approach was proposed by Avnur et al. [16] who dynamically change
+the order in which tuples are routed through the operators depending
+on which order turns out to be faster.
+
+Another line of work, to which we count our own, studied adaptivity
+within a single operator to make it more robust and thus to ease
+the decision of the optimizer. For example did the original GraceJoin
+and HybridJoin algorithms rely on information about the output size
+from the optimizer to know into which partitions to split the input
+and how much memory to allocate for the hash table. Nakayama et
+al. [139] and Kitsuregawa et al. [97] extended HybridJoin with a dynamic
+way to allocate memory to partitions, which make the information
+from the optimizer unnecessary.
+
+A more principled way was taken recently by Graefe [75], who designed
+a sort-based Aggregation algorithm called G-Aggregation
+or GeneralizedAggregation. The core of the algorithm consists of a
+clever scheduling of disk pages that makes the algorithm behave like
+hash-based aggregation for small cardinalities while keeping its advantage
+of recursive processing for large cardinalities. The algorithm
+was later implemented by Albutiu et al. [6, 5]. As a single, robust operator
+for all situations, this may be the closest prior work to what we
+present in this thesis, but as we discuss below, its I/O-centered design
+makes it unclear how to transfer it to the in-memory setting.
+Shatdal and Jeffrey [164] proposed adaptive algorithms for parallel
+processing in shared nothing systems. They exploit the complementary
+behavior of the two algorithms discussed above: TwoPhaseAggregation
+works well if the number of groups is small, while Repartition
+works better if the number of groups is large. They either sample
+to decide on the algorithm beforehand or switch from TwoPhase-
+Aggregation to Repartition when the number of groups observed
+by the algorithm crosses some threshold. The latter mechanism is
+quite similar to ours, though less robust in some situations, and we
+use it for both cache efficiency and communication efficiency. Like us,
+they also observe that adaptivity can improve skew handling, since
+nodes with a small number of groups may pre-aggregate, while those
+with high number of groups do not have to.
+
+While the above work was presented in the disk-based setting, we
+argue that the main ideas also apply for main-memory algorithms.
+However, there is also more recent work specifically for the mainmemory
+setup. Chen et al. [40] for example propose InspectorJoin,
+which collects statistics about the input during its partitioning phase
+in order to select the most suited strategy for the join phase.
+Cieslewicz and Ross [42] also propose an adaptive Aggregation
+operator: As discussed above, their Atomic algorithm with a single
+shared hash table and their Hybrid algorithm with an additional
+small hash table per core have complementary behavior vis-a-vis skew.
+If a short sampling phase detects skew, the skew-resistent Hybrid is
+chosen, otherwise Atomic. Furthermore, their algorithms activates
+optimizations for long runs of the same group as well as Aggregation
+with Min/Max if they are beneficial respectively.
+Finally, it is interesting to note that the Reduce phase of MapReduce
+is very similar to Aggregation. It is therefore not surprising
+that Vernica et al. [175] study cache efficiency and adaptation mechanisms
+for the MapReduce framework [50] remotely similar to ours.
+
+In the era of disk-based systems, it was a typical behavior of pipelinebreaking
+operators to spill out intermediate results to disk. A Sort-
+MergeJoin for example would first create sorted runs, which would
+then be merged recursively, with all runs being written to disk. As discussed
+above, this is (sometimes provably) unavoidable, but thanks to
+large sizes of disks, it was not a big problem. Note that no materialization
+is needed between pipelinable operators in an iterator-based
+processing model like Volcano [73].
+
+In in-memory systems however, intermediate results are stored in
+main memory, which is much more limited. This is a problem in particular
+for the push-based column-wise processing model, where all
+intermediate results are materialized. Volcano-style pipelining on vectors
+of tuples like in MonetDB/X100 [32] reduces this problem, but
+only for pipelinable operators.
+
+Blanas and Patel [29] study several Join algorithms, with respect
+to performance and memory footprint. They observe that HashJoin
+has the lowest memory usage of all algorithms, since it does not have
+intermediate results. With their implementations they also observe
+that it is faster than all other compared algorithms. This somewhat
+contradicts the finding of Balkesen et al. [20], which we suspect to be
+due to implementation differences.
+
+Zukowski et al. [207] propose BestEffortPartitioning, a pipelinable
+Partitioning operator. By interleaving the Partitioning operator
+with its consumers, partial intermediate results can be processed
+before the entire input has been consumed. As a pre-processing step
+for Join, Sort, and Aggregation, this can help to reduce memory
+consumption of other operators. However, as a separate operator, interaction
+with its consumers is limited, and as we show, integrating
+pipelined Partitioning with Aggregation more closely can be better
+in some cases.
+
+Begley et al. [25] propose McJoin (for MemoryConstrainedJoin),
+which is a BlockNestedLoopJoin: For every block of one relation,
+they iterate over blocks of the other relation and join the pair of
+blocks using RadixClusterJoin. This limits the memory usage to
+the two blocks. McJoin furthermore uses compression to increase
+the effective capacity of the blocks. Similar to the latter theme, Barber
+et al. [23] devise a ConciseHashTable in order to reduce memory
+consumption during Join.
+
+Changes in hardware and dominant workloads have caused major
+shifts in the processing models of prevailing database architectures.
+Some of these models pose restrictions on the implementation of operators,
+which have often been ignored in the discussion of operators
+in the past. Until the late 90s, the classical iterator model on
+single records, introduced first in Volcano [73], was used in almost
+every system. With a shift from mainly transactional workload accessing
+single entire records to mainly analytical workloads accessing
+few attributes of whole tables, column stores became popular rather
+than row stores.1 Early research systems include MonetDB [31, 124],
+MonetDB/X100 [32], and C-Store [171] and nowadays all major vendors
+offer column-store products: Sybase IQ [121], SAP HANA database
+[61], IBM Blink [22] and IBM BLU [154], Microsoft Apollo/SQL
+Server [110], and Oracle TimesTen [108].
+
+Another shortcoming of the Volcano model is the interpretation
+overhead on modern hardware, which was identified by Ailamaki et
+al. [4] among the first. This insight was another driver for the columnstore
+architecture, where the interpretation overhead is only done
+once per column and thus completely amortized by the CPU-friendly
+column-wise processing in tight loops.
+
+As Table 1 shows, some algorithms reviewed in this chapter are either
+designed for high or low locality. However, many also perform
+reasonably well with both. What is striking is that in particular new
+algorithms often do not scale to large output sizes. Concerning the
+CPU friendliness, it seems understandable that older algorithms designed
+for the disk-based setup are less suited for modern hardware
+than more recent proposals. Most algorithms can be reasonably well
+parallelized, however a few suffer from either contention or unbalanced
+work in case of skew. Furthermore, most algorithms seem to
+rely on external components such as the optimizer to employ them
+only in situations where they work well, for only a few of them are
+adaptive. Working under constrained memory does not seem to be a
+highly investigated challenge, as most algorithms performing well in
+this situation as a side effect of their simplicity rather than through
+sophistication. Finally, many algorithms that are otherwise promising
+do not fulfill the requirements of the—somewhat special—columnstore
+architecture.
+
+The following algorithms are among the most complete; however
+all of them leave at least one of the challenges unaddressed. Generalized Aggregation
+[75] is I/O-efficient for any input distribution and output cardinality, but the 
+sophisticated mechanisms cannot be easily adapted for cache efficiency (see Section 3.7).
+A hypothetical combination of Atomic and RadixClusterAggregation could cover small
+and large output cardinalities, but would rely on good optimizer predictions
+to distinguish the two cases. The algorithms Hybrid, Adaptive,
+and Plat of Cieslewicz and Ross [42] and Ye et al. [199] address
+most of the challenges we identified. However, they are not suited
+for the column-store architecture (see Section 3.9) and lack efficient
+handling of very large numbers of groups due to a fixed number
+of passes. We prove that this is not optimal in Chapter 4 and compare
+these algorithms with ours in Section 5.8. Finally, hypothetical
+sort-based algorithms with early aggregation, for example built like
+the Join algorithms Mpsm and HwConscious, address almost all our
+challenges, but are still to be built and many of their low-level optimizations
+do not work in column stores either (see Section 3.9).
+
+Aggregation (or the Reduce of MapReduce) is a problem that is
+very well understood in practice. The database community has developed
+a series of upper bounds, which often coincide with the Sorting
+bound. It looks like there is a folklore conjecture that this is optimal
+for cache-efficient processing, but no formal lower bounds are known.
+At the same time, there are corner cases where these bounds are broken.
+In this chapter, we study several variants of Aggregation on
+several slightly different external memory models and prove lower
+bounds in all of them. In many cases, the Sorting bound is indeed
+a lower bound of Aggregation, so we prove the long standing conjecture
+of the database community. In some models and in some parameter
+ranges however, we get lower bounds (and often matching
+upper bounds) below the Sorting bound. Comparing these models
+shows us what features practical algorithms need in order to beat
+the Sorting bound, thus providing us in particular and the database
+community in general with timeless implementation guides.
+
+In the previous chapter, we have seen that a major challenge for implementing
+relational operators including Aggregation is cache efficiency
+(or I/O efficiency in disk-based systems). In this chapter we
+study this challenge from a theoretical point of view. We use tools
+that were developed to analyze the cache efficiency of problems and
+algorithms, namely a variety of external memory models.
+
+We motivate the study with simple and well-known analyses of the
+two textbook algorithms SortAggregation and HashAggregation.
+This will make us familiar with the external memory model and give
+some intuition for the complexity of the algorithms. More importantly
+it will help us to understand the known bounds of related problems,
+the subtle differences of the various models, and the implications of
+their choice on the results, as well as the contributions in the subsequent
+main part of this chapter.
+
+We use the original external memory model of Aggarwal and Vitter
+[3] for this analysis, which is illustrated in Figure 5. In this model,
+a computer consists of a cache with limited capacity and main memory
+with unlimited capacity. An algorithm can only do computations
+with records that are in cache; and records can be transferred from
+cache to main memory and vice versa only in form of entire cache
+lines. 
+
+We start with the analysis of SortAggregation. We use BucketSort
+because the analysis is simple and the result is valid for any other
+cache-efficient sort algorithm. BucketSort recursively partitions the
+input into buckets until the data is sorted. Then a final pass over the
+data aggregates the rows of the same group, which reside in consecutive
+memory locations in the sorted input.
+
+Our analysis shows that SortAggregation and HashAggregation
+have indeed a complementary behavior if implemented naively: Hash-
+Aggregation performs better if the number of groups is small, while
+SortAggregation is more efficient in the other case. However, the respective
+drawback of both algorithms can be removed if each of them
+includes a simple, well-known optimization: doing the aggregation
+pass together with the last sorting pass and recursive partitioning as
+preprocessing respectively. This suggests that—at least on this level
+of abstraction—there is no such thing as a duality between Hashing
+and Sorting. In terms of cache line transfers, the two approaches are
+actually the same.
+
+Whether this is an intrinsic property of Aggregation itself rather
+than being a property of specific algorithms, i.e., whether there is a
+lower bound on the cache line transfers needed to compute an Aggregation
+query, has long been an open question. Since most algorithms
+proposed so far match the complexity of our analysis and no algorithm
+is known to date that requires fewer cache line transfers, there
+is an—at least implicit—folklore conjecture saying that there is indeed
+such a bound and that it matches the bound of MultisetSorting. In
+this chapter we prove that this long standing conjecture is actually
+true in many relevant cases. In the rest of this section, we describe the
+technical challenges in modelling and proving it.
+
+The simplicity of the model makes it very general: Since many other
+cache and I/O models also move indivisible records, the permutation
+model is a subset of them and lower bounds found here also hold
+in the other models. However, Aggarwal and Vitter only presented
+results for problems on sets, where all elements are assumed to be
+distinct. As we have seen in the motivating example, doing the same
+for Aggregation would ignore an important aspect, namely the number
+of groups in the input.
+
+Matias et al. [127] extended the analysis of Aggarwal and Vitter
+to a variant of Sorting on multisets: They studied BundleSorting,
+where an algorithm is asked to permute a multiset such that records
+with equal keys are placed in “bundles", i.e., adjacent to each other,
+but with an arbitrary order inside each bundle
+
+Although the models proposed by Arge et al. look very general,
+they are restricted in a very subtle way: The fact lower bounds are
+models to sort the input—even if this is not actually required such
+as with Aggregation. This is even true in the more general of the
+two models, the external memory Turing machine model [14], where the
+algorithm can make arbitrary calculations (by executing a Turing machine)
+based on the content of the cache in order to decide which
+cache line to read or write next. However, the machine cannot store
+anything else than input records; in particular, it cannot create new
+records, which makes aggregating impossible—like in the permutation
+model. More importantly, the lack of storage space for non-input
+records also makes it impossible to use hash functions in this model.1
+In contrary to the permutation model, lower bounds in the external
+memory Turing machine model thus do not necessarily hold for algorithms
+using hashing, which could be more powerful (for example by
+taking the hash function as “address”). Whether this is the case for
+Aggregation was previously not known.
+
+In this chapter, we study Aggregation and related problems on multisets
+in two of the external memory models, namely the parallel external
+memory (PEM) model and the external memory Turing machine
+model. By comparing the bounds of different models and different
+problems, we can get an intuition about what makes the problems
+hard. Concretely, we make the following contributions.
+• We extend the external memory Turing machine model such
+that payloads can be attached to records while preserving the
+property that bounds in the model can be derived from comparison
+bounds. This allows the machine to run Aggregation and
+enables us to derive a worst-case lower bound for Aggregation
+in this extended model.
+
+We show how to model Aggregation, DuplicateRemoval, and
+MultisetSorting where dropping records is allowed in the permutation
+model in a way that allows proving lower bounds.
+
+We give an asymptotic worst-case lower bound in terms of
+multiplicities for Aggregation, DuplicateRemoval, Multiset-
+Sorting, and BundleSorting in the parallel external memory
+model. While these bounds are completely new in the PEM
+model, they are also more precise or—since they do not rely
+on comparisons—stronger than previously known sequential
+bounds if instantiated in the single processor case. Our bound
+for BundleSorting also corrects a small erratum in the previously
+known bound [127].
+
+We present algorithms for Aggregation, DuplicateRemoval,
+MultisetSorting, and BundleSorting in the parallel external
+memory model that match the lower bounds for the interesting
+parameter ranges of the model in terms of multiplicities (except
+BundleSorting, where the bounds match only in terms of K).
+
+As some bounds are not tight for all parameter values or in
+terms of multiplicities, we give a list of open problems for further
+research.
+
+As guideline for our practical implementation in the subsequent
+chapters of this work in particular and for the database community
+in general, we can gain the following concrete insights about Aggregation
+
+Under realistic assumptions, the folklore conjecture is true: Aggregation
+is as difficult as MultisetSorting. This is true precisely
+in terms of multiplicities of the keys and either with one
+or multiple processors. This implies that instances with a small
+number of groups or with unevenly distributed keys are easier
+than those with a large number of groups or uniform key distribution.
+Furthermore, linear speed-up can be achieved by adding
+processors and this is optimal.
+
+Algorithms can beat the MultisetSorting bound for very large
+K—a hard case for a Sort algorithm—, but only if the order of
+the output records fundamentally depends on their order in the
+input. This is not the case for common hashing schemes, where
+the output order is given by the hash function. However, there
+are techniques that can achieve the better bound in practice.
+
+MultisetSorting is also not optimal on degenerated machines
+where B andMare extremely small compared to N. This is relevant
+in practice in situations where the external memory model
+is basically not applicable. The better bound only holds in the
+permutation model though, so techniques like integer sorting
+or hashing become essential in these cases. Hashing can thus be
+indeed more powerful than sorting.
+
+The bounds rely on the fact that records are indivisible, so they
+do not apply if we give algorithms access to the “inner information”
+of records. This can be exploited in practice for example
+for aggregation functions like COUNT, MIN, MAX, and ANY.
+
+Grouping and Aggregation as well as MultisetSorting and
+BundleSorting have the same cache complexity respectively.
+Whether or not we keep duplicate records, or drop or aggregate
+them does therefore not make an asymptotic difference. However,
+dropping and aggregating can not only be achieved with
+simpler algorithms, but also reduces the amount of work by constant
+factors in known algorithms.
+
+Our results are limited to aggregation functions that are commutative
+semigroup operations on single records. Algorithms
+for MEDIAN or for floating point numbers may thus be harder,
+even asymptotically.
+
+The rest of this chapter is organized as follows. We first show lower
+and upper bounds of Aggregation in the external memory Turing
+machine model in Section 4.2. Then we contrast this analysis with
+upper and lower bounds in the parallel external memory model in
+Section 4.3. We discuss practical implications of the models for realworld
+implementations in Section 4.4 and related work in Section 4.5,
+before concluding the chapter with Section 4.6.
+
+Arge and Milterson [14] developed the external memory Turing maching
+model along with a method that allows deriving lower bounds in
+that model for a broad range of problems. The core of the method
+is a theorem that relates the number of cache line transfers required
+to solve a problem in their external memory model to the number of
+comparisons required to solve the same problem. Since comparison
+lower bounds are known for many problems, this yields many external
+memory lower bounds immediately, including Sorting MultisetSorting,
+BundleSorting, and DuplicateRemoval. To derive a
+lower bound for Aggregation, we could argue for example that it
+solves DuplicateRemoval and thus needs at least the same number
+of comparisons (which is known), allowing us to derive a bound on
+cache line transfers using the theorem of Arge and Milterson.
+However, there are a few issues that make it questionable whether
+we can even use the external memory Turing machine model for Aggregation.
+The main problem lies in the way the external memory
+Turing machine is defined: It mainly consists of an internal and external
+tape, corresponding to cache and main memory, and a Turing machine
+that can make arbitrary calculations based on the content of the
+internal tape in order to decide which records to move from internal
+to external tape and vice versa. It cannot, however, otherwise modify
+contents of either tape, i.e., it makes the so called indivisibility assumption,
+which is required to derive lower bounds in the model. This
+means that we cannot even run Aggregation out of the box: Unlike
+DuplicateRemoval, Aggregation not only moves around records
+without modifying them, but—by definition—creates new records by
+aggregating existing ones.
+
+On first sight one might think that the syntactic reductions from the
+method of Arge and Milterson [14, Definition 13] might provide an alternative:
+a syntactic reduction allows specifying a method to convert
+records of one problem to those of another such that problems can be
+reduced to each other even if their records are not of the same type.
+This even allows associating additional information to the records,
+such as associating values to keys like in Aggregation. Since we can
+still not create new records, we would model Aggregation as a decision
+problem: provided a multiset of records and their aggregated
+set as input, decide whether the aggregated set contains the correct
+result. However, since we can only make computations based on the
+content of the internal tape, we could not compute aggregates of more
+records than fit there, which is not enough in the general case.
+In short, the external memory Turing machine model is not expressive
+enough to allow Aggregation, due to the fact that it assumes
+indivisible records. However, as we show in the remainder of this section,
+only technical changes to the model are sufficient to reconcile
+aggregating with the indivisibility assumption in a formal way.
+To that aim we propose an extension to the external memory Turing
+machine model. The key idea is to extend the machine by an internal
+and an external payload tape along with a second control unit to process
+the payload. The two new tapes cannot be accessed by the control
+unit responsible for determining what records to move next. Records
+on the two internal tapes and on the two external tapes have a one-toone
+correspondence respectively that is maintained when records are
+moved. These extensions allow us to modify records using arbitrary
+functions as long we only modify the payload. At the same time, they
+do not alter any of the properties required for proving the central theorem
+of Arge and Milterson’s method, so it continues to work in the
+extended version of the model and we can apply it to Aggregation.
+Note that the general method for external memory lower bounds
+based on I/O decision trees by Arge et al. [13] can probably also
+extended in order to carry payload by doing only technical modifications.
+The resulting bounds would be the same as the ones obtained
+in this section.
+
+The internal tape represents the cache. It consists of M cells organized
+in blocks of size B and containing either records or blanks as
+the external tape. The tape has a read/write head that the finite state
+machine can move and use to read and write records from and to the
+tape. If the machine never writes to this tape, we say that it satisfy the
+indivisibility assumption. Initially, the tape contains only blanks.
+The work tape is an infinite tape that the finite control machine can
+use to make arbitrary computations.
+
+The instruction tape is used by the finite state machine to initiate
+memory operations by writing instructions through a write-only head
+to the tape. It can be thought of as the memory controller of the machine.
+When the instruction “Read i” is written to the tape, the first
+block of the internal tape is replaced by the content of the ith block
+of the external tape. The instruction “Write i” has the opposite effect.
+“Assign i to j” overwrites record j of the internal tape with the
+record i of the internal tape. After every Read and Write instruction,
+the work tape is erased and the head set to its initial position in order
+to prevent the machine to use it as an “extended internal tape”.
+The finite state machine controls the heads as described above. Furthermore,
+it can end the execution by entering one of the special states
+Accept, Reject (in case of decision problems), and Finish (in case of
+construction problems).
+
+The costs of solving a certain problem on a certain input is the
+number of Read and Write instructions written to the instruction
+tape. This corresponds to the number of cache line transfers.
+An external memory Turing machine has to solve a given problem
+for fixed parameters B < M < N < L, K, and Ni, as well as any w.
+Since N is finite, the machine can remember where it has moved the
+different records be encoding this information into its states. It is thus
+quite powerful even though the work tape is erased after every Read
+and Write instruction. However, since the same machine solves the
+problem for any w, it cannot remember the content of the records the
+same way, so the computations are indeed non-trivial. For a more
+detailed motivation of the design choices of the machine model, see
+the original paper [14].
+
+Second, we slightly modify the semantics of the instruction tape:
+whenever a Read, a Write, or an Assign instruction is written to
+the instruction tape and executed, not only the records are moved between
+the external and internal tapes, but also the associated records
+on the external and internal payload tapes are moved accordingly.
+This maintains the association of records and their payload.
+Third, we add a second finite state machine with its own work tape that
+can work on the internal payload tape. We use the terms “cache control”
+and “payload processing control” to denote the two different finite
+state machines. With some exceptions, the two control units have
+no means to interact: only the cache control can use its work tape, the
+internal tape, and the instruction tape, while only the payload processing
+control can use the internal payload tape. None of them can
+use the two external tapes (since they do not have heads). However,
+both of them can control the head of the work tape of the payload
+processing control, though not at the same time: While the cache control
+is operating, the payload processing control is idle. When the
+cache control is in a special state “Compute”, the payload processing
+control operates until it enters a special state “Done”. When this happens,
+the content of the work tape of the payload processing control
+is erased and its head reset to the initial position and the cache controls
+continues to operate. Arbitrary information can thus flow from
+the cache control to the payload processing control, but none can flow
+into the other direction.
+
+It is clear that we can use an external memory Turing machine with
+payload extension in order to solve a problem without payloads by
+initially filling the external payload tape with blanks and ignoring its
+content after the machine has finished. To formalize this observation,
+we first define a relationship between the two types of problems
+
+about whether or not the folklore conjecture about Aggregation is
+true: in the external memory Turing machine model, using MultisetSorting
+is optimal to solve Aggregation. No algorithm in this
+machine model can do better.
+
+However, there are reasons not to be completely satisfied with this
+result. First and foremost, the starting point of our analysis was the
+observation that HashAggregation with recursive pre-partitioning
+requires the same number of cache line transfers asMultisetSorting.
+However, the model does not even allow hashing! As mentioned in
+the introduction, for hash functions to be effective, we need to draw
+a member of a family of hash functions at random, and remember it
+during the runtime of the algorithm. However, the external memory
+Turing machine has nowhere to remember it: the internal tape only
+contains input records, the work tape is erased after every block transfer,
+and the finite state has only constant memory with respect to w.
+
+In a way this is not surprising: Arge and Milterson prove the relationship
+between comparison-based problems and problems in their
+external memory Turing machine model by emulating a Turing machine
+with comparisons [14, Lemma 1], so their model is not more
+powerful than what comparisons can do by definition. The question
+whether there is an algorithm faster than MultisetSorting is thus
+still open, if it is allowed to use hashing.
+Furthermore, the external memory Turing machine model with its
+single cache and processing unit does not capture the on-chip parallelism
+omni-present in today’s hardware. Since several processors
+have a larger combined cache than a single one, but may experience
+overhead due to synchronization and load-balancing, neither upper
+bounds nor lower bounds from sequential models may hold on this
+hardware. By analysing Aggregation in the parallel external memory
+model in the next section, we overcome both limitations.
+
+Note that with our definitions, DuplicateRemoval and Aggregation,
+as well as MultisetSorting and OrderedAggregation are respectively
+equivalent in the sense that the algorithm needs to bring
+records with the same key into the same cache in order to reduce the
+number of records with that key. Furthermore, we could also define
+OrderedGrouping as a special case of Grouping where we specify
+an order, which would be exactly equivalent to BundleSorting.
+Also note that MultisetSorting is sometimes defined differently.
+In our definition, duplicate records can be dropped, while other authors
+[63] have defined it like our definition of BundleSorting. With
+our choice, we can reason about the impact of the ability to drop
+records more easily. Furthermore, MultisetSorting and Duplicate-
+Removal is sometimes defined such that duplicate records are to be
+put into a dedicated memory zone instead of just dropping them. This
+however does not make any asymptotic difference for neither upper
+bounds nor lower bounds.
+
+The analysis is an adaptation of the analysis of Greiner [79] (in turn
+inspired by Bender et al. [26]) who calls the method “time backward
+analysis”. It consists in counting the number of possible input configurations
+an algorithm can derive a particular output configuration
+from. This is done by looking at how an algorithm works backwards
+and examining carefully how many different configurations can precede
+a given configuration by each cache line transfer. In this approach
+semigroup operations are slightly easier to model than in a time forward
+analysis.
+
+Before starting the analysis, we need to make some initial observations
+and assumptions. First, we argue that we can forbid copies of
+records without loosing generality: None of our problems requires
+copies of records in the output. Hence, we can transform the execution
+of any algorithm into an execution with the same result but
+without copies by working ourselves backwards through the execution
+of the algorithm and removing all records that do not participate
+in the output. This transformation does not increase the number of
+cache line transfers. In the same way, since every record either has a
+unique key or participates in exactly one semigroup operation in our
+problems, we can assume w.l.o.g. that the inputs of a semigroup operation
+are removed after the operation. Note that the way we define
+the dropping of elements behaves in all respects like semigroup operations,
+so we only speak of the latter in the remainder of the proof.
+With a similar argument, we assume that all possible semigroup operations
+are done immediately when two records with the same key
+are in the same cache together.
+
+Second, only consider non-empty cache lines in main memory because
+two algorithm executions differing only by some empty cache
+lines can be transformed into each other by adding or removing
+empty cache lines. This does neither alter the number of cache line
+transfers nor the output configuration, which is required to reside
+contiguously in main memory.
+
+Third, we also ignore the permutation of records within each cache
+line for the moment. The algorithm can permute records in the output
+in the desired way the last time each cache line is written, which
+is free. Permutations within cache lines of the input are taken into
+account when we consider the different input configurations below.
+
+The analyses also show some cases where Aggregation is easier
+than MultisetSorting. If N is large compared to B and M, Direct-
+Shuffling is faster than Sorting. This is below the lower bound of
+the external memory Turing machine model, which means that that
+model misses some fundamental features that the PEM model has.
+For Aggregation we identified one: in order to do DirectShuffling,
+we need to take the record or a hash value of it as “address”, which
+is not possible by doing only comparisons. Furthermore, if K is very
+large and we assume that we can identify duplicates somehow, a constant
+number of passes over the input is enough, which is better than
+Sorting (at least for reasonably small P). Finally, we can also observe
+that Grouping and DuplicateRemoval as well as MultisetSorting
+and BundleSorting have the same tight bounds in terms of K. This
+means that, somewhat counter-intuitively, dropping or aggregating
+records, does not make problems asymptotically easier in the general
+case.
+
+We also identified a series of open problems. Most importantly our
+upper bounds in the PEM model can still be improved: In some cases
+we make quite strong assumptions, for example about P, and still do
+not get exactly matching bounds for all parameter ranges or with the
+desired precision. For the purpose of this work, in particular for practical
+algorithms on current, real-world hardware, our bounds are already
+very helpful, but from a theoretical perspective, we think that it
+is interesting to have more complete answers.
+
+Another question is whether we need a sorted output or not. In the
+permutation model that we use, integer sorting techniques are covered
+by the sorting bound, even though they do not use comparisons.
+Also, a standard hashing scheme, where the value of a hash function
+of the key is taken as address in a data structure, is often very similar
+to sorting by hash value, so our sorting bound also applies. We
+estimate that this is true for the vast majority of Aggregation algorithms
+in real-world database systems. In contrast, the algorithm we
+just sketched leaves the order on the unique elements as in the input
+and can thus beat the sorting lower bound. As mentioned before it is
+an interesting open question to design other more sophisticated algorithms
+whose output order fundamentally depend on the input order
+in order to make the bound of Equation 19 tight for all values of K.
+Similarly, we might ask whether aggregate functions are actually
+semigroup operations on indivisible atoms. We argue that most realworld
+Aggregation algorithms treat the aggregate function as black
+box, where the function is given as parameter. In this case, at least
+the attributes are indivisible, as the function can only be invoked on
+two records that are in the cache, so it is indeed the responsibility
+of the algorithm to permute the records around in an efficient way.
+This is not without alternative though: Weidner et al. [185] and Pirk
+et al. [146] present approaches where Aggregation is only run on
+the most significant bits in order to reduce data transfer over network
+or to co-processing devices respectively. The result in full precision is
+then only computed for those records that are kept for the subsequent
+processing step.
+
+Furthermore, modeling aggregate functions as semigroups restricts
+us to functions where intermediate results are of size O(1), which is
+true for distributive and algebraic aggregation functions as defined by
+Gray et al. [78]. This includes the most common ones like COUNT, SUM,
+MIN, MAX, and AVG, but not MEDIAN for example. These functions are
+also commutative and associative, but only on integer data types, not
+on types with floating point precision. In this case additional aspects
+of numerical stability may also have to be taken into account, which
+probably leads to more costly algorithms.
+
+For decades researchers have studied the duality of Hashing and
+Sorting for the implementation of relational operators, especially for
+efficient Aggregation. Depending on the underlying hardware and
+software architecture, the specifically implemented algorithms, and
+the data sets used in the experiments, different authors came to different
+conclusions about which is the better approach. In this chapter we
+argue that in terms of cache efficiency, the two paradigms are actually
+the same. Our claim is supported by the result of the previous chapter
+stating that the complexity of Hashing is the same as the complexity
+of Sorting in the external memory model. Furthermore, we make the
+similarity of the two approaches obvious by designing an algorithmic
+framework that allows switching seamlessly between Hashing and
+Sorting during execution. The fact that we mix Hashing and Sorting
+routines in the same algorithmic framework allows us to leverage
+the advantages of both approaches and makes their similarity obvious.
+On a more practical note, we also show how to achieve very low constant
+factors by tuning both the Hashing and the Sorting routines to
+modern hardware. Since we observe a complementary dependency of
+the constant factors of the two routines to the locality of the input, we
+exploit our framework to switch to the faster routine where appropriate.
+The result is a novel relational Aggregation algorithm that
+is cache-efficient—independently and without prior knowledge of input
+skew and output cardinality—, highly parallelizable on modern
+multi-core systems, and operating at a speed close to the memory
+bandwidth, thus outperforming the state of the art
+
+Traditionally, there are the two opposite approaches to implement
+this operator: Hashing and Sorting. HashAggregation inserts the
+input rows into a hash table, using the grouping attributes as key
+and aggregating the remaining attributes in-place. SortAggregation
+first sorts the rows by the grouping attributes and then aggregates the
+consecutive rows of each group. The question about which approach
+is better has been debated for a long time and different authors came
+to different conclusions about which is the better approach in which
+context [6, 20, 76, 96]. The consensus is that HashAggregation is
+better if the number of groups is small enough such that the output
+fits into the cache, and SortAggregation is better if the number of
+groups is very large. Many systems implement both operators and
+decide a priori which one to use. In this chapter we argue that in
+terms of data movement, the two paradigms are actually the same.
+By recognizing the fact that Hashing is Sorting, we can construct a
+single Aggregation operator with the advantages of both worlds.
+As a first argument for our claim,we remind the reader of our result
+of the previous Chapter 4 about the complexity of Aggregation in
+terms of number of cache line transfers. The result is derived in a general
+external memory model [12], which holds in the cache setting as
+well as in the disk-based setting. As we show, there is a lower bound
+on the number of cache line transfers that any algorithm needs to incur
+under realistic assumptions, which matches the bounds of MultisetSorting
+in the common case. This means that the two textbook
+algorithms HashAggregation and SortAggregation can only exhibit
+a certain duality with respect to the number of groups if they are
+implemented naively. However, with two simple, commonly known
+optimizations, the respective drawbacks of both algorithms can be removed.
+The two approaches then match the lower bound and have
+exactly the same, inherent costs in terms of cache line transfers.
+As a second argument for the similarity of the two approaches, we
+design an algorithmic framework that allows seamless switching between
+Hashing and Sorting during execution. It is based on the
+observation that Hashing is in fact equivalent to sorting by hash value.
+Since Hashing is a special form of Sorting, intermediate results of a
+Hashing routine can be further processed by a Sorting routine and
+vice versa. This allows us to apply state-of-the-art optimizations to
+both routines separately, but still combine them to benefit from their
+respective advantages. Furthermore, is Sorting by hash value an easy
+instance of Sorting, since Hashing makes the key domain dense and eliminates 
+value skew. We also discuss how to apply this framework
+in the context of column-store database systems and just-in-time compiled
+query plans, which are the two most commonly used architectures
+for analytical workloads.
+
+In this section we present an algorithmic framework for an Aggregation
+operator putting the theoretical insights of Chapter 4 into
+practice. The main idea is to design the algorithm like an Integer-
+Sorting algorithm on the dense hash values with Hashing as a special
+case used for early aggregation. Furthermore, we show how to
+achieve wait-free parallelization of the algorithm. Finally, we also discuss
+how to fit the framework into popular processing models of modern
+database systems. In other words, in this section, we address the
+challenges for cache efficiency, parallelization, and system integration
+from Section 3.1.
+
+We can now combine these two building blocks into a recursive
+algorithm that is similar to both SortAggregation and HashAggregation
+at the same time. The algorithm is shown in Algorithm 5:
+The input is first split into runs. Then, each run of the input is processed
+by one of the two routines selected by HashingOrPartitioning
+(line 6), which produces runs for the different buckets. Once the
+entire input has been processed, the algorithm treats all runs of the
+same partition as a single bucket and recurses into the buckets one
+after each other. With every step of the recursive partitioning, more
+and more hash digits are in common within a bucket, thus reducing
+more and more the number of groups per bucket. The recursion stops
+when there is a single run left for each bucket and in that run, all rows
+of the same group have been aggregated to a single output row.
+Figure 8 illustrates how the run production of our frameworkworks.
+The boxes represent runs and their background color the range of
+hash values of the contained rows. The relevant bits of the hash values
+are also given by numbers inside the boxes. The bits not playing a
+role for the placement within the box are marked as x; the underlined
+bits of the hash values are common for the entire box. For illustrative
+purposes, the runs in the figure are split in just two ranges by every
+recursive call.
+
+The way we use Hashing has also the advantage that it enables
+early aggregation [76, 111]. In contrast to HashAggregation with prepartitioning
+or traditional SortAggregation, we can now aggregate
+in all passes, not just the last. Since Hashing can aggregate rows
+from the same group, the resulting hash tables and hence the output
+runs are potentially much smaller than the input run, thus reducing
+the amount of data for subsequent passes by possibly large factors.
+It is important to understand that this does not change the number
+of cache lines needed in the worst case, but it is very beneficial in
+case of locality of the groups. So one might even wonder why we do
+not use Hashing all the time, similarly to recent work on disk-based
+systems [82]. As we show in the next section, on modern hardware,
+Partitioning can be tuned to a four times higher throughput than
+Hashing, which makes it the better routine in cases where early aggregation
+is not helpful.
+
+The fact that our framework supports Hashing and Partitioning
+interchangeably not only makes the similarity between the two approaches
+obvious but also gives it the power to switch to the better
+routine where appropriate: In presence of locality or clusters, our
+framework can use Hashing, whose early aggregation reduces the
+amount of work for later passes. In the absence of locality, we can
+switch to the faster Partitioning instead. The switching can happen
+spontaneously during runtime, without loosing work accomplished
+so far, and without coordination or planning. Algorithm 5 still uses
+HashingOrPartitioning as a black box, but in Section 5.5, we discuss
+several switching strategies.
+
+We argue that the design of our framework resembles that of a sort
+algorithm. While the similarity to BucketSort is obvious, our framework
+has similarities with other sort algorithms as well: Since the
+bucket of an element is determined by some bits of the hash value,
+our algorithm is in fact a RadixSort rather than a BucketSort. This
+is how hashing turns Aggregation into an instance of (approximate)
+IntegerSorting to make it easier than Sorting in general. Furthermore,
+it repeatedly merges intermediate runs from different parts of
+the input, so in a way the algorithm is also similar to MergeSort.
+Finally, hashing can be seen as a variant of InsertionSort, which is
+commonly used as base case in recursive sort algorithms [46].
+An interesting interpretation is the following: The concatenation of
+the final runs of our algorithm is a hash table like HashAggregation
+would produce but it is built with a Sorting algorithm—which is actually
+much faster. This suggests that the optimal way to do Hashing
+is Sorting.
+
+Finally, the fact that we mix Hashing and Sorting requires some
+technical attention: The buckets may contain rows that were just
+copied from the input, but also rows that are already aggregates of
+several rows from the input. In order to aggregate two aggregated
+values, one needs to use the so-called super-aggregate function [78],
+which is not always the same as the function that aggregates two
+values from the input. For example the super-aggregate function of
+COUNT is SUM. However, it is easy to keep some meta-information associated
+with the intermediate runs indicating which aggregation function
+should be used.
+
+Apart from cache efficiency, the design of our framework addresses
+the challenge of multi-core parallelism inside operators, which we
+identified in Section 3.1. We only give an overview of our solution in
+this section and describe more details in Chapter 6.
+Our framework allows for full parallelization of all phases of the algorithm:
+First, the main loop that partitions the input in Line 5 of Algorithm
+5 can be executed in parallel without further synchronization
+since neither the input nor the output are shared among the threads.
+Second, the recursive calls on the different buckets in Line 8 can also
+be done in parallel. Only the management of the runs between the
+recursive calls (the operations in our pseudo-code) requires synchronization,
+but this happens infrequently enough to be negligible.
+We use user-level scheduling to balance the two axes of parallelism
+as follows: we always create parallel tasks for the recursive calls,
+which are completely independent from one another, while we use
+work stealing to parallelize the loop over the input. It is important to
+see that the latter form of parallelization implies that several runs per
+bucket are produced (at least one per thread), which in turn implies
+another level of recursion. By using work stealing, our framework limits
+the creation of additional work to situations where no other form
+of parallelism is available. At the same time, parallelizing the main
+loop (Line 5) is required to achieve full parallelization. First, it is the
+only way to parallelize the initial call of the algorithm and second it allows 
+for full parallelization even in presence of heavy skew: the
+buckets after the first call can be of arbitrarily different sizes because
+even an ideal hash function only distributes the groups evenly over the
+buckets, but does not affect the distribution of rows into these groups
+(which is given by the input). With work stealing in the main loop
+however, our framework can schedule the threads to help with the
+large buckets once they have finished their own recursive call.
+
+ggregation proposed in prior work are compatible with columnwise
+processing. Our two routines,Hashing and Partitioning, move
+every input element directly to its final location, so it is easy to create
+the required mapping vector. However, it is unclear how to fit
+some other routines into this scheme, for example vectorized sorting
+networks recently used for Joins [20] or software-caching used for
+cache-efficient Aggregation in row stores [42].
+Recent work [140, 67, 138] promises to replace column-wise processing
+by a processing model based on just-in-time compilation (JiT). In
+this model, each pipeline of the execution plan of a query is compiled
+into a fragment of machine code just before execution, thus enabling
+processing in tight loops without decoupling the processing of different
+columns. It is straightforward to fit our framework into this
+model: The main part of the operator, i.e., the initial call to the Aggregate
+function of Algorithm 5, is compiled into the pipeline fragment
+including (and ending with) the Aggregation operator. When this
+pipeline ends, all data resides in intermediate runs in buckets of the
+first level of the recursion. For the recursive function calls, a second
+code fragment is compiled, which only contains the code to process
+the buckets further. Both fragments contain the code path of both the
+Partitioning and the Hashing routines from Algorithm 4. Since the
+runtime decision between the two paths is the same for the entire
+run, it is easy to predict by the hardware and does hence not hurt
+performance.
+
+We conducted a performance comparison of several hash table implementations.
+It turned out that the simplest approach has the lowest
+CPU overhead: a single-level hash table with linear probing, similar to
+the state-of-the-art dense_hash_map of Google.5 We fix the size of hash
+table to that of the L3 cache and consider it full at the very low fill rate
+of 25 %. With this configuration, collisions are very rare or even nonexisting
+with high probability if the number of groups is more than
+two orders of magnitude smaller than the cache, so no CPU cycles
+are lost for collision resolution. The apparent waste of memory is in
+fact negligible because it is limited to one or very few hash tables per
+thread in our final algorithm presented in the next section. Interestingly,
+this is the opposite of what Barber et al. [23] recently proposed
+for Joins, where denser storage increased performance. We tried out
+many different hash functions that are popular among practitioners
+and found that for small elements, MurmurHash26 is the fastest. On
+a technical note, we adapted the linear probing to work within blocks,
+such that we can cleanly split a table into ranges for the recursive calls.
+The final insertion costs of our implementation are below 6 ns per element.
+This is roughly four times more than an L1 cache access, but
+more than an order of magnitude faster than out-of-cache insertion,
+where CPU costs are dwarfed by the costs of cache misses and our
+reasoning in the external memory model is meaningful.
+In the previous sections, we describe an algorithmic framework for
+designing an Aggregation operator similar to a Sorting algorithm
+and how to reduce the CPU costs of two possible subroutines. In this
+section, we answer the remaining question of when to select which
+of the two. This addresses the challenge of adaptive processing from
+Section 3.1.
+
+To that aim we present a series of experiments with naive strategies
+for selection of one of the two routines that illustrate their respective
+performance characteristics. Figure 11 shows the results in terms of
+element time, a metric that expresses the time a single core spends with
+each element, which is formally defined in Section 5.8. We vary the
+parameter that has the strongest impact on performance: the number
+of groups K that the N input records belong to, which is the number
+of records in the result.
+
+In HashingOnly the only subroutine used is Hashing (Figure 11a),
+whereas with PartitionAlways, the input is always preprocessed by
+one or two passes of Partitioning before a final Hashing pass (Figure
+11b and 11c). To keep our implementation simple, we only allow
+a single Hashing pass by exceptionally letting its hash tables grow
+larger than the cache. This prevents full parallelization for very small
+K and cache misses for very large K, but these effects do not occur
+in our final algorithm. The experiments are run on uniformly distributed
+data.
+
+The first observation in this experiment is the fact that Hashing-
+Only automatically does the right number of passes: If K < cache,
+it computes the result in cache. The subsequent merging of the runs
+of the different threads is insignificant due to their small size and
+thus not visible in the plot. Once K > cache, Hashing recursively
+partitions the input until the result is computed in cache and the recursion
+stops automatically. For PartitionAlways this is not the case.
+Since it does not aggregate during partitioning, it can only be used as
+preprocessing and external knowledge is necessary to find the right
+depth of recursion before the final Hashing pass.
+The second observation is that Partitioning is much faster (by
+more than factor four in our experiments) than Hashing if K > cache,
+i.e., if the latter produces more than one run. In this case Hashing
+suffers from its non-sequential memory access and wasted space and
+hence wasted memory transfers intrinsic to hash tables. Furthermore,
+as discussed in Chapter 4, as soon as there are only slightly more
+groups than fit into one hash table, chances are very low to find two
+elements with the same key, so the amount of data is not reduced
+significantly. In contrast, Partitioning achieves a high throughput
+independently of K thanks to the tuning from the previous section.
+In the case of uniformly distributed data, the best strategy is obvious:
+use Partitioning until the number of groups per partition is
+small enough such that Hashing can do the rest of the work in cache.
+However, it is not clear how to find out when this is the case if K is not
+known. Furthermore, the best strategy is less obvious with other distributions:
+consider a clustered distribution with a high locality where
+each key mostly occurs in one narrow region of the input. Hashing
+is then able to reduce the amount of data significantly although the
+entire partition has more groups than fit into cache. Hence, Hashing
+can be the better choice even before the last pass if the ratio of input
+data size to output data size high enough.
+
+We now compare the configuration with estimator with the one
+where the output size is known and the estimator deactivated. We
+can see that variant with the estimator is roughly 2.8 ns slower. This
+corresponds to the computational overhead of counting the leading
+zeros and storing the result. It represents around 30% of additional
+run time for small K, but since it is a constant overhead, it diminishes
+relatively with the increasing run time of larger K. Remember that the
+experiments in Figure 16 are done with a query without grouping columns
+in order to make the impact of the estimator more visible. The
+additional processing costs of grouping columns will further decrease
+the relative costs of the estimator.
+
+More importantly, other than the constant overhead of the estimator,
+there is no difference anymore, which means that we completely eliminated
+the costs of growing the output. Our approach thus achieves
+almost optimal performance even for very large K by only adding a
+small constant overhead.
+
+The fact that the overhead is relatively high for small K can be mitigated
+by a small, pragmatic modification: We could activate the estimator
+only in the Partitioning routine of our algorithm. This way, it
+would never be used on inputs where K is small compared to N. In
+these cases, the costs of growing are negligible anyways. Only when
+K is large enough such that the Partitioning routine is used, we have
+to pay the overhead of the estimator. This approach does not take into
+account those keys that are only processed by the Hashing routine.
+However, that routine only processes a small fraction of the rows if K
+is large, so we expect the estimate to be only off by little. We leave the
+implementation of this modification and its experimental evaluation
+as a small open problem for future work.
+
+We now show an experimental analysis of several state-of-the-art algorithms
+for in-memory Aggregation from the work of Cieslewicz and
+Ross [42] and Ye et al. [199] and compare them to Adaptive. Since
+their work targets the row store architecture (implicitly assuming
+JiT query compilation) while our implementation targets the columnstore
+architecture, we use a DISTINCT query with no aggregate columns
+(C = 1) for the comparison. In this type of query, the input and
+output data structures are equivalent in both architectures, and our algorithm
+does not need to produce a mapping vector for column-wise
+processing, so the experiment abstracts from all architectural differences.
+We used the original implementations, but made the following
+modifications to tune them to this experiment: First, we changed
+the minimal output data structure size to the size of the L3 cache,
+which effectively eliminates collision resolution for small K and consequently
+reduces the run time in these cases by up to 25%. Second, we
+removed padding and redundant fields in the intermediate and output
+data structures, in order to reduce tuple size and hence memory
+traffic. This reduces the run time by roughly 20% for large K and even
+by up to 50% where the reduction in size makes the output just fit
+into cache. The padding originally improved the collision resolution
+in the high-throughput cases of small K, but our first modification improves
+theses cases even more. Third, we replaced system mutexes by
+much smaller spin locks, again to reduce memory traffic, which also
+reduces the time by roughly 20% for the variants using them. Finally,
+we replaced the multiplicative hashing by MurmurHash2, which we
+use in our algorithms as well. This has the same effect on the algorithms
+from prior work than on ours: a more predictable performance
+with up to 20% run time reduction due to fewer collisions, but noticeable
+overhead for small K. Furthermore, we exceptionally deactivate
+the cardinality estimator of Adaptive and instead provide it with
+the output size, which is an information that all algorithms from the
+shown competitors rely on. This makes our algorithms somewhat
+faster, but the benefit is only noticeable for large output cardinalities,
+i.e., if K ~= N, and always less than 10 %.
+
+In summary, our work starts with the assumption that even in the
+in-memory setting, the movement of data is the hard part of relational
+operators such as Aggregation. It builds on the insight of the previous
+chapter, where we establish a lower bound on the number of
+cache line transfers, which is matched by the traditional HashAggregation
+and SortAggregation with well-known optimizations. We
+design an algorithmic framework based on sorting by hash value that
+allows combining Hashing for early aggregation and state-of-the-art
+IntegerSorting routines depending on the locality of the data. We
+also show how to parallelize it within and across multi-core processors.
+Our framework thus addresses the cache efficiency and parallelization
+challenges we identified in Section 3.1. Furthermore, we
+tune both the Hashing and the Sorting routines to modern hardware
+and devise a simple, yet effective criterion of locality to switch
+between the two. As a consequence, our algorithm also meets the
+challenges of CPU friendliness and adaptivity. We show extensive experiments
+on different data sets and a comparison with several algorithms
+from prior work. Thanks to the combination of optimal highlevel
+design guided by the theoretical analysis of the previous chapter
+and low-level tuning to modern hardware, we are able to outperform
+all our competitors by up to factor 3.7.
+
+Relational operators of the first generation of in-memory database
+systems were designed to increase execution speed through cache efficiency
+and CPU friendliness. Memory usage of intermediate results
+was often neglected, which does not affect performance of these operators
+in benchmarks but consumes one of the scarcest resources
+in systems of this architecture. This renders many approaches proposed
+in the past impractical. In this work we study the question
+of how to limit memory usage of the Aggregation operator without
+compromising performance. To that aim we propose a pipelined
+processing model inside the operator to overlap production and consumption
+of intermediate results. We show how clever scheduling of
+work between and within the different stages of the operator allows
+controlling the amount of auxiliary memory used by the operator and
+thus the trade-off between speed and memory consumption. Our resulting
+operator enables competitive processing performance until it
+is limited to a small fraction of the original memory usage. This design
+also makes our operator malleable, i.e., it can use or free resources
+during execution as provided or needed by the rest of the system.
+
+To remedy this issue, we sketch a query processing system that
+tracks and possibly constrains the amount of memory used by different
+parts of each query and extend our Aggregation operator to this
+system. The query processing system that we envision organizes its
+main memory space in a hierarchical fashion: A certain amount of
+the total memory is dedicated to query processing and split among
+the currently running queries. Each query in turn divides its memory
+into the memory used by the different operators for their processing,
+the memory used by the intermediate results between operators
+and the final result, and the memory for metadata and bookkeeping
+of the query. The operators may organize their memory in another
+level of the hierarchy. All memory allocations need to be tracked and
+accounted for to one component in the hierarchy. We use this hierarchy
+to control memory usage in a tractable fashion: each level of
+the hierarchy breaks down its own constraint into constraints for its
+components.
+
+In order to react to changes in resource utilization, memory constraints
+between levels may be renegotiated: As queries progress or
+terminate, they return unused memory budget to the system, which
+may allocate it to new queries or existing ones, which in turn may forward
+it to some of their operators. Operators may also request more
+memory if that permits increasing their efficiency, but must be able
+to deal with situations where their requests are denied. This allows
+us to impose a memory constraint on queries and operators in order
+to limit excessive use by single components, but is more flexible than
+static allocations of resources, which may lead to under-utilization in
+dynamic environments.
+
+In order to use system resources efficiently, the optimizer may take
+estimates of memory usage into account and plan queries in such
+a way that expected memory pressure is never too high. Similarly,
+admission control may be extended to queue queries until they can
+comfortably be processed with the current memory budget. However,
+in this section, we focus on the mechanisms needed within operators,
+so studying the optimizer and admission control is out of the scope
+of our work.
+
+We use the query processing system described above as context
+to study Aggregation in a memory-constrained environment. 
+
+We extend the Aggregation operator from the previous sections
+such that it strictly respects a given memory limit for its
+intermediate results. To that aim we pipeline the work of different
+levels of recursion, thus reducing the amount of intermediate
+results (and hence memory usage) present at any point
+inside the operator.
+
+We identify situations where dead-locks may occur and devise
+an intra-operator scheduling scheme that avoids them.
+• Our intra-operator scheduler also ensures the best possible efficiency
+for the processing with a scheme similar to a buffer
+tree [10]. It exhibits a trade-off between the amount of memory
+used for intermediate results and processing speed, which can
+be chosen by the database system to react to changing workload
+during runtime.
+
+As a by-product, we also make our operator malleable, i.e., we
+make its degree of parallelism dynamic to enable changing the
+number of processing units depending on the system load.
+The rest of this chapter is organized as follows: We first explain
+how work inside an operator can be pipelined in Section 6.2. Then
+we present how we schedule this work in order to maintain efficiency
+in Section 6.3. We discuss implementation details in Section 6.4 and
+evaluate the performance of our approach in Section 6.5. Finally, we
+make some concluding remarks in Section 6.6.
+
+Figure 21 illustrates this idea. The recursive calls of the Aggregation
+operator form the stages of a branched pipeline organized in
+levels, which correspond to the levels of recursion of the original algorithm.
+Each stage consumes the blocks of tuples that the previous one
+produces. During processing, it holds one block per output partition,
+to which it writes the results. When the block of a partition becomes
+full, it is placed into a buffer of the corresponding next stage and replaced
+with a new one. When all tuples of a block are processed, the
+memory of the block is not returned to the operating system. Instead,
+the block is inserted into a free list, from where it is recycled.
+With this model, the memory used by the operator is flowing in a
+closed cycle: it is used for the blocks of a running stage, the blocks in
+the buffers in between stages, and the blocks in the free list. By controlling
+the number of blocks in the cycle, we can control the memory
+consumed by the operator. Similarly, the memory used for input and
+output of the operator to communicate with the preceding and subsequent
+operators is flowing in respective cycles that can be controlled
+independently.
+
+Intuitively, a stage needs two things in order to be runnable: there
+must be tuples in its buffer that it can process and there must be
+enough memory in the free list for its output. Runnable stages are
+subject to be run by a scheduler, to which a stage returns when the
+free list or the buffer become empty. We give a more formal definition
+of runnable stages in the following subsection and present the
+scheduling of the stages in the next section.
+The circular flow of blocks and the branched nature of the pipeline
+make it non-trivial to ensure efficient progress. In the following we
+establish the necessary mechanisms.
+
+First, there have to be enough free blocks for the stage to start processing.
+Let mi determine the minimum number of blocks for a stage
+of level i and l be the number of levels in the pipeline. Since the work
+of a stage of the last level consists of merging its input to the output of
+the operator, it does not need to take any more blocks, so ml = 0. The
+work of a stage of the other levels consists of partitioning its input
+into a certain number of partitions, so these stages need a block per
+partition, hence mi = npartitions for i < l, where npartitions is the number
+of partitions the Partitioning routine produces or its fan-out. If
+there are not at least mi blocks in the free list, a stage of level i is not
+runnable.
+
+However, this is not enough in a parallel setup: A stage may start
+running when there are mi blocks in the free list and still not get
+all required blocks, since other stages may have taken some blocks in
+the meantime. In the worst case this may lead to a live lock. We solve
+this problem by taking all blocks required for a stage to start processing
+atomically. This ensures that a stage can either take all required
+blocks, mi, or none at all. In Section 6.4 we give details about how to
+implement this scheme with regular allocators.
+
+Second, it is important to be able to free memory at all times. Consider
+a point in time where all blocks in Figure 21 are in the buffers
+between stages of level 1 and 2. Consequently, the free list is empty.
+In particular, no stage in level 2 can get new blocks for its output, so
+no stage in level 2 can run. No other stage is runnable either because
+all other buffers are empty. Hence, no memory can be freed because
+there is no free memory—deadlock.
+
+In above discussion about pipelining, we assume that every time a tuple
+is processed, it is processed in its entirety. However, as discussed
+in Section 5.3.3, this is not the case in column-store database systems,
+where rather columns are processed in their entirety: In the most extreme
+form of column-wise processing, the entire key column is processed
+first, producing a mapping vector, which is then used to process
+the aggregate columns one by one accordingly. In Section 5.3.3
+we show how our framework adopts this scheme for runs by interleaving
+the processing of the key and aggregate columns. Here we
+extend the discussion about pipelining in a similar way in order to
+make it work for the column-wise processing model.
+
+Let us look at what happens when the output block of a partition
+runs full during the processing of the key column. According to the
+pipelining scheme described above, the block should be put into the
+queue of the next stage corresponding to its partition. However, since
+the aggregate columns have not been processed yet, it is not a complete
+input of the next stage, so we cannot insert the block into the
+queue yet.
+
+One solution would be to use the mapping vector in order to produce
+the aggregate columns just at the point when a block of keys is
+full. This way we complete the output block with the other columns
+and do not need to change the pipelining mechanism any further.
+However, this would mean that we constantly switch between the processing
+of different columns, which would lead to bad performance
+due to cache thrashing.
+
+The previous section describes how we split the work of a recursive
+algorithm into blocks and how we route these blocks through a
+pipeline while guaranteeing efficient progress and handling multiple
+columns. This establishes the mechanisms of intra-operator pipelining.
+In this section we discuss two questions related to the strategy of intraoperator
+pipelining, namely how to schedule the work in the pipeline:
+which level of the pipeline to work on (thus potentially producing or
+consuming free memory), and which partition to work on inside a
+given level.The easier of the two questions is the one about which partition to
+work on in a given level of the pipeline. As we argued before, switching
+between partitions has warm-up costs, so we are interested to
+work on the partition we choose for a reasonably long time in order
+to amortize the switching costs. It is thus a good strategy to pick particularly
+full partitions. For the moment we ignore heavily skewed
+distributions and extend our solution later to support work stealing.
+
+A better strategy is to alternate between production and consumption
+of intermediate blocks with a larger granularity by staying as
+long in each level as possible. With this strategy and again assuming
+a single-threaded case, the thread starts in level 1 and processes the
+input blocks until there areM2 blocks in the free list. It then processes
+all available intermediate results in level 2, before finally starting over
+in level 1. At this point, all blocks have been freed, so all available
+memory can actually be used for the processing, so the thread can do
+the same work for a longer time before having to switch. We call this
+strategy LowestFirstInertia.
+
+If we extend this strategy to multiple threads, we can see that this
+may still not be optimal: The threads first all work in level 1 until
+no more free blocks can be taken from the free list. All threads that
+need new memory from this point on are forced to switch to level 2
+in order to free memory. Since it takes some time before memory can
+actually be released, in fact most threads change to level 2, so they all
+change levels more or less at the same time. They consume intermediate
+results, thus freeing memory blocks, until all buffers are empty
+and then all return to level 1, again more or less at the same time. Figure
+23b shows a sample execution of the LowestFirstInertia strategy:
+The threads alternate between consumption and production of
+intermediate results as if they were synchronized such that the memory
+usage alternates between minimum and maximum. This means
+that, on average, only about half of the memory is used.
+In order to improve the memory usage, we can attempt to produce
+and consume intermediate results at the same time: If each level gets
+assigned a fraction of the threads such that all levels process the data
+at the same rate, then the amount of memory used by each level remains
+more or less constant over time. If this equilibrium can be attained
+with a high memory usage, more blocks are in the partitions
+on average thus better amortizing the cost of partition switches. One
+heuristic with this goal is to statically assign a certain ratio of the
+threads to each of the levels. This strategy is called StaticRatio. This
+is helpful as reference, but has several practical shortcomings: First,
+the processing speed of the different levels depends at least on the implementation
+and the hardware, so we would have to find the desired
+fraction for every system anew. More importantly, it also depends on
+input distribution and output cardinality. If the output is smaller than
+one hash table, almost no work needs to be done in level 2, whereas
+for very large outputs, the number of tuples being processed level 2 is
+as high as the number of tuples in the input. Hence, whichever ratio
+with statically pick, it will not be optimal for all situations.
+Figure 23c shows a sample execution of the StaticRatio strategy
+with a ratio of 25% of the threads assigned to level 1 and the rest to
+level 2. It shows that after some start-up phase, production and consumption
+of intermediate results are more or less balanced, such that 
+memory consumption remains stable. However, this equilibrium was
+found offline by trying out different ratios.5 Furthermore, the ratio
+cannot be changed during execution. Consequently, before the first
+blocks of level 1 are completed, the threads of level 2 are completely
+idle. Similarly, the threads of level 1 stop working slightly earlier than
+those of level 2.
+
+The fact that we break down the work of the operator into small tasks
+has another benefit apart from making it possible to pipeline the processing
+of the work of different recursion levels: the degree of parallelism
+can now be varied during execution. This kind of parallelism
+is called malleable [120]. Our operator can trivially support it: Whenever
+a new thread starts working on a particular operator instance, it
+first selects a pipeline level as just described and pops a stage from
+the priority queue of that level—just like threads choose the next partition
+to work on when they have run out of memory or out of work.
+After a thread has done a sufficiently large amount of work, the operator
+yields it back to the inter-operator scheduler, which can decide
+that it should continue to work in the same operator or schedule it
+to do some other work. This way, the scheduler of the execution engine
+of the database system can react to dynamic workloads changes
+by increasing and decreasing the number of threads of the operator.
+As mentioned earlier, scheduling strategies between operators are out
+of the scope of our work and constitute a possible extension of this
+thesis.
+
+Second, we implement a lazy loading scheme for the data structures
+of the scheduler that belong to particular levels and stages of
+the pipeline. These data structures only do bookkeeping and the bulk
+of the work is done in the two main routines, so this is a rather small,
+though noticeable optimization. Since the length of the pipeline, which
+corresponds to the depth of the recursion, is not known at the beginning
+of the execution, we might construct the data structures of later
+levels and stages unnecessarily. Since there is one stage for every partition
+and the number of partitions is multiplied by the Partitioning
+fan-out with every additional pipeline level, this can represent noticeable
+effort (with our fan-out of 256, we have 65536 buckets in the
+third level). Furthermore, a third level of recursion may only be necessary
+for some of the partitions, namely due to high skew or sporadic
+work stealing as discussed in Chapter 5. Consequently, we construct
+each level and each stage in this level when they are first accessed,
+respectively. This reduces the overhead to a minimum as only those
+bookkeeping data structures are constructed that are actually used
+during execution.
+
+Finally, we fit our Hashing routine into the pipelined execution
+model as follows. This routine produces the results for the subsequent
+partitions as a single piece of memory that does not consist of blocks.
+In order to place a part of a hash table into the buffer of the partition
+that corresponds to that part, we use a descriptor consisting of the
+first and the last index of that part of the hash table along with a
+shared pointer the hash table itself. This way, when a pipeline stage
+has produced a hash table, one such descriptor is put into each of the
+partitions of the next stages. The shared pointer ensures that the hash
+table is only released once all of its content has been consumed by
+the subsequent pipeline stages. Note that this means that consuming
+a hash table part does not release memory. However, this does not
+affect the guarantee of our scheme to be able to make progress at all
+times. Our mechanism is based on the invariant that all intermediate
+results that a certain stage produces can be consumed. In particular,
+this holds for all partitions after the current pipeline stage—whether
+they actually free memory or not. So eventually all descriptors will
+be processed and released, which finally also releases the memory of
+the hash table.
+
+In this chapter, we envision a query processing system that organizes
+and constrains its available memory in a dynamic hierarchy of memory
+budgets. We transform our recursive Aggregation algorithm
+of the previous chapter into a branched pipeline in order to work
+with a given constraint of such a system. To that aim, we devise an
+intra-operator pipelining scheme, compatible with columnwise processing,
+that avoids possible dead-locks and inefficiencies with a technique
+similar to buffer trees [10]. Furthermore,we define several intraoperator
+scheduling strategies that schedule the work of different
+stages of the pipeline. We show that a strategy that takes the current
+memory usage into account makes the best use of the available
+memory by balancing production and consumption of intermediate
+results. A series of experiments confirms the viability of our approach:
+For medium-sized outputs, setting a memory constraint of just 1.6%
+of the original memory usage of our algorithm only incurs an overhead
+of 20% to 47 %. This is still more than factor two faster than
+the best algorithm of prior work, which does not need any additional
+memory, and can be further improved by investing a higher memory
+budget. We thus solve the final “memory constraint” challenge of Section 
+3.1 without significantly compromising the performance of our
+operator with respect to the other challenges.
+While we see significant advantages in our approach compared to
+previously proposed parallel buffer trees [168], in particular for practical
+implementations, we also think that more of the design space
+should be explored. Since in a buffer tree, the scheduling of the work
+is driven by the operations on the tree, its algorithm is not only
+simpler than ours, but also gives provable efficiency guarantees. In
+contrast, a formal efficiency proof seems difficult to achieve for our
+scheduling of pipeline stages. It is thus natural to ask for a simple,
+yet practical and highly tuned implementation of parallel buffer trees
+as a follow-up question of our work.
+
+In this thesis we study the problem of engineering Aggregation operators
+for relational in-memory database systems. We set forth a
+list of eight challenges. Although most of them have been studied
+in the past in isolation, our work makes advances with each of the
+challenges and shows how to address all of them at the same time.
+We start with a theoretical study of Aggregation in several external
+memory models, which reveals that Aggregation has the same
+cache complexity as MultisetSorting in many realistic situations.
+This serves as a guideline for our algorithm design. Consequently,
+we build an Aggregation algorithm with the recursive structure of
+a Sorting algorithm that inherits many good properties of Hashing.
+It thus combines two traditionally opposite approaches in order to
+achieve the cache efficiency of the better of the two. A simple, cheap
+mechanism lets our algorithm adapt to the data by switching between
+Hashing and Sorting routines during execution. We tune our implementation
+to low-level details of the hardware in order to utilize its
+performance to the fullest and show how to parallelize our operator
+such that it perfectly scales within and across processors. Furthermore,
+our operator is designed to work with column-wise processing
+and integrates well with Just-in-Time compiled query execution. We
+also extend the adaptive mechanism with an online cardinality estimator
+that makes our operator completely independent from potentially
+wrong statistics from the optimizer. Finally, we develop a technique
+to pipeline execution within our operator such that the amount
+of memory for intermediate results and thus the overall memory consumption
+is reduced.
+
+We argue that—apart from our solution for each isolated challenge—
+our contribution also lies in their combination into one operator. A
+solution that fails to address just one of the challenges may not be
+of any value for productive use in a real database system. In our experience,
+the argument that the challenges are orthogonal often falls
+short. Obvious examples of a connection between challenges include
+the fact that skew is typically only a problem for parallel execution or
+that our sophisticated solution for processing under a memory constraint
+is only necessary for algorithms with large intermediate results.
+Similarly, as argued throughout the thesis, the reason why an
+adaptive solution is needed is the fact that different strategies are
+built to achieve cache efficiency in different situations. Of course, our
+intra-operator scheduling also reflects the high degree of parallelism.
+Maybe less easy to spot is the connection between CPU friendliness
+on the other. Too fine-grained or complex adaptive decisions may be
+too computationally expensive or may not work in a column-wise processing
+model. Our solution satisfies all three criteria by combining
+two tight loops on columns at a coarse granularity. The task of engineering
+Aggregation operators thus consists in combining several
+partial, well-chosen solutions such that together they form a greater
+one.
+
+While, from an algorithmic perspective, our solution for Aggregation
+is the most complete to date, it leaves some questions related
+to software engineering unanswered. Our choice to implement all
+techniques inside the operator leads to a complex, monolithic implementation.
+Furthermore, its functionality partially overlaps with
+that of other components of a typical database system, such as memory
+management, user-level scheduling, and pipelining. However, the
+fact that we tailor each component to our particular operator allows
+us to show the performance that can be achieved if other aspects are
+subordinate. It thus has a definite value as reference point for future
+implementations. Furthermore, we believe that it is possible to find
+abstractions that allow modularizing our operator while preserving
+its performance. This may even make some building blocks from our
+memory management and user-level scheduling available for other
+operators. How and to what degree this is possible is an interesting
+question for future work.
+
+Another direction is to reduce complexity by simplifying certain
+algorithmic aspects. One possibility is to incorporate very recent advances
+in hardware-conscious Partitioning routines. Schuhknecht et
+al. [162] presented a technique that allows partitioning with a much
+larger fan-out than what we use with only little more cost per element.
+If a large fan-out is required, namely if the number of groups is very
+large, then this requires fewer levels of recursion and thus reduces the
+overall execution time. Furthermore, it has the advantage that two levels
+of recursion are probably enough in all situations the system is designed
+for.1 Under this assumption, hard-coding two passes might be
+simpler than a recursive algorithm, in particular in combination with
+intra-operator pipelining. Since the slightly higher partitioning costs
+of the larger fan-out are not needed for a small number of groups, one
+might think about finding a mechanism that adapts the fan-out of the
+Partitioning routine such that the smallest sufficient value is used.
+In the context of Just-in-Time compiled query processing, one may
+also argue that cache efficiency can be achieved in a simpler way than
+by our recursive algorithm. With Just-in-Time compiled query plans
+it is possible to have tight loops and row-wise processing. With rowwise
+processing in turn, cache efficiency is easier to achieve: First, an
+algorithm that produces one cache miss per record will also produce
+exactly one cache miss for the entire row. With column-wise processing,
+however, the same algorithm is executed for every column, so it
+will produce a cache miss per row and column. In other words, rowwise
+processing can amortize cache misses better than column-wise
+processing. Furthermore, techniques like prefetching and simultaneous
+multi-threading may be used to hide latencies. Second, if rows
+are large enough to fill several cache lines, accessing data out of the
+cache does not load unnecessary data. In the external memory model,
+a cache line then corresponds to a block of size B = 1, which renders
+analyses in this model meaningless.2 Making one out-of-cache access
+per input record may then be the best strategy. Combining all this
+techniques may lead to a “cache-efficient” algorithm that is much simpler
+than ours. Whether this is a viable solution, however, depends on
+many other things: Even with Just-in-Time compilation, row-wise processing
+makes vectorization hard to achieve; it only works in systems
+that support results in row format; and all the reasoning of this paragraph
+does not apply to rows that are so short that they are merely
+a “wide column”. Just-in-Time compilation thus opens a huge design
+space that is interesting to explore in the context of cache-efficient
+Aggregation algorithms.
+
+Finally, we want to mention another possible extension of this thesis.
+As we have argued before elsewhere [159], a communication volume
+that is sublinear in the input size is required to scale algorithms
+to large clusters and can be achieved for a surprisingly large number
+of problems. For Aggregation, TwoPhaseAggregation achieves
+this property as long as the number of groups is small. In prior
+work [83] we have sketched an algorithm with sublinear communication
+volume for the other extreme: if most groups consist of a single
+record, it may be the best strategy to eliminate these unique records
+with a communication-efficient Bloom filter in a pre-processing phase
+and to run Aggregation only on the remaining ones. However, more
+work is needed with this algorithm so that it solves the other challenges
+as well.
+
+
+
+
+
+
+

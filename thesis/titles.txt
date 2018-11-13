@@ -1,0 +1,121 @@
+Advanced Methods in Artificial Intelligence Agents, Optimization and Machine Learning
+Artificial Intelligence and Ethics Impossible
+Artificial Intelligence as a Commons – Opportunities and Challenges for Society
+Artificial Intelligence Techniques for Flood Risk Management in Urban Environments
+Artificial Intelligence
+Atomistic and artificial intelligence simulations of grain boundaries and dislocations
+Blurring the Boundaries between Real and Artificial in Architecture and Urban Design through the Use of Artificial Intelligence
+Cognition Enhanced Business Processes Designing a Conceptual Design Process for the Enhancement of Business Processes Leveraging Artificial Intelligence Technologies
+NEURAL NETWORK, ARTIFICIAL INTELLIGENCE AND THE COMPUTATIONAL BRAIN
+Practical Applications of Artificial Intelligence and the Implications of a Full Artificial Intelligence
+Quality Measurement Challenges for Artificial Intelligence Software
+{4D} light field processing and its application to computer vision
+3D motion capture by computer vision and virtual rendering
+A Flexible software environment for computer vision
+Accelerated Sparse Matrix Operations in Nonlinear Least Squares Solvers
+Accelerating Sequential Computer Vision Algorithms Using Commodity Parallel Hardware
+Adaptive computer vision algorithm for human recognition in traffic scenes
+Adaptive Variational Regularization Techniques in Image Processing and Computer Vision
+Applications of a Graph Theoretic Based Clustering Framework in Computer Vision and Pattern Recognition
+Applications of Computational Geometry and Computer Vision
+Applying Computer Vision for Monitoring Visitor Numbers - A Geographical Approach
+Automatic Classification of Flying Bird Species using Computer Vision Techniques
+Combinatorial solutions for shape optimization in computer vision.
+Computer vision and human skin colour
+Computer Vision and Kinematic Sensing in Robotics
+Computer Vision and Machine Learning Methods for Analyzing First Temple Period Inscriptions
+COMPUTER VISION APPLICATIONS IN INDUSTRIAL ENGINEERING
+Computer Vision for Large Format Digital Aerial Cameras
+Computer Vision for Road Safety A System for Simultaneous Monitoring of Driver Behaviour and Road Hazards
+COMPUTER VISION GUIDED NAVIGATION SYSTEM FOR VISUALLY IMPAIRED
+Computers and the Ability to See. Understanding the Negotiation and Implementation of Image Processing Algorithms
+Damage detection and monitoring for tunnel inspection based on computer vision
+Hand Gesture Recognition System based in Computer Vision and Machine Learning Applications on Human-Machine Interaction
+Improvement of coronary angiography for quantitative coronary analysis by using a computer vision technique
+Improving safety for home care patients with a low cost computer vision solution
+LARGE SCALE GROUND TRUTH GENERATION FOR PERFORMANCE EVALUATION OF COMPUTER VISION METHODS
+Learning Strategies to Select Point Cloud Descriptors for Large-Scale 3-D Object Classification
+Optimization of Markov Random Fields in Computer Vision
+Ranking to Learn and Learning to Rank On the Role of Ranking in Pattern Recognition Applications
+Real-time Visual Flow Algorithms for Robotic Applications
+TOWARDS A COMPUTER VISION BASED QUALITY ASSESSMENT OF TAHITIAN PEARLS Automatic Nacre Thickness Measurement and Color Classification
+Using Computer Vision Photogrammetry (Agisoft PhotoScan) to Record and Analyze Underwater Shipwreck Sites
+Data Structures and Algorithms for Data-Parallel Computing in a Managed Runtime
+Design, Implementation and Web-based Provisioning of a Database for Image Processing Operations
+Engineering Aggregation Operators for Relational In-Memory Database Systems
+IMPLEMENTATIONS OF ADVANCED ENCRYPTION STANDARD ALGORITHM TO ENHANCE DATABASE FILE_S SECURITY OF JGNASH
+Performance based Comparison between RDBMS and OODBMS
+A Neural Network Architecture Combining Gated Recurrent Unit (GRU) and Support Vector Machine (SVM) for Intrusion Detection in Network Traffic Data
+A New Approach of Information Hiding Technique using Artificial Neural Network
+A Study of Recurrent neural networks (RNNs) in univariate and multivariate time series
+AI Neuroscience Visualizing and Understanding Deep Neural Networks
+An analysis of deep neural networks for texture classification
+Analysis of modulated spiking neural network
+Artificial Neural Networks for Data Mining
+Automated Feature Engineering for Deep Neural Networks with Genetic Programming
+Calculating Student Performance of Jagannath University Using Artificial Neural Network
+Computational Modelling of Spatio-Temporal EEG Brain Data with Spiking Neural Networks
+Convergence Analysis on Neural Network
+Deep Compression of Convolutional Neural Networks with Low-Rank Approximation
+Deep Convolutional Neural Networks for Smile Recognition
+Deep Neural Networks
+Distributed supervised learning using neural networks
+Evolution of Recurrent Neural Networks
+Forecasting Natural Gas Prices in the United States Using Artificial Neural Networks
+Internet of Things Applications and Artificial Neural Networks in Smart Agriculture
+Ionospheric Tomography Using Artificial Neural Networks and GNSS Observations in Iran
+IRAQI STOCK MARKET FORECASTING USING ARTIFICIAL NEURAL NETWORK
+Learning Gaussian Word Representations with Neural Networks
+Learning to Play Chess with Minimal Lookahead and Deep Value Neural Networks
+Magnitude Sensitive Competitive Neural Networks
+Modelling large neural networks via Hawkes processes
+MSc thesis Reconstructing language ancestry by performing word prediction with neural networks
+NARX Neural Networks for time-series Financial Forecasting
+NEURAL NETWORK, ARTIFICIAL INTELLIGENCE AND THE COMPUTATIONAL BRAIN
+Painting Classification with Layered Neural Network.
+Predictive Neural Networks
+Simulation and Analysis of Gradient Frequency Neural Networks
+STABILITY ANALYSIS OF RECURRENT NEURAL NETWORKS WITH APPLICATIONS
+Studies in Reinforcement Learning and Adaptive Neural Networks
+Temporal information processing and memory guided behaviors with recurrent neural networks
+The Appliance of Neural Networks in Fencing Sport
+A methodological research on software engineering applied to the design of Smart Grids using a Complex System approach
+A Software Engineering Approach for Agent-Based Modelling and Simulation of Public Goods Games
+Conceptual Framework for Supporting the Identification of Representative Samples for Surveys in Software Engineering
+Continuous software engineering in the development of software-intensive products towards a reference model for continuous software engineering
+Development of a framework for the education of software measurement in software engineering undergraduate programs.
+Evidence Representation and Aggregation in Software Engineering Using Theoretical Structures and Belief Functions
+FREQUENT SUBGRAPH ANALYSIS AND ITS SOFTWARE ENGINEERING APPLICATIONS
+GUIDELINES FOR EXPERIMENTATION WITH DYNAMIC SIMULATION MODELS IN THE CONTEXT OF SOFTWARE ENGINEERING
+Knowledge Classification for Supporting Effort Estimation in Global Software Engineering Projects
+Mining Software Engineering Data for Useful Knowledge
+Model-Driven Software Engineering for Computational Science Applied to a Marine Ecosystem Model
+Reuse-Based Test Recommendation in Software Engineering
+Sustainable Software and Sustainable Software Engineering
+Egomotion Estimation and Multi-run Depth Data Integration for 3D Reconstruction of Street Scenes
+Real-time forecasting of wave heights using EOF – wavelet – neural network hybrid model
+Real-time Visual Flow Algorithms for Robotic Applications
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

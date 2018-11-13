@@ -1,0 +1,309 @@
+The earliest foundations of what would become computer science predate the invention of the modern digital computer. 
+Machines for calculating fixed numerical tasks such as the abacus have existed since antiquity, aiding in computations 
+such as multiplication and division. Further, algorithms for performing computations have existed since antiquity, even 
+before the development of sophisticated computing equipment.
+
+ Charles Babbage started the design of the first automatic mechanical calculator, his Difference Engine, in 1822, which 
+ eventually gave him the idea of the first programmable mechanical calculator, his Analytical Engine. He started developing 
+ this machine in 1834, and "in less than two years, he had sketched out many of the salient features of the modern computer". 
+ "A crucial step was the adoption of a punched card system derived from the Jacquard loom"[7] making it infinitely programmable.
+ [note 2] In 1843, during the translation of a French article on the Analytical Engine, Ada Lovelace wrote, in one of the many 
+ notes she included, an algorithm to compute the Bernoulli numbers, which is considered to be the first computer program.[8] 
+ Around 1885, Herman Hollerith invented the tabulator, which used punched cards to process statistical information; eventually 
+ his company became part of IBM. In 1937, one hundred years after Babbage's impossible dream, Howard Aiken convinced IBM, which 
+ was making all kinds of punched card equipment and was also in the calculator business[9] to develop his giant programmable 
+ calculator, the ASCC/Harvard Mark I, based on Babbage's Analytical Engine, which itself used cards and a central computing unit. 
+ When the machine was finished, some hailed it as "Babbage's dream come true".
+
+Time has seen significant improvements in the usability and effectiveness of computing technology.[19] Modern society has seen a 
+significant shift in the users of computer technology, from usage only by experts and professionals, to a near-ubiquitous user 
+base. Initially, computers were quite costly, and some degree of human aid was needed for efficient use—in part from professional 
+computer operators. As computer adoption became more widespread and affordable, less human assistance was needed for common usage
+
+While logical inference and mathematical proof had existed previously, in 1931 Kurt Gödel proved with his incompleteness theorem 
+that there are fundamental limitations on what statements could be proved or disproved.
+
+These developments have led to the modern study of logic and computability, and indeed the field of theoretical computer science as 
+a whole. Information theory was added to the field with a 1948 mathematical theory of communication by Claude Shannon. In the same 
+decade, Donald Hebb introduced a mathematical model of learning in the brain. With mounting biological data supporting this 
+hypothesis with some modification, the fields of neural networks and parallel distributed processing were established. In 1971, 
+Stephen Cook and, working independently, Leonid Levin, proved that there exist practically relevant problems that are NP-complete 
+– a landmark result in computational complexity theory.
+
+With the development of quantum mechanics in the beginning of the 20th century came the concept that mathematical operations could 
+be performed on an entire particle wavefunction. In other words, one could compute functions on multiple states simultaneously. 
+This led to the concept of a quantum computer in the latter half of the 20th century that took off in the 1990s when Peter Shor 
+showed that such methods could be used to factor large numbers in polynomial time, which, if implemented, would render most modern 
+public key cryptography systems uselessly insecure.
+
+The theory of computation can be considered the creation of models of all kinds in the field of computer science. Therefore, 
+mathematics and logic are used. In the last century it became an independent academic discipline and was separated from 
+mathematics. Some pioneers of the theory of computation were Alonzo Church, Kurt Gödel, Alan Turing, Stephen Kleene, Rózsa Péter, 
+John von Neumann and Claude Shannon.
+
+In some ways, the history of programming language theory predates even the development of programming languages themselves. The 
+lambda calculus, developed by Alonzo Church and Stephen Cole Kleene in the 1930s, is considered by some to be the world's first 
+programming language, even though it was intended to model computation rather than being a means for programmers to describe 
+algorithms to a computer system. Many modern functional programming languages have been described as providing a "thin veneer" 
+over the lambda calculus,[1] and many are easily described in terms of it. The first programming language to be invented was 
+Plankalkül, which was designed by Konrad Zuse in the 1940s, but not publicly known until 1972 (and not implemented until 1998). 
+The first widely known and successful high-level programming language was Fortran, developed from 1954 to 1957 by a team of IBM 
+researchers led by John Backus. The success of FORTRAN led to the formation of a committee of scientists to develop a "universal" 
+computer language; the result of their effort was ALGOL 58. Separately, John McCarthy of MIT developed the Lisp programming 
+language (based on the lambda calculus), the first language with origins in academia to be successful. With the success of these 
+initial efforts, programming languages became an active topic of research in the 1960s and beyond.
+
+Computer engineering began in 1939 when John Vincent Atanasoff and Clifford Berry began developing the worlds first electronic 
+digital computer through physics, mathematics, and electrical engineering. John Vincent Atanasoff was once a physics and 
+mathematics teacher for Iowa State University and Clifford Berry a former graduate under electrical engineering and physics. 
+Together, they created the Atanasoff-Berry computer, also known as the ABC which took 5 years to complete.[7] While the original 
+ABC was dismantled and discarded in the 1940s a tribute was made to the late inventors, a replica of the ABC was made in 1997 where 
+it took a team of researchers and engineers four years and $350,000 to build.[8]
+
+The first computer engineering degree program in the United States was established in 1972 at Case Western Reserve University in 
+Cleveland, Ohio. As of 2015, there were 250 ABET-accredited computer engineering programs in the US.[9] In Europe, accreditation of 
+computer engineering schools is done by a variety of agencies part of the EQANIE network. Due to increasing job requirements for 
+engineers who can concurrently design hardware, software, firmware, and manage all forms of computer systems used in industry, some 
+tertiary institutions around the world offer a bachelor's degree generally called computer engineering. Both computer engineering 
+and electronic engineering programs include analog and digital circuit design in their curriculum.
+
+Following the technology progress in the areas of processors, computer memory, computer storage, and computer networks, the sizes,
+capabilities, and performance of databases and their respective DBMSs have grown in orders of magnitude. The development of 
+database technology can be divided into three eras based on data model or structure: navigational,[9] SQL/relational, and 
+post-relational.
+
+The two main early navigational data models were the hierarchical model, epitomized by IBM's IMS system, and the CODASYL model 
+(network model), implemented in a number of products such as IDMS.
+
+The relational model, first proposed in 1970 by Edgar F. Codd, departed from this tradition by insisting that applications should 
+search for data by content, rather than by following links. The relational model employs sets of ledger-style tables, each used for 
+a different type of entity. Only in the mid-1980s did computing hardware become powerful enough to allow the wide deployment of 
+relational systems (DBMSs plus applications). By the early 1990s, however, relational systems dominated in all large-scale data 
+processing applications, and as of 2018 they remain dominant: IBM DB2, Oracle, MySQL, and Microsoft SQL Server are the top DBMS.
+[10] The dominant database language, standardised SQL for the relational model, has influenced database languages for other data 
+models.
+
+Object databases were developed in the 1980s to overcome the inconvenience of object-relational impedance mismatch, which led to 
+the coining of the term "post-relational" and also the development of hybrid object-relational databases.
+
+The next generation of post-relational databases in the late 2000s became known as NoSQL databases, introducing fast key-value 
+stores and document-oriented databases. A competing "next generation" known as NewSQL databases attempted new implementations that 
+retained the relational/SQL model while aiming to match the high performance of NoSQL compared to commercially available relational 
+DBMSs.
+
+The introduction of the term database coincided with the availability of direct-access storage (disks and drums) from the mid-1960s 
+onwards. The term represented a contrast with the tape-based systems of the past, allowing shared interactive use rather than daily 
+batch processing. The Oxford English Dictionary cites[11] a 1962 report by the System Development Corporation of California as the 
+first to use the term "data-base" in a specific technical sense.
+
+IBM also had their own DBMS in 1966, known as Information Management System (IMS). IMS was a development of software written for 
+the Apollo program on the System/360. IMS was generally similar in concept to CODASYL, but used a strict hierarchy for its model 
+of data navigation instead of CODASYL's network model. Both concepts later became known as navigational databases due to the way 
+data was accessed, and Bachman's 1973 Turing Award presentation was The Programmer as Navigator. IMS is classified[by whom?] as a 
+hierarchical database. IDMS and Cincom Systems' TOTAL database are classified as network databases. IMS remains in use as of 2014 
+
+Edgar Codd worked at IBM in San Jose, California, in one of their offshoot offices that was primarily involved in the development 
+of hard disk systems. He was unhappy with the navigational model of the CODASYL approach, notably the lack of a "search" facility.
+In 1970, he wrote a number of papers that outlined a new approach to database construction that eventually culminated in the 
+groundbreaking A Relational Model of Data for Large Shared Data Banks.[13]
+
+In this paper, he described a new system for storing and working with large databases. Instead of records being stored in some sort 
+of linked list of free-form records as in CODASYL, Codd's idea was to use a "table" of fixed-length records, with each table used 
+for a different type of entity. A linked-list system would be very inefficient when storing "sparse" databases where some of the 
+data for any one record could be left empty. The relational model solved this by splitting the data into a series of normalized 
+tables (or relations), with optional elements being moved out of the main table to where they would take up room only if needed. 
+Data may be freely inserted, deleted and edited in these tables, with the DBMS doing whatever maintenance needed to present a table 
+view to the application/user.
+
+The relational model also allowed the content of the database to evolve without constant rewriting of links and pointers. The
+relational part comes from entities referencing other entities in what is known as one-to-many relationship, like a traditional 
+hierarchical model, and many-to-many relationship, like a navigational (network) model. Thus, a relational model can express both 
+hierarchical and navigational models, as well as its native tabular model, allowing for pure or combined modeling in terms of 
+these three models, as the application requires.
+
+XML databases are a type of structured document-oriented database that allows querying based on XML document attributes. XML 
+databases are mostly used in enterprise database management, where XML is being used as the machine-to-machine data 
+interoperability standard. XML database management systems include commercial software MarkLogic and Oracle Berkeley DB XML, and a 
+free use software Clusterpoint Distributed XML/JSON Database. All are enterprise software database platforms and support industry 
+standard ACID-compliant transaction processing with strong database consistency characteristics and high level of database security.
+[22][23][24]
+
+NoSQL databases are often very fast, do not require fixed table schemas, avoid join operations by storing denormalized data, and 
+are designed to scale horizontally. The most popular NoSQL systems include MongoDB, Couchbase, Riak, Memcached, Redis, CouchDB, 
+Hazelcast, Apache Cassandra, and HBase,[25] which are all open-source software products.
+
+In recent years, there was a high demand for massively distributed databases with high partition tolerance but according to the CAP 
+theorem it is impossible for a distributed system to simultaneously provide consistency, availability, and partition tolerance 
+guarantees. A distributed system can satisfy any two of these guarantees at the same time, but not all three. For that reason, 
+many NoSQL databases are using what is called eventual consistency to provide both availability and partition tolerance guarantees 
+with a reduced level of data consistency.
+
+NewSQL is a class of modern relational databases that aims to provide the same scalable performance of NoSQL systems for online 
+transaction processing (read-write) workloads while still using SQL and maintaining the ACID guarantees of a traditional database 
+system. Such databases include Google F1/Spanner, Citus, CockroachDB, TiDB, ScaleBase, MemSQL, NuoDB,[26] and VoltDB.
+
+The study of mechanical or "formal" reasoning began with philosophers and mathematicians in antiquity. The study of mathematical 
+logic led directly to Alan Turing's theory of computation, which suggested that a machine, by shuffling symbols as simple as "0" 
+and "1", could simulate any conceivable act of mathematical deduction. This insight, that digital computers can simulate any 
+process of formal reasoning, is known as the Church–Turing thesis.[26][page needed] Along with concurrent discoveries in 
+neurobiology, information theory and cybernetics, this led researchers to consider the possibility of building an electronic brain.
+[27] The first work that is now generally recognized as AI was McCullouch and Pitts' 1943 formal design for Turing-complete 
+"artificial neurons".[24]
+
+The field of AI research was born at a workshop at Dartmouth College in 1956.[28] Attendees Allen Newell (CMU), Herbert Simon 
+(CMU), John McCarthy (MIT), Marvin Minsky (MIT) and Arthur Samuel (IBM) became the founders and leaders of AI research.[29] They 
+and their students produced programs that the press described as "astonishing":[30] computers were learning checkers strategies 
+(c. 1954)[31] (and by 1959 were reportedly playing better than the average human),[32] solving word problems in algebra, proving 
+logical theorems (Logic Theorist, first run c. 1956) and speaking English.[33] By the middle of the 1960s, research in the U.S. was 
+heavily funded by the Department of Defense[34] and laboratories had been established around the world.[35] AI's founders were 
+optimistic about the future: Herbert Simon predicted, "machines will be capable, within twenty years, of doing any work a man can 
+do". Marvin Minsky agreed, writing, "within a generation ... the problem of creating 'artificial intelligence' will substantially 
+be solved".[7]
+
+They failed to recognize the difficulty of some of the remaining tasks. Progress slowed and in 1974, in response to the criticism 
+of Sir James Lighthill[36] and ongoing pressure from the US Congress to fund more productive projects, both the U.S. and British 
+governments cut off exploratory research in AI. The next few years would later be called an "AI winter",[9] a period when obtaining 
+funding for AI projects was difficult.
+
+In the early 1980s, AI research was revived by the commercial success of expert systems,[37] a form of AI program that simulated 
+the knowledge and analytical skills of human experts. By 1985 the market for AI had reached over a billion dollars. At the same 
+time, Japan's fifth generation computer project inspired the U.S and British governments to restore funding for academic research.
+[8] However, beginning with the collapse of the Lisp Machine market in 1987, AI once again fell into disrepute, and a second, 
+longer-lasting hiatus began.[10]
+
+In the late 1990s and early 21st century, AI began to be used for logistics, data mining, medical diagnosis and other areas.[22] 
+The success was due to increasing computational power (see Moore's law), greater emphasis on solving specific problems, new ties 
+between AI and other fields (such as statistics, economics and mathematics), and a commitment by researchers to mathematical 
+methods and scientific standards.[38] Deep Blue became the first computer chess-playing system to beat a reigning world chess 
+champion, Garry Kasparov on 11 May 1997.[39]
+
+Advanced statistical techniques (loosely known as deep learning), access to large amounts of data and faster computers enabled 
+advances in machine learning and perception. By the mid 2010s, machine learning applications were used throughout the world. In 
+a Jeopardy! quiz show exhibition match, IBM's question answering system, Watson, defeated the two greatest Jeopardy champions, 
+Brad Rutter and Ken Jennings, by a significant margin.[40] The Kinect, which provides a 3D body–motion interface for the Xbox 
+360 and the Xbox One use algorithms that emerged from lengthy AI research[41] as do intelligent personal assistants in smartphones.
+[42] In March 2016, AlphaGo won 4 out of 5 games of Go in a match with Go champion Lee Sedol, becoming the first computer 
+Go-playing system to beat a professional Go player without handicaps.[6][43] In the 2017 Future of Go Summit, AlphaGo won a 
+three-game match with Ke Jie,[44] who at the time continuously held the world No. 1 ranking for two years.[45][46] This marked 
+the completion of a significant milestone in the development of Artificial Intelligence as Go is an extremely complex game, more 
+so than Chess.
+
+According to Bloomberg's Jack Clark, 2015 was a landmark year for artificial intelligence, with the number of software projects 
+that use AI within Google increased from a "sporadic usage" in 2012 to more than 2,700 projects. Clark also presents factual data 
+indicating that error rates in image processing tasks have fallen significantly since 2011.[47] He attributes this to an increase 
+in affordable neural networks, due to a rise in cloud computing infrastructure and to an increase in research tools and datasets.
+[11] Other cited examples include Microsoft's development of a Skype system that can automatically translate from one language to 
+another and Facebook's system that can describe images to blind people.
+
+Terminology invoking "objects" and "oriented" in the modern sense of object-oriented programming made its first appearance at MIT 
+in the late 1950s and early 1960s. In the environment of the artificial intelligence group, as early as 1960, "object" could refer 
+to identified items (LISP atoms) with properties (attributes);[10][11] Alan Kay was later to cite a detailed understanding of LISP 
+internals as a strong influence on his thinking in 1966.[12] Another early MIT example was Sketchpad created by Ivan Sutherland in 
+1960–61; in the glossary of the 1963 technical report based on his dissertation about Sketchpad, Sutherland defined notions of 
+"object" and "instance" (with the class concept covered by "master" or "definition"), albeit specialized to graphical interaction.
+[13] Also, an MIT ALGOL version, AED-0, established a direct link between data structures ("plexes", in that dialect) and 
+procedures, prefiguring what were later termed "messages", "methods", and "member functions".[14][15]
+
+The formal programming concept of objects was introduced in the mid-1960s with Simula 67, a major revision of Simula I, a 
+programming language designed for discrete event simulation, created by Ole-Johan Dahl and Kristen Nygaard of the Norwegian 
+Computing Center in Oslo.[16][not in citation given][17][not in citation given][citation needed][18][19][20]
+
+Simula 67 was influenced by SIMSCRIPT and C.A.R. "Tony" Hoare's proposed "record classes".[14][21] Simula introduced the notion of 
+classes and instances or objects (as well as subclasses, virtual procedures, coroutines, and discrete event simulation) as part of 
+an explicit programming paradigm. The language also used automatic garbage collection that had been invented earlier for the 
+functional programming language Lisp. Simula was used for physical modeling, such as models to study and improve the movement of 
+ships and their content through cargo ports. The ideas of Simula 67 influenced many later languages, including Smalltalk, 
+derivatives of LISP (CLOS), Object Pascal, and C++.
+
+The Smalltalk language, which was developed at Xerox PARC (by Alan Kay and others) in the 1970s, introduced the term object-oriented 
+programming to represent the pervasive use of objects and messages as the basis for computation. Smalltalk creators were influenced 
+by the ideas introduced in Simula 67, but Smalltalk was designed to be a fully dynamic system in which classes could be created and 
+modified dynamically rather than statically as in Simula 67.[22] Smalltalk and with it OOP were introduced to a wider audience by 
+the August 1981 issue of Byte Magazine.
+
+In the 1970s, Kay's Smalltalk work had influenced the Lisp community to incorporate object-based techniques that were introduced to 
+developers via the Lisp machine. Experimentation with various extensions to Lisp (such as LOOPS and Flavors introducing multiple 
+inheritance and mixins) eventually led to the Common Lisp Object System, which integrates functional programming and object-oriented 
+programming and allows extension via a Meta-object protocol. In the 1980s, there were a few attempts to design processor 
+architectures that included hardware support for objects in memory but these were not successful. Examples include the Intel iAPX 
+432 and the Linn Smart Rekursiv.
+
+In 1985, Bertrand Meyer produced the first design of the Eiffel language. Focused on software quality, Eiffel is among the purely 
+object-oriented languages, but differs in the sense that the language itself is not only a programming language, but a notation 
+supporting the entire software lifecycle. Meyer described the Eiffel software development method, based on a small number of key 
+ideas from software engineering and computer science, in Object-Oriented Software Construction. Essential to the quality focus of 
+Eiffel is Meyer's reliability mechanism, Design by Contract, which is an integral part of both the method and language.
+
+Object-oriented programming developed as the dominant programming methodology in the early and mid 1990s when programming languages 
+supporting the techniques became widely available. These included Visual FoxPro 3.0,[23][24][25] C++,[26] and Delphi. Its dominance
+was further enhanced by the rising popularity of graphical user interfaces, which rely heavily upon object-oriented programming
+techniques. An example of a closely related dynamic GUI library and OOP language can be found in the Cocoa frameworks on Mac OS X, 
+written in Objective-C, an object-oriented, dynamic messaging extension to C based on Smalltalk. OOP toolkits also enhanced the 
+popuqlarity of event-driven programming (although this concept is not limited to OOP).
+
+At ETH Zürich, Niklaus Wirth and his colleagues had also been investigating such topics as data abstraction and modular programming 
+(although this had been in common use in the 1960s or earlier). Modula-2 (1978) included both, and their succeeding design, Oberon, 
+included a distinctive approach to object orientation, classes, and such.
+
+Object-oriented features have been added to many previously existing languages, including Ada, BASIC, Fortran, Pascal, and COBOL. 
+Adding these features to languages that were not initially designed for them often led to problems with compatibility and 
+maintainability of code.
+
+More recently, a number of languages have emerged that are primarily object-oriented, but that are also compatible with procedural 
+methodology. Two such languages are Python and Ruby. Probably the most commercially important recent object-oriented languages are 
+Java, developed by Sun Microsystems, as well as C# and Visual Basic.NET (VB.NET), both designed for Microsoft's .NET platform.
+Each of these two frameworks shows, in its own way, the benefit of using OOP by creating an abstraction from implementation. VB.NET 
+and C# support cross-language inheritance, allowing classes defined in one language to subclass classes defined in the other 
+language.
+
+Ad hoc polymorphism and parametric polymorphism were originally described in Fundamental Concepts in Programming Languages, a set 
+of lecture notes written in 1967 by British computer scientist Christopher Strachey.[4] In a 1985 paper, Peter Wegner and Luca 
+Cardelli introduced the term inclusion polymorphism to model subtypes and inheritance.[2] However, implementations of subtyping and 
+inheritance predate the term "inclusion polymorphism", having appeared with Simula in 1967.
+
+Lambda calculus provides a theoretical framework for describing functions and their evaluation. It is a mathematical abstraction 
+rather than a programming language—but it forms the basis of almost all current functional programming languages. An equivalent 
+theoretical formulation, combinatory logic, is commonly perceived as more abstract than lambda calculus and preceded it in 
+invention. Combinatory logic and lambda calculus were both originally developed to achieve a clearer approach to the foundations of 
+mathematics.[32]
+
+An early functional-flavored language was Lisp, developed in the late 1950s for the IBM 700/7000 series scientific computers by 
+John McCarthy while at Massachusetts Institute of Technology (MIT).[33] Lisp first introduced many paradigmatic features of 
+functional programming, though early Lisps were multi-paradigm languages, and incorporated support for numerous programming styles 
+as new paradigms evolved. Later dialects, such as Scheme and Clojure, and offshoots such as Dylan and Julia, sought to simplify and 
+rationalise Lisp around a cleanly functional core, while Common Lisp was designed to preserve and update the paradigmatic features 
+of the numerous older dialects it replaced.[34]
+
+Information Processing Language (IPL) is sometimes cited as the first computer-based functional programming language.[35] It is an 
+assembly-style language for manipulating lists of symbols. It does have a notion of generator, which amounts to a function that 
+accepts a function as an argument, and, since it is an assembly-level language, code can be data, so IPL can be regarded as having 
+higher-order functions. However, it relies heavily on mutating list structure and similar imperative features.
+
+Kenneth E. Iverson developed APL in the early 1960s, described in his 1962 book A Programming Language (ISBN 9780471430148). APL 
+was the primary influence on John Backus's FP. In the early 1990s, Iverson and Roger Hui created J. In the mid-1990s, Arthur 
+Whitney, who had previously worked with Iverson, created K, which is used commercially in financial industries along with its 
+descendant Q.
+
+John Backus presented FP in his 1977 Turing Award lecture "Can Programming Be Liberated From the von Neumann Style? A Functional 
+Style and its Algebra of Programs".[36] He defines functional programs as being built up in a hierarchical way by means of 
+"combining forms" that allow an "algebra of programs"; in modern language, this means that functional programs follow the principle 
+of compositionality[citation needed]. Backus's paper popularized research into functional programming, though it emphasized 
+function-level programming rather than the lambda-calculus style now associated with functional programming.
+
+In the 1970s, ML was created by Robin Milner at the University of Edinburgh, and David Turner initially developed the language SASL 
+at the University of St Andrews and later the language Miranda at the University of Kent. Also in Edinburgh in the 1970s, Burstall 
+and Darlington developed the functional language NPL.[37] NPL was based on Kleene Recursion Equations and was first introduced in 
+their work on program transformation.[38] Burstall, MacQueen and Sannella then incorporated the polymorphic type checking from ML 
+to produce the language Hope.[39] ML eventually developed into several dialects, the most common of which are now OCaml and 
+Standard ML. Meanwhile, the development of Scheme, a simple lexically scoped and (impurely) functional dialect of Lisp, as 
+described in the influential Lambda Papers and the classic 1985 textbook Structure and Interpretation of Computer Programs, brought 
+awareness of the power of functional programming to the wider programming-languages community.
+
+In the 1980s, Per Martin-Löf developed intuitionistic type theory (also called constructive type theory), which associated 
+functional programs with constructive proofs of arbitrarily complex mathematical propositions expressed as dependent types. This 
+led to powerful new approaches to interactive theorem proving and has influenced the development of many subsequent functional 
+programming languages.
+
+The Haskell language began with a consensus in 1987 to form an open standard for functional programming research; implementation 
+releases have been ongoing since 1990.
+

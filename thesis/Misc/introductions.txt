@@ -1,0 +1,359 @@
+The reconstruction of 3-dimensional (3D) environments has been actively studied since
+the early development of modern computer science. In the last two decades, a number
+of breakthroughs have been made in a variety of fields including computer vision,
+photogrammetry, robotics, and optics. Moreover, the computational capability of machines
+nowadays is being rapidly boosted at an exponential scale. These achievements,
+altogether, bring into the reality the creation of high-definition digital models of 3D
+scenes at a large scale.
+This chapter first introduces in Section 1.1 existing methods for street scene reconstruction,
+among which the computer vision-based approach is selected for further
+investigation. In Section 1.2, the background of related academic fields is briefed.
+We then identify in Section 1.3 gaps existing in the fields, and discuss in Section 1.4
+how they can be filled-in by contributions made by this research. Section 1.5 defines
+mathematical notions used throughout the thesis. Section 1.6 outlines the structure of
+this thesis.
+
+Accurate recovery of depth information of real-world scenes has been a fundamental, yet
+highly active research topic in the field of computer vision. The acquisition of reliable
+3D information on street sides plays an important role in many advanced technologies
+such as driver-assistance systems (Morris et al., 2009), collision avoidance (Nedevschi,
+Bota & Tomiuc, 2009), autonomous vehicles (Thrun, 2010), urban planning (Hu, You &
+Neumann, 2003), or geosciences (Wes
+toby, Brasington, Glasser, Hambrey & Reynolds,
+2012).
+A common technique to build 3D models of an urban scene is based on light
+detection and ranging (LiDAR) technology. To collect scans of a scene, a laser scanner
+is set up, either at a stationary point or a moving vehicle on the ground [i.e. terrestrial
+laser scanning (TLS)], or mounted on an flying aircraft [i.e. airborne laser scanning
+(ALS)]. The former setup provides highly accurate reconstruction of building facades
+and street objects within a few blocks, while the latter one builds urban digital elevation
+models (DEM) in a wider region.
+
+Despite the accuracy and effectiveness of laser scanning technology, LiDAR still
+comes with a high cost, is not recording surface colour, and provides limited information
+for tracking visible information from frame to frame. Image-based 3D reconstruction
+offers an affordable alternative to approach these problems. The stereo-vision technique,
+for example, recovers a dense scene structure using a conjugate image pair captured
+by two calibrated cameras, also possibly at a high frequency (e.g. 30 Hz). To extend
+the scanning range, well-calibrated image sensors are mounted on a vehicle and rigidly
+moved, allowing a continuous collection of depth data in the scene. As the ego-vehicle
+(i.e. the vehicle where the system is installed) moves, the sensor’s motion has to be
+recovered, such that the 3D points, measured in different time frames, can be converted
+into a consistent coordinate system.
+
+Occlusion of objects is a major problem in 3D reconstruction. Objects partially
+occluded in a single run lead to incomplete reconstructions with missing depth information.
+To address this problem, the scene must be scanned from multiple viewing
+directions, and a sophisticated algorithm is required to merge multi-run scans such that
+a complete 3D reconstruction can be built (Rusu, Blodow, Marton & Beetz, 2008; Zeng
+& Klette, 2013).
+
+The adopted egomotion1 estimation strategy is crucial to the process of merging 3D
+data collected in different runs. In a single run, an inaccurate egomotion estimator may
+cause significant drifts between frames, making the alignment of points far from being
+consistent. As a result, the transformed point cloud is distorted, and, in turn, imposes a
+difficulty in registering multiple-run point clouds.
+To ensure the validity of recovered egomotion, the estimator must track and use
+temporally consistent feature points. In a typical urban traffic scene, however, this can
+be challenging due to the complexity and dynamics of the street sides. Identifying
+moving objects (i.e. vehicles, pedestrians, and so forth) is a necessary step in such a
+scenario. Also, the complexity of a street-side scene may result in a large number of
+image feature points. An efficient and robust temporal feature-tracking mechanism is
+therefore desired.
+
+Furthermore, to improve the coverage and accuracy of the reconstructed scene, it
+may also be scanned using different types of sensors. For example, results obtained
+from ground-level scans with a vehicle-mounted stereo vision system can be merged
+with a top-view reconstruction of the street from a monocular camera that is attached to
+a flying drone.
+
+The reported research aims at achieving comprehensive street-side reconstruction
+through developing a multi-sensor multi-scan merging methodology, and an improved egomotion estimation 
+strategy for achieving the required accuracy in camera-motion recovery.
+This section walks through three topics that are closely related to this research, from a
+historical and a technical perspective.Structure recovery from images, taken at different poses2 is known as structure from
+motion (SfM). It has been well-studied in the field of photogrammetry, since its wide
+application in remote sensing and geosciences in the early 1990s (Westoby et al., 2012).
+Thanks to the advances in the theories of algebraic factorisation and auto-calibration
+(Longuet-Higgins, 1981; Luong & Faugeras, 1997; Kanade & Morris, 1998), the
+application of SfM has been extended from computer scientists to general users.
+Nowadays, the SfM technology is available to the public; one can easily reconstruct
+3D structure of a scene in a few clicks, using either a commercial or an open source
+implementation (Snavely, 2008; C. Wu, 2011). Remarkably, it has recently shown the
+possibility for automatic 3D model reconstruction from photos on the internet (Snavely,
+Seitz & Szeliski, 2008).
+
+A general SfM problem aims to estimate the structure of a stationary scene from
+many of its projective measurements - images, taken by one or many uncalibrated
+cameras in arbitrary many poses. Solving such an inverse problem is challenging, as
+the solutions lie in a high-dimensional space. An instance of a 10-view reconstruction
+problem can, for example, lead to a non-linear solution space above one thousand
+dimensions.
+
+Historically, the SfM techniques follow a multi-stage pipeline including feature
+extraction, correspondence establishment, camera parameter recovery and finally structure
+recovery. In general, parameters are locally estimated using a fast linear solver,
+followed by a global non-linear optimisation stage known as bundle adjustment (BA).
+Due to computational complexity, an SfM problem is usually solved offline.
+
+In robotics it is often required to locate an agent and the 3D structure of its surrounding
+environment. A technique, jointly estimating the location and the scene structure,
+is known as simultaneous localisation and mapping (SLAM) (Cadena et al., 2016).
+The SLAM problem can be approached using different types of sensors, such as laser
+range-finders (i.e. LiDAR), radar, sonar, and optical sensors.
+In the case that the estimation is based on image data, it is known as visual SLAM (VSLAM)
+(Karlsson et al., 2005), which can be understood as a specialised SfM problem.
+Unlike a general SfM solver, a SLAM 3 system performs pose estimation and structure
+computation on-line, from a temporal continuous image sequence in an incremental
+manner. The sensors are also assumed to be well-calibrated. As the estimation has to be
+done on-line, critically in real-time, a SLAM algorithm needs to take trade-offs between
+accuracy and computation efficiency.
+When a global positioning sensor is not available, the localisation has to be actualised
+by integrating differential pose measurements over time. The technique is called dead
+reckoning [also known as deduced reckoning (DR)], in navigation (Gehrig & Stein,
+1999).
+The differential pose can be derived from, for example, an inertial measure unit
+(IMU) or from images. The latter case is known as visual odometry.
+
+A typical SLAM system has the ability to recognise a visited place. Such an
+ability allows the system the removal of an accumulated positioning error by enforcing
+consistency among multiple measurements on repeatedly observed scene structures,
+using bundle adjustment. Such a drift-suppression strategy is known as loop closure. In
+addition to loop closure, a modern SLAM system also performs incremental frame-byframe
+integrations on the estimated parameters by means of a recursive filter, such as
+the extended Kalman filter (EKF) (Durrant-Whyte & Bailey, 2006).
+
+The term visual odometry (VO) was coined in 2004, as an analogue to wheel odometry
+(Nistér, Naroditsky & Bergen, 2004). It provides a way to estimate the trajectory
+of a moving camera from an image sequence. VO techniques are often adopted to complement
+a global positioning system (GPS) under circumstances that satellite signals
+are blocked (e.g. when a vehicle is driving in a tunnel). Following VO successes with
+Mars exploration rovers (Maimone, Cheng & Matthies, 2007), VO has been widely
+adopted by many applications such as SLAM, intelligent vehicles, indoor navigation, or
+augmented reality (AR) (Klein & Murray, 2007; Scaramuzza & Fraundorfer, 2011).
+The core of VO is to solve a 2-view camera-pose recovery problem in a special
+form, known as egomotion estimation, where the first and second views are taken by
+the same camera (and the relative pose is therefore the camera’s egomotion). The
+solution is dependent on the type of sensors. Early works focused on the use of stereo
+cameras, leading to solving a 3D-to-3D or 3D-to-2D registration problem. In recent
+years, much effort has been done in monocular VO, which is often considered to be a
+more challenging case as an accurate estimate of scene structure is not directly available
+from monocular data.
+
+Both SfM and SLAM techniques provide the possibility to achieve 3D street scene
+reconstruction. However, we4 found gaps among these techniques when it comes
+to multiple-run integration. The SfM pipeline considers unordered images taken in
+arbitrary positions and offers a many-to-many cross-matching functionality to sort
+out the informational correlation between view points, which is also useful to align
+sequences taken in multiple runs. It is, however, very computational expensive as a
+sequence of a street, considered in this research, may contain thousands of images.
+Furthermore, the images are assumed to be collected by some well-calibrated sensors
+in temporal order. Taking these constraints into account saves, indeed, unnecessary
+computational requirements by avoiding cross-frame all-to-all matching as well as
+optimising well-calibrated sensor parameters.
+
+It is hard to find a versatile framework that comes with a good flexibility to support
+the extension into a combination of different optical or range sensors such as monocular
+camera, stereo vision, multi-ocular vision, and LiDAR (Moosmann & Stiller,
+2011). Such drawbacks motivated our research to develop an appropriate framework
+for multiple-sequence mapping.
+
+The objective of this research is to design, implement, and evaluate a novel reconstruction
+framework that can be applied to build 3D representation of a sequence and merge
+reconstructions built from multiple sequences, following a versatile design that should
+be applicable to monocular, stereo, and multi-ocular optical sensors, optionally also
+equipped with a LiDAR.
+
+The thesis is organised as follows. Chapter 2 provides a walk-through for state-of-the-art
+approaches. Chapter 3 describes the theoretical foundation of this research that exist in
+the area; based on this a novel visual odometry framework is formulated in Chapter 4.
+This framework is then used to build 3D street-side reconstructions from multiple
+sequences, as detailed in Chapter 5. Cahpters 4 and 5 define the author’s contribution to
+the field. Chapter 6 discusses possibilities to further extend this research.
+
+Vision offers rich sensor information to robotic vehicles interacting in complex dynamic
+environments. As robots are increasingly deployed in unconstrained dynamic environments,
+the requirements of the visual system become more demanding in terms of accuracy and response
+time. Thanks to the expansion of the mobile phone industry, image sensors and embedded
+processors have experienced an increase in compute performance as well as a reduction in
+price, making the use of such technologies cost effective within the robotics industry. However,
+the extraction of meaningful information from a vision sensor is a complicated and computationally
+intensive task.
+
+The focus of this thesis is on the design and implementation of dense real-time visual flow
+algorithms. A visual flow field is a vector field on the camera’s image surface that provides
+motion information for each pixel in the image. There are at least three types of visual flows,
+illustrated in Figure 1.1a, that can be extracted from image sequences: scene flow, optical flow
+and the novel structure flow that I introduce in Chapter 4. The scene flow, so called by Vedula
+et al. [1999], is the three-dimensional motion field of points in the world relative to the camera.
+That is, the Euclidean 3D velocity between the closest object in the scene at a given pixel
+location and the robot’s camera. Optical flow is the projection of the scene flow onto the image
+plane of the camera. It describes the velocity of each pixel in the image plane induced by
+the motion of the robot and the environment Barron [1994]. Structure flow, introduced in this
+thesis Adarve and Mahony [2016b], sits in between scene and optical flow. Mathematically,
+structure flow is the three-dimensional scene flow scaled by the inverse depth at each pixel in
+the image. Intuitively, it is the complete velocity field associated with image motion, including
+both optical flow and scale-change or apparent divergence of the image. Analogously to optic
+flow, structure flow provides a robotic vehicle with perception of the motion of the environment
+as seen by the camera. However, structure flow encodes the full 3D image motion of the scene
+whereas optic flow only encodes the tangential image motion.
+
+Computation of Scene flow is less studied than optical flow. State of the art algorithms
+using two-pair stereo-images can be found in the Kitti scene flow dataset of Menze and Geiger
+[2015]. Other approaches such as those using RGB-D sensors (e.g., the Microsoft Kinect)
+have also been studied Hadfield and Bowden [2011], Herbst et al. [2013]. Real-time scene
+flow algorithms are relatively slow compared to optical flow, running between 20-30 Hz Rabe
+et al. [2010], Wedel et al. [2011]. Runtime performance of modern two-pair stereo based
+approaches are reported in the Kitti scene flow dataset1.
+
+Figure 1.1b illustrates the scene, structure and optical fields for a vehicle moving at 10 m=s
+in collision course with a building located approximately at 15 meters. The image and depth
+map are from the visual odometry dataset of Zhang et al. [2016]. The simulated perspective
+camera (with the Z axis matching the camera focal axis) runs at 100 Hz and all flow fields
+are expressed in pixel units. Since the simulated scene is static, the calculated scene flow is
+equal for all pixels in the image and is equal to the negative of the camera velocity. As the
+vehicle moves along the focal axis of the camera, the xy component of the scene flow are
+zero. Scaling the scene flow by the inverse of the depth field, we obtain the structure flow
+field. The structure flow distinguishes between objects close to or far away from the camera
+since the relative angular divergence of closer objects is larger. That is, they are growing in
+the image more quickly than distant objects. Last row of Figure 1.1b is the optical flow field
+on the image plane of the camera. Since optical flow is the projection of the scene flow onto
+the image plane, the z component of the optical flow is zero. That is, no motion along the
+focal axis of the camera. In fact, the optical flow is a divergent vector field with the focus of
+expansion located in the center of the image; the direction of motion. Notice that, although the
+vehicle is moving quickly, the optical flow in the central region of the image is small, and it is
+difficult to evaluate the time to contact before the vehicle collides with the building.
+Current algorithms developed within the Computer Vision community aim at improving
+the accuracy of the estimated optical flow fields. This trend can be observed in the latest results
+of standard optical flow benchmark datasets Baker et al. [2011]; Butler et al. [2012];
+Geiger et al. [2013]. At the same time, the complexity of the top performing algorithms has
+increased and thus their computational demands, as reported in the benchmarks. While these
+algorithms can be used in applications where runtime performance is not a critical constraint,
+their application on real-time vision pipelines, as those required by robotic platforms, is questionable
+
+which the algorithm gives a dense output for each pair of frames. While this is the typical
+approach for computing optical flow, it does not match the intrinsic properties of a robotic
+vision system. 
+
+High-speed video capture: Robotic vision systems can take advantage of high-speed
+image sensors to sample the evolution of the environment at high frame rates. As the
+environment is sampled faster, the relative change between any two consecutive frames
+gets smaller. In the limit, with a camera working at multiple hundreds of Hertz, the
+difference between any two images would be expected to be at the sub-pixel level.
+
+Additional sensor modalities: A typical robotic vehicle contains several sensors, such
+as inertial measurement units and laser scanners, that can be integrated into the visual
+system. Information provided by these sensors can be fused within the vision algorithms
+to create a robust and coherent representation of the environment surrounding the robot.
+
+A key challenge of using high-speed image sensors is processing the stream of data in realtime.
+As an example, the high-speed camera used in the experiments of this thesis provides
+1016  544 images with 256 brightness levels per pixel at 300 Hz. This is equivalent to 158
+Megabytes of image data to be processed every second. This resolution and frame rate places
+a heavy load on the available computational resources such as USB3 and RAM bandwidth as
+well as the compute resources of typical GPU hardware.
+
+Considering the properties mentioned above, I proposed the term Robotic Embedded Vision
+(REV) system to describe an electronic system and a set of algorithms to offer visual sensing
+capabilities to a robotic vehicle. A REV device contains vision sensors connected directly to
+processing elements (CPU, GPU or FPGA) as well as extra sensors, such as IMU or GPS,
+to provide additional information to the algorithms. Vision algorithms are executed inside the
+REV device, reducing the latency between image acquisition and processing. The output of the
+vision algorithms (optical flow, feature points, etc) is then used according to the robot’s current
+task, and only information required to perform such task is transmitted to the robot CPU. An
+application example is the transmission of velocity commands for an aerial vehicle according
+to the perceived optical flow. Notice that only the result of the algorithm is transmitted out of
+the device. This can potentially reduce the required bandwidth of the communication channel
+between the REV system and the robot CPU.
+
+There are two advantages of using a filtering approach. First, thanks to the incremental
+nature of the algorithm, the output of the algorithm is temporally consistent. The state estimate
+at time k + 1 is equal to the old estimate at time k plus some innovation considering new
+measurements. Second, a filtering approach can reduce the amount of computations required
+at each time step. Instead of computing highly accurate and dense flow fields using two images,
+that is, following the standard approach, an incremental algorithm does partial computations at
+every time step and adds new information to the state. Dense and accurate state estimates are
+reached over time.
+
+An important contribution of this thesis is the use of partial differential equations (PDE)
+to model the spatio-temporal evolution of the optical and structure flow fields on the image
+surface. Efficient numerical methods that match the massive parallel compute power of GPU
+and FPGA platforms are developed to solve these PDEs.
+
+For each visual flow algorithm, experimental validation is provided using both groundtruth
+data simulating a high-speed camera mounted on a mobile vehicle. Additionally, results
+on real-life videos captured are provided to validate the algorithms; for optical flow, a 300 Hz
+high-speed monocular camera is used, while a 60 Hz stereo camera array is used to test the
+structure flow algorithm. All the algorithms were implemented and tested on a Nvidia GTX
+780 Desktop GPU card and partially tested on a embedded Nvidia Tegra K1 System on Chip.
+
+
+
+Real-time forecasting of wind-generated waves over a period of a few
+hours or a few days at a specific location is required for ocean and coastal
+engineering operations. Since the physical process of wave generation by
+wind is basically uncertain, complex, non-linear, and non-stationary, it is
+not fully understood yet. Despite of considerable advances in computational
+techniques, the solutions obtained by numerically solving the
+equations of wave growth are neither exact nor uniformly applicable at
+all sites and at all times due to the complexity and uncertainty of the
+wave generation phenomenon (Deo et al., 2001).
+
+Since the last decade, an alternative approach based on the use of
+data-driven models such as artificial neural networks (ANN) has been
+developed by many researchers to forecast ocean waves (Deo et al., 2001;
+Londhe and Panchang, 2006; Makarynskyy et al., 2005; Zamani et al.,
+2008). An ANN is suitable for partially understood underlying physical
+processes such as wind-wave relationship. A major issue in this type of
+forecasting is the selection of appropriate input data patterns that are
+likely to influence the desired output. Even though the ANN has
+flexibility, it may not be able to cope with non-stationary data without
+preprocessing the input and output data (Cannas et al., 2006). In recent
+years, hybridization of ANN with other techniques has been used in wave
+height forecasting to overcome the limitation of ANN and to provide
+effective modelling. €Ozger (2010) proposed the combination of wavelet
+and fuzzy logic approaches to forecast wave heights up to 48-h lead time.
+The correlation coefficients between observed and forecasted wave
+heights were between 0.647 and 0.745, which were larger than those of
+auto-regressive moving average (ARMA), ANN, and fuzzy logic models.
+Deka and Prahlada (2012) and Prahlada and Deka (2015) used a wavelet
+and neural network (WNN) model to forecast significant wave heights up
+to 48-h lead time using 3 hourly wave height observation data. Their
+results showed good predictions at shorter lead times but lower accuracies
+at longer lead times. Dixit and Londhe (2016) also used WNN
+technique to predict extreme wave heights up to 36-h lead time for five
+major hurricanes. Shahabi et al. (2017) developed genetic programming
+based wavelet transform to forecast significant wave heights up to 48-h
+lead time. The WNN hybrid model showed better prediction performance
+than the ANN model but some deviation was observed at longer lead
+wave and meteorological variables becomes more important as the lead
+time increases. However, it is difficult to interpret the relationship between
+spatially distributed meteorological and wave data using an ANN
+or WNN model. Moreover, there is a limitation in using ANN or WNN
+model in that the model cannot forecast spatially distributed wave
+heights together. In other words, it is necessary to develop and run the
+model for each location separately.
+In this study, an EOFWNN model is developed by combining the
+empirical orthogonal function (EOF) analysis and wavelet analysis with
+the neural network to forecast significant wave heights in multiple locations
+simultaneously. The input data of the model are the past wave
+height data and the past and future meteorological reanalysis data in the
+surrounding area including the wave stations. The model then calculates
+the wave heights in the locations simultaneously for various lead times.
+The developed model is employed to forecast significant wave heights in
+eight wave observation stations in the coastal waters around the East Japan Sea.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,111 @@
+.root {
+	-fx-body-color : #F5F5F5;
+	-fx-background-color : #F5F5F5;
+	-fx-outer-border : #cecece;
+}
+
+.label {
+	-fx-font-size: 18px;
+    -fx-font-weight: bold;
+	-fx-text-fill: #333333;
+	-fx-font-family: "Arial";
+}
+
+.title {
+	-fx-font-size: 26px;
+    -fx-font-weight: bold;
+	-fx-text-fill: #000000;
+	/*-fx-font-family: "Comic Sans MS";*/
+}
+
+/* Button */
+
+.button:focused {
+	-fx-effect: dropshadow(gaussian, #b4d1f3, 3.0, 3.0, 0.0, 0.0);
+}
+
+.button {
+	-fx-font-size: 16.0;
+	-fx-background-radius: 4.0;
+	-fx-border-radius: 4.0;
+	-fx-pref-height: 30.0;
+	-fx-min-width: 30.0;
+    -fx-background-insets: 0.0, 0.0, -1.0, 0.0;
+	-fx-background-color: #337ab7;
+	-fx-border-color: #2e6da4;
+    -fx-text-fill: white;
+}
+
+.button:pressed, .button:selected {
+	-fx-background-color: #286090;
+    -fx-border-color: #204d74;
+    -fx-effect: innershadow(gaussian, #204d74, 10.0, 0.0, 0.0, 3.0);
+}
+
+.button:hover {
+	-fx-border-color: #204d74;
+	-fx-background-color: #286090;
+}
+
+/* Slider */
+
+.slider {
+	-fx-font-size: 16px;	/* 16px is causing 9 to disappear */
+	-fx-font-weight: bold;
+}
+
+.slider .thumb {
+	-fx-background-color: #dad9da, white, #3fbadf;
+	-fx-background-insets: 0.0, 1.0, 5.0;
+	-fx-effect: dropshadow(two-pass-box , rgba(0.0, 0.0, 0.0, 0.2), 5.0, 0.0 , 0.0, 0.0);
+}
+
+.slider .thumb:hover {
+	-fx-effect: dropshadow(two-pass-box , rgba(0.0, 0.0, 0.0, 0.4), 5.0, 0.0 , 0.0, 0.0);
+}
+
+.slider .track {
+	-fx-background-color: #dad9da, white;
+	-fx-background-insets: -1.0, 0.0, 1.0;
+	-fx-pref-height: 5.0;
+}
+
+/* Radio Button */
+
+ .radio-button {
+	-fx-font-size: 16px;
+	-fx-label-padding: 0.0em 0.0em 0.1em 0.416667em; /* 0 0 0 5 */
+	-fx-text-fill: -fx-text-background-color;
+	-fx-padding: 0.0 0.0 0.5 0.0;
+}
+
+.radio-button > .radio, .radio-button:focused > .radio  {
+	-fx-border-color: #56c0e0;
+	-fx-border-radius: 1.0em;
+	-fx-background-radius: 1.0em; /* large value to make sure this remains circular */
+	-fx-padding: 1.0 2.0 3.0 2.0;
+	-fx-background-color: white;
+}
+
+.radio-button > .radio > .dot {
+	-fx-background-color: transparent;
+	-fx-background-radius: 1.0em; /* large value to make sure this remains circular */
+	-fx-padding: 0.333333em; /* 4 -- radius of the inner black dot when selected */
+	-fx-background-insets: 3.0 2.0 1.0 2.0;
+}
+
+.radio-button:selected > .radio,.radio-button:hover > .radio {
+	-fx-fill-color: #56c0e0;
+}
+
+.radio-button:pressed > .radio {
+	-fx-background-color: #50c0e2;
+}
+
+.radio-button:selected > .radio > .dot {
+	-fx-background-color: #56c0e0;
+}
+
+.radio-button:hover > .radio, .radio-button:selected > .radio {
+	-fx-background-color: linear-gradient(to bottom, white, #efefef);
+}

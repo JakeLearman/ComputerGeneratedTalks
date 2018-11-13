@@ -1,0 +1,110 @@
+A transformation of power grids is taking place in order to address sev-
+eral concerns: reduction of dependency on fossil fuels; improvement
+
+of efficiency; liberalisation of markets and reduction of GreenHouse
+Gas emissions, amongst others. This transformation may involve the
+massive introduction of electrical vehicles, renewable energy sources,
+distributed energy generation and storage, etc.
+The introduction of these technologies requires an increased flexibility
+of power grids to balance supply and demand. Nowadays, the balance
+between supply and demand is adjusted by modifying the production
+side. However, the idea for future power grids is to make the demand
+
+side flexible. To this end, a monitoring and controlling layer is be-
+ing implemented in distribution power grids. This is a new paradigm
+
+known as Smart Grid.
+Making demand more flexible requires the implementation of policies
+that manage the modification of this demand. These policies must be
+studied before their implementation since real testing is difficult on
+vital infrastructure such as the power grid. Policies can be studied
+through “in silico” experiments, also known as simulations. These
+simulations are normally carried out using a complex system based
+approach so that all consuming devices are represented.
+The study of large Smart Grids as a complex system is challenging.
+The objective of these policies is to modify the demand in accordance
+to the grid state. Therefore, it is necessary that each decision maker
+acts by considering the actions of other decision makers to achieve the
+objective. This means, the behaviour each decision maker implements
+must consider the environment and possible interactions before acting.
+
+The definition of a policy is refined using an iterative trial and error
+procedure. At each iteration, the policy must be defined, experimented
+and analysed. In these steps, the complexity has to be dealt with. On
+the one hand, there is the complexity of modelling and simulating the
+millions of heterogeneous elements that compose the power grid. On
+the other hand, the analysis of huge quantities of data coming from the
+simulations. In addition, there is the implementation of the policy in
+the decision makers which are heterogeneous and numerous.
+
+This research work is devoted to explore the application of methodo-
+logies or formalisms to deal with these problems. Specifically, Model
+
+Driven Engineering, Business Intelligence and Swarm Intelligence are
+explored. Model Driven Engineering has been applied to the problems
+of complexity when dealing with modelling and simulation of large
+power grids. Business Intelligence methodologies have been explored
+for the analysis of huge quantities of heterogeneous data coming from
+
+large-scale simulations. Swarm Intelligence techniques have been ap-
+plied to implement demand side control mechanisms.
+
+The usefulness of these methodologies or formalisms to deal with the
+problems of Smart Grids cannot be fully verified. This means, it is
+not possible to validate that they are useful in all the Smart Grid case
+studies. However, case studies can be carried out to check whether
+they are useful or not. For this reason, in this research, several case
+studies based on real problems have been carried out.
+The results of the application of the methodologies or formalisms in
+these real case studies have been positive since they reduced the time
+needed to carry out policy experiments. Model Driven Engineering
+
+has been useful in dealing with the engineering of simulators for large-
+scale models. Business Intelligence methodologies have been used to
+
+analyse data coming from simulations. They have demonstrated to be
+useful for providing a fast, multidimensional querying. The application
+of Swarm Intelligence techniques have also been shown to be useful for
+dealing with decentralised decision making.
+In Agent-based Modelling and Simulation (ABMS), a system is modelled as a collection
+of agents, which are autonomous decision-making units with diverse characteristics. The
+interaction of the individual behaviours of the agents results in the global behaviour of the
+system. Because ABMS offers a methodology to create an artificial society in which actors with
+their behaviour can be designed and results of their interaction can be observed, it has gained
+attention in social sciences such as Economics, Ecology, Social Psychology, and Sociology.
+In Economics, ABMS has been used to model many strategic situations. One of the popular
+strategic situations is the Public Goods Game (PGG). In the PGG, participants secretly choose
+how many of their private money units to put into a public pot. Social scientists can conduct
+laboratory experiments of PGGs to study human behaviours in strategic situations. Research
+findings from these laboratory studies have inspired studies using computational agents and
+vice versa. However, there is a lack of guidelines regarding the detailed development process
+and the modelling of agent behaviour for agent-based models of PGGs. We believe that this
+has contributed to ABMS of PGG not having been used to its full potential.
+This thesis aims to leverage the potential of ABMS of PGG, focusing on the development
+methodology of ABMS and the modelling of agent behaviour. We construct a development
+framework with incorporated software engineering techniques, then tailored it to ABMS of
+
+PGG. The framework uses the Unified Modelling Language (UML) as a standard specifica-
+tion language, and includes a simulation development lifecycle, a step-by-step development
+
+guideline, and a short guide for modelling agent behaviour with statecharts. It utilizes software
+engineering methods to provide a structured approach to identify agent interactions, and design
+simulation architecture and agent behaviour. The framework is named ABOOMS (Agent-Based
+Object-Oriented Modelling and Simulation).
+After applying the ABOOMS framework to three case studies, the framework demonstrates
+flexibility in development with two different modelling principles (Keep-It-Simple-Stupid vs.
+Keep-It-Descriptive-Stupid), capability in supporting complex psychological mechanisms, and
+ability to model dynamic behaviours in both discrete and continuous time. Additionally, the
+thesis developed an agent-based model of a PGG in a continuous-time setting. To the best of
+our knowledge such agent-based models do not exist. During the development, a new social
+
+preference, Generous Conditional Cooperators, was introduced to better explain the behavioural
+dynamics in continuous-time PGG. Experimentation with the agent-based model generated
+dynamics that are not presented in discrete-time setting. Thus, it is important to study both
+discrete and continuous time PGG, with laboratory experiment and ABMS. Our new framework
+allows to do the latter in a structured way.
+With the ABOOMS framework, economists can develop PGG simulation models in a
+structured way and communicate them with a formal model specification. The thesis also
+showed that there is a need for further investigation on behaviours in continuous-time PGG.
+For future works, the framework can be tested with variations of PGG or other related strategic
+interactions.

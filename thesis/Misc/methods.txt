@@ -1,0 +1,937 @@
+﻿The EOF analysis is a useful tool to interpret physical processes in
+spatio-temporal data, because it can separate the spatial patterns and
+temporal fluctuations of the data. In this study, the EOF analysis is
+introduced to interpret the relationship between waves and meteorological
+data. Also, the EOF analysis enables the proposed model to
+forecast waves at multiple stations simultaneously. The EOF analysis
+assumes stationarity of the data. However, some geophysical and climatic
+variables have periodically time-dependent covariance statistics or nonstationarity.
+The stationarity assumption is often not appropriate for
+such geophysical and climate variables even after removing the diurnal
+cycle or the seasonal cycle (Kim et al., 2015). To overcome the stationarity
+assumption of the EOF analysis, the wavelet analysis is incorporated
+in this study. The wavelet analysis, which provides a perfect
+filtering characteristic, has been used in various fields of mathematics,
+science, and engineering. Unlike the Fourier technique or EOF analysis,
+the basis function of the wavelet transform has the key property of
+localization in time (or space) and frequency. This makes the wavelets
+handle non-stationary and transient signals as well as fractal-type
+structure (Murguia and Campos-Canton, 2006).
+It may seem more reasonable to perform the wavelet analysis first and
+then perform the EOF analysis to make the signal stationary. However,
+the wavelet analysis can only deal with spatial or temporal data. The
+wave and meteorological data used in this study were not independent
+data at each station but spatio-temporal data. The EOF analysis can
+separate the spatio-temporal data into spatial distribution and temporal
+variation. Therefore, we performed the EOF analysis first, and then
+additionally performed the wavelet analysis to overcome the stationarity
+assumption of the EOF analysis. The decomposed wavelet time series are
+then used as inputs to the ANN, which can handle non-stationary
+nonlinear data efficiently
+
+A detailed explanation of the wavelet decomposition procedure can be
+found in Wang et al. (2004).
+In the wavelet analysis, the original series are decomposed into an
+approximation and details. The approximation is the high-scale, lowfrequency
+component of the signal, whereas the details are the low-scale,
+high-frequency components. By the filtering process, at its most basic
+level, the original signal passes through two complementary filters and
+emerges as two signals. The selection of a suitable level for the hierarchy
+depends on the signal and experience. Often the level is chosen based on
+a desired low-pass cutoff frequency.
+There are several types of wavelet families such as Daubechies, Biorthogonal,
+Coiflets, Symlets, and Morlet. Some researchers to forecast
+significant wave heights using a WNN model have used Daubechies
+(Deka and Prahlada, 2012; Prahlada and Deka, 2015). However, Coiflet5
+(coif5) was used in this study, which was built by I. Daubechies at the
+request of R. Coifman and which is similar to Daubechies wavelet in a
+certain level but much more symmetrical than Daubechies. The symmetry
+property is useful in the signal analysis due to the linear phase of
+the transfer function (Huang and Hsieh, 2002). The wavelet analysis was
+carried out using MATLAB.
+
+The artificial neural network (ANN) is suitable for partially understood
+underlying physical processes such as wind-wave relationship.
+Fig. 3 shows the structure of feed forward back propagation type of ANN,
+which consists of an input layer, one or more hidden layers, and an
+output layer. These layers have one or more nodes. To avoid the problem
+of overfitting that may occur while an ANN is being trained, the number
+of nodes in the hidden layer, z, of the nets employed in the first stage of
+the study was computed using one of the empirical expressions
+mentioned by Fletcher and Goss (1993).
+
+There are several training algorithms such as resilient backpropagation
+(RP), scaled conjugate gradient (SCG), conjugate gradient
+Powell-Beale (CGB), Broyden, Fletcher, Goldfarb (BFG), and Levenberg-
+Marquardt (LM). Among the algorithms, the LM is the fastest method for
+training moderate-sized feedforward neural networks. However, it requires
+the storage of some matrices that can be quite large for certain
+problems. In this study, the network is very large, so one of the conjugated
+gradient algorithms is recommended (Beale et al., 2012). Kalra
+et al. (2005) compared the prediction performance of the five algorithms
+and mentioned that the CGB produced the most accurate results among
+the algorithms. Therefore, the CGB scheme was used in this study. The
+ANN model implementation was carried out using MATLAB toolbox.
+In this paper, ANN ensembles were used to improve the generalization
+ability of ANN. The simplest way for creating various ensemble
+members was used, which is to train each network using randomly
+initialized weights. After averaging the whole ensemble members, the
+RMSE (root mean square error) between ensemble average result and
+each ensemble member was calculated. The two cases with the largest
+RMSE were removed, and then the remaining ensemble members were
+averaged. The iteration was 20 times and the networks training was
+stopped after maximum 10,000 epochs.
+
+The EOFWNN model was constructed by combining the EOF analysis
+and discrete wavelet transform with neural networks to obtain a
+powerful nonlinear ability and to forecast spatially distributed wave
+height series. Fig. 4 is the schematic diagram of the EOFWNN model.
+First, the EOF analysis is conducted for wave data and meteorological
+data to separate spatial and temporal components for training period.
+Each variable is decomposed into several modes, which corresponded
+99.9% variance of the series. Second, the wavelet analysis is applied to
+each PC time series of wave data and meteorological data. The decomposed
+wavelet signal at level n is consisted of sub signals of an approximation
+and n details. Next, training is conducted with the decomposed
+wavelet signals of wind speed, sea level pressure and wave height data as
+input data and with each PC time series of wave height data for various
+lead times as target. Finally, the forecasted wave height PC time series
+and the LVs obtained in the first step (i.e. EOF analysis) are reconstructed
+to calculate the wave height time series at multiple stations for various
+lead times.
+
+Fundamentals of many problems in computer vision and photogrammetry relate to
+studies between three interconnected entities, namely 3D structure, camera pose and
+image correspondence. Camera calibration, for example, uses structure-image correspondences
+to estimate projection parameters and camera poses (see Appendix A for
+details). A calibrated multi-view vision system, on the other hand, reconstructs 3D
+structure from established image correspondences.
+
+In the context of SLAM, a vision system (the agent) is moving around a scene,
+makes observations about the scene’s structure, and uses correspondences of tracked
+scene points to deduce the agent’s location.
+
+The scene structure refers to the 3D geometry of static, rigid, and salient objects in
+the scene (i.e. this is not a mathematically precise definition). As this structure does
+not change while the sensor is moving, the only factor affecting the observations would
+be the motion of the agent. Therefore, this poses an inverse problem of recovering the
+motion from observed changes in scene points.
+
+Recovery of structure from imagery data is an essential building block of a visual
+mapper. This section reviews the structure recovery problem in its simplest form,
+namely 2-view point triangulation. A special case, that is frequently used for retrieving
+dense reconstructions from two rectified views, is then given in Section 3.2.2. This case
+is then extended for multiple views in Section 3.3.1.
+
+A generalisation of Eq. (3.6) into a multi-view case has a similar (low) complexity
+level as solving an over-determined homogeneous linear system. Estimating the
+structure in this way is known as direct linear transform (DLT). The DLT technique
+has been widely used not only for point triangulation but also for camera calibration,
+homography estimation, or pose recovery (Hartley & Zisserman, 2004). Equation (3.5)
+poses a linear duality between the structure and the motion if the number of constraints
+is sufficient. Thus, the motion can be immediately calculated in a least-squares form
+once the structure is determined, and vice versa. Such a duality allows the structure
+computation to be implicitly embedded into a pose recovery problem (Chien, Geng &
+Klette, 2015).
+
+Solving this equation, however, poses a quadratically-constrained quadratic minimisation
+problem which, unfortunately, has no closed-form solution. Hartley and
+Sturm (Hartley & Sturm, 1995) re-parametrized the objective function using a variable
+that controls the pencil of epipolar lines; they suggested a numerical solver to find
+all roots of the resultant six-degree polynomial in terms of the introduced variable.
+Recently, various algorithms have been proposed to improve the numerical stability
+and computational cost in solving the optimal triangulation problem
+
+The optimal solution can also be approached iteratively, using a numerical optimisation
+algorithm such as the one shown in Section 3.4.4. In this case, one may use the
+DLT technique or the mid-point method to obtain an initial solution. It is worth noting
+that, the minimisation of the reprojection error, as defined by Eq. (3.14), is considered
+the “gold standard” in the context of parameter estimation in computer vision. The
+objective is discussed repeatedly throughout this thesis (e.g. Sections 3.4.1, 4.3.2, and
+5.4.2).
+
+Finding image correspondences plays a key role in a variety of vision tasks, and it is
+no exception in the field of VO and SLAM. Correspondences between observations of
+a stationary scene point in multiple views are useful to derive the 3D coordinates of
+this point (as discussed in Section 3.2) and the egomotion of the camera (covered in
+Section 3.4). Therefore, image correspondences serve as a bridge between structure
+and motion.
+
+This section describes two classes of techniques for establishing image correspondences
+in subsequently recorded images.
+
+Methods in the first class of photometric matching perform direct matching on image
+data; this is useful for generating dense correspondences subject to a global smoothness
+regularisation. Methods in the second class of descriptor matching find sparse image
+correspondences by matching characteristic vector representations of sparse key points,
+known as descriptors in a feature space. Both classes are compared in Table 3.2.
+
+A straightforward way to establish correspondences between two subsequently recorded
+images is to perform direct matching on pixel intensities. The general intensity-based
+matching problem, regarding two temporally related images, is known as optical flow
+estimation
+
+This field has been extensively studied in computer vision. Many approaches
+such as the Horn-Schunck (Horn & Schunck, 1981) algorithm, the Lucas-Kanade
+algorithm (Lucas & Kanade, 1981; Baker & Matthews, 2004), and the Farnebäck
+algorithm (Farnebäck, 2003), have been developed and successfully applied to solve
+a wide variety of problems. The Lucas-Kanade algorithm was later further developed
+into a point tracker (Tomasi & Kanade, 1991; Shi & Tomasi, 1993), known as the
+KLT method, which has been adopted by many modern VO implementations (Badino,
+Yamamoto & Kanade, 2013; Ci & Huang, 2016).
+
+The minimisation of  has been well studied in the special case where the first
+and second views form a rectified left-right stereo-image pair. Some stereo matchers,
+such as the semi-global matcher (SGM) (Hirschmüller, 2008), for example, have been
+developed to compute an optimal map D. Note that the inverse depth is proportional to
+the disparity value (in the rectified case) by factor bf, where b is the length of the stereo
+baseline, and f is the effective focal length.
+
+Motion recovery is one of the key tasks of a mapper or odometer. The motion of a
+camera can be estimated by using correspondences between 2D, 3D, or photometric
+spaces, considering these spaces for two views. In this section we provide a brief initial
+review of widely adopted two-view pose estimation techniques. A more comprehensive
+study is later given in Section 4.3.
+
+Pose recovery of a camera, given a set of 3D points in the first view and their projections
+in the second, is known as the perspective-n-point (PnP) problem. The problem can be
+linearly solved following a DLT technique, similar to the one previously described in
+Section 3.2.1.
+
+Under some circumstances, such as monocular visual odometry, 3D coordinates y
+might not be available as a prior. In such a case, the motion of the camera can still be
+recovered from epipolar conditions but where the scale of t remains undetermined due
+to lack of metric reference (Longuet-Higgins, 1981).
+
+As an essential matrix has five degrees of freedom (three from rotation, two from
+translation with scale ambiguity), obviously, solving it using eight-point correspondences
+is an over-parametrized approach. It has been shown that the essential matrix can
+be recovered efficiently by using minimally five image correspondences to find the roots
+of a degree-10 univariate polynomial, which is known as the five-point algorithm (Nistér,
+2004). The algorithm is further improved by Hartley et al. and now considered as a
+state-of-the-art solver (Li & Hartley, 2006).
+
+When the scene structure is known, it is possible to determine the pose without any
+pre-computed correspondences which, in fact, will be established on-the-fly while the
+pose is being solved. A well-known method in this category is the iterative-closest
+point (ICP) algorithm (Besl & McKay, 1992). The technique is useful to align two sets
+of point clouds, which are, in the context of two-view pose recovery, the reconstructed
+scene structure in the first and in the second view. However, the reconstruction from a
+disparity image is often too noisy to yield a good 3D alignment using ICP (Scaramuzza
+& Fraundorfer, 2011; Steinbruecker, Sturm & Cremers, 2011; Ci & Huang, 2016).
+
+To overcome the inaccuracy of the structure estimate, mainstream correspondencefree
+methods use not only depth data but also the source image. These methods are
+designed to search for a rigid transform (R; t) such that, once applied for warping
+the image from the first view perspectively to the second using the depth as prior,
+the photometric difference is minimised. In particular, the estimation is based on
+the minimisation of the photoconsistency error previously defined by Eq. (3.23) in
+Section 3.3.1, where the scene structure is now considered as a known factor, and the
+transform T as being the unknown.
+
+An example of such a photometric-driven adjustment is illustrated by Fig. 3.6. As
+the estimation is completely driven by image data, there exists no closed-form solution.
+Instead, an iterative nonlinear optimisation needs to be carried out. The minimisation
+process is detailed in Section 3.4.4.
+
+This approach has been widely adopted by many real-time direct VO implementations
+that avoid feature extraction, matching, and filtering due to prohibited computational
+cost (Newcombe et al., 2011; Engel et al., 2013; Forster et al., 2014).
+This approach is also considered being the standard VO approach for RGB-D cameras
+(Steinbruecker et al., 2011; Kerl, Sturm & Cremers, 2013).
+
+A direct search of optimal pose in the image space, however, can be unreliable
+when significantly many pixels are occluded, moving, largely displaced, or displaying
+non-Lambertian reflectance. Under such circumstances the alignment may diverge. We
+visit the photometric alignment issue again in Section 4.3.3.
+
+A nonlinear optimisation process is usually carried out to refine a linearly solved pose
+(e.g. EPnP), or to solve the pose if a closed-form solver is not available (e.g. direct
+photometric alignment). In this section we formulate an abstract framework to treat the
+pose estimation problem as an energy minimisation process.
+
+Visual odometry tracks projections of a set of landmarks in the scene, frame-by-frame,
+and continuously derives the camera’s egomotion. The historical path of developments
+in VO has lead to different models and implementation details. In this chapter we
+propose a novel formulation unifying these models to achieve accurate egomotion
+estimation while maintaining a good flexibility that also supports extensions to a variety
+of sensor configurations.
+
+Stages of a typical visual odometer are shown in Fig. 4.1. The flow starts with
+some pre-processing tasks such as image rectification and feature detection as a new
+frame arrives. The identified key points are then associated with elements in the
+previously tracked point set to establish image correspondences which are then used at
+the egomotion estimation stage to solve for the camera’s local transform.
+Once solved, the egomotion is used to refine scene structure, and the new measures
+are integrated into the current state of the system (the integration is also known as
+filtering). The VO process, considered in this chapter, is seen as a front-end of a SLAM
+system which has some back-end stages that deal with long-term tracking and filtering
+as introduced in Chapter 5.
+
+Based on how egomotion is solved, VO implementations are categorised as being
+either feature-based or appearance-based methods. The methods have their own
+strengths and weaknesses, as well as applicable types of sensor configurations. In
+this section we review these perspectives, preparing for the formulation of a unifying
+framework in the next section.
+
+Feature-based methods detect image features and extract their descriptors for establishing
+sparse correspondences between frames, following the approach previously
+described in Section 3.3.2. Because a feature transform, in general, does not preserve
+image geometry, it is difficult to enforce the epipolar constraint in the feature space.
+However, if doing so, a robust outlier rejection strategy is required to remove incorrect
+point correspondences before motion can be reliably estimated.
+
+Appearance-based VO methods do not use any pre-established image correspondences
+to find the camera’s egomotion. The correspondences are instead associated on-the-fly
+by perspective warping using pixel depths and a motion hypothesis while egomotion is
+being solved.
+
+A feature-based method comes with robustness against these situations, due to the
+outlier rejection stage. In the next section we provide a unifying egomotion-estimation
+framework based on strengths of feature- and appearance-based methods.
+
+Egomotion estimation by a conventional VO system is based on a single objective:
+direct methods use a photoconsistency objective that aims at minimising a photometric
+alignment error while feature-based methods often target the minimisation of a reprojection
+error following a perspective alignment model.
+
+An outlier rejection technique may take into account a secondary model such
+as epipolar alignments; nevertheless, it is not tightly integrated into the egomotion
+estimation stage. Mono-objective implementations can be less reliable when collected
+data is severely corrupted to fit the target model.
+
+Based on the observed shortcoming, we propose a unifying framework that achieves
+egomotion estimate targeting multiple objectives, as shown in Fig. 4.4. The integration
+of multiple models improves a system’s robustness to work in a complex scene such as
+a street.
+
+A modified RANSAC process, following the pseudo-code in Fig. 4.5, works more
+like a direct VO approach which verifies a motion hypothesis using dynamically associated
+correspondences based on it through the egomotion estimation stage. In Section 4.3
+we review a number of alignment models that can be adopted for verification of a motion
+hypothesis.
+
+Uncertainty estimation in this context is necessary to normalise the evaluated quantities
+to support the integration of different objective functions in a statistically meaningful
+way, as discussed in Section 4.4. In this work we follow a Gaussian framework and
+apply the Mahalanobis metric to achieve MLE estimation.
+
+Optical flow is the two-dimensional vector field describing the motion of pixels in the image
+plane due to the motion of the environment and the camera. Optical flow offers important
+visual cues to a robotic vehicle moving in a dynamic environment. Applications such as visual
+servoing Hamel and Mahony [2002], vehicle landing Herisse et al. [2012], height regulation
+Ruffier and Franceschini [2005] and obstacle avoidance Srinivasan [2011a] use the estimated
+optical flow computed by the onboard vision system of the robot.
+
+In a robotics context, an important requirement of any optical flow algorithm is its capability
+to run at real-time frequencies. In practice, this means that the vision processing system
+should run at the same frequency, or preferably faster, than the vehicle controller. For a typical
+high-performance autonomous vehicle, this translates to frame rates in the order of 200Hz
+Bangura et al. [2015]. Furthermore, typical robotic platforms have weight limitations that con-
+strain the amount of compute hardware they can carry. For example, small aerial vehicles use
+similar embedded System on Chip (SoC) as those found in modern smart-phones. These chips
+are equipped with multi-core processing units as well as mobile Graphics Processing Units
+(GPU).
+
+Real-time computation and embedded hardware constraints requires a different approach
+to compute optical flow from the state of the art algorithms documented in the well known
+benchmarks such as Baker et al. [2011]; Butler et al. [2012]; Geiger et al. [2013]. Typical
+algorithms from the Computer Vision community use two frames to estimate dense optical
+flow between the two images Baker et al. [2011]. In order to achieve highly accurate results,
+modern algorithms use sophisticated mathematical models to extract the optical flow from two
+frames. Typically, the most accurate algorithms are also the more computationally expensive,
+as it can be verified in the runtime reported in benchmark datasets cited above.
+Recall the properties of a Robotic Embedded Vision system (REV) described in chapter
+1, in particular the high-speed video sampling of the environment to capture the dynamics of
+objects in the world at high frequencies. This chapter proposes a new optical flow algorithm
+capable of running at frequencies as high as 800Hz at 640  480 on a Desktop computer and
+near 100 Hz on embedded GPU SoC at 320  240 pixel resolution.
+
+The proposed algorithm follows a prediction-update filtering approach, where an internal
+optical flow state is incrementally built and updated using the stream of image data from the
+camera. An important component of the algorithms is the prediction stage, which is modeled
+as a system of partial differential equations to integrate forward in time the current estimation
+of image brightness and optical flow to create predictions for future time. Numerical solution
+to these equations is implemented using an efficient finite difference method based on upwind
+differences Thomas [1995]. This numerical method can be efficiently implemented on both
+GPU and FPGA hardware.
+
+Optical flow is the two-dimensional vector field describing the velocity of each pixel in a
+sequence of images. The computation of optical flow is one of the fundamental problems in
+computer vision and can be traced back beyond the seminal works of Lucas and Kanade [1981]
+and Horn and Schunck [1981].
+
+Early research works on optical flow are summarized in the survey article by Barron [1994].
+There, the authors classified optical flow methods according to the mathematical framework
+used as: differential techniques, region based methods, energy based methods and phase based
+methods. From these, differential and region based methods are of interest in the context of
+this thesis.
+
+Differential techniques: Differential methods use spatio-temporal models of the image
+brightness to recover the underlying optical flow from a sequence of images. These
+methods are based on the brightness conservation assumption that states that the total
+amount of brightness in the image is conserved over time. Intuitively, this means that
+any change in the brightness value of a given pixel is due to the change in position of the
+object in the scene in that pixel direction.
+
+Early works in optical flow such as those of Lucas and Kanade [1981] and Horn and
+Schunck [1981] are differential methods. These two algorithms marked a distinction between
+local based (Lucas-Kanade) and global based methods (Horn-Schunck) for computing
+flow. Local based methods use a small support window around each pixel in the
+image to estimate optical flow, while global based methods impose a global constraint
+over the optical flow field to improve the quality of the estimation. In general, local based
+methods are faster than global based ones. A detailed explanation of these algorithms is
+provided in Section 2.2.2.
+
+Modern differential algorithms Brox et al. [2004]; Bruhn et al. [2005];Werlberger [2012]
+utilize the same differential principles together with robust optimization frameworks to
+create highly accurate flow estimates. In particular, global based methods often use the
+L1 norm instead of the L2 (as in Horn and Schunck) to be more robust to outliers in the
+estimation process.
+
+Region based algorithms: Region based methods to compute optical flow can be thought
+as a search process to find a patch of texture in the second image that matches a reference
+patch in the first. A key difference of this approach compared to differential techniques
+is that it does not make the assumption of the image brightness to be differentiable.
+Early works such as that of Anandan [1989] uses the sum of square differences (SSD)
+to match texture patches within in a search region for each pixel. In order to support
+large pixel displacements, the algorithm is formulated in a pyramidal structure where
+coarse estimates of flow are computed on low resolution images and then are refined
+using higher resolution data. Srinivasan image interpolation algorithm follows a similar
+approach to find optical flow Srinivasan [1994], and has been used in real-life robotic
+systems Srinivasan [2011a].
+
+Modern algorithms such as SimpleFlow by et. al. Tao et al. [2012], PatchMatch by Bao
+et al. [2014], Piecewise Parametric Flow by Yang and Li [2015] and many others have
+proven the effectiveness of region based methods on public benchmarks.
+
+More recent algorithms are listed on different benchmark datasets. The most relevant are:
+the Middlebury flow dataset by Baker et al. [2011]1, the Kitti dataset by Geiger et al. [2013]2
+and the Sintel dataset by Butler et al. [2012]3. Each of these datasets provide both test and
+evaluation sequences to evaluate optical flow algorithms. The image sequences can be both
+real-life images, for which the ground truth is computed using fluorescent markers as in the
+Middlebury dataset or using odometry and laser measurements as in the Kitti dataset. The
+Sintel dataset is a purely synthetic dataset based on the Sintel open-source movie4 created in
+Blender5. Ground truth optical flow can be extracted directly from the scene geometry (depth
+map) and the motion of objects relative to the camera.
+
+Additionally, the survey article of Sun et al. [2014] offers a review of most recent algorithms
+together with a quantitative analysis of different optimization frameworks used to
+estimate optical flow. Also, the survey article of Chao et al. [2014] offers a list of optical flow
+algorithms currently used in robotic applications.
+
+Optical flow algorithms are too numerous to create an exhaustive classification and review.
+Instead, the review provided in this chapter is focused on algorithms that have proven to work
+at real-time frequencies, thus making them effective for real-life robotic applications. In particular,
+differential optical flow algorithms are reviewed in detail, as such algorithm are closer
+to the mathematical formulation used in this chapter. Additionally, bioinspired algorithms as
+well as methods using alternative camera technologies such as Dynamic Vision Systems are
+included in this review.
+
+The most common algorithms to compute optical flow are the differential methods. These
+methods model the temporal change of intensity due to the underlying optical flow present
+in the image sequence. The approach is based on the well known brightness conservation
+equation that is the starting point of all differential methods Barron [1994].
+
+The key advantage of global-based methods over local-based ones is that estimations at
+each pixel are well defined thanks to the smoothness term. In regions of the image where
+image gradient information is poor, the smoothness term in Equation (2.4) dominates over the
+image term. Consequently, the flow in those regions will be filled with flow coming from
+regions with high texture content such as image edges.
+
+The work of Horn and Schunck opened a new research field in computer vision for the
+computation of optical flow using variational methods. One of such algorithms is proposed
+by Brox et. al. Brox et al. [2004] which is used as reference in the experimental evaluation
+in Section 2.6. Global-based methods typically outperform local-based methods in terms of
+accuracy in benchmarks such as Middlebury, Kitti and Sintel. However, local based methods
+perform better in terms of runtime, as it will be illustrated in the next section.
+
+There are alternative image sensors and algorithms inspired by nature from which it is possible
+to extract optical flow. These technologies and algorithms are of particular importance to
+robotics as they offer fast visual feedback to robotic vehicles.
+One of such approaches comes from understanding the visual system of insects. Insects
+such as flies and bees have compound eyes made of a grid of light sensors known as the
+ommatidia. Each ommatidium captures a narrow field of view of the scene and is connected
+to the visual cortex of the insect. The reader is encouraged to read the review paper by Borst
+on the structure of insect’s eye Borst [2009]. It is possible to model the correlation between
+neighboring ommatidium to extract motion information. This correlation model is known as
+the Reichardt motion detector Reichardt [1987]. Systems such as those by Zhang et al. [2008]
+and Plett et al. [2012] have demonstrated the effectiveness of this motion detector in real-life
+systems.
+
+The work by Srinivasan [2011a,b] offers an insight on how the motor control part of the
+insects’ neural cortex connects to the visual system. In his experiments, he has demonstrated
+how honeybees use optical flow for tasks such as navigation, obstacle avoidance and landing.
+The understanding of insect vision has brought insight to robotics to solve the same tasks on
+flying vehicles. Such is the case of the works by Ruffier and Franceschini on optical flow
+regulation Ruffier and Franceschini [2005], the work of Mafrica et. al. on velocity and steering
+angle control of a car vehicle Mafrica et al. [2016] and the work by Herisse et al. [2012] on
+landing and take-off of an aerial vehicle from a moving platform using optical flow.
+Another technology that has been proven effective for robotic vision are the Event-based
+Cameras. These cameras are a complete paradigm shift compared to standard digital camera
+hardware, with the principal difference lying in the information transmitted to the user.
+As their name suggests, event cameras transmit events occurring in the scene instead of full
+ware transmits event location, timestamp and polarity (plus or minus) asynchronously. Consequently,
+the bandwidth required between camera and processing units is significantly reduced,
+as the camera only transmits the difference between two images. Applications of this technology
+are emerging: Benosman et al. [2012, 2014] extract optical flow from the event stream
+using a differential framework similar to that used on standard gray-scale images. Mueggler
+et al. [2014] use the stream of events to track the 6-DOF pose of an aerial vehicle using the
+on-board vehicle’s CPU.
+
+The main concept in the development of the proposed real-time optical flow algorithm is that
+of incrementally building a dense flow estimate over time. In this approach, one has an internal
+optical flow state that is constantly refined using new image measurements from the camera.
+Instead of computing dense flow fields from two images, as typical computer vision algorithms
+do, an incremental approach will exploit the large availability of data one has in a real-life
+robotic vision system to constantly estimate optical flow.
+This incremental approach has two advantages over standard algorithms. First, the optical
+flow field is temporally smooth. Thanks to the incremental nature of the algorithm, the
+temporal evolution of the estimated flow field will show a smooth transition between two consecutive
+image frames. Second, there are computational efficiencies in this approach. Instead
+of using a complex algorithm to compute dense optical flow fields from two images, one can
+design a simpler flow update algorithm considering new image data and the current flow state
+estimation.
+Intrinsic to the incremental approach to compute optical flow, is the concept of temporal
+evolution of the flow field. At each time step, that is, when a new image arrives, one needs
+to propagate forward in time the old flow state to align it to current time. Once the prediction
+is completed, both the flow state and the measurements are temporally aligned, and a new
+estimate of optical flow can be created using both pieces of information.
+
+This process matches a filter architecture consisting of update and prediction stages. To the
+best of the author’s knowledge, this architecture for computing optical flow was first described
+in the PhD dissertation of Black [1992]. In his work, Black uses robust statistic methods in
+the update stage to refine the predicted optical flow from previous time step. The prediction
+is formulated as the warping of the optical flow field forward in time. This warping can be
+implemented by adding the optical flow field to each pixel coordinate and then performing a
+re-sampling of the resulting image.
+
+The proposed algorithm in this chapter follows the same general update-prediction architecture.
+However, a key novelty is the formulation of the prediction stage as system of partial
+differential equations modeling the transport of optical flow, and any associated field, by the
+optical flow. The prediction stage is implemented by numerically solving these transport PDEs
+using a finite difference solver. In contrast to image warping, the finite difference solver does
+work on a fixed grid of points and hence, it does not require a re-sampling post-processing
+stage.
+
+As it will be shown throughout the chapter, this filter formulation leads to regular computations
+that can be realized in both GPU and FPGA hardware, and can run at the frequencies
+required by a robotic vision system.
+
+This section presents all the details for the numerical implementation of the state propagation
+stage described in Section 2.4.2.
+
+The study of numerical methods for solving partial differential equations is a complete
+branch of applied mathematics in itself (see LeVeque [2002] and Thomas [1995, 1999] for an
+introduction to numeric PDE theory). Numerous numerical methods exists for different types
+of applications such as computational fluid dynamics, aerodynamics and weather modeling. In
+general, the choice of a particular numerical method is problem and application dependent.
+Numerical methods can be classified according to their approach to derive a discrete version
+of the underlying continuous PDE problem. Methods can be divided as finite volume
+methods and finite difference methods.
+
+Finite volume methods formulate the partial differential equation problem in terms of a
+conservation law. First, the discrete volume, or area, element is defined. Simple examples of
+these elements are a cube and a square. This elements act as reservoirs containing a certain
+amount of “material” at any given time. Then, for the derivation of the conservation law, one
+needs to define the flux of material entering and leaving the volume elements on each of its
+sides or faces. These flux equations form the conservation law specific to the problem and can
+be discretized to create a numeric implementation. The reader is encouraged to look at the
+book of LeVeque [1992] for an introduction to finite volume methods.
+
+Finite volume methods tend to be more physically accurate than finite difference methods.
+One reason for this is the modeling process in terms flux processes, which naturally matches
+the physical properties of the real-life phenomena. This gain in accuracy, as is usually the
+case, comes at the price of computational complexity in order to actively balance the input and
+output material flux at each discrete time step.
+
+Finite difference methods offer a more direct approach to solve a partial differential equation.
+Basically, one only needs to define the volume or area element (same as finite volume
+methods), and define discrete operators for each partial derivative present in the PDE. Depending
+on the type of equation (parabolic, elliptic or hyperbolic), one needs to carefully choose
+the difference operators to avoid instability in the numerical scheme. Hyperbolic PDEs, which
+model transport process (the optical flow state propagation), are very sensible to this choice of
+operators. The books by Thomas Thomas [1995, 1999] are an excellent reference to study the
+different types of PDE and their numerical solution.
+
+Figures 2.7 and 2.8 show the results of propagating an image and a ground truth optical flow
+field from the ‘Bunny’ dataset. The scheme is configured with N = 3 iterations between image
+time steps, and runs for 50 image time steps, that is, 50 N numeric iterations. The maximum
+optical flow in this sequence is around 2:7 pixels and is located near the head of the bunny.
+Errors in the predicted image and optical flow are small for the first 10 images, and starts
+increasing at flow discontinuities. Notice that regions with higher errors are located on the
+right-hand side of the bunny. In these areas, the scene’s background plane is being discovered,
+as the Bunny moves to the left of the image, leaving a trail of blurred optical flow. In the
+leading edge of the bunny, that is, the flow discontinuity on the left side of the object, the
+sharpness of the flow field is preserved even after 50 image steps.
+
+This difference between errors in the leading edge and the trailing edge of optical flow
+discontinuities has a physical explanation by considering the type of flow Equation (2.12) is
+modeling. Consider for example a wave in the beach. Before it breaks, the wave approaches
+as a wall of water (like in Interstellar movie). This wall of water is a shock wave and its
+steepness remains as the wave moves forward. Once the wave passes, one will notice that
+the back side of the wave has a smooth transition to normal sea level (like Figure 2.6. This
+smooth transition preserves the entropy added to the system by the moving wave. Any other
+shape in the trailing edge of the wave will be some sort of ordered transition that reduces the
+entropy of the system, going against the second law of thermodynamics. In fluid dynamics, the
+optical flow conservation equation derived in Equation (2.12) is known as the inviscid Burgers’
+Equation, and models the evolution of an inviscid fluid in space. Like any other real physical
+phenomenon, it obeys the laws of thermodynamics. The upwind finite difference solver used
+to propagate the optical flow field naturally includes the conservation of entropy within the
+numerical scheme.
+
+Optical flow, is not a physical flow field, and discontinuities on both leading and trailing
+edges have valid interpretations explained as motion boundaries typically originated at object
+boundaries. It is desirable to consider a relaxation on the physical interpretation of the flow
+that could be included explicitly in the numerical method to obtain a more accurate propagation
+result. Such a task is, however, beyond the scope of this thesis and will be left as future work.
+
+The numerical solution to the propagation equations poses several properties that can be exploited
+in a parallel or streamed implementation. The propagation of either the optical flow
+or the associated scalar fields only require data in the 4-neighborhood of each pixel. This is
+ideal for a GPU implementation as one can exploit the data locality of pixels stored in global
+memory to accelerate their read.
+For a stream-type implementation, as I would implement this scheme on a FPGA, one will
+only need to buffer 3 rows of data for each half time step propagation. x and y propagation
+schemes can be connected in cascade inside the FPGA, and each block only reads the output
+of the block immediately before. Thus, the FPGA implementation will need to read the initial
+conditions in raster order only once from external memory and write, also in raster order, the
+propagated output. Such a design would maximize pixel throughput and minimize the need to
+access external memory.
+
+This section presents the experimental evaluation of the optical flow filter algorithm. The
+evaluation is divided in two components. First, the optical flow filter is compared against
+other open source algorithms on ground truth image sequences. Second, qualitative results
+are presented for real-life high-speed image sequences captured while driving a car vehicle at
+ANU campus and Canberra.
+
+In the evaluation, optical flow algorithms capable of running at real-time frame rates are
+used. The algorithms are: the pyramidal implementation of Lucas-Kanade method Bouguet
+[2001], Farneback algorithm Farnebäck [2003] and Brox et. al. total variational method Brox
+et al. [2004]. The implementation of these algorithms is available in the GPU library module
+of OpenCV. The Massively Parallel Lucas-Kanade method by Plyer et. al. Plyer et al. [2014]
+could not be included in the evaluation as there is no source code or executable available to test
+the algorithm. The algorithm by Werlberger Werlberger [2012] could not be tested as his test
+application requires a legacy version of Nvidia CUDA.
+
+
+To analyze the error performance of the optical flow filtering algorithm, one needs an image
+dataset that replicates the operating conditions in which the algorithm is expected to be
+deployed. That is, for the purpose of this thesis, a dataset should provide images from a highspeed
+camera moving in complex environments. Moreover, the length of the dataset should be
+enough for the filter algorithm to converge to a dense optical flow field.
+
+These two properties are not present on any of the standard datasets available for optical
+flow evaluation. Those are: the Middlebury dataset by Baker et al. [2011], the Kitti dataset
+by Geiger et al. [2013] and the synthetic Sintel dataset by Butler et al. [2012]. These datasets
+either provide short image sequences for which the optical flow filter cannot converge (such is
+the case of the Middlebury and Kitti datasets) or the pixel displacement between frames is too
+large for the algorithm to be able to identify.
+
+Considering this, a synthetic dataset using Blender 3D modeling software10 is created to
+simulate a high-speed camera moving in a complex environment. The dataset, named Bunny,
+is shown in Figure 2.9 as a panoramic view. The camera moves to the right with a constant
+linear velocity of 0:5 ms1 during one second, thus generating a total of 300 images. The
+ground truth optical flow is calculated from the rendered depth math using the camera velocity
+and intrinsic parameters, as explained in Appendix A.
+
+Regarding the optical flow filter algorithm in Figure 2.10, the initial condition of the filter
+state is set to zero and flow starts to be identified at brightness discontinuities (k = 1; 2). The
+estimated flow spreads to textureless regions as the camera moves and the smoothing filter is
+applied to the updated flow. This can be observed at the interior of the floor tiles (k = 5).
+After approximately 25 frames (or 0.08 seconds) the optical flow covers almost all regions of
+the image. At this point, the filter state maintains a dense estimate constantly updated given
+new image data. Last three rows of Figure 2.10 illustrates the trailing edge artifact of the filter
+algorithm. Optical flow in the leading edge (left side of the bunny) shows a sharp transition
+between background and foreground flow. At the trailing edge (right hand side), background
+objects are being discovered and the optical flow goes from high to low. This transition is,
+however, not immediate and needs several time steps for the algorithm to “forget” about the
+foreground flow. The width of the trailing edge is related to parameter  in the filter update
+stage (Section 2.4.3).
+
+Brox total variational methods gets the most benefit from incrementing the number iterations,
+reaching similar average endpoint at around 30 iterations as the flow-filter algorithm.
+This level of accuracy, as one would expect, decreases the frame rate, reaching approximately
+30 Hz, compared to more than 800 Hz for the flow-filter. Lucas-Kanade and Farneback algorithms
+show no significant difference in error performance, however the frame rate of both
+algorithms drastically reduces as the number of iterations increases.
+
+The Middlebury test sequences are used to provide an extra level of comparison for the optical
+flow filter algorithm. This evaluation allows to compare the error metrics of the flow-filter
+algorithm with other algorithms in the literature.
+The original test sequence consists of only 5 images and one ground truth optical flow
+field. As mentioned before, the flow-filter algorithm requires several frames to reach a dense
+flow field estimation. Given the ground truth optical flow, it is possible to enlarge the dataset
+by interpolating the images between two frames. To achieve this, the ground truth provided
+by the dataset is used to propagate the input image 50 frames backwards and forwards using
+a similar approach as described in Section 2.5.4. This creates a total of 100 images which is
+sufficient for the flow-filter to converge to a meaningful flow estimate. The estimated optical
+flow at time k = 100 is scales by 50 to compare it with the ground truth. These images are
+used by the flow-filter and the output at time k = 100 is scaled by 50 to compare it with the
+ground truth.
+For comparison purposes, the parameters of the evaluated algorithms are set to values
+matching those reported in eFOLKI evaluation Plyer et al. [2014]. Table 2.6 lists the parameters
+for each algorithm. Figure 2.14 shows the optical flow for each of the evaluated algorithms
+and Figure 2.13 shows the estimated optical flow and endpoint error for the flow-filter algorithm.
+Tables 2.7 and 2.8 summarize the endpoint and angular error error metrics for the
+evaluated algorithms, respectively. For the angular error, the values reported in the original
+eFOLKI paper are included for comparison.
+
+Table 2.12 shows a comparison of the runtime of the flow-filter algorithm running on the Nvidia
+Tegra K1 embedded System on Chip and the GTX 780 desktop GPU card. The GPU in the
+Tegra K1 SoC has 192 CUDA cores with Kepler architecture and approximately 12 GB/s
+shared memory bandwidth11. For reference, the GTX 780 has 2304 CUDA cores with Kepler
+architecture and 288 GB/s dedicated memory bandwidth12.
+
+The flow-filter algorithm was run on the T-K1 SoC at a quarter VGA resolution (320240)
+and varying the maximum flow allowed in the algorithm. This effectively increases the number
+of iterations of the numerical scheme for the propagation stage of the filter. The number of
+smooth iterations was set to 1 for all benchmarks.
+
+For 1 pixel maximum flow, the flow-filter algorithm runs at 114 Hz on the T-K1 chip, and
+frequency decreases to 74 Hz for flow values up to 8 pixels. It is believed this image resolution
+and frame rates might be sufficient to provide visual cues to a small robotic vehicle, such as
+quadrotor, equipped with an embedded computer. Robotic vehicles capable of carrying heavier
+payloads, such a car, can take advantage of desktop computer components to run the optical
+flow algorithm at much higher frame rates.
+
+A filter formulation for computing dense optical flow in real time was introduced. The algorithm
+is constructed as a pyramid of filter loops, where an optical flow field is incrementally
+built and constantly refined using new image data and previous state estimation.
+Each filter in the pyramid structure is made of an update and propagation stage. The
+propagation stage takes previous optical flow estimation and propagates it forward in time.
+This is implemented as a set of partial differential equations modeling the transport of image
+and optical flow by the optical flow itself. A fast numerical implementation based on final
+difference methods can efficiently be implemented both on GPU and FPGA hardware.
+
+A filter formulation for computing dense optical flow in real time was introduced. The algorithm
+is constructed as a pyramid of filter loops, where an optical flow field is incrementally
+built and constantly refined using new image data and previous state estimation.
+Each filter in the pyramid structure is made of an update and propagation stage. The
+propagation stage takes previous optical flow estimation and propagates it forward in time.
+This is implemented as a set of partial differential equations modeling the transport of image
+and optical flow by the optical flow itself. A fast numerical implementation based on final
+difference methods can efficiently be implemented both on GPU and FPGA hardware.
+
+Images captured by any omnidirectional system can be mapped onto the unit sphere. The
+sphere offers a regular geometry on which to define image processing operations. Calibration
+toolbox such as those proposed by Scaramuzza et al. [2006] and Schönbein et al. [2014] can
+be used to calibrate the optic system in order to ensure geometrically correct images onto the
+unit sphere. The mapping procedure takes each pixel in the raw (distorted) image and finds
+its corresponding spherical coordinate. As a consequence, the pixel density in the resulting
+sphere “pixelation” is not uniform (Figure 3.12d). Consequently, image processing algorithms
+that rely on pixel correlation on the sphere need to compute relative distance metrics between
+pixels within the support domain of the algorithm. An example of such approach is the work
+of Demonceaux et al. [2011] using geodesic metrics to calculate weights for computing image
+gradient. While this method properly considers the non-uniform sampling of points on the
+sphere, the filter masks need to be computed for each pixel individually. This contrasts with
+the simplicity of computing image gradient on standard perspective images using for example
+Sobel filter masks.
+
+There are two keyproperties of perspective images that allow efficient implementation of
+image processing algorithms. First, each pixel (x; y) in the image plane has a direct correspondence
+to row and column memory coordinates (i; j), enabling fast access of image data.
+Second, pixels are assumed to be equally separated and orthogonal to each other in the x and y
+axis. As a result, algorithms for low-level image operations such as Gaussian filtering can exploit
+the separability of the 2D image coordinate system to create implementations using series
+of 1D convolutions in x and y, thus decreasing compute time. Considering this, the following
+fundamental properties are proposed to create an efficient discretization of the sphere on which
+to apply image processing algorithms
+
+There are several computer data structures used to discretize the sphere. Roughly, these data
+structures can be classified by the type of surface element used to represent a small portion of
+the sphere. This section reviews the most relevant sphere pixelation data structures.
+The icosahedral subdivision proposed by Baumgardner and Frederickson [1985] uses the
+regular icosahedron (Platonic solid made of 20 equilateral triangles) as reference for the subdivision.
+The subdivision splits each triangle into four smaller ones by cutting each edge in the
+middle point and connecting the new vertex. For efficient storage of the points, it is possible
+to divide the original icosahedron into ten quadrants made of two triangles each and store the
+subdivision points of each quadrant as 2D memory arrays. This allows for efficient access of
+points in the data structure using (row, column) coordinates on each quadrant. To interpolate
+data within each triangle, one can use barycentric coordinates to compute a weighted average
+at a given position inside a triangle.
+
+The HEALPix data structure from Górski et al. [2005] uses equal-area four-side polygons
+to cover the sphere. This data structure is widely used in astronomy for the analysis of celestial
+data such as microwave background radiation. The HEALPix coverage of the sphere is such
+that the face elements create isolatitude rings. This property is essential for fast implementation
+of spherical harmonics. The data structure consists of twelve grid patches: 4 patched in the
+north pole cap, 4 in the equatorial belt and 4 in the south pole cap. Figure 3.2 illustrates the
+patch layout. Within each grid, faces can be indexed using a ring indexing scheme where
+neighbor index correspond to faces in the same isolatitude ring, or nested scheme, where the
+indexing works as a quad-tree index scheme. Either indexing scheme can be used on the same
+data structure. The ring scheme is useful for applying Fourier transforms to the spherical data
+
+Concerning the desired pixelation properties at the beginning of this chapter, HEALPix
+satisfies properties 2 and 3. Regarding property 1, neighboring points in the pixelation do not
+form a local orthogonal grid on which one can efficiently run image filters.
+The cubic mapping of the sphere, proposed by Ronchi et al. [1996] subdivides the faces of
+a cube and projects them to the sphere. There are several ways to create the subdivision and
+mapping: equiangular, conformal, elliptic and gnomic. Each mapping produces pixelations
+that satisfy different properties such as smooth angular transition between faces, the angle between
+points or orthogonality of the local coordinate frame Putman and Lin [2007]. Moreover,
+it is possible to apply a regularization procedure to improve the quality of the pixelation. In
+their work, the authors use a system of compression and torsion springs to regularize the distance
+and angle between neighboring points. An important difference between this work and
+the Spherepix data structure is the fact that Spherepix allows overlapping between cube faces,
+which further improves the regularity of the generated grid.
+
+The cubic mapping of the sphere provides a simple representation of the sphere in terms
+of six two-dimensional grids. Indexing of points in the cube data structure is straightforward.
+This data structure produces a good initial condition for the Spherepix regularization procedure
+to create equidistant and orthogonal grids.
+
+The spherical coordinates in the interpolation belt are the input to a search algorithm to find
+pixel coordinates in neighboring patches. The algorithms follows a quad-tree search strategy
+to find the closest point in the grid to the input query point. At each step, the grid is recursively
+subdivided in four quadrants and the closest quadrant to the query point is selected each time,
+until the search area reaches a size of one pixel. The pseudo-code of this procedure is described
+in Algorithm 1. Notice that the geodesic projection-retraction class is used in the search loop.
+As mentioned in Section 3.3, this class is useful to perform operations when points are far
+away from the origin.
+
+Image processing algorithms in the Spherepix patches comprise three distinct components.
+First, camera images are mapped onto the Spherepix patches using the calibrated camera model
+of the capturing system. Secondly, image processing subroutines run on the separate grid
+patches using interpolated data near the boundaries. Finally, after each image subroutine, the
+data from overlapping grid patches is reconciled to produce a homogeneous representation of
+the output.
+
+After each image processing subroutine, the output in the overlapping areas needs to be reconciled.
+This enforces that each Spherepix patch has the same information content about the
+overlapped area. The patch reconciliation process changes according to the type of image data.
+For scalar fields, the reconciliation consists in averaging the output of each pixel in the
+overlapping regions with the interpolated output in its neighbor patch. Currently, all pixels in
+the overlapping region are weighted equally, although more sophisticated schemes considering
+the distance to patch border are possible. For vector fields, the reconciliation method applies
+the averaging to each 3D vector component. Thus, vector information needs to be transformed
+from beta to 3D tangent space coordinates before the averaging using Equation (3.22).
+
+The same procedure can be used to render virtual views of the spherical data. In this case,
+the spherical coordinates of the virtual view are used to interpolate data from each Spherepix
+patch using Algorithm 1. The averaged output at each virtual view pixel is the average of
+interpolated values from all patches that overlap at that point. Figure 3.15 shows the output of
+creating a panoramic view from the image patches in Figure 3.13. The average masks indicates
+the number of patches that overlap at each virtual view pixel.
+
+As Brox algorithm was applied individually to each Spherepix patch using OpenCV implementation,
+it was not possible to use the interpolation belt of the patch to access image
+content from neighboring images. Moreover, the algorithm could not reconcile information
+from overlapping patches, as this needs to be implemented internally in Brox code. Therefore,
+artificial border artifacts can be visualized in Figure 3.20. In order to remove these borders,
+the border handling routines in OpenCV would need to be modified to access data from the
+Spherepix images and the reconciliation of optical flow would need to be called after each
+iteration of the algorithm. These implementation details will be considered in a future version
+of the Spherepix code.
+
+Optical flow has been widely used to incorporate visual information into the robot’s control algorithm.
+Applications such as landing and obstacle avoidance have successfully been explored
+in the past. Motion control algorithms that rely on raw optical flow are limited to specific
+scenarios, for example: grazing landing Srinivasan et al. [2000], corridor centering Srinivasan
+[2011b] and altitude regulation Ruffier and Franceschini [2005]. More sophisticated tasks such
+as landing and obstacle avoidance require post-processing of the optical flow field to infer the
+‘looming’ effect, or optical flow divergence, that occurs when an object is approached directly.
+For example, Nelson and Aloimonos [1989] compute the divergence of the optical flow field
+and then use this for obstacle avoidance. Hamel and Mahony [2002], Herisse et al. [2008] and
+McCarthy and Barnes [2012] integrate the optical flow field divergence over the camera’s field
+of view to compute the relative 3D velocity of the landing platform, effectively computing the
+looming effect by integration over a large area.
+
+This chapter introduces a new robo-centric spatio-temporal representation of motion, the
+structure flow Adarve and Mahony [2016b]. Structure flow generalizes classical optic flow,
+that measures translation of an image point across the image surface, by including an additional
+normal component measuring the rate of angular ‘looming’ at each point in the image.
+Structure flow will have a similar utility to optic flow for control of robotic vehicles where
+in addition to existing methodologies, the normal component of structure flow directly yields
+motion cues associated with approach to obstacles. Geometrically. structure flow is a 3-vector
+assigned to each ‘pixel’ in the image comprised of the three-dimensional Euclidean velocity
+between the robot and the environment (the scene flow Vedula et al. [1999]) scaled by the
+inverse range of the scene.
+
+Figure 4.2b illustrates the optical, scene and structure flow fields for a perspective camera
+moving at 10ms􀀀1 in collision course with a building located approximately at 15m. Since
+the scene is static, the calculated scene flow is equal for all pixels in the image, the negative
+of the camera velocity. Scaling the scene flow by the inverse of the depth field, one obtains
+the structure flow field. Note the clear identification between objects close to or far away
+to the camera that is of direct importance in vehicle control. In contrast, the optical flow is
+a divergent vector field with the focus of expansion located in the center of the image; the
+direction of motion. Although the vehicle is moving fast, the optical flow in the central region
+is small, and it is difficult to evaluate the time to contact for the vehicle to collide with the
+building.
+
+In addition to its relevance for robotic motion control, structure flow plays an intrinsic
+role in understanding image kinematics and dynamics. Image kinematics are governed by the
+well known constant brightness condition Barron [1994] which depends on optical flow, or in
+the general case, on the projection of structure flow on the image plane. For reasonable assumptions
+on the environment and camera motion, Partial Differential Equation (PDE) can be
+derived for the evolution of the structure flow that depends only on exogenous acceleration and
+rotation of the camera. These PDEs are naturally derived using a spherical camera model, and
+as it will be shown, they can efficiently been implemented using the Spherepix data structured
+developed in Chapter 3.
+
+The use of omnidirectional cameras in robotic applications is growing. This type of camera
+provides important peripheral vision capabilities to robotic vehicles moving in complex
+dynamic environments. Omnidirectional cameras use special lenses, such as wide-angle or
+fish-eye lenses, or a catadioptric system composed of lens and mirrors to project light onto the
+image sensor, Chahl and Srinivasan [2000]; Geyer and Daniilidis [2001]. Omnidirectional images
+captured by conventional image sensors such as CCD or CMOS arrays suffer from heavy
+distortion caused by the camera optics. Consequently, low-level image processing operations
+such as linear filtering need to be reformulated to compensate for image distortions. A naive
+geometric approach to compensating for image distortion in omnidirectional images destroys
+the shift-invariance and separability of typical linear image processing kernels, leading to a
+decrease in computational performance.
+
+Images captured by any omnidirectional system can be mapped onto the unit sphere. The
+sphere offers a regular geometry on which to define image processing operations. Calibration
+toolbox such as those proposed by Scaramuzza et al. [2006] and Schönbein et al. [2014] can
+be used to calibrate the optic system in order to ensure geometrically correct images onto the
+unit sphere. The mapping procedure takes each pixel in the raw (distorted) image and finds
+its corresponding spherical coordinate. As a consequence, the pixel density in the resulting
+sphere “pixelation” is not uniform (Figure 3.12d). Consequently, image processing algorithms
+that rely on pixel correlation on the sphere need to compute relative distance metrics between
+pixels within the support domain of the algorithm. An example of such approach is the work
+of Demonceaux et al. [2011] using geodesic metrics to calculate weights for computing image
+gradient. While this method properly considers the non-uniform sampling of points on the
+sphere, the filter masks need to be computed for each pixel individually. This contrasts with
+the simplicity of computing image gradient on standard perspective images using for example
+Sobel filter masks.
+
+structures can be classified by the type of surface element used to represent a small portion of
+the sphere. This section reviews the most relevant sphere pixelation data structures.
+The icosahedral subdivision proposed by Baumgardner and Frederickson [1985] uses the
+regular icosahedron (Platonic solid made of 20 equilateral triangles) as reference for the subdivision.
+The subdivision splits each triangle into four smaller ones by cutting each edge in the
+middle point and connecting the new vertex. For efficient storage of the points, it is possible
+to divide the original icosahedron into ten quadrants made of two triangles each and store the
+subdivision points of each quadrant as 2D memory arrays. This allows for efficient access of
+points in the data structure using (row, column) coordinates on each quadrant. To interpolate
+data within each triangle, one can use barycentric coordinates to compute a weighted average
+at a given position inside a triangle.
+
+The HEALPix data structure from Górski et al. [2005] uses equal-area four-side polygons
+to cover the sphere. This data structure is widely used in astronomy for the analysis of celestial
+data such as microwave background radiation. The HEALPix coverage of the sphere is such
+that the face elements create isolatitude rings. This property is essential for fast implementation
+of spherical harmonics. The data structure consists of twelve grid patches: 4 patched in the
+north pole cap, 4 in the equatorial belt and 4 in the south pole cap. Figure 3.2 illustrates the
+patch layout. Within each grid, faces can be indexed using a ring indexing scheme where
+neighbor index correspond to faces in the same isolatitude ring, or nested scheme, where the
+indexing works as a quad-tree index scheme. Either indexing scheme can be used on the same
+data structure. The ring scheme is useful for applying Fourier transforms to the spherical data.
+
+Concerning the desired pixelation properties at the beginning of this chapter, HEALPix
+satisfies properties 2 and 3. Regarding property 1, neighboring points in the pixelation do not
+form a local orthogonal grid on which one can efficiently run image filters.
+
+The cubic mapping of the sphere, proposed by Ronchi et al. [1996] subdivides the faces of
+a cube and projects them to the sphere. There are several ways to create the subdivision and
+mapping: equiangular, conformal, elliptic and gnomic. Each mapping produces pixelations
+that satisfy different properties such as smooth angular transition between faces, the angle between
+points or orthogonality of the local coordinate frame Putman and Lin [2007]. 
+Moreover,
+it is possible to apply a regularization procedure to improve the quality of the pixelation. In
+their work, the authors use a system of compression and torsion springs to regularize the distance
+and angle between neighboring points. An important difference between this work and
+the Spherepix data structure is the fact that Spherepix allows overlapping between cube faces,
+which further improves the regularity of the generated grid.
+

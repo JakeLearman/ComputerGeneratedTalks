@@ -1,0 +1,105 @@
+Photo editing and image stylization applications are popular tools to improve the
+aesthetics of images and even create works of art. The underlying image processing
+operations of these applications enable users to transform their images. The resulting
+stylized and filtered images are often shared on social media or photo sharing communities
+such as Flickr, allowing artists to gather feedback and get recognition for their photos.
+However, these kind of communities only allow to share the resulting image, not the image
+processing operation itself, therefore limiting creativity and collaboration. Furthermore,
+sharing image processing operations is conceptually challenging, due to the strong platform
+dependence. This thesis presents the concept of a web-based platform that enables the
+publishing and provisioning of image processing operations. Additionally, a document
+format for defining platform-independent image processing operations is proposed that
+enables the cross-platform execution and editing of image effects. The presented platform
+complements client applications that support on-device modification of image effects with
+features for collaboration. The system was evaluated in regard to the implementation
+complexity and the interactivity of the web interface in order to prove the feasibility of
+the concept. In the future, it is possible to extend the proposed system to a web-based
+social community for collaboratively designing, modifying and sharing image processing
+operations with features such as ratings, comments and content feeds.
+
+Relational Aggregation is one of the major means to analyze large
+data sets since the creation of the first database systems. Available
+hardware performance continues to grow at an exponential rate, but
+increasingly so through specialization, which makes it non-trivial to
+leverage in software. At the same time, application demands grow
+at an even higher pace. This puts database systems in a continuous
+
+race for hardware-conscious system architectures, more efficient al-
+gorithms, and better implementations—with Aggregation being a
+
+fundamental building block.
+
+In this thesis we study the design and implementation of Aggrega-
+tion operators in the context of modern database systems. In particu-
+lar, we identify and address the following challenges: cache-efficiency,
+
+CPU-friendliness, parallelism within and across processors, robust
+
+handling of skewed data, adaptive processing, processing with con-
+strained memory for intermediate results, and integration with state-
+of-the-art database architectures. While many of these challenges
+
+have been studied in isolation, we are the first to address them at
+the same time.
+
+To guide our algorithm design, we study cache-efficiency of Ag-
+gregation in several external memory models. The lower bounds
+
+we derive show that for many realistic machine parameters, Aggre-
+gation has the same cache-complexity as MultisetSorting, even if
+
+non-comparison-based techniques such as hashing are allowed. This
+proves a long-standing folklore conjecture of the database community.
+Furthermore, we show that linear speed-up is optimal and how it can
+be achieved in this model using any realistic number of processors.
+Our lower bounds also identify situations where Aggregation has a
+lower complexity than MultisetSorting and we provide algorithms
+that make our bounds tight for many parameter ranges.
+
+We use these insights to design and implement a practical algo-
+rithm. It has the anatomy of a sort algorithm in order to achieve
+
+cache-efficiency, but sorts by hash value for better load balancing. Fur-
+thermore, the algorithm can adaptively decide to use hashing as a
+
+subroutine to benefit from high data locality. Low level tuning en-
+sures that all routines make efficient use of modern hardware. The
+
+result is a novel relational Aggregation algorithm that is cache-ef-
+ficient—independently and without prior knowledge of input skew
+
+and output cardinality—, highly parallelizable on modern multi-core
+systems, and operating at a speed close to the memory bandwidth,
+thus outperforming the state-of-the-art by up to 3.7×.
+The development of technology recently become more effective and efficient in many aspects.
+Some aspects such as security, performance, and reliability grow as well, and of course there are
+many impacts from this development. Many good impacts of the development help people in many
+sectors. However, there are bad impacts from this development. Security issues such as hacking
+and cracking become more effective and faster. Side-impact of this matter will occur in many
+open source software including jGnash. JGnash stores the database as binary file, with simple
+password protection, and unencrypted. That’s why jGnash has weak security protection against
+third party attack. In order to increase the security level of jGnash, Advanced Encryption
+Standard algorithm was implemented to encrypt and decrypt the database as plugins. Many
+improvements added as well in order to increase the encryption strength of plugins. The plugins
+will let user encrypt or decrypt his database. The result is encrypted database with strong
+protection against data leak, and security penetration. In order to test security level of encryption,
+basic security attack such as Brute Force tool attacks the encrypted database. More than one
+hour needed to retrieve short and simple password from encrypted database.
+Database is an obligatory part of any modern information
+system as mostly desktop and web-based applications utilize it
+for maintaining records in government and private sectors.
+Typically, Relational Database lead the database market but
+the evolution of Object-Oriented Database has started to
+substitute the Relational Database due to prerequisite of
+modern era’s applications. Object-Oriented Database has
+several advantages as compare to Relational Database like
+better flexibility, reliability, reusability, extensibility,
+redundancy, response time, design & implementation and
+real-world modeling. Nevertheless, Object-Oriented Database
+has some limitations, such as, lack of standard query
+language, security issues, non-availability of basic features, no
+mathematical foundation and deficiency of qualified
+programmers & database administrators, due to which
+Relational Database may not eradicate entirely from database
+market. Despite some constraints of Object-Oriented
+Database, its future seems vivid.

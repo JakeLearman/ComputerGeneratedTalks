@@ -1,0 +1,274 @@
+This thesis presented a data-parallel programming framework for shared-memory multiprocessors.
+The data-parallel computing model was applied to single-threaded data
+structures operating under the bulk-synchronous processing and quiescence assumptions,
+and to concurrent data structures that allow concurrent modifications. We have shown
+how to efficiently assign data-parallel workloads to different processors, and how to handle
+particularly irregular workloads. We hope that the readers had as much fun reading it as
+we had writing it.
+
+We feel that the research done as part of this thesis had important impact on both the
+state-of-the-art of concurrent programming and the ecosystem of several programming
+languages. The basic data-parallel framework described in Chapter 2 is now a part
+of the Scala standard library Parallel Collections. An abstraction called spliterator
+similar to our splitter is now a part of JDK8. The Ctrie data structure from Chapter
+4 was originally implemented in Scala and subsequently made part of the Scala standard
+library. It was already independently reimplemented in other languages like Java
+[Levenstein(2012)] and Common Lisp [Lentz(2013)], and is available as a Haskell module
+[Schröder(2014)]. A monotonically growing variant of the Ctrie is used in Prolog for
+tabling techniques [Areias and Rocha(2014)]. The work-stealing tree scheduler is now a
+part of the efficient data-parallel computing module written in Scala called ScalaBlitz
+[Prokopec and Petrashko(2013)].
+
+The concurrent data structure parallelization through the use of efficient, linearizable,
+lock-free snapshots presented in this thesis poses a significant breakthrough in the field
+of concurrent data structures. We have shown how to apply the snapshot approach to
+two separate lock-free concurrent data structures and identified the key steps in doing so
+A plethora of interesting lock-free concurrent data structures amenable to the snapshot
+approach remain unexplored – we feel confident that the findings in this thesis will drive
+future research in this direction.
+
+This chapter considers two different fields. In the field of optimal stopping
+theory, we presented a non-adaptive and an adaptive threshold rule maximizing
+the expected reward of a gambler facing a sequence of non-negative
+random variables whose realizations arrive over time in a uniform random
+fashion. In both settings we present an algorithm whose approximation
+guarantee matches lower bounds obtained from tight instances. In the field
+of posted price mechanisms, these algorithms translate to pricing schemes
+for both the non-adaptive and the adaptive setting. For the non-adaptive
+setting the approximation guarantee is tight, and for the adaptive setting
+the approximation guarantee is believed to be tight. Formally proving this
+conjecture would be interesting.
+
+The approach in this chapter is new compared to related literature. In future
+research, a similar approach can perhaps be taken in related problems
+in both fields. This new perspective on the analysis of problems like the
+ones in this chapter could turn out to be fruitful.
+
+Another interesting open direction is to investigate the computational
+complexity of the algorithms in this chapter. Does the PTAS presented in
+Cominetti et al. [27] naturally extend to this setting for example? This extension
+seems to be quite subtle and it is not clear yet whether the PTAS
+can be extended or not.
+
+Furthermore, the amount of information our stopping rules require from
+the underlying distributions is little; only quantile distribution information
+is necessary. Future research could further investigate the trade off between
+the amount of distribution information and the achievable approximation
+guarantee.
+
+Static analysis of resource usage behavior of programs is an important problem with numerous
+applications. It has hence been a subject of intense study over the past several decades. However,
+many existing static resource analyses such as [Albert et al., 2012, Hoffmann et al., 2012]
+infer best-effort upper bounds and hope that they match users’ expectations. This dissertation
+presented a complementary approach aimed at verifying user-specified bounds on resource
+utilization of programs. The approach requires users to specify high-level invariants and
+preconditions in the formof function contracts, but automatically solves low-level constraints
+that are within the scope of decidable SMT theories. Users can interact with the system by
+providing hints and/or by fleshing out parts of the proof that are difficult to automatically
+infer. These poof hints are typically properties of recursive functions or nonlinear operations.
+Ideally, these hints are also established within the system. However, even if such hints cannot
+be proven within the system either because their proofs are tedious or even impossible to
+express within the proof system, we can still derive resource bounds that are sound modulo
+the soundness of the (unproved) hints.
+
+In the world of proving correctness properties, the advantages of such contract-based verifiers
+over push-button techniques is broadly known and recognized. This dissertation demonstrates
+that such contract-based techniques will also enable verification of resource bounds
+of programs that are challenging for automatic as well as manual reasoning. While fullyautomated
+techniques offer great value and are highly desirable especially with regards to ease
+of use, they are bound to be incomplete. No matter how sophisticated an automated analysis
+is there will be programs that it cannot analyze precisely. As implied by the somewhat comical
+quote by Von Neumann mentioned at the beginning of this section, program-specific knowledge
+can go a long way in pushing automated systems to programs (or tasks) that existing
+systems "cannot do".
+
+The observation that user-annotations help resource analysis is not by itself surprising. (In
+fact, user-annotations are likely to benefit almost every non-trivial static analysis of semantic
+properties.) What this dissertation addresses is the "what" and "how" aspect of incorporating
+user annotations in resource verification, i.e, it studies the kind of user-annotations that are
+required, and how they can be expressed and effectively utilized in resource verification. In my
+opinion, the high-level contributions of this dissertation are three fold. Firstly, this dissertation
+demonstrates that to express and verify resource properties we can exploit the complete
+verification machinery developed for establishing correctness properties e.g. function-level
+contracts, template-based invariant inference, algorithms for translating contract checking
+to logical formulas and decision produces for solving logical fragments. Secondly, it demonstrates
+that viewing resource bounds as invariants of a program instrumented for resources
+is practically viable and also beneficial. This view essentially provides a way to convert any
+correctness verifier into a resource verifier. Finally, it identifies effective and minimal set of
+primitives such as resource templates, isConcrete construct, structural equality and matching
+of closures, that enable expression of complex properties needed to establish resource bounds
+of programs written in a higher-order functional language with memoization. It also presents
+algorithms for verifying such specifications. In the sequel, I discuss some of the interesting
+enhancements that can be made to the approach presented in this dissertation with minor
+extensions.
+
+Improving Accuracy of the Cost Model While the steps resource presented here counted
+every primitive operation once, it is possible to define new resources that count specific classes
+of the primitive operations separately. For instance, it is quite straightforward to define a
+resource that counts only the arithmetic/logical operations, and another resource that counts
+only the memory operations (such as load/store). These resources can be more effectively
+used to compare implementations at a fine-grained level. Similarly, it is possible to define
+a fine-grained alloc resource that separately counts the number of objects of specific types
+that are allocated in the heap. Furthermore, to more accurately measure heap memory usage,
+it possible define the cost of each allocation proportional to the size of the object that is
+allocated.
+
+Modeling Resources that can be Freed The instrumentation presented here can be extended
+to support resources that could be freed or reclaimed at different points in the program,
+either explicitly by the user or automatically. For instance, these include resources such as the
+the peak memory usage withmanual memory management, the number of locks held by a
+program, and the number of open file handlers. Such resources can be modeled if the cost
+of the constructs that free up such resources are assigned a value that is the negative of the
+amount of resources that is freed up.
+
+However, in the presence of automatic garbage collection, estimating the peak memory usage
+becomes quite tricky. In such cases, one may have to conservatively approximate the behavior
+of the garbage collector.
+
+Memoization with Non-monotonic Caches The set abstraction of a cache presented in
+Chapter 4 can be extended to non-monotonic caches, where certain entries can be explicitly
+removed, and also to bounded caches, where entries cannot be added to the cache if it is
+filled up to its maximum capacity. Recall that the cache is represented as a set of keys and
+is propagated through the expressions of the program. Constructs that explicitly remove an
+entry from a cache could be modeled by removing the corresponding cache key from the
+abstract cache state reaching the program point at which the construct appears. To model
+a bounded cache, one could use an additional counter that tracks the size of the cache at
+every programpoint. The cache instrumentation should be modified so that every memoized
+call adds an entry to the cache if and only if the size of the cache at that point is below the
+maximum capacity of the cache.
+
+A more involved but interesting extension is modeling bounded caches that allow entries to
+be replaced using a predefined replacement policy e.g. first-come-first-serve (FCFS) policy. If
+we can accurately model such caches, we can also use themto model the hardware (memory)
+cache and compute a more precise estimate of the physical running time. A main challenge in
+modeling such caches is precisely tracking all the entries in the cache. Whether such detailed
+specifications can be expressed in a practical way and whether they can scale to complex
+higher-order programs such as those considered in this dissertation is an interesting future
+direction to explore. However, it is to be noted that there has been significant efforts ([Wilhelm
+et al., 2008]) in developing execution time analyses for low-level programs that take into
+account the effects of hardware caches.
+
+This dissertation showed that statically verifying resource usage of complex programs is
+feasible provided users/developers input sufficiently detailed specifications and proof hints.
+However, a pragmatic and open-ended question that is not considered by this dissertation is
+whether verifying abstract resource usage of software is worth the effort? There are two main
+concerns that prevent this question frombeing answered affirmatively. The first concern is
+the practical value added by the abstract resource bounds that are verified, especially when we
+know that the highly intricate and tricky aspects of physical resource usage are not modeled
+by the abstract resource usage. The second concern is that the performance of a program
+for an average (or typical) execution scenario is of greater interest, and any deterioration in
+performance for an input that appears rarely can be tolerated. I conclude this dissertation by
+sharing my thoughts on both these aspects.
+
+Inmany cases, the invariants maintained by programs for achieving the desired resource usage
+are quite complex. For instance, think of the color and height invariants of the red-black data
+structure. Their sole purpose is to make tree operations run in time logarithmic in the size of
+the tree. Often these invariants are complex pieces of code. A real problem with these complex
+specification is determining whether the specifications are correct. By verifying resource
+bounds we establish the correctness of these specifications. In fact, even if the specifications
+do not exactly match the user’s expectation, it is still does not matter as long as they entail the
+desired resource usage. In other words, resource verification provides a way to ensure that the
+sophistications built in to programs for better performance are indeed correct and produce
+the desired effect.
+
+Secondly, while it is true that abstract resource usage does not capture the tricky aspects of
+physical resource usage, in the absence of the ability to precisely estimate the former, the next
+best fall back is to reason about the latter. There are numerous application domains where
+even abstract resource usage may prove to be very useful. For instance, they can be used by
+compile-time or runtime optimizers to select an implementation that is likely to perform
+better under a specific compile-time or runtime context. They can be used to measure the
+changes in the memory usage of an application across different versions and hence identify
+memory bloats. Furthermore, they can be used to establish infeasibility of security exploits
+based on resource consumption of programs such as side-channel attacks. I believe that the
+availability of a robust system that can establish resource bounds at the level of precision
+described here will enable many novel applications in the time to come.
+We started this thesis by posing our high-level research goal, namely to investigate the hypothesis
+that persistent memory could be used to solve the performance and complexity issues historically
+associated with orthogonal persistence support in programming languages with automatic memory
+management. We then refined this high level goal into different research questions, which were
+addressed by this thesis. We now summarize the answers and present our concluding remarks as well
+as possible directions for future work.
+
+We first studied the evolution of Orthogonal Persistence concepts and systems, which attempted
+to alleviate the cost of mapping data as represented in memory to either files or databases (and
+vice-versa) by supporting a uniform treatment of objects irrespective of their types, allowing values
+of all types to have whatever longevity is required. We identified that previous implementations
+succeeded in providing simpler and easier programming interfaces, but had to cope internally with
+moving data between memory and storage. This challenge increased the integral system complexity,
+and led to performance constraints that ultimately prevented Orthogonal Persistence from becoming
+a mainstream approach.
+
+Then, we studied recent non-volatile memory technologies that make it possible to collapse
+memory and storage into a single entity, known as persistent memory. We investigated several
+works adding Persistent Memory support for different programming languages, and identified that all
+of them provided simpler programming interfaces while still performing efficiently (since persistent
+memory removes the need for managing data movement between memory and storage). However,
+we also identified that none of the existing programming interfaces for persistent memory satisfied
+the orthogonal persistence goal of supporting a uniform treatment of objects independently of their
+types.
+
+Based on these findings, we introduced a design for the runtime environment for languages with
+automatic memory management satisfying orthogonal persistence principles, based on an original
+combination of persistent memory programming, persistence by reachability, and lock-based failureatomic
+transactions. Such design can significantly increase programming and execution efficiency, as
+in-memory data structures are transparently persistent, without the need for programmatic persistence
+handling, and removing the need for crossing semantic boundaries.
+
+In order to validate and evaluate the effectiveness of this design, we have created JaphaVM, a
+prototype Java Virtual Machine designed for persistent memory and based on Orthogonal Persistence.
+JaphaVM’s programming interface is inspired by previous research on orthogonally-persistent Java
+Virtual Machines, but its design leverages Persistent Memory, resulting in a simpler implementation
+with better performance.
+
+The initial prototype implementation of our design used a simple memory mapping to a file in
+persistent memory to store the heap and other runtime structures, without any PM-specific APIs to
+handle in-memory transactions. Functional tests performed on this initial implementation answered
+affirmatively research question 1, i.e., that "we can use a persistent heap on top of persistent memory
+to transparently store objects across multiple program executions". No specific memory management
+features for persistent objects were implemented, using the standard garbage collection mechanisms,
+and the results of functional testing addressed research question 2, demonstrating that "it is possible
+to leverage automatic memory management mechanisms to determine the persistence lifecycle of
+ordinary objects".
+
+However, consistency was not guaranteed in the presence of failures, as confirmed by tests where
+the prototype process was randomly killed. That led us to consider the use of lock-based failureatomic
+transactions, i.e., using failure-atomic transactions (provided by libraries such as NVML)
+automatically at runtime. The final prototype implementation, using this mechanism, successfully
+addressed research question 3, demonstrating a way "to automatically ensure the consistency of a
+persistent heap in the presence of failures".
+
+To address research question 4, i.e., "what is the performance of an orthogonally-persistent
+system using a persistent heap relative to traditional storage approaches?", we evaluated JaphaVM’s
+advantages over relational databases and files, considering both execution performance and programming
+complexity. In our experiments, JaphaVM executed the same operations between one and two
+orders of magnitude faster than the traditional implementations, with the exception of write-intensive
+tasks to files, and achieved the same results requiring significantly less lines of code.
+By addressing these different research questions, we believe to have successfully confirmed the
+hypothesis that persistent memory can be used to solve the performance and complexity issues
+historically associated with orthogonal persistence support in programming languages with automatic
+memory management.
+
+In this thesis, novel algorithms for efficient depthmap compression are proposedwith
+a special focus on edge preserving solutions. An inherently edge preserving technique
+is presented in Chapter 3, namely that of applying a pixel-based scalar quantisation
+scheme in the lossless or near-lossless domain. By avoiding transformation, edge approximation,
+and explicit edge encoding, the proposed depth map coding technique
+has achieved superior depth map quality with better edge preservation compared
+to the state-of-the-art 3D-HEVC, while also achieving significant compression. The
+scheme proposed in Chapter 3 has outperformed 3D-HEVC with a superior synthetic
+view quality at bit-rate 0.21 bpp or above for the majority of test video sequences.
+Similarly, for the majority of 3D test sequences, the proposed technique has achieved
+a lower bit-rate compared to 3D-HEVC at a synthetic view quality 39.8 dB or higher.
+In this thesis, it has been demonstrated through examples and statistics that a
+depth image has remarkably different spatial and temporal characteristics compared
+to a texture image. To the best of our knowledge, this thesis is the first to explore the
+clustering tendency in depth residual frames as well as coding unit modes and motion
+vectors (see Chapters 4 and 5). Current coding techniques are not able to fully
+exploit the higher-order clustering tendency that depth data exhibits at spatial- and
+data-component-level. In this thesis, in order to effectively exploit the clustering tendency,
+a binary tree based decomposition (BTBD) technique has been developed for
+partitioning multi-dimensional depth data, representing residual, motion, and mode
+information using bitmaps or integer maps.
+Depth data compression efficiency can be improved significantly if depth data are
+first partitioned into cuboids of different data density that are then encoded independently
+with context adaptive arithmetic coding (CAAC). 
